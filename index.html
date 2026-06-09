@@ -252,6 +252,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
     <button class="menu-btn" data-t="aula" onclick="irP('aula')">👩‍🏫 Aula</button>
     <button class="menu-btn" data-t="brincadeiras" onclick="irP('brincadeiras')">🎪 Brinc</button>
     <button class="menu-btn" data-t="recursos" onclick="irP('recursos')">📚 Rec</button>
+    <button class="menu-btn" data-t="cinema" onclick="irP('cinema')">🎬 Cinema</button>
     <button class="menu-btn" data-t="velha" onclick="irP('velha')">⭕ Velha</button>
     <button class="menu-btn" data-t="forca" onclick="irP('forca')">💀 Forca</button>
   </div></div>
@@ -810,6 +811,52 @@ function renderRecursos(){
   h+='</div>';
   el.innerHTML=h;
 }
+function renderCinema(){
+  var el=document.getElementById('cinema-conteudo');
+  if(!el)return;
+  var h='<h2>🎬 Sessão Cinema <button class="tts-btn-ouvir" onclick="ttsLer(\'cinema\',this)">🔊 Ouvir</button></h2>';
+  h+='<p style="color:#b8a8d8;font-size:.8rem;margin-bottom:8px">Vídeos e canais organizados por faixa etária para evangelização espírita.</p>';
+  h+='<div style="display:flex;flex-direction:column;gap:10px">';
+
+  h+='<div style="background:rgba(255,255,255,.04);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,.06)">';
+  h+='<h3 style="color:#ffd700;font-size:.9rem;margin-bottom:6px">🧒 Para crianças (6 a 10 anos)</h3>';
+  h+='<a href="https://www.youtube.com/@superbookportugues" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 Superbook</div><div style="font-size:.72rem;color:#b8a8d8">Episódios bíblicos animados — Noé, Moisés, Davi, Jesus</div></a>';
+  h+='<a href="https://www.youtube.com/@TurminhadaBiblia" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 Turminha da Bíblia</div><div style="font-size:.72rem;color:#b8a8d8">Histórias bíblicas animadas — episódios curtos</div></a>';
+  h+='<a href="https://www.youtube.com/@SementinhaTV" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 Sementinha TV</div><div style="font-size:.72rem;color:#b8a8d8">Conteúdo espírita infantil — histórias, músicas, ensinamentos</div></a>';
+  h+='<a href="https://www.youtube.com/@3Palavrinhas" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 3 Palavrinhas</div><div style="font-size:.72rem;color:#b8a8d8">Músicas com valores — amor, respeito, gratidão (4-8 anos)</div></a>';
+  h+='</div>';
+
+  h+='<div style="background:rgba(255,255,255,.04);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,.06)">';
+  h+='<h3 style="color:#ffd700;font-size:.9rem;margin-bottom:6px">🧑 Para pré-adolescentes (10 a 13 anos)</h3>';
+  h+='<a href="https://www.youtube.com/@FEBtv" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 FEBtv</div><div style="font-size:.72rem;color:#b8a8d8">Vídeos educativos e histórias alinhadas à visão espírita</div></a>';
+  h+='<a href="https://www.youtube.com/@MansaodoCaminho" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 Mansão do Caminho</div><div style="font-size:.72rem;color:#b8a8d8">Histórias e reflexões baseadas nos ensinamentos de Jesus</div></a>';
+  h+='</div>';
+
+  h+='<div style="background:rgba(255,255,255,.04);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,.06)">';
+  h+='<h3 style="color:#ffd700;font-size:.9rem;margin-bottom:6px">👨 Para adolescentes (13 anos ou mais)</h3>';
+  h+='<a href="https://www.youtube.com/@FEBtv" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 FEBtv — Séries e Reflexões</div><div style="font-size:.72rem;color:#b8a8d8">Estudos, reflexões e debates sobre valores morais</div></a>';
+  h+='<a href="https://www.youtube.com/results?search_query=the+chosen+clipes+portugues" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 The Chosen (Clipes)</div><div style="font-size:.72rem;color:#b8a8d8">Cenas da série sobre a vida de Jesus — discutir atitudes e lições</div></a>';
+  h+='</div>';
+
+  h+='<div style="background:rgba(255,255,255,.04);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,.06)">';
+  h+='<h3 style="color:#ffd700;font-size:.9rem;margin-bottom:6px">🎬 Curtas-metragens (5-10 min)</h3>';
+  h+='<p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px">Temas para reflexão moral — perfeito para gerar conversas após a exibição.</p>';
+  h+='<div style="display:flex;flex-wrap:wrap;gap:4px">';
+  var temas=['Perdão','Bullying','Honestidade','Empatia','Gratidão','Inclusão','Respeito','Amizade','Coragem','Generosidade'];
+  for(var i=0;i<temas.length;i++){
+    h+='<a href="https://www.youtube.com/results?search_query=curta+metragem+animado+'+temas[i].toLowerCase()+'+infantil" target="_blank" rel="noopener" style="background:rgba(255,255,255,.04);border-radius:20px;padding:4px 12px;text-decoration:none;color:#d4c4f0;font-size:.72rem;font-weight:600;border:1px solid rgba(255,255,255,.06)" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.04)\'">'+temas[i]+'</a>';
+  }
+  h+='</div></div>';
+
+  h+='<div style="background:rgba(255,255,255,.04);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,.06)">';
+  h+='<h3 style="color:#ffd700;font-size:.9rem;margin-bottom:6px">📺 Canais Complementares</h3>';
+  h+='<a href="https://www.youtube.com/@TVComunhao" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 TV Comunhão</div><div style="font-size:.72rem;color:#b8a8d8">Programação espírita educativa e reflexiva</div></a>';
+  h+='<a href="https://www.youtube.com/results?search_query=superbook+episodio+completo+portugues" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">⭐ Superbook — Episódios Completos</div><div style="font-size:.72rem;color:#b8a8d8">Melhor opção! Moisés, Dez Mandamentos, Davi, Milagres de Jesus, A Última Ceia</div></a>';
+  h+='</div>';
+
+  h+='</div>';
+  el.innerHTML=h;
+}
 function atualizarQuizTheme(){
   var t=temaAtual; // 0-9 → same quiz index; theme bar is 1:1 with quiz now
   setQuizTema(t);
@@ -823,6 +870,7 @@ irP=function(t){
   if(t==='brincadeiras')renderBrinc();
   if(t==='revisao')renderRevisao();
   if(t==='recursos')renderRecursos();
+  if(t==='cinema')renderCinema();
   if(t==='velha')velhaReset();
   if(t==='forca')forcaNova();
   if(t==='memoria'){memDiff=0;document.querySelector('#mem-dif .dif-btn[data-d="0"]').classList.add('ativo');iniciarMem();}
@@ -2073,6 +2121,11 @@ function ttsBarShow(show,secao){
 <!-- RECURSOS -->
 <div class="tela" id="tela-recursos">
   <div class="hist-card" id="rec-conteudo"></div>
+</div>
+
+<!-- CINEMA -->
+<div class="tela" id="tela-cinema">
+  <div class="hist-card" id="cinema-conteudo"></div>
 </div>
 
 <div class="tts-bar" id="tts-bar">
