@@ -738,12 +738,12 @@ var cacaTemas=[
   ['MOISES','FARAO','SARCA','MANA','TABUAS','JOSUE','JOQUEBEDE','MIRIA','PRAGA','NEBO','ALIANCA','ROCA'],
   ['JESUS','APOSTOLO','BELEM','EVANGELHO','PERDAO','PARABOLA','MARIA','JOAO','GALILEU','PEDRO','RESSURREICAO','MANJEDOURA'],
   ['KARDEC','ESPIRITISMO','CONSOLADOR','GENESE','MEDIUNS','CODIFICACAO','CIENCIA','FILOSOFIA','RELIGIAO','RAZAO','FE','OBRAS'],
-  ['REENCARNA','PERISPIRITO','EVOLUCAO','ESQUECIMENTO','PLURALIDADE','IMORTAL','PROGRESSO','APRENDER','FAMILIA','LICOES','CAMINHO','OPORTUNIDADE'],
-  ['CARIDADE','HUMILDADE','PERDAO','PAClENCIA','SINCERIDADE','HONESTIDADE','BONDADE','GRATIDAO','FE','ESPERANCA','TOLERANCIA','COMPAIXAO'],
-  ['ORACAO','MEDIUNIDADE','INTUlCAO','PASSE','ANJO','VlGIA','SINTONIA','GRATIDAO','PROTECAO','CONEXAO','SONHO','FLUIDO'],
+  ['REENCARNA','EVOLUCAO','IMORTAL','PROGRESSO','APRENDER','FAMILIA','LICOES','CAMINHO','ALMA','CICLO','VIDAS','NASCER'],
+  ['CARIDADE','PERDAO','PACIENCIA','BONDADE','GRATIDAO','COMPAIXAO','FE','AMOR','PAZ','BEM','DOAR','CALMA'],
+  ['ORACAO','MEDIUNIDADE','INTUICAO','PASSE','ANJO','VIGIA','SINTONIA','GRATIDAO','PROTECAO','CONEXAO','SONHO','FLUIDO'],
   ['SEMEADOR','TALENTOS','SAMARITANO','PRODIGO','OVELHA','FIGUEIRA','DRACMA','BODAS','TRIGO','JOIO','FERMENTO','REDE'],
   ['BEZERRA','CHICO','PAULO','KARDEC','FRANCISCO','EMMANUEL','MEDICO','POBRES','INSTRUMENTO','PAZ','SERVICO','CARIDADE'],
-  ['JUDAS','CALVARIO','DESENCARNA','EXPIACAO','TRANSICAO','LIVREARBITRIO','GETSEMANI','CRUCIFIXO','RESSURREICAO','REGENERACAO','CONSCIENCIA','MOCIDADE'],
+  ['JUDAS','CALVARIO','EXPIACAO','TRANSICAO','GETSEMANI','MOCIDADE','CONSCIENCIA','VIDA','JOVEM','CRUZ','FE','AMOR'],
   ['MANDAMENTOS','TABUAS','SINAI','AMOR','DEUS','PROXIMO','SABADO','IDOLOS','HONRAR','ROUBAR','MENTIRA','COBICAR']
 ];
 var lpTemas=[
@@ -1493,8 +1493,10 @@ function setCPDiff(d){cpDiff=d;document.querySelectorAll('#cp-dif .dif-btn').for
 function iniciarCP(){
   var base=cacaTemas[temaAtual]||cacaTemas[0];
   var size=cpTam[cpDiff]||cpTam[0];
+  var wordsFit=base.filter(function(w){return w.length<=size;});
   var n=Math.max(4,Math.floor(size*0.7));
-  var palavras=[...base].sort(function(){return Math.random()-.5;}).slice(0,n);
+  if(wordsFit.length<n)n=wordsFit.length;
+  var palavras=[...wordsFit].sort(function(){return Math.random()-.5;}).slice(0,n);
   cpEncontradas=[];cpSel=null;cpDir=null;
   var grid=[];
   for(var i=0;i<size;i++){grid[i]=[];for(var j=0;j<size;j++)grid[i][j]='';}
