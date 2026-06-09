@@ -1,0 +1,1934 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>Jogo da Evangelização Espírita</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;display:flex;justify-content:center;padding:10px 6px}
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--dur) ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:.2;transform:scale(.8)}100%{opacity:1;transform:scale(1.2)}}
+.container{position:relative;z-index:1;width:100%;max-width:920px;background:rgba(255,255,255,.07);backdrop-filter:blur(16px);border-radius:28px;padding:14px 10px 18px;box-shadow:0 20px 60px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.06);min-height:460px}
+.menu-wrap{overflow-x:auto;margin-bottom:10px;-webkit-overflow-scrolling:touch}
+.menu-topo{display:flex;gap:3px;min-width:max-content;padding:2px;background:rgba(255,255,255,.03);border-radius:36px}
+.tema-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;padding:4px 8px;border:none;border-radius:28px;cursor:pointer;transition:all .2s;white-space:nowrap;background:transparent;color:#b8a8d8;border:1px solid transparent}
+.tema-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.08)}
+.tema-btn.ativo{background:rgba(255,215,0,.12);color:#ffd700;border-color:rgba(255,215,0,.2);box-shadow:0 0 10px rgba(255,215,0,.1)}
+.menu-btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;border:none;border-radius:28px;cursor:pointer;transition:all .2s;white-space:nowrap;background:transparent;color:#b8a8d8}
+.menu-btn:hover{background:rgba(255,255,255,.08)}
+.menu-btn.ativo{background:rgba(124,92,191,.35);color:#f5e6d3;box-shadow:0 0 14px rgba(124,92,191,.25)}
+.tela{display:none}
+.tela.active{display:block}
+.logo{font-family:'Fredoka One',cursive;font-size:1.7rem;color:#f5e6d3;text-shadow:0 3px 0 #7c5cbf,0 5px 0 #4a2c8a;text-align:center;line-height:1.1}
+.logo small{display:block;font-size:.75rem;color:#cdb8f0;font-weight:700;letter-spacing:2px}
+.ilustracao{text-align:center;font-size:2.5rem;line-height:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
+.subtitle{font-size:.9rem;color:#d4c4f0;text-align:center;font-weight:600;margin-bottom:6px}
+.btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;padding:8px 18px;border:none;border-radius:60px;cursor:pointer;transition:all .25s ease;display:inline-flex;align-items:center;gap:5px;box-shadow:0 4px 15px rgba(0,0,0,.3);letter-spacing:.3px;text-transform:uppercase}
+.btn:hover{transform:translateY(-2px) scale(1.02)}
+.btn:active{transform:translateY(0) scale(.97)}
+.btn-p{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
+.btn-s{background:linear-gradient(135deg,#43e97b,#38f9d7);color:#003d2e}
+.btn-w{background:linear-gradient(135deg,#f7971e,#ffd200);color:#3d1f00}
+.btn-d{background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff}
+.btn-o{background:rgba(255,255,255,.07);color:#d4c4f0;border:2px solid rgba(255,255,255,.1)}
+.btn-sm{font-size:.7rem;padding:5px 12px}
+.botoes-centro{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:6px 0}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:6px 0}
+.card-jogo{background:rgba(255,255,255,.04);border-radius:18px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .25s;border:2px solid rgba(255,255,255,.05)}
+.card-jogo:hover{background:rgba(255,255,255,.09);transform:translateY(-3px)}
+.card-jogo .ci{font-size:2rem;margin-bottom:2px}
+.card-jogo .ct{font-weight:800;color:#f5e6d3;font-size:.8rem}
+.card-jogo .cd{font-size:.65rem;color:#b8a8d8;margin-top:1px}
+.dificuldade{display:flex;gap:5px;justify-content:center;margin:4px 0 8px}
+.dif-scroll{display:flex;gap:5px;overflow-x:auto;padding:2px 0 6px;justify-content:flex-start;margin:4px 0 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.dif-scroll::-webkit-scrollbar{display:none}
+.dif-scroll .dif-btn{flex-shrink:0}
+.dif-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 14px;border:2px solid rgba(255,255,255,.08);border-radius:30px;background:transparent;color:#b8a8d8;cursor:pointer;transition:all .2s}
+.dif-btn:hover{border-color:rgba(255,255,255,.2)}
+.dif-btn.ativo{background:rgba(124,92,191,.25);border-color:#7c5cbf;color:#f5e6d3}
+.tab-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.tab-info{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:.75rem;color:#cdb8f0;font-weight:700}
+.tab-info .dv{font-size:1.1rem;color:#ffd700;background:rgba(255,255,255,.04);padding:2px 8px;border-radius:8px;border:2px solid rgba(255,215,0,.12)}
+.jog-info{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px}
+.jchip{font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:16px;display:flex;align-items:center;gap:3px;border:2px solid transparent;opacity:.5}
+.jchip.ativo{opacity:1;box-shadow:0 0 10px rgba(255,215,0,.25);border-color:#ffd700}
+.dado-area{display:flex;align-items:center;gap:6px}
+.dado-face{font-size:1.8rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border-radius:8px;border:2px solid rgba(255,255,255,.08);user-select:none}
+.dado-face.rolando{animation:dadoGirar .5s ease}
+@keyframes dadoGirar{0%{transform:rotateZ(0deg) scale(1)}25%{transform:rotateZ(90deg) scale(1.15)}50%{transform:rotateZ(180deg) scale(1)}75%{transform:rotateZ(270deg) scale(1.15)}100%{transform:rotateZ(360deg) scale(1)}}
+.btn-dado{font-family:'Nunito',sans-serif;font-weight:800;font-size:.75rem;padding:6px 14px;border:none;border-radius:36px;cursor:pointer;transition:all .2s;background:linear-gradient(135deg,#f7971e,#ffd200);color:#3d1f00;box-shadow:0 4px 15px rgba(255,215,0,.3);text-transform:uppercase}
+.btn-dado:hover{transform:translateY(-2px)}.btn-dado:disabled{opacity:.4;cursor:not-allowed}
+.tab-grade{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;background:rgba(255,255,255,.02);border-radius:12px;padding:5px;border:1px solid rgba(255,255,255,.03);margin-bottom:4px}
+.tab-casa{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:rgba(255,255,255,.35);background:rgba(255,255,255,.02);border:2px solid rgba(255,255,255,.04);position:relative;min-height:36px;text-align:center;padding:1px}
+.tab-casa .ci{font-size:.85rem}.tab-casa .cn{font-size:.48rem;opacity:.4}
+.tab-casa.tipo-inicio{border-color:rgba(67,233,123,.25);background:rgba(67,233,123,.06)}
+.tab-casa.tipo-fim{border-color:rgba(255,215,0,.35);background:rgba(255,215,0,.1)}
+.tab-casa.tipo-pergunta{border-color:rgba(124,92,191,.2);background:rgba(124,92,191,.05)}
+.tab-casa.tipo-estrela{border-color:rgba(255,215,0,.2);background:rgba(255,215,0,.05)}
+.tab-casa.tipo-nuvem{border-color:rgba(100,150,200,.2);background:rgba(100,150,200,.05)}
+.tab-casa.tipo-coracao{border-color:rgba(255,100,150,.2);background:rgba(255,100,150,.05)}
+.tab-casa .pinos{display:flex;gap:1px;flex-wrap:wrap;justify-content:center;position:absolute;bottom:1px}
+.tab-casa .pino{font-size:.6rem;line-height:1}
+.tab-msg{background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;color:#d8d0e8;font-weight:600;font-size:.8rem;text-align:center;min-height:34px;border:1px solid rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
+.setup-jog{text-align:center;padding:6px 0}.setup-jog h3{color:#f5e6d3;font-size:.95rem;margin-bottom:4px}
+.setup-opts{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:6px}
+.setup-opt{font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;padding:6px 16px;border:2px solid rgba(255,255,255,.08);border-radius:30px;background:transparent;color:#b8a8d8;cursor:pointer}
+.setup-opt.ativo{border-color:#7c5cbf;background:rgba(124,92,191,.18);color:#f5e6d3}
+.vitoria-ban{background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,200,50,.06));border:2px solid #ffd700;border-radius:16px;padding:12px;text-align:center;margin:6px 0;animation:pulseV 1.5s ease-in-out infinite}
+@keyframes pulseV{0%,100%{box-shadow:0 0 10px rgba(255,215,0,.15)}50%{box-shadow:0 0 25px rgba(255,215,0,.3)}}
+.vitoria-ban .vi{font-size:2rem}.vitoria-ban .vt{font-family:'Fredoka One',cursive;font-size:1.1rem;color:#ffd700}
+
+.pr-container{text-align:center}
+.pr-teams{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:6px 0}
+.pr-team{flex:1;min-width:120px;background:rgba(255,255,255,.04);border-radius:16px;padding:10px;border:2px solid rgba(255,255,255,.06)}
+.pr-team.vez{box-shadow:0 0 20px rgba(255,215,0,.2);border-color:#ffd700}
+.pr-team .pt-name{font-weight:800;font-size:.85rem;color:#f5e6d3}
+.pr-team .pt-score{font-size:1.8rem;font-weight:800;color:#ffd700}
+.pr-diff{display:flex;gap:6px;justify-content:center;margin:4px 0}
+.pr-diff-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 14px;border:2px solid rgba(255,255,255,.08);border-radius:30px;background:transparent;color:#b8a8d8;cursor:pointer}
+.pr-diff-btn.ativo{border-color:#7c5cbf;background:rgba(124,92,191,.2);color:#f5e6d3}
+.pr-question{background:rgba(255,255,255,.04);border-radius:16px;padding:14px;margin:8px 0;border:1px solid rgba(255,255,255,.06)}
+.pr-q-text{font-size:1rem;color:#f5f0ff;font-weight:700;margin-bottom:10px}
+.pr-opts{display:flex;flex-direction:column;gap:5px}
+.pr-opt{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;padding:9px 14px;border:2px solid rgba(255,255,255,.07);border-radius:12px;background:rgba(255,255,255,.03);color:#e8ddf5;cursor:pointer;text-align:left}
+.pr-opt:hover{background:rgba(255,255,255,.08)}
+.pr-opt:disabled{pointer-events:none}
+.pr-opt.certo{background:rgba(67,233,123,.18);border-color:#43e97b;color:#b0f5c8}
+.pr-opt.errado{background:rgba(245,87,108,.18);border-color:#f5576c;color:#f5b0b8}
+.pr-opt.revelar{background:rgba(67,233,123,.12);border-color:#43e97b;color:#b0f5c8}
+.pr-actions{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px 0}
+.pr-msg{font-size:.85rem;color:#d4c4f0;font-weight:700;margin:4px 0;min-height:28px}
+.pr-status{font-size:.75rem;color:#b8a8d8;margin:2px 0;text-align:center}
+.pr-setup{text-align:center;padding:8px 0}
+.pr-setup input{font-family:'Nunito',sans-serif;font-size:.85rem;padding:8px 14px;border-radius:30px;border:2px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#f5e6d3;text-align:center;width:140px;margin:4px}
+.pr-setup input::placeholder{color:#7a6a9a}
+
+.mem-grid{display:grid;gap:6px;justify-content:center;margin:8px auto;max-width:450px}
+.mem-card{aspect-ratio:1;border-radius:12px;cursor:pointer;transition:all .3s;position:relative;transform-style:preserve-3d;min-height:50px}
+.mem-card .mc-f,.mem-card .mc-b{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;font-size:1.8rem;border:2px solid rgba(255,255,255,.08)}
+.mem-card .mc-f{background:linear-gradient(135deg,rgba(124,92,191,.3),rgba(74,42,138,.3));transform:rotateY(0deg)}
+.mem-card .mc-b{background:rgba(255,255,255,.06);transform:rotateY(180deg);font-size:1.2rem;font-weight:700;color:#f5e6d3}
+.mem-card.virada .mc-f{transform:rotateY(180deg)}
+.mem-card.virada .mc-b{transform:rotateY(0deg)}
+.mem-card.acertou{border-color:#43e97b;box-shadow:0 0 15px rgba(67,233,123,.3)}
+.mem-card.acertou .mc-b{border-color:#43e97b}
+.mem-card.errou{animation:shake .3s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.mem-info{font-size:.8rem;color:#cdb8f0;font-weight:600;text-align:center;margin:4px 0}
+
+.hist-card{background:rgba(255,255,255,.04);border-radius:18px;padding:16px;border:1px solid rgba(255,255,255,.06);margin-bottom:8px;max-width:650px;margin-left:auto;margin-right:auto}
+.hist-card h2{font-family:'Fredoka One',cursive;font-size:1.2rem;color:#ffd700;margin-bottom:6px}
+.hist-card .ref{font-size:.75rem;color:#7a6a9a;margin-bottom:6px}
+.hist-card p{color:#d8d0e8;font-size:.88rem;line-height:1.6;margin-bottom:6px}
+.hist-card .vers{background:rgba(124,92,191,.1);border-left:4px solid #7c5cbf;padding:8px 14px;border-radius:0 10px 10px 0;margin:8px 0;font-style:italic;color:#cdb8f0;font-size:.82rem}
+.hist-card .reflexao{background:rgba(255,215,0,.06);border-left:4px solid #ffd700;padding:8px 14px;border-radius:0 10px 10px 0;margin:8px 0;font-weight:700;color:#f5e6d3;font-size:.85rem}
+.hist-card .eb{text-align:center;font-size:2.5rem;margin:4px 0}
+
+.aula-card{background:rgba(255,255,255,.04);border-radius:16px;padding:14px 16px;border:1px solid rgba(255,255,255,.06);margin-bottom:8px;max-width:700px;margin-left:auto;margin-right:auto}
+.aula-card h2{font-family:'Fredoka One',cursive;font-size:1.1rem;color:#ffd700;margin-bottom:6px}
+.aula-card h3{font-size:.9rem;color:#d4c4f0;font-weight:800;margin:8px 0 4px}
+.aula-card p,.aula-card li{color:#d8d0e8;font-size:.82rem;line-height:1.5}
+.aula-card ul{padding-left:18px}
+.aula-card .dica{background:rgba(124,92,191,.1);border-left:4px solid #7c5cbf;padding:8px 12px;border-radius:0 10px 10px 0;margin:6px 0;font-size:.8rem;color:#cdb8f0}
+
+.brinc-card{background:rgba(255,255,255,.04);border-radius:16px;padding:14px 16px;border:1px solid rgba(255,255,255,.06);margin-bottom:8px;max-width:700px;margin-left:auto;margin-right:auto}
+.brinc-card h2{font-family:'Fredoka One',cursive;font-size:1.05rem;color:#ffd700;margin-bottom:4px}
+.brinc-card h3{font-size:.85rem;color:#d4c4f0;font-weight:800;margin:6px 0 3px}
+.brinc-card p,.brinc-card li{color:#d8d0e8;font-size:.82rem;line-height:1.5}
+.brinc-card ul{padding-left:18px}.brinc-card .tag{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 10px;border-radius:30px;margin:2px;background:rgba(124,92,191,.2);color:#cdb8f0}
+
+.tts-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(15,12,41,.95);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.06);padding:6px 10px;display:none;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.tts-bar.show{display:flex}
+.tts-bar .tts-info{font-size:.72rem;color:#cdb8f0;font-weight:600;flex:1;min-width:80px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tts-bar .tts-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 12px;border:none;border-radius:30px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:3px}
+.tts-bar .tts-btn:hover{transform:translateY(-1px)}
+.tts-bar .tts-play{background:linear-gradient(135deg,#43e97b,#38f9d7);color:#003d2e}
+.tts-bar .tts-stop{background:rgba(245,87,108,.15);color:#f5576c;border:1px solid rgba(245,87,108,.2)}
+.tts-bar .tts-speed{font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;padding:3px 10px;border-radius:20px;border:2px solid rgba(255,255,255,.06);background:transparent;color:#b8a8d8;cursor:pointer}
+.tts-bar .tts-speed.ativo{border-color:#7c5cbf;background:rgba(124,92,191,.15);color:#f5e6d3}
+.tts-btn-ouvir{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;padding:2px 8px;border:none;border-radius:20px;cursor:pointer;background:rgba(67,233,123,.08);color:#43e97b;border:1px solid rgba(67,233,123,.12);transition:all .2s;vertical-align:middle;margin-left:6px}
+.tts-btn-ouvir:hover{background:rgba(67,233,123,.15)}
+.tts-btn-ouvir.ativo{background:rgba(245,87,108,.1);color:#f5576c;border-color:rgba(245,87,108,.15)}
+.tts-highlight{animation:ttsFlash .3s ease}
+@keyframes ttsFlash{0%,100%{opacity:1}50%{opacity:.6}}
+
+.lp-canvas-wrap{position:relative;width:100%;max-width:380px;margin:4px auto;background:rgba(255,255,255,.02);border-radius:14px;border:2px solid rgba(255,255,255,.05);overflow:hidden}
+.lp-canvas-wrap canvas{display:block;width:100%;height:auto;touch-action:none}
+.lp-info{text-align:center;font-size:.8rem;color:#d4c4f0;font-weight:700;margin:4px 0}
+.lp-progresso{display:flex;gap:3px;justify-content:center;flex-wrap:wrap;margin:3px 0}
+.lp-pi{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.08);font-size:.45rem;display:flex;align-items:center;justify-content:center;color:transparent}
+.lp-pi.feito{background:#43e97b;border-color:#43e97b;color:#fff}
+.lp-desenhos{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;margin:4px 0}
+.lp-d-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 12px;border:2px solid rgba(255,255,255,.08);border-radius:30px;background:transparent;color:#b8a8d8;cursor:pointer}
+.lp-d-btn.ativo{background:rgba(124,92,191,.18);border-color:#7c5cbf;color:#f5e6d3}
+
+.cp-grid{display:inline-grid;gap:2px;margin:4px auto;user-select:none;background:rgba(255,255,255,.02);padding:4px;border-radius:10px;border:1px solid rgba(255,255,255,.04)}
+.cp-cell{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#e0d0f0;background:rgba(255,255,255,.03);border-radius:5px;cursor:pointer;transition:all .1s;border:2px solid transparent;touch-action:none}
+.cp-cell:hover{background:rgba(255,255,255,.08)}
+.cp-cell.sel{background:rgba(124,92,191,.25);border-color:rgba(124,92,191,.35)}
+.cp-cell.achada{background:rgba(67,233,123,.18);border-color:rgba(67,233,123,.25);color:#b0f5c8}
+.cp-lista{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:4px 0}
+.cp-palavra{font-size:.75rem;font-weight:700;color:#b8a8d8;padding:3px 10px;background:rgba(255,255,255,.03);border-radius:30px;border:2px solid transparent}
+.cp-palavra.achada{color:#43e97b;border-color:rgba(67,233,123,.25);background:rgba(67,233,123,.06);text-decoration:line-through}
+.cp-info{font-size:.75rem;color:#cdb8f0;font-weight:600;margin:3px 0;text-align:center}
+
+.qd-painel{background:rgba(255,255,255,.04);border-radius:18px;padding:12px;border:2px solid rgba(255,255,255,.06);margin-bottom:8px;min-height:150px;max-width:600px;margin-left:auto;margin-right:auto}
+.qd-cena{display:none;animation:fadeCena .6s ease}
+.qd-cena.ativa{display:block}
+@keyframes fadeCena{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.qd-img{text-align:center;font-size:2.8rem;line-height:1.2;min-height:60px;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
+.qd-img .qd-p{display:inline-block;animation:floatP 2s ease-in-out infinite}
+.qd-img .qd-p:nth-child(2){animation-delay:.3s}.qd-img .qd-p:nth-child(3){animation-delay:.6s}
+@keyframes floatP{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.qd-texto{font-size:.95rem;color:#f0e8f8;font-weight:700;text-align:center;margin:6px 0 2px;line-height:1.3}
+.qd-texto .qd-fala{display:inline-block;background:rgba(255,255,255,.05);padding:3px 12px;border-radius:30px;border:2px solid rgba(255,255,255,.06)}
+.qd-texto .qd-legenda{color:#d0c0e8;font-size:.8rem;font-weight:600;display:block;margin-top:3px}
+.qd-ctr{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;align-items:center}
+
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:14px}
+.modal-overlay.show{display:flex}
+.modal-box{background:linear-gradient(135deg,#1a1a3e,#2d2b55);border-radius:22px;padding:18px;max-width:460px;width:100%;border:1px solid rgba(255,255,255,.08);box-shadow:0 20px 60px rgba(0,0,0,.6);max-height:90vh;overflow-y:auto}
+.modal-box h3{font-family:'Fredoka One',cursive;color:#ffd700;font-size:1rem;margin-bottom:4px;text-align:center}
+.modal-box .mq{color:#f5f0ff;font-size:.95rem;font-weight:700;margin-bottom:10px;text-align:center}
+.modal-box .mo{display:flex;flex-direction:column;gap:5px}
+.modal-box .mo-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;padding:9px 12px;border:2px solid rgba(255,255,255,.06);border-radius:11px;background:rgba(255,255,255,.03);color:#e8ddf5;cursor:pointer;text-align:left}
+.modal-box .mo-btn:hover{background:rgba(255,255,255,.08)}
+.modal-box .mo-btn:disabled{pointer-events:none}
+.modal-box .mo-btn.mc{background:rgba(67,233,123,.16);border-color:#43e97b;color:#b0f5c8}
+.modal-box .mo-btn.me{background:rgba(245,87,108,.16);border-color:#f5576c;color:#f5b0b8}
+.modal-fb{padding:8px 10px;border-radius:10px;font-weight:700;font-size:.8rem;text-align:center;display:none;margin-top:6px}
+.modal-fb.show{display:block}.modal-fb.mf-c{background:rgba(67,233,123,.1);color:#b0f5c8}.modal-fb.mf-e{background:rgba(245,87,108,.1);color:#f5b0b8}
+.modal-btn-f{display:none;margin:8px auto 0;padding:7px 20px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:36px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer}
+.modal-btn-f.show{display:block}
+
+@media(max-width:600px){
+  .container{padding:10px 6px;border-radius:22px}.logo{font-size:1.3rem}
+  .menu-btn{font-size:.65rem;padding:5px 8px}.tab-casa{min-height:30px}.tab-casa .ci{font-size:.7rem}
+  .cp-cell{width:24px;height:24px;font-size:.65rem}.card-grid{grid-template-columns:repeat(2,1fr)}
+  .mem-card .mc-b,.mem-card .mc-f{font-size:1.3rem}
+}
+@media(max-width:400px){
+  .tab-casa{min-height:24px}.tab-casa .ci{font-size:.55rem}
+  .cp-cell{width:20px;height:20px;font-size:.55rem}.dado-face{width:32px;height:32px;font-size:1.3rem}
+}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="container">
+  <!-- TEMA SELECTOR -->
+  <div style="overflow-x:auto;margin-bottom:3px;-webkit-overflow-scrolling:touch">
+    <div style="display:flex;gap:2px;min-width:max-content;padding:2px;background:rgba(255,255,255,.03);border-radius:36px" id="tema-botoes">
+      <button class="tema-btn ativo" data-tema="0" onclick="setTema(0)">🌟 Deus</button>
+      <button class="tema-btn" data-tema="1" onclick="setTema(1)">📜 Moisés</button>
+      <button class="tema-btn" data-tema="2" onclick="setTema(2)">✨ Jesus</button>
+      <button class="tema-btn" data-tema="3" onclick="setTema(3)">📖 Doutrina</button>
+      <button class="tema-btn" data-tema="4" onclick="setTema(4)">🔄 Reencarnação</button>
+      <button class="tema-btn" data-tema="5" onclick="setTema(5)">💎 Virtudes</button>
+      <button class="tema-btn" data-tema="6" onclick="setTema(6)">🙏 Prece</button>
+      <button class="tema-btn" data-tema="7" onclick="setTema(7)">🌿 Parábolas</button>
+      <button class="tema-btn" data-tema="8" onclick="setTema(8)">👤 Figuras</button>
+      <button class="tema-btn" data-tema="9" onclick="setTema(9)">🔥 Mocidade</button>
+      <button class="tema-btn" data-tema="10" onclick="setTema(10)">📜 Mandamentos</button>
+    </div>
+  </div>
+  <div class="menu-wrap"><div class="menu-topo" id="menu-topo">
+    <button class="menu-btn ativo" data-t="inicio" onclick="irP('inicio')">🏠 Ini</button>
+    <button class="menu-btn" data-t="tabuleiro" onclick="irP('tabuleiro')">🎲 Tab</button>
+    <button class="menu-btn" data-t="passa" onclick="irP('passa')">🎯 Passa</button>
+    <button class="menu-btn" data-t="memoria" onclick="irP('memoria')">🧠 Mem</button>
+    <button class="menu-btn" data-t="ligapontos" onclick="irP('ligapontos')">🔢 Ptos</button>
+    <button class="menu-btn" data-t="cacapalavras" onclick="irP('cacapalavras')">🔍 Caça</button>
+    <button class="menu-btn" data-t="quadrinho" onclick="irP('quadrinho')">📖 Quad</button>
+    <button class="menu-btn" data-t="quiz" onclick="irP('quiz')">❓ Quiz</button>
+    <button class="menu-btn" data-t="historia" onclick="irP('historia')">📜 Hist</button>
+    <button class="menu-btn" data-t="aula" onclick="irP('aula')">👩‍🏫 Aula</button>
+    <button class="menu-btn" data-t="brincadeiras" onclick="irP('brincadeiras')">🎪 Brinc</button>
+    <button class="menu-btn" data-t="velha" onclick="irP('velha')">⭕ Velha</button>
+    <button class="menu-btn" data-t="forca" onclick="irP('forca')">💀 Forca</button>
+  </div></div>
+
+  <!-- INÍCIO -->
+  <div class="tela active" id="tela-inicio">
+    <div class="ilustracao">🌟📖🕊️</div>
+    <div class="logo">Evangelização Infantil<small>Casa Bezerra de Menezes - São Pedro</small></div>
+    <p class="subtitle">Aprenda sobre Moisés e Deus brincando!</p>
+    <div class="card-grid">
+      <div class="card-jogo" onclick="irP('tabuleiro')"><div class="ci">🎲</div><div class="ct">Tabuleiro</div><div class="cd">Multiplayer até 4</div></div>
+      <div class="card-jogo" onclick="irP('passa')"><div class="ci">🎯</div><div class="ct">Passa ou Repassa</div><div class="cd">Equipes! Níveis fácil/médio/difícil</div></div>
+      <div class="card-jogo" onclick="irP('memoria')"><div class="ci">🧠</div><div class="ct">Jogo da Memória</div><div class="cd">Encontre os pares</div></div>
+      <div class="card-jogo" onclick="irP('ligapontos')"><div class="ci">🔢</div><div class="ct">Ligue os Pontos</div><div class="cd">Descubra o desenho!</div></div>
+      <div class="card-jogo" onclick="irP('cacapalavras')"><div class="ci">🔍</div><div class="ct">Caça-Palavras</div><div class="cd">Encontre palavras</div></div>
+      <div class="card-jogo" onclick="irP('quadrinho')"><div class="ci">📖</div><div class="ct">Quadrinho</div><div class="cd">História animada</div></div>
+      <div class="card-jogo" onclick="irP('quiz')"><div class="ci">❓</div><div class="ct">Quiz</div><div class="cd">Perguntas divertidas</div></div>
+      <div class="card-jogo" onclick="irP('historia')"><div class="ci">📜</div><div class="ct">História</div><div class="cd">Moisés no cestinho</div></div>
+      <div class="card-jogo" onclick="irP('aula')"><div class="ci">👩‍🏫</div><div class="ct">Aula Completa</div><div class="cd">Plano para professores</div></div>
+      <div class="card-jogo" onclick="irP('brincadeiras')"><div class="ci">🎪</div><div class="ct">Brincadeiras</div><div class="cd">Para fazer na sala</div></div>
+      <div class="card-jogo" onclick="irP('revisao')"><div class="ci">📚</div><div class="ct">Revisão</div><div class="cd">Estude os temas</div></div>
+      <div class="card-jogo" onclick="irP('velha')"><div class="ci">⭕</div><div class="ct">Jogo da Velha</div><div class="cd">Moisés vs Faraó</div></div>
+      <div class="card-jogo" onclick="irP('forca')"><div class="ci">💀</div><div class="ct">Forca Espírita</div><div class="cd">Descubra a palavra</div></div>
+    </div>
+  </div>
+
+  <!-- TABULEIRO -->
+  <div class="tela" id="tela-tabuleiro">
+    <div class="setup-jog" id="setup-jog">
+      <h3>👥 Quantos jogadores?</h3>
+      <div class="setup-opts">
+        <button class="setup-opt ativo" data-n="2" onclick="setNJ(2)">2</button>
+        <button class="setup-opt" data-n="3" onclick="setNJ(3)">3</button>
+        <button class="setup-opt" data-n="4" onclick="setNJ(4)">4</button>
+      </div>
+      <button class="btn btn-w" onclick="iniciarTab()">🎲 Começar!</button>
+    </div>
+    <div id="jogo-tab" style="display:none">
+      <div class="tab-header">
+        <div class="tab-info"><span id="tab-turno">🎯</span><span>🎲 <span class="dv" id="dado-valor">-</span></span></div>
+        <div class="dado-area"><div class="dado-face" id="dado-face">🎲</div><button class="btn-dado" id="btn-dado" onclick="rolarDado()">🎲 Jogar</button></div>
+      </div>
+      <div class="jog-info" id="jog-info"></div>
+      <div class="tab-grade" id="tab-grade"></div>
+      <div class="tab-msg" id="tab-msg"><span style="font-size:1rem">🎲</span><span>Preparem-se!</span></div>
+      <div class="botoes-centro"><button class="btn btn-o btn-sm" onclick="reiniciarTab()">🔄 Reiniciar</button><button class="btn btn-o btn-sm" onclick="voltarSetup()">⚙️ Voltar</button></div>
+    </div>
+  </div>  <!-- PASSA OU REPASSA -->
+  <div class="tela" id="tela-passa">
+    <div id="pr-setup" class="pr-setup">
+      <h3 style="color:#f5e6d3;font-size:.95rem;margin-bottom:4px">🎯 Passa ou Repassa</h3>
+      <p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px">Nome dos times:</p>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:6px">
+        <input id="pr-n1" value="Time Azul" placeholder="Time 1"><input id="pr-n2" value="Time Vermelho" placeholder="Time 2">
+      </div>
+      <p style="color:#b8a8d8;font-size:.7rem;margin-bottom:4px">Dificuldade:</p>
+      <div class="pr-diff" id="pr-diff-setup">
+        <button class="pr-diff-btn ativo" data-d="0" onclick="setPRDiff(0)">🌟 Fácil</button>
+        <button class="pr-diff-btn" data-d="1" onclick="setPRDiff(1)">🌟🌟 Médio</button>
+        <button class="pr-diff-btn" data-d="2" onclick="setPRDiff(2)">🌟🌟🌟 Difícil</button>
+      </div>
+      <button class="btn btn-p" onclick="iniciarPR()">🎯 Começar Passa ou Repassa!</button>
+    </div>
+    <div id="pr-jogo" style="display:none">
+      <div class="pr-container">
+        <div class="pr-teams" id="pr-teams"></div>
+        <div class="pr-status" id="pr-status">🎯 Preparando...</div>
+        <div class="pr-question" id="pr-question" style="display:none">
+          <div class="pr-q-text" id="pr-q-text"></div>
+          <div class="pr-opts" id="pr-opts"></div>
+        </div>
+        <div class="pr-msg" id="pr-msg"></div>
+        <div class="pr-actions" id="pr-actions">
+          <button class="btn btn-sm btn-p" id="pr-btn-resp" onclick="prResponder()" style="display:none">✅ Responder</button>
+          <button class="btn btn-sm btn-w" id="pr-btn-passar" onclick="prPassar()" style="display:none">⏭️ Passar</button>
+          <button class="btn btn-sm btn-s" id="pr-btn-prox" onclick="prProxima()" style="display:none">➡️ Próxima</button>
+        </div>
+      </div>
+      <div class="botoes-centro"><button class="btn btn-o btn-sm" onclick="reiniciarPR()">🔄 Reiniciar</button></div>
+    </div>
+  </div>
+
+  <!-- MEMÓRIA -->
+  <div class="tela" id="tela-memoria">
+    <div style="text-align:center;margin:4px 0">
+      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem">🧠 Nível:</p>
+      <div class="dificuldade" id="mem-dif">
+        <button class="dif-btn ativo" data-d="0" onclick="setMemDiff(0)">🌟 6 pares</button>
+        <button class="dif-btn" data-d="1" onclick="setMemDiff(1)">🌟🌟 8 pares</button>
+        <button class="dif-btn" data-d="2" onclick="setMemDiff(2)">🌟🌟🌟 12 pares</button>
+      </div>
+      <button class="btn btn-p" onclick="iniciarMem()">🧠 Novo Jogo!</button>
+    </div>
+    <div class="mem-info" id="mem-info">🔄 Clique em Começar!</div>
+    <div class="mem-grid" id="mem-grid"></div>
+  </div>
+
+  <!-- LIGUE OS PONTOS -->
+  <div class="tela" id="tela-ligapontos">
+    <div style="text-align:center;margin:4px 0">
+      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem">🎨 Desenho:</p>
+      <div class="lp-desenhos" id="lp-desenhos">
+        <button class="lp-d-btn ativo" data-lp="estrela" onclick="setLPD('estrela')">⭐ Estrela</button>
+        <button class="lp-d-btn" data-lp="coracao" onclick="setLPD('coracao')">❤️ Coração</button>
+        <button class="lp-d-btn" data-lp="pomba" onclick="setLPD('pomba')">🕊️ Pomba</button>
+        <button class="lp-d-btn" data-lp="moises" onclick="setLPD('moises')">👶 Moisés</button>
+        <button class="lp-d-btn" data-lp="tabuas" onclick="setLPD('tabuas')">📜 Tábuas</button>
+        <button class="lp-d-btn" data-lp="sarca" onclick="setLPD('sarca')">🔥 Sarça</button>
+      </div>
+      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem;margin-top:2px">🔢 Nível:</p>
+      <div class="dificuldade" id="lp-dif">
+        <button class="dif-btn ativo" data-d="0" onclick="setLPDiff(0)">🌟 8 pontos</button>
+        <button class="dif-btn" data-d="1" onclick="setLPDiff(1)">🌟🌟 12 pontos</button>
+        <button class="dif-btn" data-d="2" onclick="setLPDiff(2)">🌟🌟🌟 16 pontos</button>
+      </div>
+      <button class="btn btn-p" onclick="iniciarLP()">🔢 Novo Jogo!</button>
+    </div>
+    <div class="lp-canvas-wrap" id="lp-canvas-wrap"><canvas id="lp-canvas"></canvas></div>
+    <div class="lp-info" id="lp-info">🔢 Clique nos pontos em ordem!</div>
+    <div class="lp-progresso" id="lp-progresso"></div>
+  </div>
+
+  <!-- CAÇA-PALAVRAS -->
+  <div class="tela" id="tela-cacapalavras">
+    <div style="text-align:center;margin:4px 0">
+      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem">🔍 Nível:</p>
+      <div class="dificuldade" id="cp-dif">
+        <button class="dif-btn ativo" data-d="0" onclick="setCPDiff(0)">🌟 6×6</button>
+        <button class="dif-btn" data-d="1" onclick="setCPDiff(1)">🌟🌟 8×8</button>
+        <button class="dif-btn" data-d="2" onclick="setCPDiff(2)">🌟🌟🌟 10×10</button>
+      </div>
+      <button class="btn btn-p" onclick="iniciarCP()">🔍 Novo Jogo!</button>
+    </div>
+    <div style="text-align:center"><span class="cp-info" id="cp-info">🔍 Encontre as palavras!</span></div>
+    <div style="text-align:center"><div class="cp-grid" id="cp-grid"></div></div>
+    <div class="cp-lista" id="cp-lista"></div>
+  </div>
+
+  <!-- QUADRINHO -->
+  <div class="tela" id="tela-quadrinho">
+    <h3 style="font-family:'Fredoka One',cursive;color:#ffd700;text-align:center;font-size:1rem" id="qd-titulo">📖 Quadrinho Temático</h3>
+    <div class="qd-painel" id="qd-painel"></div>
+    <div class="qd-ctr">
+      <button class="btn btn-sm btn-o" onclick="qdAnterior()">◀ Anterior</button>
+      <span id="qd-cont" style="color:#cdb8f0;font-weight:700;font-size:.75rem">1 / 6</span>
+      <button class="btn btn-sm btn-p" onclick="qdProximo()">Próximo ▶</button>
+      <button class="btn btn-sm btn-w" id="qd-auto" onclick="qdAuto()">▶ Automático</button>
+    </div>
+  </div>  <!-- QUIZ -->
+  <div class="tela" id="tela-quiz">
+    <div id="quiz-setup" style="text-align:center;padding:4px 0">
+      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem">📚 Escolha o tema:</p>
+      <div class="dif-scroll" id="quiz-tema">
+        <button class="dif-btn ativo" data-t="0" onclick="setQuizTema(0)">🌟 Deus</button>
+        <button class="dif-btn" data-t="1" onclick="setQuizTema(1)">📜 Moisés</button>
+        <button class="dif-btn" data-t="2" onclick="setQuizTema(2)">✨ Jesus</button>
+        <button class="dif-btn" data-t="3" onclick="setQuizTema(3)">📖 Doutrina</button>
+        <button class="dif-btn" data-t="4" onclick="setQuizTema(4)">🔄 Reencarnação</button>
+        <button class="dif-btn" data-t="5" onclick="setQuizTema(5)">💎 Virtudes</button>
+        <button class="dif-btn" data-t="6" onclick="setQuizTema(6)">🙏 Prece</button>
+        <button class="dif-btn" data-t="7" onclick="setQuizTema(7)">🌿 Parábolas</button>
+        <button class="dif-btn" data-t="8" onclick="setQuizTema(8)">👤 Figuras</button>
+        <button class="dif-btn" data-t="9" onclick="setQuizTema(9)">🔥 Mocidade</button>
+        <button class="dif-btn" data-t="10" onclick="setQuizTema(10)">📜 Mandamentos</button>
+        <button class="dif-btn" data-t="11" onclick="setQuizTema(11)">🔀 Misto</button>
+      </div>
+      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem;margin-top:2px">💪 Dificuldade:</p>
+      <div class="dificuldade" id="quiz-dif">
+        <button class="dif-btn ativo" data-d="0" onclick="setQuizDiff(0)">🌟 Fácil</button>
+        <button class="dif-btn" data-d="1" onclick="setQuizDiff(1)">🌟🌟 Médio</button>
+        <button class="dif-btn" data-d="2" onclick="setQuizDiff(2)">🌟🌟🌟 Difícil</button>
+      </div>
+      <button class="btn btn-p" onclick="iniciarQuiz()">❓ Começar Quiz!</button>
+    </div>
+    <div id="quiz-jogo" style="display:none">
+      <div class="tab-header">
+        <div class="tab-info"><span>❓ <span style="color:#ffd700" id="quiz-cont">1/10</span></span><span>🎯 <span class="dv" id="quiz-pontos">0</span></span></div>
+      </div>
+      <div id="quiz-pergunta" style="background:rgba(255,255,255,.04);border-radius:16px;padding:14px;margin:6px 0;border:1px solid rgba(255,255,255,.06)">
+        <div id="quiz-q" style="color:#f5f0ff;font-weight:700;font-size:.95rem;margin-bottom:10px;text-align:center"></div>
+        <div id="quiz-opts" style="display:flex;flex-direction:column;gap:5px"></div>
+        <div id="quiz-fb" style="display:none;padding:8px 10px;border-radius:8px;font-weight:700;font-size:.8rem;margin-top:6px;text-align:center"></div>
+      </div>
+      <div class="botoes-centro"><button class="btn btn-sm btn-s" id="quiz-prox" onclick="quizProx()" style="display:none">➡️ Próxima</button><button class="btn btn-sm btn-o" onclick="reiniciarQuiz()">🔄 Novo Quiz</button></div>
+    </div>
+    <div id="quiz-fim" style="display:none;text-align:center;padding:14px">
+      <div style="font-size:2.5rem" id="quiz-fim-emoji">🏆</div>
+      <div style="font-family:'Fredoka One',cursive;color:#ffd700;font-size:1.4rem" id="quiz-fim-titulo">Parabéns!</div>
+      <div id="quiz-fim-msg" style="color:#d4c4f0;font-weight:700;margin:6px 0"></div>
+      <div class="botoes-centro"><button class="btn btn-sm btn-p" onclick="reiniciarQuiz()">🔄 Jogar de Novo</button></div>
+    </div>
+  </div>
+
+  <!-- HISTÓRIA -->
+  <div class="tela" id="tela-historia">
+    <div class="hist-card" id="hist-conteudo"></div>
+  </div>
+
+  <!-- PLANO DE AULA -->
+  <div class="tela" id="tela-aula">
+    <div class="aula-card" id="aula-conteudo"></div>
+  </div>
+
+  <!-- BRINCADEIRAS -->
+  <div class="tela" id="tela-brincadeiras">
+    <div class="brinc-card" id="brinc-conteudo"></div>
+  </div>
+
+  <!-- REVISÃO -->
+  <div class="tela" id="tela-revisao">
+    <div class="hist-card" id="rev-conteudo"></div>
+  </div><script>
+// ===== TEMA =====
+var temaAtual=0;
+var temaNome=['🌟 Deus e a Criação','📜 Moisés e as Leis de Deus','✨ Jesus e o Evangelho','📖 A Doutrina Espírita','🔄 Reencarnação e o Espírito','💎 Virtudes e Valores Morais','🙏 Prece e Mediunidade','🌿 Parábolas de Jesus','👤 Figuras Espíritas','🔥 Mocidade e Temas Avançados','📜 Os Dez Mandamentos'];
+function setTema(t){
+  temaAtual=t;
+  document.querySelectorAll('#tema-botoes .tema-btn').forEach(function(b){b.classList.remove('ativo');});
+  document.querySelector('#tema-botoes .tema-btn[data-tema="'+t+'"]').classList.add('ativo');
+  // Navigate to history & update
+  if(telaAtual!=='historia'){irP('historia');return;}
+  renderHistoria();
+}
+// ===== NAVEGAÇÃO =====
+let telaAtual='inicio';
+const nomeTelas=['inicio','tabuleiro','passa','memoria','ligapontos','cacapalavras','quadrinho','quiz','historia','aula','brincadeiras','revisao'];
+function irP(t){
+  document.querySelectorAll('.tela').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.menu-btn').forEach(e=>e.classList.remove('ativo'));
+  document.getElementById('tela-'+t).classList.add('active');
+  document.querySelector('.menu-btn[data-t="'+t+'"]').classList.add('ativo');
+  telaAtual=t;
+  var btn=document.querySelector('.menu-btn[data-t="'+t+'"]');
+  if(btn) btn.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+}
+// ===== ESTRELAS =====
+(function(){
+  var s=document.getElementById('stars');
+  for(var i=0;i<120;i++){
+    var d=document.createElement('div');d.className='star';
+    d.style.left=(Math.random()*100)+'%';d.style.top=(Math.random()*100)+'%';
+    var sz=1.5+Math.random()*2.5;d.style.width=sz+'px';d.style.height=sz+'px';
+    d.style.setProperty('--dur',(2+Math.random()*4)+'s');
+    d.style.animationDelay=(Math.random()*4)+'s';s.appendChild(d);
+  }
+})();
+
+// ===== PONTUAÇÕES =====
+var quizPontos=0,quizIdx=0,quizTema=0,quizDiff=0,quizPergs=[];
+var tabNJ=2,tabJogadores=[],tabTurno=0,tabPosicoes=[],tabJogando=false,tabRodada=false;
+var prDiff=0,prTime1='Time Azul',prTime2='Time Vermelho',prPts=[0,0],prTurno=0,prPergAtual=null,prPergIdx=0,prPergs=[],prJogando=false,prRespondido=false,prPassou=false;
+var memDiff=0,memCards=[],memAbertas=[],memPares=0,memTentativas=0,memBloq=false,memParesTotal=0,memTimer=null;
+var lpDiff=0,lpDesenho='estrela',lpPontos=[],lpAtual=0,lpCanvas=null,lpCtx=null,lpDados=null;
+var cpDiff=0,cpGrid=[],cpPalavras=[],cpEncontradas=[],cpSel=null,cpDir=null;
+
+// ===== CONTEÚDO DOS TEMAS =====
+var temaContent={};
+temaContent[0]={
+  hist:'<h2>🌟 Deus e a Criação <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em O Livro dos Espíritos (Q.1-56), Gênesis, passatempoespirita.com.br</p><div class="eb">🌟🌍🌱🐟🦅👫</div><p>No princípio, Deus criou os céus e a terra. A terra era sem forma e vazia; e o Espírito de Deus pairava sobre as águas. Disse Deus: "Haja luz!" E houve luz. Deus viu que a luz era boa e separou a luz das trevas. (Gênesis 1:1-4)</p><p>Deus é a inteligência suprema, causa primária de todas as coisas. Ele é eterno, imutável, imaterial, único, onipotente, soberanamente justo e bom. Deus não tem forma física — é puro espírito, e está em toda parte. (O Livro dos Espíritos, Q.1-13)</p><div class="vers">"Deus é a inteligência suprema, causa primária de todas as coisas." (O Livro dos Espíritos, Q.1)</div><p>Deus criou o Universo com leis perfeitas e harmoniosas. Tudo na natureza revela a sabedoria divina: o Sol que aquece, a chuva que rega, as flores que desabrocham, os pássaros que cantam. Cada criatura, por menor que seja, é uma obra-prima do Criador.</p><p>O Fluido Universal é a matéria elementar primitiva, o princípio de todas as coisas materiais. Dele se formam os mundos, os seres orgânicos e inorgânicos. O fluido vital dá vida aos seres organizados, e sem ele os corpos morrem. (O Livro dos Espíritos, Q.22-27, 60-70)</p><p>Deus criou os três reinos: o mineral (as rochas e os minerais), o vegetal (as plantas e as árvores) e o animal (os seres vivos com movimento e sensibilidade). Cada reino tem sua beleza e importância na criação divina.</p><div class="vers">"Os céus proclamam a glória de Deus, e o firmamento anuncia as obras de Suas mãos." (Salmos 19:1)</div><div class="reflexao">💭 <strong>Reflexão Espírita:</strong> Deus nos criou para a felicidade e para o progresso. Através das reencarnações, evoluímos espiritualmente. O Universo é a obra prima de Deus, e nós somos parte dela. Cuidar da natureza é cuidar da criação divina. Cada descoberta científica revela um pouco mais da sabedoria infinita do Criador. 🌟</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Deus e a Criação <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 5 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> Deus como Criador e Pai amoroso</p><h3>🎯 Objetivos</h3><p>• Compreender quem é Deus e como Ele se manifesta na criação • Identificar a presença de Deus na natureza • Desenvolver gratidão e amor a Deus</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração inicial. Cantar "Deus está aqui". Mostrar imagens da natureza e perguntar: "Quem fez tudo isso?"</p><h3>🌟 2. Introdução (5 min)</h3><p>Perguntar: "Se você fosse criar um país, o que faria primeiro?" Explicar que Deus criou tudo com sabedoria e amor.</p><h3>📜 3. História Interativa (15 min)</h3><p>Contar a história da Criação usando emojis visuais: 🌟 luz → 🌊 águas → 🌱 plantas → ☀️ Sol/Lua → 🐟 peixes → 🐦 pássaros → 🐾 animais → 👫 homem/mulher.</p><h3>💬 4. Diálogo e Reflexão (8 min)</h3><p>• Deus não tem forma física, é puro espírito • Deus está em toda parte • Podemos falar com Deus através da oração • Deus nos ama incondicionalmente</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Jogo da Memória com pares da criação | Quiz sobre Deus | Desenho: "Como você imagina a criação?"</p><h3>✏️ 6. Fixação (5 min)</h3><p>Ensinar: "Deus é amor. Quem permanece no amor, permanece em Deus." (1 João 4:16). Cada criança fala algo bonito que Deus criou.</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração agradecendo a Deus pela natureza e pela vida.</p><div class="dica">💡 Dica: Leve plantas, pedras e imagens da natureza para a sala de aula.</div>',
+  brinc:'<h2>🎪 Brincadeiras: Deus e a Criação <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Caça ao Tesouro da Natureza (💡 6-12 anos, 20 min)</h3><p>Esconder pela sala imagens de elementos da natureza (sol, água, plantas, animais). As crianças encontram e falam sobre a criação de Deus.</p><h3>2️⃣ Mímica da Criação (💡 5-10 anos, 15 min)</h3><p>Cada criança sorteia um elemento da criação (sol, peixe, árvore, etc.) e faz mímica para os outros adivinharem.</p><h3>3️⃣ Coração de Gratidão (💡 5-12 anos, 15 min)</h3><p>Cada criança desenha ou escreve algo pelo qual agradece a Deus. Colam num grande coração coletivo.</p><h3>4️⃣ Plantando uma Sementinha (💡 5-10 anos, 20 min)</h3><p>Cada criança planta uma semente num copinho decorado. Explicar que Deus dá vida às sementes, assim como dá vida aos nossos espíritos.</p><h3>5️⃣ Bingo da Criação (💡 6-12 anos, 15 min)</h3><p>Cartelas com elementos da criação. O evangelizador sorteia e descreve. Crianças marcam. Quem completar grita "Deus criou!"</p><h3>6️⃣ Passeio da Natureza (💡 5-10 anos, 15 min)</h3><p>Se possível, levar as crianças para observar uma planta, árvore ou jardim. Cada uma escolhe algo bonito e agradece a Deus em voz alta.</p>',
+  rev:'<h2>📚 Revisão — Deus e a Criação <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: O Livro dos Espíritos, Gênesis, passatempoespirita.com.br</p><h3>🌟 Quem é Deus?</h3><p>Deus é a inteligência suprema, causa primária de todas as coisas (Q.1). É eterno, imutável, imaterial, único, onipotente, soberanamente justo e bom. Não tem forma física — é puro espírito. Está em toda parte, vê tudo, sabe tudo. Comunica-se conosco através da intuição e da oração.</p><h3>🌍 A Criação</h3><p>Deus criou o Universo com leis perfeitas. Tudo na natureza segue leis divinas: a gravidade, o ciclo da água, a fotossíntese. A ciência estuda as leis de Deus. Não há milagres — apenas leis naturais que ainda não compreendemos.</p><h3>💧 Fluido Universal</h3><p>Matéria elementar primitiva que preenche o Universo. Dá origem a tudo que existe no plano material. O fluido vital é uma modificação do fluido universal que anima os seres vivos.</p><h3>🪨 Três Reinos</h3><p>Mineral (rochas, sem vida), Vegetal (plantas, com vida mas sem consciência própria) e Animal (seres com vida, movimento e instinto). O ser humano possui alma, consciência e livre-arbítrio.</p><h3>💭 Reflexão</h3><p>Deus nos criou para sermos felizes. A felicidade verdadeira está em fazer o bem e amar ao próximo. Cada criatura de Deus tem seu valor e sua missão. Somos todos irmãos, filhos do mesmo Pai celestial. 🕊️</p>'
+};
+temaContent[1]={
+  hist:'<h2>📜 Moisés e as Leis de Deus <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em Êxodo, O Livro dos Espíritos, passatempoespirita.com.br</p><div class="eb">👶🧺🔥🌿👑🐸🌊⛰️📜</div><p>Moisés nasceu no Egito, quando o povo hebreu era escravo do Faraó. Para salvá-lo da ordem de morte aos bebês hebreus, sua mãe Joquebede o colocou num cestinho no rio Nilo. A princesa do Egito encontrou o cesto e criou Moisés como seu próprio filho.</p><p>Já adulto, Moisés viu um egípcio maltratando um hebreu e o defendeu. Teve de fugir para Midiã, onde se tornou pastor e casou com Sefora. No Monte Horebe, Deus se manifestou a ele através de uma sarça ardente — um arbusto que queimava sem se consumir. "Tire as sandálias, porque este lugar é sagrado!"</p><div class="vers">"Eu sou o Deus de teu pai, o Deus de Abraão, o Deus de Isaque e o Deus de Jacó." (Êxodo 3:6)</div><p>Deus enviou Moisés e seu irmão Arão para libertar o povo hebreu. O Faraó resistiu, e dez pragas atingiram o Egito: água em sangue, rãs, piolhos, moscas, peste dos animais, úlceras, saraiva, gafanhotos, trevas e a morte dos primogênitos. Após a última praga, o Faraó deixou o povo partir.</p><p>Moisés abriu o Mar Vermelho com o poder de Deus, e o povo atravessou a pé enxuto. O exército do Faraó foi tragado pelas águas. No Monte Sinai, Moisés recebeu os Dez Mandamentos, escritos pelo dedo de Deus em tábuas de pedra.</p><div class="vers">"Amarás o Senhor teu Deus de todo o teu coração... e amarás o teu próximo como a ti mesmo." (Deuteronômio 6:5; Levítico 19:18)</div><p>Durante 40 anos, o povo andou pelo deserto rumo à Terra Prometida. Deus os alimentou com maná (pão do céu) e água da rocha. Moisés não entrou na Terra Prometida, mas viu-a do Monte Nebo antes de desencarnar. Josué foi seu sucessor.</p><div class="reflexao">💭 <strong>Reflexão Espírita:</strong> Moisés é uma das figuras mais importantes da humanidade. Ele recebeu as Leis Divinas (as Tábuas da Lei), que são a base do Antigo Testamento. Para os espíritas, Moisés representa a Primeira Revelação — a Lei de Deus dada aos homens. Jesus veio aperfeiçoar essa Lei com o Amor, e o Espiritismo veio consolidar a Verdade. 📜✨</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Moisés e as Leis de Deus <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 5 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> A vida de Moisés e os Dez Mandamentos</p><h3>🎯 Objetivos</h3><p>• Conhecer a história de Moisés desde o nascimento até a Terra Prometida • Compreender os Dez Mandamentos como leis de Deus • Perceber Moisés como um grande líder espiritual</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Cantar "Moisés libertou o povo". Mostrar imagens de Moisés.</p><h3>🌟 2. Introdução (5 min)</h3><p>Perguntar: "Você já teve que fazer algo difícil porque era certo?" Moisés teve uma missão difícil: libertar um povo inteiro!</p><h3>📜 3. História Interativa (15 min)</h3><p>Usar emojis para contar a história: 👶 cestinho → 🔥 sarça → 👑 Faraó → 🐸 pragas → 🌊 mar → ⛰️ Sinai → 📜 mandamentos. As crianças repetem a sequência.</p><h3>💬 4. Diálogo (8 min)</h3><p>• Moisés teve fé e coragem • Deus sempre protegeu Moisés • Os 10 Mandamentos são regras para vivermos bem • O principal: amar a Deus e ao próximo</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Jogo da Velha Moisés vs Faraó | Quiz sobre Moisés | Caça-palavras com os 10 Mandamentos</p><h3>✏️ 6. Fixação (5 min)</h3><p>Cada criança diz um mandamento que vai praticar esta semana.</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração agradecendo a Deus pelas leis que nos guiam.</p><div class="dica">💡 Dica: Leve réplicas das tábuas da lei ou imagens para ilustrar.</div>',
+  brinc:'<h2>🎪 Brincadeiras: Moisés <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Atravessando o Mar Vermelho (💡 5-10 anos, 15 min)</h3><p>Duas fileiras de crianças seguram um lençol. Uma terceira fileira "atravessa" enquanto o lençol é levantado (mar aberto). Quando abaixam, as crianças passam por cima (mar fechado).</p><h3>2️⃣ Dança das Pragas (💡 5-10 anos, 15 min)</h3><p>Sortear uma praga. Crianças representam com mímicas: sapos pulando, moscas voando, escuridão tateando, etc.</p><h3>3️⃣ Corrida do Deserto (💡 6-12 anos, 15 min)</h3><p>Prova de obstáculos representando a jornada no deserto: pular corda (mar), passar por baixo de cadeira (sarça), carregar algo pesado (tábuas), chegar à meta (Terra Prometida).</p><h3>4️⃣ Os 10 Mandamentos em Cartaz (💡 7-12 anos, 20 min)</h3><p>Cada criança escreve ou desenha um mandamento num pedaço de papel. Colam todos num cartaz coletivo em forma de tábuas da lei.</p><h3>5️⃣ Mímica do Deserto (💡 5-10 anos, 15 min)</h3><p>Crianças representam sem falar: Moisés abrindo o mar, sarça ardente, recebendo as tábuas, andando no deserto. Os outros adivinham.</p><h3>6️⃣ Cesta de Moisés (💡 5-8 anos, 10 min)</h3><p>Cada criança decora uma caixinha como "cesto" e coloca dentro um papel com algo que quer proteger com amor. Refletir sobre o amor de mãe.</p>',
+  rev:'<h2>📚 Revisão — Moisés e as Leis de Deus <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Êxodo, O Livro dos Espíritos, passatempoespirita.com.br</p><h3>👶 Nascimento e Juventude</h3><p>Moisés nasceu no Egito. Sua mãe Joquebede o colocou num cestinho no Nilo. A princesa do Egito o encontrou e criou. Moisés cresceu na corte, mas sabia que era hebreu.</p><h3>🔥 A Sarça Ardente</h3><p>Fugindo para Midiã, Moisés tornou-se pastor. No Monte Horebe, Deus o chamou numa sarça que ardia sem se consumir. "Tire as sandálias, lugar sagrado!"</p><h3>👑 As Dez Pragas</h3><p>Moisés e Arão pediram a libertação do povo. Faraó recusou. Dez pragas: água em sangue, rãs, piolhos, moscas, pestes, úlceras, saraiva, gafanhotos, trevas e morte dos primogênitos.</p><h3>🌊 A Travessia do Mar Vermelho</h3><p>O povo atravessou o mar a pé enxuto. O exército egípcio foi tragado pelas águas.</p><h3>⛰️ Os Dez Mandamentos</h3><p>No Monte Sinai, Deus deu a Moisés as tábuas da lei: 1) Amar a Deus, 2) Não fazer ídolos, 3) Não usar o nome de Deus em vão, 4) Guardar o sábado, 5) Honrar pai e mãe, 6) Não matar, 7) Não adulterar, 8) Não roubar, 9) Não mentir, 10) Não cobiçar.</p><h3>🏜️ O Deserto e a Terra Prometida</h3><p>40 anos no deserto. Deus deu maná e água. Moisés viu a Terra Prometida do Monte Nebo e desencarnou. Josué o sucedeu.</p><h3>💭 Reflexão Espírita</h3><p>Moisés é o legislador, o líder que trouxe a Primeira Revelação: a Lei de Deus. Jesus aperfeiçoou a Lei com o Amor. O Espiritismo consolida a Verdade. As três revelações são Moisés (Lei), Jesus (Amor) e Espiritismo (Verdade). 📜🕊️</p>'
+};
+temaContent[2]={
+  hist:'<h2>✨ Jesus e o Evangelho <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado nos Evangelhos, O Evangelho Segundo o Espiritismo, passatempoespirita.com.br</p><div class="eb">👼⭐👑🌍</div><p>Jesus nasceu em Belém, na Judéia, por volta do ano 4 a.C. Sua mãe era Maria e seu pai adotivo José. Anjos anunciaram seu nascimento aos pastores, e uma estrela guiou os magos do Oriente até Ele. (Mateus 1-2; Lucas 1-2)</p><p>Jesus cresceu em Nazaré, na Palestina, e desde cedo demonstrava sabedoria. Aos 12 anos, foi encontrado no Templo conversando com os doutores da lei. Aos 30 anos, iniciou sua vida pública após ser batizado por João Batista no Rio Jordão.</p><div class="vers">"Eis o Cordeiro de Deus, que tira o pecado do mundo." (João 1:29)</div><p>Jesus escolheu 12 apóstolos: Pedro, André, Tiago Maior, João, Filipe, Bartolomeu, Tomé, Mateus, Tiago Menor, Judas Tadeu, Simão Zelote e Judas Iscariotes. Eles o acompanharam por três anos em sua missão.</p><p>Jesus ensinou através de parábolas, que são histórias com ensinamentos profundos. Realizou curas, acalmou tempestades, multiplicou pães e peixes — não por magia, mas pelo poder da fé e do amor.</p><div class="vers">"Amai-vos uns aos outros assim como eu vos amei." (João 15:12)</div><p>O Sermão da Montanha (Mateus 5-7) é o código moral do Cristianismo. Jesus ensinou as Bem-Aventuranças e a Regra de Ouro: "Tudo o que quereis que os homens vos façam, fazei-o vós a eles."</p><p>Jesus foi preso, julgado e crucificado sob Pôncio Pilatos. Morreu na cruz, perdoando seus algozes: "Pai, perdoa-lhes, porque não sabem o que fazem." Ao terceiro dia, ressuscitou, aparecendo a Maria Madalena e aos discípulos. Após 40 dias, ascendeu aos céus.</p><div class="reflexao">💭 <strong>Reflexão Espírita:</strong> Jesus é o modelo de perfeição moral que Deus nos enviou. Ele não veio abolir a Lei de Moisés, mas aperfeiçoá-la. Seu ensinamento essencial é o amor: amor a Deus, amor ao próximo, amor a si mesmo. "Ninguém vem ao Pai senão por mim" significa que seus ensinamentos são o caminho para Deus. ✨</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Jesus e o Evangelho <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 6 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> A vida e os ensinamentos de Jesus</p><h3>🎯 Objetivos</h3><p>• Conhecer a vida de Jesus e seus ensinamentos • Compreender Jesus como nosso guia e modelo • Praticar o amor ao próximo</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Cantar "Jesus, o Mestre dos Mestres". Mostrar uma imagem de Jesus com crianças.</p><h3>🌟 2. Introdução (5 min)</h3><p>Perguntar: "Quem é a pessoa mais bondosa que você conhece?" Falar que Jesus é o modelo de bondade.</p><h3>📜 3. História Interativa (15 min)</h3><p>Contar sobre o nascimento de Jesus, sua vida, ensinamentos e milagres. Destacar o amor como principal ensinamento.</p><h3>💬 4. Diálogo (8 min)</h3><p>• Jesus nos ensinou a amar a Deus e ao próximo • Devemos perdoar como Jesus perdoou • Jesus é nosso guia e modelo</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Quiz sobre Jesus | Jogo da Velha | Passa ou Repassa com perguntas sobre a vida de Jesus</p><h3>✏️ 6. Fixação (5 min)</h3><p>Cada criança diz: "Uma coisa que vou fazer para seguir Jesus é..."</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração do Pai Nosso.</p>',
+  brinc:'<h2>🎪 Brincadeiras: Jesus e o Evangelho <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Barco de Jesus (💡 5-10 anos, 15 min)</h3><p>Crianças formam um "barco" (círculo) e uma é Jesus. Jesus anda pelo barco e diz: "Acalme-se!" e todos ficam quietos.</p><h3>2️⃣ Multiplicação da Bondade (💡 6-12 anos, 15 min)</h3><p>Cada criança escreve uma boa ação num papel. Colocam num cesto. O evangelizador "multiplica" lendo todas em voz alta.</p><h3>3️⃣ Pesca Missionária (💡 5-10 anos, 15 min)</h3><p>Peixes de papel com mensagens de Jesus. Crianças "pescam" com vara de imã e leem as mensagens.</p><h3>4️⃣ Teatro do Bom Samaritano (💡 8-12 anos, 25 min)</h3><p>Encenar a parábola do Bom Samaritano. Depois refletir: "Como posso ser um bom samaritano hoje?"</p><h3>5️⃣ Corrida dos Apóstolos (💡 6-12 anos, 15 min)</h3><p>Cartões com nomes dos 12 apóstolos. Crianças correm para colocar em ordem. Depois cada um fala um apóstolo e uma característica.</p><h3>6️⃣ Lavapés da Amizade (💡 6-12 anos, 15 min)</h3><p>Em círculo, cada criança lava os pés da outra (com água e toalha) enquanto fala algo bom. Refletir sobre o exemplo de humildade de Jesus.</p>',
+  rev:'<h2>📚 Revisão — Jesus e o Evangelho <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Evangelhos, O Evangelho Segundo o Espiritismo, passatempoespirita.com.br</p><h3>✨ Quem foi Jesus?</h3><p>Jesus é o Espírito mais perfeito que Deus enviou à Terra para nos guiar. Nasceu em Belém, viveu na Palestina, ensinou o amor e a caridade. Para os espíritas, Jesus é o modelo de perfeição moral e o guia da humanidade.</p><h3>👥 Os Apóstolos</h3><p>12 homens escolhidos por Jesus para espalhar seus ensinamentos: Pedro, André, Tiago, João, Filipe, Bartolomeu, Tomé, Mateus, Tiago Menor, Judas Tadeu, Simão Zelote e Judas Iscariotes. Paulo de Tarso se tornou o grande divulgador do Cristianismo.</p><h3>📖 Principais Ensinamentos</h3><p>• Amar a Deus sobre todas as coisas • Amar ao próximo como a si mesmo • Perdoar as ofensas • Não julgar para não ser julgado • Fazer o bem sem ostentação • Orar e vigiar • Confiar na Providência Divina</p><h3>🙏 O Pai Nosso</h3><p>A oração modelo ensinada por Jesus. Contém todos os deveres do homem para com Deus e para com o próximo.</p><h3>💭 Reflexão</h3><p>Jesus é o caminho, a verdade e a vida. Seus ensinamentos são atuais e transformadores. Seguir Jesus é amar, perdoar, servir e fazer o bem. ✨</p>'
+};
+temaContent[3]={
+  hist:'<h2>📖 A Doutrina Espírita <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em Obras da Codificação, passatempoespirita.com.br</p><div class="eb">📚🕊️🌟👤</div><p>O Espiritismo é a Doutrina Espírita, codificada por Allan Kardec (Hippolyte Léon Denizard Rivest) na França, no século XIX. Kardec era educador, discípulo de Pestalozzi, e foi convidado a assistir a fenômenos de mesas girantes em 1854. Percebeu que havia uma inteligência por trás dos fenômenos e se dedicou a estudá-los cientificamente.</p><p>Em 18 de abril de 1857, Kardec publicou O Livro dos Espíritos, marco inicial da Codificação Espírita. A obra contém 1019 perguntas feitas a Espíritos Superiores, respondidas com clareza e lógica.</p><div class="vers">"O Espiritismo é a ciência nova que vem revelar aos homens, por provas irrecusáveis, a existência e a natureza do mundo espiritual." (Allan Kardec)</div><p>As Três Revelações: Moisés trouxe a Lei (Antigo Testamento), Jesus trouxe o Amor (Novo Testamento), o Espiritismo trouxe a Verdade (o Consolador Prometido). O Consolador é o Espírito da Verdade, que nos faz compreender os ensinamentos de Jesus.</p><p>Allan Kardec codificou cinco obras fundamentais: O Livro dos Espíritos (1857), O Livro dos Médiuns (1861), O Evangelho Segundo o Espiritismo (1864), O Céu e o Inferno (1865) e A Gênese (1868).</p><div class="reflexao">💭 <strong>Reflexão:</strong> "Fé inabalável é só aquela que pode encarar a razão face a face." (Allan Kardec) 📖</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Doutrina Espírita <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 10 a 14 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> Surgimento e fundamentos do Espiritismo</p><h3>🎯 Objetivos</h3><p>• Conhecer a história do Espiritismo e seu codificador • Compreender os princípios básicos da Doutrina • Valorizar o estudo e a razão</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Perguntar: "O que você sabe sobre o Espiritismo?"</p><h3>📜 2-3. História e Diálogo (20 min)</h3><p>Contar sobre Allan Kardec, seu método científico, a codificação e as cinco obras básicas. Discutir: Deus, Espírito, Reencarnação, Mediunidade, Caridade.</p><h3>🎲 4. Atividade (10 min)</h3><p>Quiz sobre o Espiritismo | Caça-palavras com temas espíritas</p><h3>🙏 5. Encerramento (5 min)</h3><p>Oração de gratidão pela Doutrina Consoladora.</p>',
+  brinc:'<h2>🎪 Brincadeiras: Doutrina Espírita <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Batalha de Conhecimento (💡 10-14 anos, 20 min)</h3><p>Dividir em times. Fazer perguntas sobre Kardec e a Codificação. Cada acerto vale ponto.</p><h3>2️⃣ Linha do Tempo (💡 8-14 anos, 20 min)</h3><p>Cartas com eventos importantes da história espírita. Crianças organizam em ordem cronológica.</p><h3>3️⃣ Caça ao Tesouro Doutrinário (💡 8-14 anos, 20 min)</h3><p>Pistas escondidas com perguntas sobre a Doutrina. Ao final, formam a frase: "Fora da caridade não há salvação."</p><h3>4️⃣ Mímica da Codificação (💡 8-14 anos, 15 min)</h3><p>Representar sem falar: Kardec estudando, mesas girantes, espíritos escrevendo, o Consolador descendo. Colegas adivinham.</p><h3>5️⃣ Jogo das Cinco Obras (💡 10-14 anos, 15 min)</h3><p>Cinco cartões com os nomes das obras e cinco com descrições. Crianças associam cada obra à sua descrição.</p>',
+  rev:'<h2>📚 Revisão — Doutrina Espírita <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Obras Básicas de Kardec, passatempoespirita.com.br</p><h3>📚 Surgimento do Espiritismo</h3><p>O Espiritismo surgiu na França em 1857 com a publicação de O Livro dos Espíritos por Allan Kardec. É uma doutrina científica, filosófica e religiosa.</p><h3>👤 Allan Kardec</h3><p>Professor francês, discípulo de Pestalozzi. Nome real: Hippolyte Léon Denizard Rivest (1804-1869). Codificou a Doutrina com rigor científico.</p><h3>📖 As Cinco Obras Básicas</h3><p>1. Livro dos Espíritos • 2. Livro dos Médiuns • 3. Evangelho Segundo o Espiritismo • 4. O Céu e o Inferno • 5. A Gênese</p><h3>🕊️ O Consolador Prometido</h3><p>Jesus prometeu o Consolador (João 14-16). O Espiritismo é o Consolador que nos faz compreender os ensinamentos de Jesus.</p>'
+};
+temaContent[4]={
+  hist:'<h2>🔄 Reencarnação e o Espírito <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em O Livro dos Espíritos (Q.132-400), passatempoespirita.com.br</p><div class="eb">👤🔄👶🌟</div><p>O ser humano é composto de três partes: o corpo físico (matéria), o perispírito (corpo fluídico que liga o espírito ao corpo) e o espírito (ser imortal criado por Deus). A morte é a separação do espírito do corpo físico — o corpo volta à matéria, mas o espírito continua vivo.</p><div class="vers">"O Espírito é o ser inteligente da criação; o corpo é o invólucro que o reveste temporariamente." (LE, Q.134)</div><p>A reencarnação é a volta do espírito à vida material para progredir e se aperfeiçoar. Através de múltiplas existências, o espírito aprende, evolui e se purifica. Ninguém nasce por acaso — cada reencarnação tem um propósito.</p><p>O esquecimento do passado é uma bênção de Deus. Não lembrarmos de vidas passadas nos permite recomeçar sem mágoas ou culpas. As lembranças que ficam são as intuições e aptidões que trazemos.</p><p>Existem diferentes ordens de espíritos: Imperfeitos (3ª ordem), Bons (2ª ordem) e Puros (1ª ordem). Todos temos o potencial de chegar à perfeição.</p><p>A família vai além do parentesco corporal. Os laços de amor unem os espíritos através das vidas. Reencontramos entes queridos em novas encarnações, formando verdadeiras famílias espirituais.</p><div class="reflexao">💭 <strong>Reflexão:</strong> A reencarnação é uma manifestação do amor e da justiça de Deus. Ninguém é condenado eternamente — todos temos a oportunidade de recomeçar e progredir. Cada dia é uma nova chance de ser melhor! 🔄</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Reencarnação <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 8 a 14 anos | <strong>Duração:</strong> 50 min</p><h3>🎯 Objetivos</h3><p>• Compreender o que é o espírito e sua imortalidade • Entender a reencarnação como processo evolutivo</p><h3>📖 Acolhida e Introdução (10 min)</h3><p>Comparar a vida com a escola: cada ano letivo é uma encarnação, aprendemos coisas novas e passamos de ano.</p><h3>📜 História (15 min)</h3><p>Contar que Jesus disse que João Batista era Elias reencarnado (Mateus 11:14, 17:10-13).</p><h3>💬 Diálogo (10 min)</h3><p>• Todos somos espíritos imortais • Reencarnamos para aprender • O esquecimento é uma bênção</p><h3>🎲 Atividade (10 min)</h3><p>Jogo da Memória sobre reencarnação | Desenho: "Como você imagina sua vida espiritual?"</p><h3>🙏 Encerramento (5 min)</h3><p>Oração agradecendo a oportunidade de mais uma encarnação.</p>',
+  brinc:'<h2>🎪 Brincadeiras: Reencarnação <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Borboleta da Transformação (💡 5-10 anos, 15 min)</h3><p>Metamorfose da lagarta em borboleta. Comparar com a evolução do espírito através das reencarnações.</p><h3>2️⃣ Jornada do Espírito (💡 8-12 anos, 20 min)</h3><p>Tabuleiro humano: cada casa representa uma etapa da evolução (nascimento, escola, trabalho, amor, desafios, morte, reencontro).</p><h3>3️⃣ Quebra-cabeça da Criação (💡 8-12 anos, 15 min)</h3><p>Montar um quebra-cabeça de três camadas: corpo, perispírito e espírito.</p><h3>4️⃣ Árvore da Vida (💡 6-12 anos, 15 min)</h3><p>Desenhar uma árvore com frutos. Cada fruto representa uma vida (encarnação). Quanto mais alto o fruto, mais evoluído. Refletir sobre o progresso espiritual.</p><h3>5️⃣ Jogo do Esquecimento (💡 8-12 anos, 15 min)</h3><p>Brincadeira de "o que tem na caixa?" sem olhar. Refletir: não lembramos do passado, mas sentimos suas consequências (aptidões, medos, talentos).</p>',
+  rev:'<h2>📚 Revisão — Reencarnação <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><h3>👤 O Ser Humano</h3><p>Corpo físico (temporário). Perispírito (corpo fluídico). Espírito (ser imortal).</p><h3>🔄 Reencarnação</h3><p>A volta do espírito à vida material para evoluir. Através de múltiplas existências, aprendemos e nos purificamos.</p><h3>🔍 Esquecimento do Passado</h3><p>Não lembramos de vidas passadas para não sofrermos com mágoas. Mas trazemos aptidões e intuições.</p><h3>📊 Ordens de Espíritos</h3><p>3ª: Imperfeitos • 2ª: Bons • 1ª: Puros</p><h3>👨‍👩‍👧‍👦 Família Espiritual</h3><p>Parentesco corporal é temporário. Parentesco espiritual é eterno. Laços de amor atravessam vidas.</p>'
+};
+temaContent[5]={
+  hist:'<h2>💎 Virtudes e Valores Morais <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em O Evangelho Segundo o Espiritismo, passatempoespirita.com.br</p><div class="eb">💎❤️🌟🕊️</div><p>As virtudes são qualidades morais que nos aproximam de Deus. O egoísmo é a chaga da humanidade — dele nascem o orgulho, a inveja, a cólera. A caridade é o amor em ação: "Fora da caridade não há salvação."</p><p>A fé é a confiança em Deus e no bem. A fé transporta montanhas quando é acompanhada da ação. O orgulho nos faz sentir superiores; a humildade nos ensina que somos todos irmãos.</p><div class="vers">"Amarás o teu próximo como a ti mesmo. Não há mandamento maior do que este." (Marcos 12:31)</div><p>O perdão é essencial: "Perdoai as ofensas, assim como Deus nos perdoa." A honestidade, a sinceridade, a paciência, a pureza de coração, a fraternidade — todas são virtudes que devemos cultivar.</p><p>A reforma íntima é o trabalho diário de melhorar a si mesmo. Não basta não fazer o mal — é preciso fazer o bem.</p><div class="reflexao">💭 <strong>Reflexão:</strong> Jesus nos ensinou a virtude pelo exemplo. A cada dia podemos escolher entre o bem e o mal. Cultivar virtudes é como plantar flores no jardim da alma. 💎</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Virtudes <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p><strong>Faixa etária:</strong> 7 a 12 anos | <strong>Duração:</strong> 50 min</p><h3>🎯 Objetivos</h3><p>• Conhecer as principais virtudes cristãs • Refletir sobre a importância da caridade e do perdão • Praticar o bem no dia a dia</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Perguntar: "O que é ser uma pessoa boa?"</p><h3>📜 2. História (15 min)</h3><p>Contar a parábola do Bom Samaritano (Lucas 10:25-37). Destacar a caridade em ação.</p><h3>💬 3. Diálogo (10 min)</h3><p>• Egoísmo x Caridade • Orgulho x Humildade • Perdão • Honestidade • Como praticar virtudes</p><h3>🎲 4. Atividade (10 min)</h3><p>Jogo do Passa ou Repassa com perguntas sobre virtudes | Corrente do Bem</p><h3>🙏 5. Encerramento (5 min)</h3><p>Cada criança fala uma virtude que vai cultivar na semana.</p>',
+  brinc:'<h2>🎪 Brincadeiras: Virtudes <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Corrente do Bem (💡 6-12 anos, 10 min)</h3><p>Em círculo, cada um fala uma boa ação que vai fazer. A corrente cresce.</p><h3>2️⃣ Jogo dos Contrários (💡 7-12 anos, 15 min)</h3><p>Associar cada vício à virtude oposta: egoísmo-caridade, orgulho-humildade, preguiça-boa vontade, mentira-verdade.</p><h3>3️⃣ Caixa do Perdão (💡 8-12 anos, 15 min)</h3><p>Crianças escrevem algo que precisam perdoar ou ser perdoadas. Colocam na "caixa do perdão". O evangelizador reflete sobre o perdão.</p><h3>4️⃣ Bingo das Virtudes (💡 7-12 anos, 15 min)</h3><p>Cartelas com virtudes. O evangelizador descreve situações; crianças marcam a virtude correspondente. Prêmio para quem completar.</p><h3>5️⃣ Teatro das Virtudes (💡 8-12 anos, 20 min)</h3><p>Cada dupla sorteia uma virtude e cria uma mini-cena mostrando alguém praticando aquela virtude no dia a dia.</p>',
+  rev:'<h2>📚 Revisão — Virtudes <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><h3>💎 Principais Virtudes</h3><p>Caridade (amor em ação), Fé (confiança em Deus), Humildade (não se considerar superior), Perdão (desculpar de coração), Paciência (suportar com serenidade), Sinceridade (falar a verdade), Honestidade (respeitar o alheio), Bondade (desejar o bem ao próximo).</p><h3>⚠️ Vícios a Evitar</h3><p>Egoísmo, Orgulho, Inveja, Cólera, Preguiça, Mentira, Preconceito.</p><h3>💭 Reflexão</h3><p>"Fora da caridade não há salvação." A reforma íntima é o trabalho de cada dia. Sejamos pacientes conosco e com os outros. 💎</p>'
+};
+temaContent[6]={
+  hist:'<h2>🙏 Prece e Mediunidade <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em O Evangelho Segundo o Espiritismo, O Livro dos Médiuns, passatempoespirita.com.br</p><div class="eb">🙏😇💤🌟</div><p>A prece é a conversa com Deus. Através da oração, elevamos nosso pensamento a Deus, agradecemos, pedimos auxílio e nos conectamos com o bem. Jesus nos ensinou o Pai Nosso, que é o modelo de toda oração.</p><p>O anjo da guarda é o Espírito protetor que Deus designa para nos acompanhar. Ele nos inspira, protege e guia, mas respeita nosso livre-arbítrio. Podemos sentir sua presença pela paz que nos envolve.</p><div class="vers">"Orai e vigiai, para não cairdes em tentação." (Mateus 26:41)</div><p>A mediunidade é a faculdade de servir de intermediário entre os espíritos e os homens. Todos temos algum grau de mediunidade. A mais comum é a intuição — aquela "vozinha" do coração que nos orienta.</p><p>O passe é uma transmissão de fluidos benéficos através da imposição das mãos. A água fluidificada é água comum que recebe fluidos curativos através da prece.</p><p>O sono é o momento em que o espírito se liberta parcialmente do corpo e pode encontrar outros espíritos, estudar e se preparar para o futuro.</p><div class="reflexao">💭 <strong>Reflexão:</strong> A prece nos fortalece, o anjo da guarda nos protege, a mediunidade nos conecta com o mundo espiritual. Cultivemos a oração e a sintonia com o bem! 🙏</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Prece <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p><strong>Faixa etária:</strong> 7 a 14 anos | <strong>Duração:</strong> 50 min</p><h3>🎯 Objetivos</h3><p>• Aprender a importância da prece • Conhecer o anjo da guarda • Entender a mediunidade como faculdade natural</p><h3>📖 Acolhida (5 min)</h3><p>Oração espontânea. Perguntar: "Quem conversa com Deus?"</p><h3>📜 História (15 min)</h3><p>Contar sobre a prece de Jesus no Getsêmani. Falar sobre o anjo da guarda e como sentimos sua proteção.</p><h3>💬 Diálogo (10 min)</h3><p>• O que é orar? • Como orar? • O anjo da guarda • A intuição como mediunidade natural</p><h3>🎲 Atividade (10 min)</h3><p>Escrever uma prece para alguém | Leitura do Pai Nosso com reflexão</p><h3>🙏 Encerramento (5 min)</h3><p>Oração do Pai Nosso todos juntos.</p>',
+  brinc:'<h2>🎪 Brincadeiras: Prece <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Corrente de Oração (💡 6-12 anos, 10 min)</h3><p>Em círculo, cada criança fala algo para agradecer ou pedir. Todos oram juntos.</p><h3>2️⃣ Anjo da Guarda (💡 5-10 anos, 15 min)</h3><p>Uma criança é vendada, outra a guia com cuidado (o "anjo da guarda"). Depois trocam. Refletir sobre a proteção espiritual.</p><h3>3️⃣ Telefone sem Fio Espiritual (💡 7-12 anos, 10 min)</h3><p>Passar uma mensagem de incentivo ou versículo em círculo. Ver como chega no final.</p><h3>4️⃣ Cartão de Prece (💡 6-12 anos, 15 min)</h3><p>Cada criança escreve uma oração para alguém especial (família, amigo, alguém doente). Decoram o cartão e levam para entregar.</p><h3>5️⃣ Meditação Guiada do Anjo (💡 7-12 anos, 10 min)</h3><p>Com música suave, guiar as crianças a visualizar seu anjo da guarda ao lado, sentindo paz e proteção. Depois compartilham a experiência.</p>',
+  rev:'<h2>📚 Revisão — Prece e Mediunidade <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><h3>🙏 O que é Prece?</h3><p>Conversa com Deus. Pode ser de agradecimento, pedido ou louvor. O Pai Nosso é o modelo de oração.</p><h3>😇 Anjo da Guarda</h3><p>Espírito protetor designado por Deus. Nos inspira, protege e guia. Podemos sentir sua presença pela paz.</p><h3>🔮 Mediunidade</h3><p>Faculdade de intermediar espíritos. Todos temos. Intuição é a forma mais comum.</p><h3>✋ Passe e Água Fluidificada</h3><p>Transmissão de fluidos benéficos através da imposição das mãos e da prece.</p><h3>💤 Sono e Sonhos</h3><p>No sono, o espírito se liberta parcialmente do corpo para encontros e aprendizados.</p>'
+};
+temaContent[7]={
+  hist:'<h2>🌿 Parábolas de Jesus <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado nos Evangelhos, passatempoespirita.com.br</p><div class="eb">🌿🌾👨‍👦🕊️</div><p>As parábolas são histórias contadas por Jesus para transmitir ensinamentos espirituais profundos de forma simples e acessível.</p><p><strong>Parábola do Semeador (Mateus 13):</strong> O semeador saiu a semear. As sementes caíram em diferentes solos: na beira do caminho (não germinaram), em solo pedregoso (germinaram mas secaram), entre espinhos (sufocadas) e em boa terra (deram fruto). A semente é a palavra de Deus; o solo é o nosso coração.</p><p><strong>Parábola do Filho Pródigo (Lucas 15):</strong> Um filho pediu sua herança, foi para longe e desperdiçou tudo. Humilhado, voltou para casa pedindo perdão. O pai o recebeu de braços abertos com festa. Deus é esse Pai amoroso que sempre nos espera.</p><p><strong>Parábola do Bom Samaritano (Lucas 10):</strong> Um homem ferido foi ignorado por um sacerdote e um levita, mas um samaritano (considerado inimigo) o ajudou. "Quem é meu próximo?" — Quem precisa de ajuda!</p><p><strong>Parábola dos Talentos (Mateus 25):</strong> Um senhor deu talentos (moedas) a seus servos. Dois multiplicaram; um enterrou o seu. Devemos usar nossos dons para fazer o bem.</p><div class="reflexao">💭 <strong>Reflexão:</strong> Jesus falava por parábolas para que cada um entendesse segundo sua capacidade. Os ensinamentos são atemporais e nos convidam à reflexão e à transformação moral. 🌿</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Parábolas <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p><strong>Faixa etária:</strong> 7 a 12 anos | <strong>Duração:</strong> 50 min</p><h3>🎯 Objetivos</h3><p>• Conhecer as principais parábolas de Jesus • Compreender os ensinamentos por trás das histórias • Aplicar os valores na vida diária</p><h3>📖 Acolhida (5 min)</h3><p>Oração. Perguntar: "Você gosta de histórias? Por que Jesus contava histórias?"</p><h3>📜 História (20 min)</h3><p>Contar 2-3 parábolas com recursos visuais. Usar o quadrinho da história ou imagens.</p><h3>💬 Diálogo (10 min)</h3><p>• O que significa cada parábola? • Como aplicar no dia a dia? • Qual sua favorita?</p><h3>🎲 Atividade (10 min)</h3><p>Teatro de fantoches de uma parábola | Desenho sobre a parábola favorita</p><h3>🙏 Encerramento (5 min)</h3><p>Oração agradecendo pelos ensinamentos de Jesus.</p>',
+  brinc:'<h2>🎪 Brincadeiras: Parábolas <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Teatro de Parábolas (💡 8-12 anos, 25 min)</h3><p>Dividir em grupos. Cada grupo encena uma parábola. Os outros adivinham qual é.</p><h3>2️⃣ Caça ao Tesouro das Parábolas (💡 7-12 anos, 20 min)</h3><p>Pistas com referências a parábolas. Cada pista encontrada revela um ensinamento.</p><h3>3️⃣ Jogo da Memória das Parábolas (💡 5-10 anos, 15 min)</h3><p>Pares: nome da parábola + seu ensinamento principal.</p><h3>4️⃣ Sementes da Boa Terra (💡 6-12 anos, 15 min)</h3><p>Cada criança recebe uma semente e um vasinho. Escrevem num papel uma qualidade que querem cultivar (paciência, bondade...) e enterram junto. Regar em casa como símbolo.</p><h3>5️⃣ Jogo dos Talentos (💡 8-12 anos, 20 min)</h3><p>Cada criança recebe um "talento" (tarefa: desenhar, cantar, contar história) e deve usá-lo para alegrar o grupo. Refletir sobre usar nossos dons.</p>',
+  rev:'<h2>📚 Revisão — Parábolas <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><h3>🌾 Principais Parábolas</h3><p><strong>Semeador:</strong> A palavra de Deus cai em diferentes corações (solos).</p><p><strong>Filho Pródigo:</strong> Deus é Pai amoroso que sempre nos espera.</p><p><strong>Bom Samaritano:</strong> Todos são nosso próximo, especialmente quem precisa.</p><p><strong>Talentos:</strong> Devemos usar nossos dons para fazer o bem.</p><p><strong>Ovelha Perdida:</strong> Deus ama cada um de nós individualmente.</p><p><strong>Joio e Trigo:</strong> O bem e o mal crescem juntos; a separação vem no final.</p><p><strong>Casa na Rocha:</strong> Quem ouve e pratica a palavra constrói sobre a rocha.</p>'
+};
+temaContent[8]={
+  hist:'<h2>👤 Figuras Espíritas e Bíblicas <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em biografias espíritas, passatempoespirita.com.br</p><div class="eb">👤📚🕊️🌟</div><p><strong>Bezerra de Menezes (1831-1900):</strong> Médico e político brasileiro, conhecido como o "Médico dos Pobres". Foi presidente da Federação Espírita Brasileira. Exemplificou a caridade no atendimento gratuito aos necessitados.</p><p><strong>Chico Xavier (1910-2002):</strong> O maior médium brasileiro, psicografou mais de 450 livros. Doou todos os direitos autorais para instituições de caridade. Exemplo de humildade, amor e serviço ao próximo.</p><p><strong>Paulo de Tarso:</strong> Apóstolo do Cristianismo. Antes perseguidor, depois de uma experiência espiritual tornou-se o maior divulgador dos ensinamentos de Jesus. Escreveu 13 cartas do Novo Testamento.</p><p><strong>Francisco de Assis (1182-1226):</strong> Amigo dos pobres e da natureza. Renunciou à riqueza para viver em simplicidade e amor. "Senhor, fazei-me instrumento de vossa paz."</p><div class="reflexao">💭 <strong>Reflexão:</strong> Estas figuras nos inspiram a viver com amor, humildade e serviço. Cada um de nós pode ser um instrumento de Deus na Terra. 👤</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Figuras Espíritas <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p><strong>Faixa etária:</strong> 10 a 14 anos | <strong>Duração:</strong> 50 min</p><h3>🎯 Objetivos</h3><p>• Conhecer a biografia de grandes vultos espíritas e bíblicos • Inspirar-se no exemplo de amor e serviço deles</p><h3>📖 Acolhida (5 min)</h3><p>Oração. Perguntar: "Quem é seu exemplo de bondade?"</p><h3>📜 História (20 min)</h3><p>Contar sobre Chico Xavier e Bezerra de Menezes. Destacar a caridade em suas vidas.</p><h3>💬 Diálogo (10 min)</h3><p>• O que esses exemplos nos ensinam? • Como seguir esses exemplos hoje?</p><h3>🎲 Atividade (10 min)</h3><p>Cada criança desenha ou escreve sobre seu "herói espiritual".</p><h3>🙏 Encerramento (5 min)</h3><p>Oração de gratidão pelos exemplos que Deus nos envia.</p>',
+  brinc:'<h2>🎪 Brincadeiras: Figuras Espíritas <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Quem Sou Eu? (💡 8-14 anos, 20 min)</h3><p>Colar na testa o nome de uma figura. A pessoa faz perguntas para descobrir quem é.</p><h3>2️⃣ Linha do Tempo (💡 10-14 anos, 15 min)</h3><p>Organizar em ordem cronológica as figuras: Francisco de Assis, Bezerra, Chico, Kardec.</p><h3>3️⃣ Entrevista Imaginária (💡 10-14 anos, 20 min)</h3><p>Dupla: um é o entrevistador, outro é a figura espírita. Fazem uma entrevista.</p><h3>4️⃣ Mímica dos Vultos (💡 8-14 anos, 15 min)</h3><p>Sortear uma figura e fazer mímica de sua principal característica (Chico psicografando, Bezerra atendendo doentes, Francisco abraçando árvore).</p><h3>5️⃣ Frase do Legado (💡 10-14 anos, 15 min)</h3><p>Cada figura tem uma frase marcante. As crianças recebem cartões com frases e fotos e devem associar corretamente.</p>',
+  rev:'<h2>📚 Revisão — Figuras Espíritas <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><h3>👤 Figuras Principais</h3><p><strong>Allan Kardec:</strong> Codificador do Espiritismo (1804-1869).</p><p><strong>Bezerra de Menezes:</strong> Médico dos Pobres, presidente da FEB (1831-1900).</p><p><strong>Chico Xavier:</strong> Maior médium brasileiro, psicografou 450+ livros (1910-2002).</p><p><strong>Paulo de Tarso:</strong> Apóstolo, maior divulgador do Cristianismo.</p><p><strong>Francisco de Assis:</strong> Amigo dos pobres e da natureza (1182-1226).</p>'
+};
+temaContent[9]={
+  hist:'<h2>🔥 Mocidade e Temas Avançados <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em O Livro dos Espíritos, A Gênese, passatempoespirita.com.br</p><div class="eb">🔥⚔️🌍🌟</div><p><strong>A Traição de Judas:</strong> Judas Iscariotes traiu Jesus por 30 moedas. Na visão espírita, Judas cumpriu seu papel no plano divino, mas sofreu as consequências. Jesus amava Judas e nunca o condenou.</p><p><strong>O Calvário de Jesus:</strong> Jesus passou pela paixão, crucificação e morte com coragem e amor. "Pai, em tuas mãos entrego meu espírito."</p><p><strong>Morte e Desencarnação:</strong> A morte não existe — é apenas a passagem do espírito para o plano espiritual. O processo varia conforme o estado moral do espírito.</p><p><strong>Evolução Humana:</strong> O Espírito foi criado simples e ignorante e evolui através das experiências. A Terra é um planeta de provas e expiações, em transição para mundo de regeneração.</p><div class="reflexao">💭 <strong>Reflexão:</strong> Somos espíritos imortais em jornada de evolução. Que possamos escolher o bem e o amor em cada momento. 🔥</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Mocidade <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p><strong>Faixa etária:</strong> 14 a 17 anos | <strong>Duração:</strong> 60 min</p><h3>🎯 Objetivos</h3><p>• Refletir sobre temas profundos da Doutrina Espírita • Compreender o processo de desencarnação • Discutir o papel da Terra como planeta de provas e expiações</p><h3>📖 Acolhida (5 min)</h3><p>Oração. Música de abertura.</p><h3>📜 Estudo e Debate (25 min)</h3><p>Ler trechos sobre desencarnação, evolução e transição planetária. Debater em grupo.</p><h3>💬 Reflexão (15 min)</h3><p>• O que significa a traição de Judas? • Como encaramos a morte? • Qual nosso papel na transição da Terra?</p><h3>🎲 Atividade (10 min)</h3><p>Quiz avançado sobre temas da mocidade.</p><h3>🙏 Encerramento (5 min)</h3><p>Oração final com o Pai Nosso.</p>',
+  brinc:'<h2>🎪 Brincadeiras: Mocidade <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Debate Temático (💡 14-17 anos, 30 min)</h3><p>Dividir em dois grupos. Um defende um tema, o outro contra. Temas: "A Terra já é um mundo de regeneração?"</p><h3>2️⃣ Jogo de Perguntas Avançado (💡 14-17 anos, 20 min)</h3><p>Perguntas profundas sobre Kardec, Jesus, Moisés, reencarnação, mediunidade, livre-arbítrio.</p><h3>3️⃣ Análise de Filme (💡 14-17 anos, 40 min)</h3><p>Assistir trechos de "Nosso Lar" ou "Chico Xavier" e debater os temas apresentados.</p><h3>4️⃣ Dinâmica do Livre-Arbítrio (💡 14-17 anos, 20 min)</h3><p>História com escolhas: em cada momento, os jovens votam na decisão do personagem. Analisar juntos as consequências de cada escolha.</p><h3>5️⃣ Mural da Transição (💡 14-17 anos, 25 min)</h3><p>Criar um mural coletivo com recortes mostrando o mundo atual (violência, desigualdade) e o mundo ideal (paz, amor, fraternidade). Refletir sobre o papel de cada um.</p>',
+  rev:'<h2>📚 Revisão — Mocidade <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><h3>🔥 Temas Avançados</h3><p><strong>Traição de Judas:</strong> Judas traiu Jesus por 30 moedas. Na visão espírita, cumpriu papel no plano divino.</p><p><strong>Calvário:</strong> Jesus ensinou coragem, amor e perdão até o fim.</p><p><strong>Morte/Desencarnação:</strong> Passagem do espírito para o plano espiritual. Varia conforme o estado moral.</p><p><strong>Evolução:</strong> Espírito criado simples e ignorante, evolui através das reencarnações.</p><p><strong>Transição Planetária:</strong> A Terra está passando de mundo de provas para mundo de regeneração.</p><p><strong>"Não vim trazer a paz, mas a espada":</strong> A verdade separa os que querem o bem dos que preferem o mal.</p>'
+};
+temaContent[10]={
+  hist:'<h2>📜 Os Dez Mandamentos <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em Êxodo 20, O Livro dos Espíritos, passatempoespirita.com.br</p><div class="eb">⛰️📜🌟👆</div><p>Após libertar o povo hebreu do Egito, Moisés conduziu o povo até o Monte Sinai. Lá, Deus chamou Moisés ao topo da montanha, que estava coberta por nuvens e relâmpagos. O povo esperou ao pé do monte, tremendo de respeito e temor.</p><p>Deus entregou a Moisés duas tábuas de pedra, escritas pelo próprio dedo de Deus. Nelas estavam os Dez Mandamentos — as leis divinas que nos ensinam a amar a Deus e ao próximo. Esses mandamentos são a base da moral cristã e espírita.</p><p><strong>1º Mandamento:</strong> "Amar a Deus sobre todas as coisas." Deus é nosso Pai Criador. Devemos amá-Lo acima de tudo e colocar nossa confiança nEle.</p><p><strong>2º Mandamento:</strong> "Não fazer ídolos nem imagens para adorar." Deus é espírito puro. Não devemos adorar imagens ou objetos, mas apenas a Deus.</p><p><strong>3º Mandamento:</strong> "Não tomar o nome de Deus em vão." Devemos falar o nome de Deus com respeito e amor, nunca para xingar ou zombar.</p><p><strong>4º Mandamento:</strong> "Guardar o sábado." Na visão espírita, significa dedicar um tempo para Deus, para o estudo e para o descanso do corpo e do espírito.</p><p><strong>5º Mandamento:</strong> "Honrar pai e mãe." Devemos respeitar, amar e cuidar de nossos pais. E também honrar aqueles que nos guiam espiritualmente.</p><p><strong>6º Mandamento:</strong> "Não matar." Respeitar a vida em todas as suas formas. Não matar o corpo nem ferir a alma do próximo.</p><p><strong>7º Mandamento:</strong> "Não adulterar." Ser fiel e honesto nos compromissos e na família.</p><p><strong>8º Mandamento:</strong> "Não roubar." Respeitar o que é dos outros. Não pegar nada sem permissão.</p><p><strong>9º Mandamento:</strong> "Não mentir." Falar sempre a verdade. Não enganar, nem caluniar, nem fofocar.</p><p><strong>10º Mandamento:</strong> "Não cobiçar." Não desejar o que é dos outros. Ser grato pelo que temos.</p><div class="vers">"Amarás o Senhor teu Deus de todo o teu coração, de toda a tua alma e de todo o teu entendimento. Este é o primeiro e grande mandamento. E o segundo, semelhante a este, é: Amarás o teu próximo como a ti mesmo." (Mateus 22:37-39)</div><div class="reflexao">💭 <strong>Reflexão Espírita:</strong> Os Dez Mandamentos são leis divinas que nos guiam para o bem. Jesus resumiu todos em dois: amar a Deus e amar ao próximo. O Espiritismo nos ensina que essas leis estão escritas em nossa consciência. 📜</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Os Dez Mandamentos <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 6 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> As leis de Deus para uma vida feliz</p><h3>🎯 Objetivos</h3><p>• Conhecer os Dez Mandamentos • Compreender que são leis de amor • Praticar os mandamentos no dia a dia</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Cantar "Moisés libertou o povo". Perguntar: "Quem tem regras em casa? Para que servem?"</p><h3>🌟 2. Introdução (5 min)</h3><p>Explicar que as regras nos protegem e nos ajudam a viver bem. Deus deu os 10 Mandamentos como regras de amor.</p><h3>📜 3. História e Diálogo (20 min)</h3><p>Contar que Moisés subiu ao Monte Sinai e recebeu as tábuas da lei. Explicar cada mandamento de forma simples: 1-4: amar a Deus; 5-10: amar ao próximo.</p><h3>💬 4. Diálogo (8 min)</h3><p>• Qual mandamento é mais fácil? Qual mais difícil? • Jesus resumiu em dois: amar a Deus e ao próximo • Como praticar hoje?</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Jogo da Velha | Quiz sobre os Mandamentos | Caça-Palavras</p><h3>✏️ 6. Fixação (5 min)</h3><p>Cada criança escolhe um mandamento para praticar esta semana e desenha um símbolo dele.</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração agradecendo a Deus pelas leis que nos guiam.</p>',
+  brinc:'<h2>🎪 Brincadeiras: Os Dez Mandamentos <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Corrida dos Mandamentos (💡 6-12 anos, 15 min)</h3><p>Cada criança recebe um cartão com um número de 1 a 10. Quando o evangelizador diz um mandamento, a criança com o número correspondente levanta e explica o mandamento.</p><h3>2️⃣ As Duas Tábuas (💡 5-10 anos, 15 min)</h3><p>Desenhar duas grandes tábuas no chão. De um lado, mandamentos que falam de Deus (1-4). Do outro, mandamentos que falam do próximo (5-10). Crianças colocam cartões no lado certo.</p><h3>3️⃣ Teatro dos Mandamentos (💡 8-12 anos, 20 min)</h3><p>Dividir em 10 grupos. Cada grupo representa um mandamento com mímica ou teatro. Os outros adivinham qual é.</p><h3>4️⃣ Jogo da Memória dos Mandamentos (💡 5-10 anos, 15 min)</h3><p>Pares: número do mandamento + seu significado. Ex: "5" combina com "Honrar pai e mãe".</p><h3>5️⃣ Dedo de Deus (💡 6-12 anos, 15 min)</h3><p>Com argila ou massinha, cada criança esculpe duas pequenas tábuas e escreve (com palito) o mandamento que mais gostou. Levar para casa como lembrança.</p><h3>6️⃣ Jogo do Sim ou Não (💡 7-12 anos, 15 min)</h3><p>O evangelizador lê situações do dia a dia. Crianças respondem com cartão ✅ (cumpre mandamento) ou ❌ (quebra mandamento). Discutir cada resposta.</p>',
+  rev:'<h2>📚 Revisão — Os Dez Mandamentos <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Êxodo 20, O Evangelho Segundo o Espiritismo, passatempoespirita.com.br</p><h3>📜 Os Dez Mandamentos</h3><p><strong>1.</strong> Amar a Deus sobre todas as coisas.<br><strong>2.</strong> Não fazer ídolos.<br><strong>3.</strong> Não usar o nome de Deus em vão.<br><strong>4.</strong> Guardar o sábado (tempo para Deus).<br><strong>5.</strong> Honrar pai e mãe.<br><strong>6.</strong> Não matar.<br><strong>7.</strong> Não adulterar.<br><strong>8.</strong> Não roubar.<br><strong>9.</strong> Não mentir.<br><strong>10.</strong> Não cobiçar.</p><h3>⛰️ Resumo de Jesus</h3><p>Jesus resumiu todos os mandamentos em dois:<br><strong>1º</strong> Amar a Deus de todo o coração.<br><strong>2º</strong> Amar ao próximo como a si mesmo.</p><h3>💭 Reflexão Espírita</h3><p>Os Dez Mandamentos são leis divinas, eternas e universais. Estão escritas na consciência de todos os seres humanos. Quem ama a Deus e ao próximo já cumpre todos os mandamentos. 📜🕊️</p>'
+};
+
+// ===== DADOS POR TEMA (Jogos) =====
+var velhaTemas=[
+  {x:'Anjo 🛡️',o:'Tentação 😈',xt:'🛡️',ot:'😈'},
+  {x:'Moisés 🔵',o:'Faraó 🔴',xt:'🔵',ot:'🔴'},
+  {x:'Jesus ✨',o:'Fariseus ⚠️',xt:'✨',ot:'⚠️'},
+  {x:'Kardec 📖',o:'Incredulidade ❓',xt:'📖',ot:'❓'},
+  {x:'Espírito 👤',o:'Matéria ⚙️',xt:'👤',ot:'⚙️'},
+  {x:'Caridade ❤️',o:'Egoísmo 💔',xt:'❤️',ot:'💔'},
+  {x:'Oração 🙏',o:'Distração 💭',xt:'🙏',ot:'💭'},
+  {x:'Semeador 🌱',o:'Solo Pedregoso 🪨',xt:'🌱',ot:'🪨'},
+  {x:'Chico 🕊️',o:'Desânimo 😔',xt:'🕊️',ot:'😔'},
+  {x:'Verdade 💡',o:'Falsidade 🎭',xt:'💡',ot:'🎭'},
+  {x:'Bem 🌟',o:'Mal 😈',xt:'🌟',ot:'😈'}
+];
+var forcaTemas=[
+  [{p:'CRIACAO',d:'Deus criou o mundo em 7 dias'},{p:'ESPIRITO',d:'Ser imortal criado por Deus'},{p:'UNIVERSO',d:'Tudo que Deus criou'},{p:'NATUREZA',d:'Obra prima de Deus'},{p:'FLUIDO',d:'Matéria elementar primitiva'},{p:'AMOR',d:'Deus é...'},{p:'LUZ',d:'Primeira coisa criada por Deus'},{p:'MUNDO',d:'Criação divina'},{p:'SOL',d:'Astro que ilumina o dia'},{p:'ESTRELAS',d:'Luzes no céu noturno'},{p:'JARDIM',d:'Para onde Deus colocou o homem'},{p:'REINOS',d:'Mineral, vegetal e animal'}],
+  [{p:'MOISES',d:'Profeta que libertou o povo'},{p:'FARAO',d:'Rei do Egito'},{p:'SARCA',d:'Arbusto que ardia'},{p:'MANA',d:'Pão do céu'},{p:'TABUAS',d:'Onde os mandamentos foram escritos'},{p:'JOSUE',d:'Sucessor de Moisés'},{p:'JOQUEBEDE',d:'Mãe de Moisés'},{p:'MIRIA',d:'Irmã de Moisés'},{p:'PRAGA',d:'Castigo sobre o Egito'},{p:'NEBO',d:'Monte onde Moisés morreu'},{p:'ALIANCA',d:'Acordo entre Deus e o povo'},{p:'ROCA',d:'De onde Moisés tirou água'}],
+  [{p:'JESUS',d:'Nosso guia e modelo'},{p:'APOSTOLO',d:'Escolhido por Jesus'},{p:'BELÉM',d:'Cidade onde Jesus nasceu'},{p:'EVANGELHO',d:'Boa Nova de Jesus'},{p:'PERDAO',d:'Ensinamento de Jesus na cruz'},{p:'PARABOLA',d:'História com ensinamento'},{p:'MARIA',d:'Mãe de Jesus'},{p:'JOAO',d:'Batizou Jesus'},{p:'GALILEU',d:'Região onde Jesus viveu'},{p:'PEDRO',d:'Principal apóstolo'},{p:'RESSURREI',d:'Jesus venceu a morte'},{p:'MANJEDOURA',d:'Onde Jesus nasceu'}],
+  [{p:'KARDEC',d:'Codificador do Espiritismo'},{p:'ESPIRITISMO',d:'Doutrina Consoladora'},{p:'REVELACAO',d:'Moisés, Jesus e Espiritismo'},{p:'CONSOLADOR',d:'Prometido por Jesus'},{p:'RIVEST',d:'Sobrenome de Kardec'},{p:'GENESE',d:'Uma das obras básicas'},{p:'CIENCIA',d:'Um dos aspectos do Espiritismo'},{p:'FILOSOFIA',d:'Outro aspecto da Doutrina'},{p:'RELIGIAO',d:'Terceiro aspecto do Espiritismo'},{p:'RAZAO',d:'Fé raciocinada'},{p:'MEDIUNS',d:'Livro sobre comunicação'},{p:'CODIFICACAO',d:'Organização da Doutrina'}],
+  [{p:'REENCARNA',d:'Volta à vida material'},{p:'ESPIRITO',d:'Ser imortal'},{p:'PERISPIRITO',d:'Corpo fluídico'},{p:'PLURALIDADE',d:'Muitas existências'},{p:'ESQUECIMENTO',d:'Bênção de recomeçar'},{p:'EVOLUCAO',d:'Progresso do espírito'},{p:'PROGRESSO',d:'Objetivo da reencarnação'},{p:'APRENDER',d:'Por que reencarnamos'},{p:'FAMILIA',d:'Laços que atravessam vidas'},{p:'IMORTAL',d:'O espírito é...'},{p:'LICOES',d:'Aprendemos com as experiências'},{p:'CAMINHO',d:'Jornada do espírito'}],
+  [{p:'CARIDADE',d:'Amor em ação'},{p:'HUMILDADE',d:'Virtude oposta ao orgulho'},{p:'PERDAO',d:'Ato de desculpar'},{p:'PAClENCIA',d:'Suportar com serenidade'},{p:'SINCERIDADE',d:'Falar a verdade'},{p:'HONESTIDADE',d:'Respeitar o alheio'},{p:'BONDADE',d:'Desejar o bem ao próximo'},{p:'GRATIDAO',d:'Agradecer a Deus'},{p:'FE',d:'Confiança em Deus'},{p:'ESPERANCA',d:'Acreditar no futuro'},{p:'TOLERANCIA',d:'Respeitar as diferenças'},{p:'COMPAIXAO',d:'Sentir a dor do outro'}],
+  [{p:'ORACAO',d:'Conversa com Deus'},{p:'MEDIUNIDADE',d:'Faculdade de comunicar'},{p:'INTUlCAO',d:'Vozinha do coração'},{p:'PASSE',d:'Transmissão de fluidos'},{p:'ANJO',d:'Espírito protetor'},{p:'VlGIA',d:'Estar atento'},{p:'SINTONIA',d:'Ligação com o bem'},{p:'GRATIDAO',d:'Sentimento de agradecer'},{p:'PROTECAO',d:'O anjo da guarda nos dá'},{p:'CONEXAO',d:'Ligação com Deus'},{p:'FLUIDICO',d:'Corpo espiritual'},{p:'SONHO',d:'Visão do espírito liberto'}],
+  [{p:'SEMEADOR',d:'Parábola da semente'},{p:'TALENTOS',d:'Dons que devemos usar'},{p:'SAMARITANO',d:'Ajudou o ferido'},{p:'PRODIGO',d:'Filho que voltou'},{p:'OVELHA',d:'Perdida e encontrada'},{p:'FIGUEIRA',d:'Árvore que secou'},{p:'DRACMA',d:'Moeda perdida na parábola'},{p:'BODAS',d:'Festa do Reino de Deus'},{p:'TRIGO',d:'Boa semente no campo'},{p:'JOIO',d:'Erva daninha do campo'},{p:'FERMENTO',d:'Levedura que transforma'},{p:'REDE',d:'Que pesca peixes bons e maus'}],
+  [{p:'BEZERRA',d:'Médico dos Pobres'},{p:'CHICO',d:'Maior médium brasileiro'},{p:'PAULO',d:'Apóstolo divulgador'},{p:'FRANCISCO',d:'Amigo da natureza'},{p:'EMMANUEL',d:'Guia espiritual de Chico'},{p:'FEB',d:'Federação Espírita'},{p:'MEDICO',d:'Profissão de Bezerra'},{p:'POBRES',d:'Quem Bezerra atendia'},{p:'INSTRUMENTO',d:"'Fazei-me... de vossa paz'"},{p:'PAZ',d:'Legado de Francisco'},{p:'SERVICO',d:'Exemplo das figuras'},{p:'CARIDADE',d:'Marcou todas essas vidas'}],
+  [{p:'JUDAS',d:'Traiu Jesus por 30 moedas'},{p:'CALVARIO',d:'Sofrimento de Jesus'},{p:'DESENCARNA',d:'Passagem ao plano espiritual'},{p:'EXPIACAO',d:'Purificação do espírito'},{p:'TRANSICAO',d:'Mudança planetária'},{p:'MOCIDADE',d:'Juventude espírita'},{p:'GETSEMANI',d:'Jardim onde Jesus orou'},{p:'CRUCIFIXO',d:'Instrumento da morte de Jesus'},{p:'RESSURREICAO',d:'Volta à vida espiritual'},{p:'REGENERACAO',d:'Mundo melhor que virá'},{p:'LIVREARBITRIO',d:'Liberdade de escolha'},{p:'CONSCIENCIA',d:'Voz interior que nos guia'}],
+  [{p:'MANDAMENTOS',d:'Leis divinas recebidas por Moisés'},{p:'TABUAS',d:'Onde foram escritos os mandamentos'},{p:'SINAI',d:'Monte onde Moisés recebeu as leis'},{p:'AMOR',d:'O resumo de todos os mandamentos'},{p:'DEUS',d:'A quem devemos amar sobre todas as coisas'},{p:'PROXIMO',d:'A quem devemos amar como a nós mesmos'},{p:'SABADO',d:'Dia dedicado a Deus'},{p:'IDOLOS',d:'Não fazer... para adorar'},{p:'HONRAR',d:'Respeitar pai e mãe'},{p:'ROUBAR',d:'Não pegar o que é dos outros'},{p:'MENTIRA',d:'Não falar...'},{p:'COBICAR',d:'Não desejar o alheio'}]
+];
+var memoriaTemas=[
+  [{e:'🌟',t:'Deus'},{e:'🌍',t:'Criação'},{e:'☀️',t:'Sol'},{e:'🌊',t:'Água'},{e:'🌱',t:'Planta'},{e:'🐟',t:'Peixe'},{e:'🌙',t:'Lua'},{e:'⭐',t:'Estrela'},{e:'🪨',t:'Mineral'},{e:'🌿',t:'Vegetal'},{e:'🦁',t:'Animal'},{e:'💡',t:'Luz'}],
+  [{e:'👶',t:'Cesto'},{e:'🔥',t:'Sarça'},{e:'👑',t:'Faraó'},{e:'🌊',t:'Mar Vermelho'},{e:'⛰️',t:'Sinai'},{e:'📜',t:'Tábuas'},{e:'👩',t:'Joquebede'},{e:'👧',t:'Miriã'},{e:'🐸',t:'Praga'},{e:'🍞',t:'Maná'},{e:'🪨',t:'Rocha'},{e:'🐑',t:'Pastor'}],
+  [{e:'⭐',t:'Estrela'},{e:'👼',t:'Anjo'},{e:'🐟',t:'Peixes'},{e:'🍞',t:'Pães'},{e:'⚓',t:'Barco'},{e:'💧',t:'Água'},{e:'👩',t:'Maria'},{e:'🌊',t:'Tempestade'},{e:'✋',t:'Cura'},{e:'🗝️',t:'Perdão'},{e:'👑',t:'Rei'},{e:'🕊️',t:'Pomba'}],
+  [{e:'📚',t:'Livro'},{e:'🕊️',t:'Consolador'},{e:'🌟',t:'Luz'},{e:'👤',t:'Kardec'},{e:'📖',t:'Evangelho'},{e:'✝️',t:'Cruz'},{e:'🔬',t:'Ciência'},{e:'💭',t:'Filosofia'},{e:'⛪',t:'Religião'},{e:'🧠',t:'Razão'},{e:'📕',t:'Gênese'},{e:'✍️',t:'Codificação'}],
+  [{e:'👤',t:'Espírito'},{e:'🔄',t:'Reencarnar'},{e:'👶',t:'Nascer'},{e:'🦋',t:'Evoluir'},{e:'💤',t:'Sono'},{e:'🌟',t:'Imortal'},{e:'📚',t:'Escola'},{e:'❤️',t:'Amor'},{e:'👨‍👩‍👧‍👦',t:'Família'},{e:'🛤️',t:'Caminho'},{e:'📈',t:'Progresso'},{e:'🎯',t:'Missão'}],
+  [{e:'❤️',t:'Amor'},{e:'💎',t:'Virtude'},{e:'🕊️',t:'Paz'},{e:'🙏',t:'Fé'},{e:'🌟',t:'Esperança'},{e:'🤝',t:'Perdão'},{e:'💪',t:'Paciência'},{e:'🎭',t:'Sinceridade'},{e:'⚖️',t:'Honestidade'},{e:'🌱',t:'Humildade'},{e:'🔥',t:'Caridade'},{e:'😊',t:'Bondade'}],
+  [{e:'🙏',t:'Prece'},{e:'😇',t:'Anjo'},{e:'💤',t:'Sono'},{e:'✋',t:'Passe'},{e:'💧',t:'Água'},{e:'🔮',t:'Mediunidade'},{e:'💭',t:'Intuição'},{e:'👂',t:'Ouvir'},{e:'🛡️',t:'Proteção'},{e:'🔗',t:'Conexão'},{e:'✨',t:'Sintonia'},{e:'💡',t:'Vigiar'}],
+  [{e:'🌾',t:'Semeador'},{e:'👨‍👦',t:'Filho Pródigo'},{e:'❤️',t:'Samaritano'},{e:'💰',t:'Talentos'},{e:'🐑',t:'Ovelha'},{e:'🌿',t:'Joio'},{e:'🪙',t:'Dracma'},{e:'💒',t:'Bodas'},{e:'🌱',t:'Trigo'},{e:'🥖',t:'Fermento'},{e:'🎣',t:'Rede'},{e:'🏠',t:'Casa na Rocha'}],
+  [{e:'👨‍⚕️',t:'Bezerra'},{e:'📝',t:'Chico'},{e:'📖',t:'Paulo'},{e:'🕊️',t:'Francisco'},{e:'🌟',t:'Kardec'},{e:'🏥',t:'Caridade'},{e:'🇫🇷',t:'França'},{e:'🖊️',t:'Psicografia'},{e:'🚑',t:'Médico'},{e:'🙏',t:'Oração'},{e:'🌍',t:'Missão'},{e:'📜',t:'Epístolas'}],
+  [{e:'🔥',t:'Mocidade'},{e:'⚔️',t:'Judas'},{e:'🌍',t:'Transição'},{e:'💡',t:'Verdade'},{e:'🌟',t:'Evolução'},{e:'🔄',t:'Morte'},{e:'🌿',t:'Getsêmani'},{e:'✝️',t:'Cruz'},{e:'🕊️',t:'Ressurreição'},{e:'⚖️',t:'Livre-arbítrio'},{e:'🌱',t:'Regeneração'},{e:'💭',t:'Consciência'}],
+  [{e:'✝️',t:'1º Amar a Deus'},{e:'🚫',t:'2º Sem ídolos'},{e:'🙊',t:'3º Sem blasfemar'},{e:'📖',t:'4º Tempo para Deus'},{e:'👨‍👩‍👧',t:'5º Honrar pais'},{e:'❤️',t:'6º Não matar'},{e:'💍',t:'7º Ser fiel'},{e:'✋',t:'8º Não roubar'},{e:'🗣️',t:'9º Não mentir'},{e:'👀',t:'10º Não cobiçar'},{e:'⛰️',t:'Monte Sinai'},{e:'📜',t:'Tábuas da Lei'}]
+];
+var cacaTemas=[
+  ['DEUS','CRIACAO','ESPIRITO','FLUIDO','AMOR','NATUREZA','LUZ','MUNDO','SOL','JARDIM','REINO','SEMENTE'],
+  ['MOISES','FARAO','SARCA','MANA','TABUAS','JOSUE','JOQUEBEDE','MIRIA','PRAGA','NEBO','ALIANCA','ROCA'],
+  ['JESUS','APOSTOLO','BELEM','EVANGELHO','PERDAO','PARABOLA','MARIA','JOAO','GALILEU','PEDRO','RESSURREICAO','MANJEDOURA'],
+  ['KARDEC','ESPIRITISMO','CONSOLADOR','GENESE','MEDIUNS','CODIFICACAO','CIENCIA','FILOSOFIA','RELIGIAO','RAZAO','FE','OBRAS'],
+  ['REENCARNA','PERISPIRITO','EVOLUCAO','ESQUECIMENTO','PLURALIDADE','IMORTAL','PROGRESSO','APRENDER','FAMILIA','LICOES','CAMINHO','OPORTUNIDADE'],
+  ['CARIDADE','HUMILDADE','PERDAO','PAClENCIA','SINCERIDADE','HONESTIDADE','BONDADE','GRATIDAO','FE','ESPERANCA','TOLERANCIA','COMPAIXAO'],
+  ['ORACAO','MEDIUNIDADE','INTUlCAO','PASSE','ANJO','VlGIA','SINTONIA','GRATIDAO','PROTECAO','CONEXAO','SONHO','FLUIDO'],
+  ['SEMEADOR','TALENTOS','SAMARITANO','PRODIGO','OVELHA','FIGUEIRA','DRACMA','BODAS','TRIGO','JOIO','FERMENTO','REDE'],
+  ['BEZERRA','CHICO','PAULO','KARDEC','FRANCISCO','EMMANUEL','MEDICO','POBRES','INSTRUMENTO','PAZ','SERVICO','CARIDADE'],
+  ['JUDAS','CALVARIO','DESENCARNA','EXPIACAO','TRANSICAO','LIVREARBITRIO','GETSEMANI','CRUCIFIXO','RESSURREICAO','REGENERACAO','CONSCIENCIA','MOCIDADE'],
+  ['MANDAMENTOS','TABUAS','SINAI','AMOR','DEUS','PROXIMO','SABADO','IDOLOS','HONRAR','ROUBAR','MENTIRA','COBICAR']
+];
+var lpTemas=[
+  [
+    {x:160,y:20},{x:200,y:60},{x:200,y:100},{x:160,y:140},{x:120,y:100},{x:120,y:60},{x:160,y:20},
+    {x:160,y:80},{x:180,y:80},{x:180,y:60},{x:140,y:60},{x:140,y:80},{x:160,y:80}
+  ],
+  [
+    {x:160,y:20},{x:200,y:40},{x:220,y:80},{x:200,y:120},{x:160,y:140},{x:120,y:120},{x:100,y:80},{x:120,y:40},{x:160,y:20},
+    {x:160,y:80},{x:180,y:80},{x:180,y:60},{x:140,y:60}
+  ],
+  [],[],[],[],[],[],[],[]
+];
+function renderHistoria(){
+  var el=document.getElementById('hist-conteudo');
+  if(!el)return;
+  var c=temaContent[temaAtual];
+  el.innerHTML=c&&c.hist?c.hist:'<p style="color:#cdb8f0;text-align:center;font-size:.9rem">📜 Conteúdo em desenvolvimento para este tema.</p>';
+}
+function renderAula(){
+  var el=document.getElementById('aula-conteudo');
+  if(!el)return;
+  var c=temaContent[temaAtual];
+  el.innerHTML=c&&c.aula?c.aula:'<p style="color:#cdb8f0;text-align:center;font-size:.9rem">👩‍🏫 Conteúdo em desenvolvimento para este tema.</p>';
+}
+function renderBrinc(){
+  var el=document.getElementById('brinc-conteudo');
+  if(!el)return;
+  var c=temaContent[temaAtual];
+  el.innerHTML=c&&c.brinc?c.brinc:'<p style="color:#cdb8f0;text-align:center;font-size:.9rem">🎪 Conteúdo em desenvolvimento para este tema.</p>';
+}
+function renderRevisao(){
+  var el=document.getElementById('rev-conteudo');
+  if(!el)return;
+  var c=temaContent[temaAtual];
+  el.innerHTML=c&&c.rev?c.rev:'<p style="color:#cdb8f0;text-align:center;font-size:.9rem">📚 Conteúdo em desenvolvimento para este tema.</p>';
+}
+function atualizarQuizTheme(){
+  var t=temaAtual; // 0-9 → same quiz index; theme bar is 1:1 with quiz now
+  setQuizTema(t);
+}
+// Render on navigation
+var irPOriginal=irP;
+irP=function(t){
+  irPOriginal(t);
+  if(t==='historia')renderHistoria();
+  if(t==='aula')renderAula();
+  if(t==='brincadeiras')renderBrinc();
+  if(t==='revisao')renderRevisao();
+  if(t==='velha')velhaReset();
+  if(t==='forca')forcaNova();
+  if(t==='memoria'){memDiff=0;document.querySelector('#mem-dif .dif-btn[data-d="0"]').classList.add('ativo');iniciarMem();}
+  if(t==='cacapalavras'){cpDiff=0;document.querySelector('#cp-dif .dif-btn[data-d="0"]').classList.add('ativo');iniciarCP();}
+  if(t==='quadrinho')renderQuadrinho();
+  if(t==='quiz')atualizarQuizTheme();
+};
+
+// ===== QUIZ =====
+var pergMois=[
+  {q:"Quem colocou Moisés num cestinho no rio Nilo?",o:["Joquebede","Princesa","Miriã","Faraó"],r:0,e:"Joquebede, com muito amor e fé, colocou Moisés no cestinho para protegê-lo."},
+  {q:"Quem encontrou o cestinho de Moisés no rio?",o:["Joquebede","A princesa do Egito","O Faraó","Miriã"],r:1,e:"A filha do Faraó encontrou o cestinho e teve compaixão do bebê."},
+  {q:"O que Moisés viu que queimava sem se consumir?",o:["Uma montanha","Uma sarça ardente","O Mar Vermelho","Uma estrela"],r:1,e:"Deus chamou Moisés através de uma sarça que ardia sem se consumir."},
+  {q:"O que Deus disse a Moisés na sarça ardente?",o:["Vá para o Egito","Tire as sandálias","Construa uma arca","Atravesse o mar"],r:1,e:"Deus disse: 'Tire as sandálias, porque este lugar é sagrado!' e o chamou para libertar o povo."},
+  {q:"Quem ajudava Moisés a falar com o Faraó?",o:["Miriã","Arão","Josué","Calebe"],r:1,e:"Arão, irmão de Moisés, falava por ele, pois Moisés tinha dificuldade com as palavras."},
+  {q:"Quantas pragas atingiram o Egito?",o:["7","10","12","5"],r:1,e:"Deus enviou 10 pragas ao Egito para convencer o Faraó a libertar o povo hebreu."},
+  {q:"O que o povo comeu no deserto?",o:["Peixe","Maná","Carne","Pão"],r:1,e:"Deus enviou o maná, um pão do céu, para alimentar o povo no deserto."},
+  {q:"Quantos mandamentos Moisés recebeu no Monte Sinai?",o:["5","10","12","7"],r:1,e:"Deus deu a Moisés os Dez Mandamentos para guiar o povo."},
+  {q:"O que significa o nome Moisés?",o:["Filho do rio","Tirado das águas","Salvo por Deus","Líder do povo"],r:1,e:"Moisés significa 'tirado das águas', porque foi salvo do rio Nilo."},
+  {q:"O que Moisés fez com o Mar Vermelho?",o:["Atravessou nadando","Abriu com a mão","Ornou para Deus","Desviou"],r:1,e:"Moisés estendeu a mão e Deus abriu o mar, formando muralhas de água."},
+  {q:"O que é a sarça ardente?",o:["Uma árvore","Um arbusto em chamas","Uma estrela","Um rio de fogo"],r:1,e:"A sarça é um arbusto que ardia em chamas, mas não se consumia."},
+  {q:"Quem era a irmã de Moisés que vigiava o cestinho?",o:["Joquebede","Miriã","Sara","Rebeca"],r:1,e:"Miriã, irmã de Moisés, observava de longe para ver o que aconteceria."},
+  {q:"Onde Moisés pastoreava quando viu a sarça?",o:["Monte Sinai","Monte Horebe","Monte das Oliveiras","Monte Sião"],r:1,e:"Moisés pastoreava no Monte Horebe, também chamado monte de Deus."},
+  {q:"Depois de fugir do Egito, Moisés foi para onde?",o:["Canaã","Midiã","Babilônia","Nínive"],r:1,e:"Moisés fugiu para Midiã, onde se tornou pastor e constituiu família."},
+  {q:"O que guiava o povo no deserto durante a noite?",o:["Estrela","Coluna de fogo","Lampião","Luar"],r:1,e:"Uma coluna de fogo guiava o povo durante a noite no deserto."}
+];
+var pergDeus=[
+  {q:"Segundo O Livro dos Espíritos, o que é Deus?",o:["Um velho bondoso","A inteligência suprema","A natureza","O Sol"],r:1,e:"Deus é a inteligência suprema, causa primária de todas as coisas."},
+  {q:"Quantos deuses existem?",o:["Muitos","Um só","Três","Nenhum"],r:1,e:"Deus é único, o Criador de tudo."},
+  {q:"Onde Deus está?",o:["No céu","Em toda parte","Na igreja","No coração"],r:1,e:"Deus está em toda parte, pois é infinito e onipresente."},
+  {q:"Como podemos falar com Deus?",o:["Gritando","Pela oração","Escrevendo","Sonhando"],r:1,e:"A oração é a conversa com Deus, que nos ouve sempre."},
+  {q:"O que Deus criou primeiro?",o:["O homem","A luz","Os animais","As águas"],r:1,e:"No princípio, Deus criou a luz, separando-a das trevas."},
+  {q:"Deus tem forma humana?",o:["Sim, como um homem","Não, é puro espírito","Sim, como uma luz","Não sabemos"],r:1,e:"Deus é puro espírito, não tem forma física. É eterno e imaterial."},
+  {q:"Como Deus se comunicava com Moisés?",o:["Por cartas","Pela mediunidade","Por sonhos","Por anjos"],r:1,e:"Moisés era médium: ouvia a voz de Deus através da intuição e da incorporação."},
+  {q:"Deus se cansa?",o:["Sim, às vezes","Não, é eterno","Sim, descansou no 7º dia","Não sabemos"],r:1,e:"Deus não se cansa. 'Descansou' significa que a criação foi concluída."},
+  {q:"Qual a principal qualidade de Deus?",o:["Poder","Amor","Sabedoria","Justiça"],r:1,e:"Deus é soberanamente justo e bom, e Seu amor é infinito."},
+  {q:"Como sentimos Deus em nossa vida?",o:["Vendo","Pela paz no coração","Ouvindo","Tocando"],r:1,e:"Sentimos Deus pela paz, alegria e amor que brotam no coração quando fazemos o bem."},
+  {q:"Deus sabe tudo o que pensamos?",o:["Só o que falamos","Sabe tudo","Só o que fazemos","Não sabe"],r:1,e:"Deus é onisciente: conhece nossos pensamentos, palavras e ações."},
+  {q:"O que Jesus nos ensinou sobre Deus?",o:["Deus é vingativo","Deus é amor","Deus está longe","Deus não existe"],r:1,e:"Jesus ensinou que Deus é nosso Pai amoroso, que cuida de todos."},
+  {q:"Podemos ver Deus?",o:["Com óculos especiais","Não, é invisível","Sim, no céu","Só no sonho"],r:1,e:"Deus é invisível porque é puro espírito. Mas sentimos Sua presença."},
+  {q:"Para os espíritas, como Deus age?",o:["Por milagres","Por leis naturais","Por castigos","Só na Bíblia"],r:1,e:"Deus age por leis naturais e justas. Tudo na natureza revela a sabedoria divina."},
+      {q:"Qual o melhor jeito de agradar a Deus?",o:["Rezando muito","Fazendo o bem","Jejuando","Ofertando"],r:1,e:"Fazer o bem e amar ao próximo como a si mesmo é o que mais agrada a Deus."}
+];
+var pergJesus=[
+  {q:"Onde Jesus nasceu?",o:["Nazaré","Belém","Jerusalém","Cafarnaum"],r:1,e:"Jesus nasceu em Belém, na Judéia."},
+  {q:"Quantos apóstolos Jesus escolheu?",o:["7","10","12","14"],r:2,e:"Jesus escolheu 12 apóstolos."},
+  {q:"Qual o principal mandamento de Jesus?",o:["Não roubar","Amar a Deus e ao próximo","Orar sempre","Jejuar"],r:1,e:"Amar a Deus e ao próximo como a si mesmo."},
+  {q:"Quem batizou Jesus?",o:["Pedro","João Batista","André","Paulo"],r:1,e:"João Batista batizou Jesus no Rio Jordão."},
+  {q:"Quantos pães e peixes Jesus multiplicou?",o:["5 pães e 2 peixes","7 pães e 3 peixes","3 pães e 5 peixes","2 pães e 2 peixes"],r:0,e:"5 pães e 2 peixes para alimentar 5 mil pessoas."},
+  {q:"O que Jesus fez na tempestade?",o:["Fugiu","Acalmou o vento e o mar","Ornou","Dormiu"],r:1,e:"Jesus acalmou a tempestade."},
+  {q:"Quem traiu Jesus?",o:["Pedro","Judas Iscariotes","Tomé","João"],r:1,e:"Judas Iscariotes traiu Jesus por 30 moedas."},
+  {q:"O que Jesus disse na cruz sobre seus algozes?",o:["Vingança","Pai, perdoai-lhes","Justiça","Castigo"],r:1,e:"'Pai, perdoa-lhes, porque não sabem o que fazem.'"},
+  {q:"Quem negou Jesus três vezes?",o:["Tomé","Pedro","Judas","João"],r:1,e:"Pedro negou Jesus três vezes antes do galo cantar."},
+  {q:"Qual oração Jesus nos ensinou?",o:["Ave Maria","Pai Nosso","Creio","Salmo 23"],r:1,e:"Jesus ensinou o Pai Nosso."},
+  {q:"Quem era a mãe de Jesus?",o:["Marta","Maria","Madalena","Isabel"],r:1,e:"Maria era a mãe de Jesus."},
+  {q:"O que os magos seguiram até Jesus?",o:["Nuvem","Estrela","Anjo","Luz"],r:1,e:"Os magos seguiram a estrela até Belém."},
+  {q:"O que Jesus ensinou no Sermão da Montanha?",o:["Guerra","Bem-Aventuranças","Leis","Profecias"],r:1,e:"As Bem-Aventuranças e a Regra de Ouro."},
+  {q:"Para os espíritas, quem é Jesus?",o:["Um profeta","O guia e modelo da humanidade","Um anjo","Um médium"],r:1,e:"Jesus é o modelo de perfeição moral que Deus enviou."},
+  {q:"O que significa Emanuel?",o:["Filho de Deus","Deus conosco","Salvador","Messias"],r:1,e:"Emanuel significa 'Deus conosco'."}
+];
+var pergDoutrina=[
+  {q:"Quem codificou a Doutrina Espírita?",o:["Chico Xavier","Allan Kardec","Bezerra de Menezes","Emmanuel"],r:1,e:"Allan Kardec codificou o Espiritismo."},
+  {q:"Em que ano foi publicado O Livro dos Espíritos?",o:["1855","1857","1860","1864"],r:1,e:"18 de abril de 1857."},
+  {q:"Quantas obras básicas compõem a Codificação?",o:["3","5","7","10"],r:1,e:"Cinco obras básicas."},
+  {q:"Qual o verdadeiro nome de Allan Kardec?",o:["Léon Denis","Hippolyte Rivest","Gabriel Dellane","Flammarion"],r:1,e:"Hippolyte Léon Denizard Rivest."},
+  {q:"O que significa Espiritismo?",o:["Doutrina do Espírito","Religião nova","Ciência oculta","Filosofia"],r:0,e:"Doutrina que estuda a origem, natureza e destino dos Espíritos."},
+  {q:"Qual a nacionalidade de Allan Kardec?",o:["Inglês","Francês","Alemão","Italiano"],r:1,e:"Kardec era francês."},
+  {q:"Quem prometeu o Consolador?",o:["Moisés","Jesus","Kardec","Pedro"],r:1,e:"Jesus prometeu o Consolador (João 14-16)."},
+  {q:"As Três Revelações são:",o:["Pai, Filho e Espírito","Moisés, Jesus e Espiritismo","Antigo, Novo e Apócrifos","Fé, Esperança e Caridade"],r:1,e:"Moisés (Lei), Jesus (Amor), Espiritismo (Verdade)."},
+  {q:"O que é a Revista Espírita?",o:["Jornal","Publicação mensal de Kardec","Livro","Site"],r:1,e:"Publicação mensal dirigida por Kardec (1858-1869)."},
+  {q:"Para os espíritas, a fé deve ser:",o:["Cega","Raciocinada","Imposta","Absoluta"],r:1,e:"Fé inabalável é a que encara a razão face a face."},
+  {q:"O que significa Codificação?",o:["Criação","Organização dos ensinos dos Espíritos","Tradução","Invenção"],r:1,e:"Kardec organizou e sistematizou os ensinamentos dos Espíritos Superiores."},
+  {q:"O que é o Consolador?",o:["Um livro","O Espírito da Verdade prometido por Jesus","Um médium","Uma oração"],r:1,e:"O Espiritismo é o Consolador prometido."},
+  {q:"Quantos livros compõem a Codificação Espírita?",o:["3","5","7","10"],r:1,e:"Cinco livros: LE, LM, ESE, CE e AG."},
+  {q:"O que é a Gênese?",o:["O primeiro livro da Bíblia","O último livro de Kardec","Um livro de Chico Xavier","Uma revista"],r:1,e:"A Gênese é o último livro da Codificação (1868)."},
+  {q:"O que significa 'Fora da caridade não há salvação'?",o:["Só quem é rico se salva","Sem amor ao próximo não há salvação","Só indo à igreja","Doando dinheiro"],r:1,e:"A caridade é o caminho da evolução espiritual."},
+  {q:"Quem eram os Espíritos Superiores que responderam a Kardec?",o:["Santos","Espíritos elevados que guiam a humanidade","Anjos","Parentes falecidos"],r:1,e:"Espíritos de alta hierarquia orientaram a Codificação."},
+  {q:"Qual o lema do Espiritismo?",o:["Fora da Igreja não há salvação","Fora da caridade não há salvação","Deus é amor","Paz na Terra"],r:1,e:"'Fora da caridade não há salvação' é o lema espírita."}
+];
+var pergReencarnacao=[
+  {q:"O que é o perispírito?",o:["Corpo físico","Corpo fluídico que liga espírito ao corpo","Alma","Espírito"],r:1,e:"Perispírito é o envoltório semimaterial do espírito."},
+  {q:"Para que serve a reencarnação?",o:["Castigo","Evolução do espírito","Sorte","Acaso"],r:1,e:"Reencarnamos para progredir e aprender."},
+  {q:"Quantas ordens de espíritos existem?",o:["2","3","5","7"],r:1,e:"Três ordens: Imperfeitos, Bons e Puros."},
+  {q:"Por que não lembramos do passado?",o:["Castigo","Bênção para recomeçar","Acaso","Maldiçao"],r:1,e:"O esquecimento é uma bênção para recomeçar."},
+  {q:"O que liga os membros de uma família?",o:["Sangue","Amor e afinidade espiritual","Sorte","Dinheiro"],r:1,e:"Laços de amor que unem os espíritos através das vidas."},
+  {q:"O que é o livre-arbítrio?",o:["Fazer o que quiser","Liberdade de escolha","Destino","Sorte"],r:1,e:"Liberdade de escolher entre o bem e o mal."},
+  {q:"Quem foi Elias reencarnado?",o:["Pedro","João Batista","Paulo","Kardec"],r:1,e:"Jesus disse que João Batista era Elias."},
+  {q:"O que é a morte?",o:["Fim da vida","Separação do espírito do corpo","Castigo","Passagem"],r:1,e:"Morte = separação do espírito do corpo."},
+  {q:"Quantos elementos compõem o ser humano?",o:["2 (corpo e alma)","3 (corpo, perispírito e espírito)","1 (só matéria)","4"],r:1,e:"Três: corpo físico, perispírito e espírito."},
+  {q:"O espírito foi criado:",o:["Perfeito","Simples e ignorante","Do mal","Já sábio"],r:1,e:"Criado simples e ignorante, evolui através das experiências."},
+  {q:"Quantos tipos de espíritos existem?",o:["2 ordens","3 ordens","5 ordens","7 ordens"],r:1,e:"Imperfeitos (3ª), Bons (2ª) e Puros (1ª)."},
+  {q:"O que o espírito faz entre encarnações?",o:["Nada","Estuda e se prepara","Dorme","Vaga"],r:1,e:"No plano espiritual, estuda, revê entes e planeja a próxima vida."},
+  {q:"O que significa 'imortalidade da alma'?",o:["A alma morre com o corpo","O espírito nunca morre","Só os bons são imortais","A alma reencarna em animais"],r:1,e:"O espírito é eterno, nunca deixa de existir."},
+  {q:"Como escolhemos nossa próxima encarnação?",o:["Deus decide","Nós escolhemos com orientação espiritual","É sorte","O acaso"],r:1,e:"Planejamos com espíritos superiores, conforme nossas necessidades."},
+  {q:"Por que crianças nascem com doenças?",o:["Castigo de Deus","Provação ou expiação escolhida","Acaso","Maldição"],r:1,e:"Podem ser expiações de vidas passadas ou provas para a família."}
+];
+var pergVirtudes=[
+  {q:"Qual a principal virtude ensinada por Jesus?",o:["Poder","Amor e caridade","Riqueza","Sabedoria"],r:1,e:"Amor e caridade são os maiores mandamentos."},
+  {q:"O que é egoísmo?",o:["Amor próprio excessivo","Generosidade","Humildade","Bondade"],r:0,e:"Egoísmo é o amor próprio excessivo, fonte de todos os vícios."},
+  {q:"O que é a fé?",o:["Crença cega","Confiança em Deus e no bem","Medo","Ignorância"],r:1,e:"Fé é a confiança raciocinada em Deus."},
+  {q:"Como vencer o orgulho?",o:["Gritando","Com humildade","Fugindo","Brigando"],r:1,e:"Humildade é o remédio para o orgulho."},
+  {q:"Fora da caridade não há:",o:["Fé","Salvação","Esperança","Deus"],r:1,e:"'Fora da caridade não há salvação'."},
+  {q:"O que é reforma íntima?",o:["Reformar casa","Melhorar a si mesmo","Reformar igreja","Mudar de nome"],r:1,e:"Trabalho diário de autoaperfeiçoamento."},
+  {q:"Como tratar os inimigos?",o:["Ignorar","Amar e perdoar","Brigar","Fugir"],r:1,e:"Jesus ensinou a amar os inimigos."},
+  {q:"O que é ser honesto?",o:["Ser rico","Falar a verdade e não roubar","Ser bonito","Ser forte"],r:1,e:"Honestidade é respeito ao próximo e à verdade."},
+  {q:"Qual virtude se opõe à preguiça?",o:["Paciência","Boa vontade","Força","Silêncio"],r:1,e:"A boa vontade e o trabalho vencem a preguiça."},
+  {q:"Qual o maior mandamento?",o:["Não matar","Amar a Deus e ao próximo","Não roubar","Honrar pai e mãe"],r:1,e:"Amar a Deus e ao próximo como a si mesmo."},
+  {q:"O que é paciência?",o:["Ficar nervoso","Suportar as dificuldades com serenidade","Desistir","Ignorar"],r:1,e:"Paciência é suportar com calma as provações."},
+  {q:"Como praticar a caridade no dia a dia?",o:["Só dando dinheiro","Ajudando quem precisa com amor","Só rezando","Só na igreja"],r:1,e:"Caridade é amor em ação: ouvir, ajudar, doar, visitar."},
+  {q:"O que é a compaixão?",o:["Pena do outro","Sentir a dor do outro e querer ajudar","Indiferença","Medo"],r:1,e:"Compaixão é sofrer com o outro e agir para aliviar."},
+  {q:"Qual virtude nos ajuda a perdoar?",o:["Orgulho","Humildade","Raiva","Vingança"],r:1,e:"Humildade nos ajuda a perdoar de coração."},
+  {q:"O que significa 'bem-aventurados os mansos'?",o:["Os fracos vencerão","Os pacíficos herdarão a Terra","Os ricos dominarão","Os fortes mandarão"],r:1,e:"Os mansos (pacíficos) são exemplos de equilíbrio e paz."}
+];
+var pergPrece=[
+  {q:"O que é a prece?",o:["Música","Conversa com Deus","Dança","Leitura"],r:1,e:"Prece é o diálogo do espírito com Deus."},
+  {q:"Quem é nosso anjo da guarda?",o:["Parente","Espírito protetor","Amigo","Professor"],r:1,e:"Espírito protetor que nos acompanha."},
+  {q:"O que é mediunidade?",o:["Doença","Faculdade de comunicar com espíritos","Poder","Magia"],r:1,e:"Faculdade de intermediar espíritos e encarnados."},
+  {q:"O que acontece durante o sono?",o:["Nada","O espírito se liberta parcialmente","O espírito morre","O corpo descansa"],r:1,e:"O sono liberta o espírito para encontros e aprendizados."},
+  {q:"O que é o passe?",o:["Caminhada","Transmissão de fluidos benéficos","Dança","Oração"],r:1,e:"Transmissão de fluidos pela imposição das mãos."},
+  {q:"O que significa 'vigiai e orai'?",o:["Dormir e rezar","Ficar atento e orar","Trabalhar e ler","Cantar e dançar"],r:1,e:"Vigiar = estar atento; orar = conectar com Deus."},
+  {q:"Qual a melhor forma de orar?",o:["Repetindo palavras","Com sentimento e sinceridade","Em voz alta","Ajoelhado"],r:1,e:"O valor está no sentimento, não nas palavras."},
+  {q:"Podemos nos comunicar com os espíritos?",o:["Não","Sim, pela mediunidade","Só com rezas","Só na igreja"],r:1,e:"Sim, a mediunidade permite essa comunicação."},
+  {q:"O que é água fluidificada?",o:["Água benta","Água com fluidos curativos pela prece","Água mineral","Água do mar"],r:1,e:"Água comum magnetizada pela prece."},
+  {q:"Todos temos mediunidade?",o:["Não, só alguns","Sim, em diferentes graus","Só os santos","Só os médiuns"],r:1,e:"Todos temos algum grau de mediunidade, principalmente a intuição."},
+  {q:"O que é intuição?",o:["Sorte","Voz do espírito que nos orienta","Imaginação","Loucura"],r:1,e:"Intuição é a mediunidade natural — o espírito nos guia."},
+  {q:"Como saber se um espírito é bom?",o:["Pela aparência","Pelos ensinamentos que transmite","Pela voz","Pelo nome"],r:1,e:"Espíritos bons ensinam amor, caridade e verdade."},
+  {q:"O que fazer antes de dormir?",o:["Comer","Orar e fazer uma reflexão","Ler","Ver TV"],r:1,e:"A prece antes de dormir eleva nosso pensamento a Deus."},
+  {q:"O que é sintonia espiritual?",o:["Música","Ligação com determinados espíritos pela vibração","Dança","Orar"],r:1,e:"Nossos pensamentos nos sintonizam com espíritos afins."},
+  {q:"O que significa 'orai e vigiai' na prática?",o:["Rezar e dormir","Cultivar bons pensamentos e estar atento","Falar e calar","Cantar e dançar"],r:1,e:"Orar nos conecta a Deus; vigiar nos protege do mal."}
+];
+var pergParabolas=[
+  {q:"O que Jesus comparou ao Reino dos Céus no Semeador?",o:["Dinheiro","A semente em boa terra","O sol","A chuva"],r:1,e:"A boa terra = quem ouve e pratica a palavra."},
+  {q:"Na parábola do Filho Pródigo, o que o pai fez?",o:["Expulsou","Recebeu com festa","Ignorou","Castigou"],r:1,e:"O pai amoroso recebeu o filho arrependido com festa."},
+  {q:"Quem ajudou o homem ferido no Bom Samaritano?",o:["Sacerdote","Samaritano","Levita","Amigo"],r:1,e:"O samaritano, considerado inimigo, ajudou."},
+  {q:"O que representa a semente no Semeador?",o:["Dinheiro","A palavra de Deus","Comida","Fé"],r:1,e:"A semente é a palavra de Deus."},
+  {q:"Quantos talentos o senhor deu na Parábola dos Talentos?",o:["1,2 e 3","5,2 e 1","10,5 e 1","3,2 e 1"],r:1,e:"5, 2 e 1 talento conforme a capacidade."},
+  {q:"O que a ovelha perdida nos ensina?",o:["Cuidado com animais","Deus busca cada um de nós","Pastoreio","Riqueza"],r:1,e:"Deus nos ama como o pastor ama cada ovelha."},
+  {q:"No Joio e Trigo, o que fazer com o joio?",o:["Arrancar logo","Deixar crescer juntos até a colheita","Queimar","Separar"],r:1,e:"Deixar crescer juntos; separar só na colheita."},
+  {q:"O que a figueira seca nos ensina?",o:["Sobre plantas","A importância da fé","Seca","Frutas"],r:1,e:"A fé raciocinada remove obstáculos."},
+  {q:"Na Festa de Bodas, quem foi convidado?",o:["Só ricos","Todos, bons e maus","Só parentes","Só amigos"],r:1,e:"Todos foram chamados para o Reino de Deus."},
+  {q:"O que é uma parábola?",o:["Poema","História com ensinamento espiritual","Música","Oração"],r:1,e:"História simples que transmite ensinamento profundo."},
+  {q:"Na parábola do Semeador, o que representa o solo pedregoso?",o:["Pessoas que não aceitam a palavra","Pessoas que aceitam mas desistem na dificuldade","Pessoas boas","Pessoas ricas"],r:1,e:"Recebem a palavra mas não têm raízes para perseverar."},
+  {q:"O que a dracma perdida representa?",o:["Dinheiro","Cada alma que Deus busca","Uma joia","Uma moeda"],r:1,e:"Assim como a mulher busca a moeda, Deus busca cada um de nós."},
+  {q:"Na Festa de Bodas, o que as virgens sábias representam?",o:["Preparo e vigilância","Sorte","Inteligência","Riqueza"],r:0,e:"Devemos estar sempre preparados para o Reino de Deus."},
+  {q:"O que significa 'construir sobre a rocha'?",o:["Ser rico","Praticar os ensinamentos de Jesus","Ter uma casa forte","Ser famoso"],r:1,e:"Quem ouve e pratica a palavra constrói sobre base firme."},
+  {q:"Qual o significado da figueira que secou?",o:["Deus castiga","A fé raciocinada remove obstáculos","Árvores ruins","Profecia"],r:1,e:"A fé verdadeira nos dá forças para superar desafios."}
+];
+var pergFiguras=[
+  {q:"Quem é o Médico dos Pobres?",o:["Chico Xavier","Bezerra de Menezes","Kardec","Emmanuel"],r:1,e:"Bezerra de Menezes atendia os pobres gratuitamente."},
+  {q:"Quantos livros Chico Xavier psicografou?",o:["100","450+","200","50"],r:1,e:"Mais de 450 livros psicografados."},
+  {q:"Quem é o maior divulgador do Cristianismo?",o:["Pedro","Paulo de Tarso","Tiago","João"],r:1,e:"Paulo espalhou o Cristianismo pelo mundo romano."},
+  {q:"Qual a frase famosa de Francisco de Assis?",o:["Ame a Deus","Senhor, fazei-me instrumento de vossa paz","Pai Nosso","Eu Sou"],r:1,e:"'Senhor, fazei-me instrumento de vossa paz.'"},
+  {q:"O que Chico Xavier fazia com os direitos autorais?",o:["Guardava","Doava para caridade","Gastava","Investia"],r:1,e:"Doava tudo para instituições de caridade."},
+  {q:"Bezerra de Menezes era de que profissão?",o:["Professor","Médico","Advogado","Engenheiro"],r:1,e:"Médico, o Médico dos Pobres."},
+  {q:"Antes da conversão, quem Paulo perseguia?",o:["Romanos","Cristãos","Judeus","Gregos"],r:1,e:"Saulo (Paulo) perseguia os cristãos."},
+  {q:"Quem fundou a FEB?",o:["Kardec","Bezerra de Menezes","Chico Xavier","Emmanuel"],r:1,e:"Bezerra foi presidente da Federação Espírita Brasileira."},
+  {q:"Qual a principal característica das figuras estudadas?",o:["Poder","Caridade e amor ao próximo","Riqueza","Fama"],r:1,e:"Todas exemplificaram caridade e amor ao próximo."},
+  {q:"O que Chico mais transmitia?",o:["Riqueza","Amor, humildade e caridade","Poder","Vingança"],r:1,e:"Amor, humildade e caridade em todos os atos."},
+  {q:"O que significa 'instrumento de vossa paz'?",o:["Ser um objeto","Servir como canal para levar paz ao mundo","Ser pacífico","Orar sempre"],r:1,e:"Francisco de Assis queria ser canal da paz divina."},
+  {q:"Quantas cartas Paulo escreveu no Novo Testamento?",o:["5","13","7","21"],r:1,e:"Paulo escreveu 13 cartas (epístolas) do Novo Testamento."},
+  {q:"O que aconteceu com Paulo na estrada de Damasco?",o:["Caiu do cavalo","Teve uma visão de Jesus que o converteu","Foi preso","Morreu"],r:1,e:"Paulo viu uma luz e ouviu a voz de Jesus, convertendo-se."},
+  {q:"O que Bezerra de Menezes significa para os espíritas?",o:["Político","Exemplo de médico amoroso e caridoso","Professor","Escritor"],r:1,e:"Bezerra é modelo de caridade e serviço ao próximo."},
+  {q:"O que Chico doou com seus livros?",o:["Carros","Tudo para instituições de caridade","Casas","Nada"],r:1,e:"Chico doou todos os direitos autorais para a caridade."}
+];
+var pergMocidade=[
+  {q:"Por quantas moedas Judas traiu Jesus?",o:["10","30","50","100"],r:1,e:"Judas traiu Jesus por 30 moedas de prata."},
+  {q:"O que Jesus disse na cruz antes de morrer?",o:["Estou com sede","Pai, em tuas mãos entrego meu espírito","Acabou-se","Tudo está consumado"],r:1,e:"'Pai, em tuas mãos entrego meu espírito.'"},
+  {q:"A Terra é um planeta de:",o:["Felicidade","Provas e expiações","Descanço","Perfeição"],r:1,e:"Planeta de provas e expiações, em transição."},
+  {q:"O que significa desencarnar?",o:["Nascer","Voltar ao mundo espiritual","Reencarnar","Casar"],r:1,e:"Passagem do espírito ao plano espiritual."},
+  {q:"Quem expulsou os mercadores do templo?",o:["Pedro","Jesus","Paulo","João"],r:1,e:"Jesus expulsou os mercadores do templo."},
+  {q:"O que são falsos profetas?",o:["Profetas verdadeiros","Quem ensina o mal disfarçado de bem","Anjos","Médiuns"],r:1,e:"Aparentam bondade mas ensinam o erro."},
+  {q:"O que significa 'nem todo que diz Senhor'?",o:["Palavras sem ação não valem","Oração","Música","Louvor"],r:0,e:"Não basta falar — é preciso praticar o bem."},
+  {q:"O que significa 'não vim trazer paz, mas espada'?",o:["Guerra","Divisão entre bem e mal","Vingança","Poder"],r:1,e:"A verdade separa os que querem o bem dos que preferem o mal."},
+  {q:"Espíritos apegados à matéria:",o:["Vão direto a Deus","Sofrem na desencarnação","Viram anjos","Desaparecem"],r:1,e:"Apegados à matéria sofrem mais na desencarnação."},
+  {q:"O que são provas e expiações?",o:["Castigos eternos","Desafios para aprendizado","Férias","Prêmios"],r:1,e:"Provas = aprender; Expiações = purificar."},
+  {q:"O que Jesus fazia antes de começar sua missão?",o:["Dormia","Orava e jejuava no deserto","Viajava","Trabalhava"],r:1,e:"Jesus orou e jejuou 40 dias no deserto se preparando."},
+  {q:"O que a expressão 'Vós sois deuses' significa?",o:["Somos deuses de verdade","Temos a centelha divina e podemos evoluir","Somos anjos","Somos imortais"],r:1,e:"Todos temos a centelha divina e podemos chegar à perfeição."},
+  {q:"O que é a 'segunda morte' na visão espírita?",o:["Morrer de novo","Não existe — o espírito é imortal","Reencarnar","Desencarnar"],r:1,e:"Não existe segunda morte; o espírito é eterno."},
+  {q:"O que significa 'está consumado'?",o:["A missão de Jesus na Terra foi cumprida","Ele morreu","Acabou tudo","Desistiu"],r:1,e:"Jesus completou sua missão de amor e ensinamento."},
+  {q:"O que é o 'grande lago de fogo' na visão espírita?",o:["Inferno eterno","Purificação do espírito arrependido","Lugar físico","Castigo"],r:1,e:"É a purificação moral, não um fogo material."}
+];
+var pergMandamentos=[
+  {q:"Onde Moisés recebeu os Dez Mandamentos?",o:["Monte Horebe","Monte Sinai","Monte Sião","Mar Vermelho"],r:1,e:"Foi no Monte Sinai que Deus entregou as tábuas da lei."},
+  {q:"Quantos mandamentos Deus entregou?",o:["5","10","12","7"],r:1,e:"Dez Mandamentos, escritos pelo dedo de Deus."},
+  {q:"Qual o primeiro mandamento?",o:["Não matar","Amar a Deus sobre todas as coisas","Não roubar","Honrar pai e mãe"],r:1,e:"O primeiro mandamento é amar a Deus sobre todas as coisas."},
+  {q:"Qual mandamento fala sobre os pais?",o:["4º","5º","6º","3º"],r:1,e:"O 5º mandamento: 'Honrar pai e mãe'."},
+  {q:"O que significa 'não tomar o nome de Deus em vão'?",o:["Não rezar","Falar de Deus com respeito","Não ir à igreja","Não cantar"],r:1,e:"Devemos falar o nome de Deus sempre com respeito e amor."},
+  {q:"O que Jesus disse sobre os mandamentos?",o:["São muitos","Resumiu em dois: amar a Deus e ao próximo","Não são importantes","Só valem para adultos"],r:1,e:"Jesus resumiu todos em amar a Deus e ao próximo."},
+  {q:"Qual mandamento proíbe matar?",o:["4º","5º","6º","7º"],r:2,e:"O 6º mandamento: 'Não matar'."},
+  {q:"O que significa 'não cobiçar'?",o:["Não desejar o que é dos outros","Não comer","Não correr","Não falar"],r:0,e:"Cobiçar é desejar demais o que não é nosso."},
+  {q:"Em que material foram escritos os mandamentos?",o:["Papel","Tábuas de pedra","Pele de animal","Metal"],r:1,e:"Em tábuas de pedra, escritas pelo dedo de Deus."},
+  {q:"Para os espíritas, onde estão escritos os mandamentos?",o:["Na Bíblia","Na consciência","No céu","Na igreja"],r:1,e:"Estão escritos em nossa consciência, como leis divinas."},
+  {q:"O que significa 'guardar o sábado' para os espíritas?",o:["Não trabalhar","Dedicar tempo a Deus e ao estudo","Dormir o dia todo","Ir à praia"],r:1,e:"É dedicar um tempo para Deus, o estudo e o descanso espiritual."},
+  {q:"Qual mandamento fala sobre não roubar?",o:["6º","7º","8º","9º"],r:2,e:"O 8º mandamento: 'Não roubar'."},
+  {q:"Qual mandamento fala sobre não mentir?",o:["8º","9º","10º","7º"],r:1,e:"O 9º mandamento: 'Não mentir'."},
+  {q:"Quem recebeu os Dez Mandamentos?",o:["Jesus","Moisés","Kardec","Abraão"],r:1,e:"Moisés recebeu os Dez Mandamentos no Monte Sinai."},
+  {q:"Quantos mandamentos falam de Deus e quantos do próximo?",o:["5 e 5","4 e 6","3 e 7","6 e 4"],r:1,e:"Os primeiros 4 falam de Deus; os 6 seguintes falam do próximo."}
+];
+var quizPerguntasTema=[pergDeus,pergMois,pergJesus,pergDoutrina,pergReencarnacao,pergVirtudes,pergPrece,pergParabolas,pergFiguras,pergMocidade,pergMandamentos];
+function setQuizTema(t){quizTema=t;document.querySelectorAll('#quiz-tema .dif-btn').forEach(b=>b.classList.remove('ativo'));document.querySelector('#quiz-tema .dif-btn[data-t="'+t+'"]').classList.add('ativo');}
+function setQuizDiff(d){quizDiff=d;document.querySelectorAll('#quiz-dif .dif-btn').forEach(b=>b.classList.remove('ativo'));document.querySelector('#quiz-dif .dif-btn[data-d="'+d+'"]').classList.add('ativo');}
+function iniciarQuiz(){
+  quizPontos=0;quizIdx=0;
+  var base;
+  if(quizTema>=0&&quizTema<quizPerguntasTema.length){
+    base=quizPerguntasTema[quizTema];
+  }else{
+    // Misto — combine all themes
+    base=[];
+    for(var i=0;i<quizPerguntasTema.length;i++)base=base.concat(quizPerguntasTema[i]);
+  }
+  if(!base||base.length===0)base=quizPerguntasTema[0];
+  var filtradas=base.filter(function(p){return p.d===undefined||p.d===quizDiff;});
+  if(filtradas.length<3)filtradas=base;
+  quizPergs=[...filtradas].sort(function(){return Math.random()-.5;}).slice(0,10);
+  document.getElementById('quiz-setup').style.display='none';
+  document.getElementById('quiz-jogo').style.display='block';
+  document.getElementById('quiz-fim').style.display='none';
+  mostraPergunta();
+}
+function mostraPergunta(){
+  if(quizIdx>=quizPergs.length){finalizarQuiz();return;}
+  var p=quizPergs[quizIdx];
+  document.getElementById('quiz-cont').textContent=(quizIdx+1)+'/'+quizPergs.length;
+  document.getElementById('quiz-pontos').textContent=quizPontos;
+  document.getElementById('quiz-q').textContent=p.q;
+  var opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('quiz-prox').style.display='none';
+  p.o.forEach(function(o,i){
+    var b=document.createElement('button');b.className='pr-opt';b.textContent=o;
+    b.onclick=function(){responderQuiz(i,p);};
+    opts.appendChild(b);
+  });
+}
+function responderQuiz(i,p){
+  var btns=document.querySelectorAll('#quiz-opts .pr-opt');
+  btns.forEach(function(b){b.disabled=true;});
+  if(i===p.r){btns[i].classList.add('certo');quizPontos++;}else{btns[i].classList.add('errado');btns[p.r].classList.add('revelar');}
+  var fb=document.getElementById('quiz-fb');
+  fb.style.display='block';
+  fb.className='modal-fb show '+(i===p.r?'mf-c':'mf-e');
+  fb.textContent=(i===p.r?'✅ Correto! ':'❌ Não é bem assim. ')+p.e;
+  document.getElementById('quiz-pontos').textContent=quizPontos;
+  document.getElementById('quiz-prox').style.display='inline-flex';
+}
+function quizProx(){quizIdx++;mostraPergunta();}
+function finalizarQuiz(){
+  document.getElementById('quiz-jogo').style.display='none';
+  document.getElementById('quiz-fim').style.display='block';
+  var pct=Math.round(quizPontos/quizPergs.length*100);
+  document.getElementById('quiz-fim-emoji').textContent=pct>=80?'🏆':pct>=50?'👏':'💪';
+  document.getElementById('quiz-fim-titulo').textContent=pct>=80?'Parabéns, gênio!':pct>=50?'Muito bem!':'Continue tentando!';
+  document.getElementById('quiz-fim-msg').textContent='Você acertou '+quizPontos+' de '+quizPergs.length+' perguntas ('+pct+'%)';
+}
+function reiniciarQuiz(){
+  document.getElementById('quiz-setup').style.display='block';
+  document.getElementById('quiz-jogo').style.display='none';
+  document.getElementById('quiz-fim').style.display='none';
+}
+// ===== TABULEIRO MULTIPLAYER =====
+var tabCasas=[
+  {t:"inicio",l:"🏠 Início"},{t:"pergunta",l:"❓"},{t:"pergunta",l:"❓"},{t:"estrela",l:"⭐"},{t:"pergunta",l:"❓"},{t:"nuvem",l:"☁️"},
+  {t:"pergunta",l:"❓"},{t:"pergunta",l:"❓"},{t:"estrela",l:"⭐"},{t:"pergunta",l:"❓"},{t:"pergunta",l:"❓"},{t:"coracao",l:"❤️"},
+  {t:"pergunta",l:"❓"},{t:"estrela",l:"⭐"},{t:"pergunta",l:"❓"},{t:"pergunta",l:"❓"},{t:"nuvem",l:"☁️"},{t:"pergunta",l:"❓"},
+  {t:"pergunta",l:"❓"},{t:"estrela",l:"⭐"},{t:"pergunta",l:"❓"},{t:"coracao",l:"❤️"},{t:"pergunta",l:"❓"},{t:"fim",l:"🏆 Terra Prometida"}
+];
+var coresJog=['🟦','🟥','🟩','🟨'];
+function setNJ(n){tabNJ=n;document.querySelectorAll('.setup-opt').forEach(b=>b.classList.remove('ativo'));document.querySelector('.setup-opt[data-n="'+n+'"]').classList.add('ativo');}
+function iniciarTab(){
+  tabPosicoes=[];tabJogadores=[];tabTurno=0;tabJogando=true;
+  for(var i=0;i<tabNJ;i++){tabPosicoes.push(0);tabJogadores.push({cor:coresJog[i],nome:'Jogador '+(i+1)});}
+  document.getElementById('setup-jog').style.display='none';
+  document.getElementById('jogo-tab').style.display='block';
+  renderTab();
+  atualizarTabMsg('🎲 Vez de '+tabJogadores[0].nome+'!',false);
+}
+function voltarSetup(){document.getElementById('setup-jog').style.display='block';document.getElementById('jogo-tab').style.display='none';}
+function renderTab(){
+  var g=document.getElementById('tab-grade');g.innerHTML='';
+  var jog=document.getElementById('jog-info');jog.innerHTML='';
+  tabJogadores.forEach(function(j,i){
+    var c=document.createElement('span');c.className='jchip'+(i===tabTurno?' ativo':'');
+    c.style.borderColor=i===tabTurno?'#ffd700':'transparent';c.id='jchip-'+i;
+    c.textContent=j.cor+' '+j.nome+' (Casa '+(tabPosicoes[i])+')';jog.appendChild(c);
+  });
+  var ordem=[];
+  for(var i=0;i<24;i++){
+    var lin=Math.floor(i/6),col=i%6;
+    var idx=lin%2===0?lin*6+col:lin*6+(5-col);
+    ordem.push(idx);
+  }
+  ordem.forEach(function(idx){
+    var c=document.createElement('div');c.className='tab-casa tipo-'+tabCasas[idx].t;
+    c.innerHTML='<span class="ci">'+tabCasas[idx].l+'</span><span class="cn">'+(idx+1)+'</span>';
+    var pinos=document.createElement('div');pinos.className='pinos';
+    tabJogadores.forEach(function(j,i){
+      if(tabPosicoes[i]===idx){
+        var p=document.createElement('span');p.className='pino';p.textContent=j.cor;pinos.appendChild(p);
+      }
+    });
+    c.appendChild(pinos);g.appendChild(c);
+  });
+}
+function atualizarTabMsg(m,erro){var e=document.getElementById('tab-msg');e.innerHTML=m;e.style.color=erro?'#f5576c':'#d8d0e8';}
+function rolarDado(){
+  if(!tabJogando||tabRodada)return;
+  tabRodada=true;
+  document.getElementById('btn-dado').disabled=true;
+  var dado=document.getElementById('dado-face');
+  dado.className='dado-face rolando';
+  var emojisDado=['🎲','⚀','⚁','⚂','⚃','⚄','⚅'];
+  var c=0;var t=setInterval(function(){dado.textContent=emojisDado[Math.floor(Math.random()*6)+1];c++;if(c>10){clearInterval(t);dado.className='dado-face';var val=Math.floor(Math.random()*6)+1;dado.textContent=emojisDado[val];document.getElementById('dado-valor').textContent=val;processarDado(val);}},80);
+}
+function processarDado(val){
+  var j=tabTurno;
+  var novaPos=tabPosicoes[j]+val;
+  if(novaPos>23)novaPos=23;
+  tabPosicoes[j]=novaPos;
+  renderTab();
+  var casa=tabCasas[novaPos];
+  if(casa.t==='fim'){
+    atualizarTabMsg('🏆 '+tabJogadores[j].cor+' '+tabJogadores[j].nome+' chegou à Terra Prometida!',false);
+    mostrarVitoria(j);
+    return;
+  }
+  if(casa.t==='pergunta'){abrirPerguntaTab(j);return;}
+  if(casa.t==='estrela'){atualizarTabMsg('⭐ '+tabJogadores[j].nome+' ganhou uma estrela! Avance 2 casas!',false);tabPosicoes[j]=Math.min(tabPosicoes[j]+2,23);renderTab();proximoTurno();}
+  else if(casa.t==='nuvem'){atualizarTabMsg('☁️ '+tabJogadores[j].nome+' caiu numa nuvem! Volte 2 casas.',false);tabPosicoes[j]=Math.max(tabPosicoes[j]-2,0);renderTab();proximoTurno();}
+  else if(casa.t==='coracao'){atualizarTabMsg('❤️ Bênção! '+tabJogadores[j].nome+' recebeu uma bênção!',false);proximoTurno();}
+  else{proximoTurno();}
+}
+function abrirPerguntaTab(j){
+  var modal=document.getElementById('modal-quiz');
+  document.getElementById('modal-title').textContent='❓ Pergunta para '+tabJogadores[j].cor+' '+tabJogadores[j].nome;
+  var arr=quizPerguntasTema[temaAtual]||quizPerguntasTema[0];
+  var p=arr[Math.floor(Math.random()*arr.length)];
+  document.getElementById('modal-q').textContent=p.q;
+  var opts=document.getElementById('modal-opts');opts.innerHTML='';
+  document.getElementById('modal-fb').className='modal-fb';document.getElementById('modal-fb').style.display='none';
+  document.getElementById('modal-btn-f').className='modal-btn-f';
+  p.o.forEach(function(o,i){
+    var b=document.createElement('button');b.className='mo-btn';b.textContent=o;
+    b.onclick=function(){
+      var bts=document.querySelectorAll('#modal-opts .mo-btn');bts.forEach(function(x){x.disabled=true;});
+      if(i===p.r){b.classList.add('mc');document.getElementById('modal-fb').textContent='✅ Correto! '+p.e;document.getElementById('modal-fb').className='modal-fb show mf-c';document.getElementById('modal-btn-f').textContent='➡️ Continuar';}else{b.classList.add('me');bts[p.r].classList.add('mc');document.getElementById('modal-fb').textContent='❌ Errado! '+p.e;document.getElementById('modal-fb').className='modal-fb show mf-e';document.getElementById('modal-btn-f').textContent='➡️ Continuar';}
+      document.getElementById('modal-fb').style.display='block';
+      document.getElementById('modal-btn-f').classList.add('show');
+      document.getElementById('modal-btn-f').onclick=function(){fecharModalTab(j);};
+    };
+    opts.appendChild(b);
+  });
+  modal.classList.add('show');
+}
+function fecharModalTab(j){
+  document.getElementById('modal-quiz').classList.remove('show');
+  if(tabPosicoes[j]>=23){mostrarVitoria(j);return;}
+  proximoTurno();
+}
+function proximoTurno(){
+  tabTurno=(tabTurno+1)%tabNJ;
+  tabRodada=false;
+  document.getElementById('btn-dado').disabled=false;
+  document.getElementById('dado-valor').textContent='-';
+  renderTab();
+  atualizarTabMsg('🎲 Vez de '+tabJogadores[tabTurno].cor+' '+tabJogadores[tabTurno].nome+'!',false);
+  document.querySelector('#jchip-'+tabTurno+', #jchip-'+tabTurno).scrollIntoView({behavior:'smooth',inline:'center'});
+}
+function mostrarVitoria(j){
+  tabJogando=false;
+  var ban=document.createElement('div');ban.className='vitoria-ban';
+  ban.innerHTML='<div class="vi">🏆🌟👏</div><div class="vt">'+tabJogadores[j].cor+' '+tabJogadores[j].nome+' VENCEU!</div><p style="color:#d4c4f0;font-size:.8rem">Chegou à Terra Prometida!</p>';
+  var msg=document.getElementById('tab-msg');msg.innerHTML=ban.outerHTML;
+  document.getElementById('btn-dado').disabled=true;
+}
+function reiniciarTab(){
+  tabJogando=false;tabRodada=false;
+  document.getElementById('btn-dado').disabled=false;
+  document.getElementById('dado-valor').textContent='-';
+  tabPosicoes=[];tabTurno=0;
+  document.getElementById('jogo-tab').style.display='none';
+  document.getElementById('setup-jog').style.display='block';
+}
+// ===== PASSA OU REPASSA =====
+var pergPR=[
+  [
+    {q:"Quem colocou Moisés no cestinho?",o:["Joquebede","Princesa","Faraó","Miriã"],r:0,e:"Joquebede, a mãe de Moisés."},
+    {q:"O que Moisés viu no monte Horebe?",o:["Uma estrela","Uma sarça ardente","Uma nuvem","Um anjo"],r:1,e:"Deus chamou Moisés pela sarça ardente."},
+    {q:"Com quem Moisés falava quando tinha dificuldade?",o:["Deus","Arão","Miriã","Josué"],r:1,e:"Arão ajudava Moisés a falar."},
+    {q:"Quantas pragas no Egito?",o:["7","10","5","12"],r:1,e:"Dez pragas."},
+    {q:"O que o povo comeu no deserto?",o:["Carne","Maná","Peixe","Pão"],r:1,e:"Deus enviou o maná do céu."},
+    {q:"O que significa Moisés?",o:["Filho do Nilo","Tirado das águas","Salvo","Líder"],r:1,e:"Tirado das águas."},
+    {q:"Quem encontrou Moisés no rio?",o:["Mãe","Princesa","Deus","Miriã"],r:1,e:"A princesa, filha do Faraó."},
+    {q:"O que guiava o povo de dia?",o:["Fogo","Nuvem","Estrela","Sol"],r:1,e:"Uma coluna de nuvem."},
+    {q:"Quem era irmã de Moisés?",o:["Sara","Miriã","Rebeca","Joquebede"],r:1,e:"Miriã."},
+    {q:"Onde Moisés recebeu os Mandamentos?",o:["Monte Horebe","Monte Sinai","Monte Sião","Mar Vermelho"],r:1,e:"No Monte Sinai."},
+    {q:"Quantos mandamentos?",o:["5","10","12","7"],r:1,e:"Dez Mandamentos."},
+    {q:"O que Moisés fez no Mar Vermelho?",o:["Nadou","Abriu o mar","Ornou","Pulou"],r:1,e:"Deus abriu o mar."},
+    {q:"Quem era o rei do Egito?",o:["Faraó","César","Herodes","Nabucodonosor"],r:0,e:"Faraó."},
+    {q:"Quem vigiava o cestinho?",o:["Mãe","Miriã","Princesa","Deus"],r:1,e:"Miriã vigiava de longe."},
+    {q:"O que a sarça fazia?",o:["Queimava sem consumir","Brilhava","Cantava","Crescia"],r:0,e:"Ardia sem se consumir."}
+  ],
+  [
+    {q:"O que é Deus? (O Livro dos Espíritos)",o:["Um velho","Inteligência suprema","Natureza","O Sol"],r:1,e:"Inteligência suprema, causa primária."},
+    {q:"Deus tem forma?",o:["Sim","Não, é puro espírito","Sim, de luz","Não sei"],r:1,e:"Deus é puro espírito, imaterial."},
+    {q:"Como Moisés ouvia Deus?",o:["Por cartas","Pela mediunidade","Por anjos","Por sonhos"],r:1,e:"Moisés era médium intuitivo."},
+    {q:"O que significa 'Eu Sou'?",o:["Nome de Moisés","Deus se revela","O povo","O Egito"],r:1,e:"'Eu Sou' é como Deus se revelou a Moisés."},
+    {q:"O que é onipresença?",o:["Poder","Estar em toda parte","Saber tudo","Ser eterno"],r:1,e:"Deus está em toda parte."},
+    {q:"O que Jesus resumiu dos Mandamentos?",o:["Não roubar","Amar Deus e ao próximo","Orar sempre","Jejuar"],r:1,e:"Amar a Deus e ao próximo como a si mesmo."},
+    {q:"Quantas pragas no Egito?",o:["8","9","10","11"],r:2,e:"Dez pragas."},
+    {q:"Qual a primeira praga?",o:["Rãs","Água em sangue","Trevas","Moscas"],r:1,e:"Água do Nilo transformada em sangue."},
+    {q:"O que é o maná?",o:["Pão do céu","Mel","Carne","Fruta"],r:0,e:"Pão do céu enviado por Deus."},
+    {q:"Quantos anos no deserto?",o:["20","40","30","50"],r:1,e:"40 anos no deserto."},
+    {q:"O que brotou da vara de Arão?",o:["Flores","Frutos","Folhas","Raízes"],r:0,e:"A vara de Arão floresceu como sinal de Deus."},
+    {q:"Quem ajudou Moisés a sustentar os braços?",o:["Arão e Hur","Josué e Calebe","Miriã e Arão","Só Arão"],r:0,e:"Arão e Hur seguraram os braços de Moisés."},
+    {q:"O que havia na tenda da reunião?",o:["Arca da Aliança","Altar de ouro","Mesa dos pães","Castiçal"],r:0,e:"A Arca da Aliança guardava as tábuas dos Mandamentos."},
+    {q:"Qual praga foi a última?",o:["Trevas","Morte dos primogênitos","Gafanhotos","Saraiva"],r:1,e:"A morte dos primogênitos."},
+    {q:"O que Deus escreveu nas tábuas?",o:["Leis","Dez Mandamentos","História","Profecias"],r:1,e:"Os Dez Mandamentos."}
+  ],
+  [
+    {q:"Por que Moisés foi escolhido por Deus?",o:["Era forte","Por sua fé e humildade","Era rei","Sabia lutar"],r:1,e:"Moisés era humilde e confiava em Deus."},
+    {q:"O que é a mediunidade de Moisés?",o:["Mágica","Faculdade de ouvir espíritos","Doença","Poder"],r:1,e:"Moisés tinha mediunidade intuitiva e auditiva."},
+    {q:"O que 'coração endurecido' significa?",o:["Doença","Orgulho e teimosia","Fraqueza","Medo"],r:1,e:"Faraó endureceu o coração por orgulho."},
+    {q:"Qual o sentido espiritual da Páscoa?",o:["Festa","Passagem da escravidão à liberdade","Comida","Dança"],r:1,e:"A Páscoa marca a passagem da escravidão para a liberdade."},
+    {q:"O que abertura do Mar Vermelho representa?",o:["Milagre","Confiança em Deus","Magia","Sorte"],r:1,e:"A confiança em Deus remove obstáculos."},
+    {q:"Qual o maior ensinamento de Moisés?",o:["Guerra","Lei de Deus e confiança","Riqueza","Poder"],r:1,e:"Confiança em Deus e obediência à Lei Divina."},
+    {q:"O que é a sarça ardente na visão espírita?",o:["Símbolo da luz espiritual","Magia","Fogo eterno","Sonho"],r:0,e:"Representa a luz divina que ilumina sem destruir."},
+    {q:"Por que Moisés não entrou em Canaã?",o:["Morreu","Faltou fé num momento","Deus não deixou","Ficou velho"],r:1,e:"Moisés vacilou na fé em Meribá."},
+    {q:"O que significa 'Eu Sou o que Sou'?",o:["Nome escondido","Deus é autoexistente","Moisés é Deus","Língua antiga"],r:1,e:"Deus é autoexistente, não depende de nada."},
+    {q:"Quantos israelitas saíram do Egito?",o:["Milhares","Cerca de 600 mil","100 mil","1 milhão"],r:1,e:"Cerca de 600 mil homens, além de mulheres e crianças."},
+    {q:"Qual a diferença entre Moisés e Jesus?",o:["Nenhuma","Moisés legislador, Jesus amor","Jesus maior","Moisés maior"],r:1,e:"Moisés trouxe a Lei; Jesus trouxe o amor e o perdão."},
+    {q:"O que significa 'Moisés' espiritualmente?",o:["Líder","Aquele que tira da água","Profeta","Médium"],r:1,e:"Tirado das águas — símbolo de salvação."},
+    {q:"O que a tenda da reunião representava?",o:["Casa","Conexão com Deus","Escola","Tribunal"],r:1,e:"Era o local de conexão com Deus."},
+    {q:"Como Moisés conseguiu água da rocha?",o:["Bateu com a vara","Ornou a Deus","Cavou","Esperou chover"],r:1,e:"Deus ordenou que Moisés falasse à rocha."},
+    {q:"O que aprendemos com Moisés hoje?",o:["Confiar em Deus","Ter medo","Fugir","Guerrear"],r:0,e:"Confiar em Deus mesmo diante das dificuldades."}
+  ]
+];
+function setPRDiff(d){prDiff=d;document.querySelectorAll('#pr-diff-setup .pr-diff-btn').forEach(b=>b.classList.remove('ativo'));document.querySelector('#pr-diff-setup .pr-diff-btn[data-d="'+d+'"]').classList.add('ativo');}
+function iniciarPR(){
+  prTime1=document.getElementById('pr-n1').value||'Time Azul';
+  prTime2=document.getElementById('pr-n2').value||'Time Vermelho';
+  prPts=[0,0];prTurno=0;prPergIdx=0;prJogando=true;prPassou=false;prRespondido=false;
+  var arr=quizPerguntasTema[temaAtual]||quizPerguntasTema[0];
+  var base=arr.filter(function(p){return p.d===undefined||p.d===prDiff;});
+  if(base.length<3)base=arr;
+  prPergs=[...base].sort(function(){return Math.random()-.5;}).slice(0,10);
+  document.getElementById('pr-setup').style.display='none';
+  document.getElementById('pr-jogo').style.display='block';
+  atualizarPRTeams();
+  document.getElementById('pr-status').textContent='🎯 Vez do '+prTime1+'!';
+  prMostrarPergunta();
+}
+function atualizarPRTeams(){
+  var nomes=[prTime1,prTime2];
+  var e=document.getElementById('pr-teams');e.innerHTML='';
+  nomes.forEach(function(n,i){
+    var d=document.createElement('div');d.className='pr-team'+(i===prTurno?' vez':'');d.id='pr-team-'+i;
+    d.innerHTML='<div class="pt-name">'+(i===0?'🔵 ':'🔴 ')+n+'</div><div class="pt-score">'+prPts[i]+'</div>';
+    e.appendChild(d);
+  });
+}
+function prMostrarPergunta(){
+  if(prPergIdx>=prPergs.length||!prJogando){prFinalizar();return;}
+  prPergAtual=prPergs[prPergIdx];prRespondido=false;prPassou=false;
+  document.getElementById('pr-question').style.display='block';
+  document.getElementById('pr-q-text').textContent=prPergAtual.q;
+  var opts=document.getElementById('pr-opts');opts.innerHTML='';
+  prPergAtual.o.forEach(function(o,i){
+    var b=document.createElement('button');b.className='pr-opt';b.textContent=o;
+    b.onclick=function(){prSelecionar(i);};
+    opts.appendChild(b);
+  });
+  document.getElementById('pr-msg').textContent='';
+  document.getElementById('pr-btn-resp').style.display='none';
+  document.getElementById('pr-btn-passar').style.display='inline-flex';
+  document.getElementById('pr-btn-prox').style.display='none';
+  document.getElementById('pr-status').textContent='🎯 '+(prTurno===0?prTime1:prTime2)+', responda ou passe!';
+}
+var prSel=-1;
+function prSelecionar(i){
+  document.querySelectorAll('#pr-opts .pr-opt').forEach(function(b){b.classList.remove('selecionado');});
+  var btns=document.querySelectorAll('#pr-opts .pr-opt');
+  btns[i].classList.add('selecionado');
+  btns[i].style.borderColor='#ffd700';
+  document.getElementById('pr-btn-resp').style.display='inline-flex';
+  prSel=i;
+}
+function prResponder(){
+  if(prSel<0||prRespondido)return;
+  prRespondido=true;
+  var p=prPergAtual,btns=document.querySelectorAll('#pr-opts .pr-opt');
+  btns.forEach(function(b){b.disabled=true;b.style.borderColor='';b.style.borderColor='rgba(255,255,255,.06)';});
+  if(prSel===p.r){btns[prSel].classList.add('certo');prPts[prTurno]+=prDiff+1;document.getElementById('pr-msg').textContent='✅ Correto! +'+(prDiff+1)+' ponto(s)!';}else{btns[prSel].classList.add('errado');btns[p.r].classList.add('revelar');document.getElementById('pr-msg').textContent='❌ Errado! A resposta certa: '+p.o[p.r];}
+  atualizarPRTeams();
+  document.getElementById('pr-btn-resp').style.display='none';
+  document.getElementById('pr-btn-passar').style.display='none';
+  document.getElementById('pr-btn-prox').style.display='inline-flex';
+}
+function prPassar(){
+  if(prRespondido)return;
+  if(prPassou){document.getElementById('pr-msg').textContent='⏭️ Já passou! Aguarde...';return;}
+  prPassou=true;
+  document.getElementById('pr-msg').textContent='⏭️ Passou! Agora é a vez do outro time!';
+  document.getElementById('pr-btn-passar').style.display='none';
+  prTurno=1-prTurno;atualizarPRTeams();
+  document.getElementById('pr-btn-resp').style.display='none';
+  prSel=-1;
+  document.querySelectorAll('#pr-opts .pr-opt').forEach(function(b){b.classList.remove('selecionado');b.style.borderColor='';b.style.borderColor='rgba(255,255,255,.07)';});
+  document.getElementById('pr-status').textContent='🎯 Agora é a vez do '+(prTurno===0?prTime1:prTime2)+'!';
+}
+function prProxima(){
+  prPergIdx++;prSel=-1;
+  prTurno=1-prTurno;atualizarPRTeams();
+  document.getElementById('pr-btn-prox').style.display='none';
+  document.getElementById('pr-question').style.display='none';
+  document.getElementById('pr-msg').textContent='';
+  setTimeout(function(){prMostrarPergunta();},300);
+}
+function prFinalizar(){
+  prJogando=false;
+  document.getElementById('pr-question').style.display='none';
+  document.getElementById('pr-btn-resp').style.display='none';
+  document.getElementById('pr-btn-passar').style.display='none';
+  document.getElementById('pr-btn-prox').style.display='none';
+  var msg='';
+  if(prPts[0]>prPts[1])msg='🏆 '+prTime1+' venceu! '+prPts[0]+' x '+prPts[1];
+  else if(prPts[1]>prPts[0])msg='🏆 '+prTime2+' venceu! '+prPts[1]+' x '+prPts[0];
+  else msg='🤝 Empate! '+prPts[0]+' x '+prPts[1];
+  document.getElementById('pr-msg').textContent=msg;
+  document.getElementById('pr-status').textContent='🎯 Fim de jogo!';
+}
+function reiniciarPR(){
+  document.getElementById('pr-setup').style.display='block';
+  document.getElementById('pr-jogo').style.display='none';
+}// ===== JOGO DA MEMÓRIA =====
+var memTam=[6,8,12];
+function setMemDiff(d){memDiff=d;document.querySelectorAll('#mem-dif .dif-btn').forEach(b=>b.classList.remove('ativo'));document.querySelector('#mem-dif .dif-btn[data-d="'+d+'"]').classList.add('ativo');}
+function iniciarMem(){
+  if(memTimer){clearInterval(memTimer);memTimer=null;}
+  memAbertas=[];memPares=0;memTentativas=0;memBloq=false;
+  var base=memoriaTemas[temaAtual]||memoriaTemas[0];
+  var n=memTam[memDiff]||memTam[0];
+  var dados=[...base].sort(function(){return Math.random()-.5;}).slice(0,n);
+  var cartas=[];
+  dados.forEach(function(d,i){cartas.push({id:i*2,par:i,emoji:d.e,texto:d.t,virada:false});cartas.push({id:i*2+1,par:i,emoji:d.e,texto:d.t,virada:false});});
+  cartas.sort(function(){return Math.random()-.5;});
+  memCards=cartas;memParesTotal=dados.length;
+  renderMem();
+  document.getElementById('mem-info').textContent='🧠 Encontre os pares! Tentativas: 0 | Pares: 0/'+memParesTotal;
+}
+function renderMem(){
+  var g=document.getElementById('mem-grid');
+  g.innerHTML='';
+  var cols=memDiff===0?4:memDiff===1?4:6;
+  g.style.gridTemplateColumns='repeat('+cols+',1fr)';
+  memCards.forEach(function(c,i){
+    var d=document.createElement('div');d.className='mem-card';d.id='mem-'+i;
+    d.innerHTML='<div class="mc-f">❓</div><div class="mc-b">'+c.emoji+'<br><span style="font-size:.45rem;display:block">'+c.texto+'</span></div>';
+    d.onclick=function(){virarMem(i);};
+    g.appendChild(d);
+  });
+}
+function virarMem(i){
+  if(memBloq)return;
+  var c=memCards[i];
+  if(c.virada||memAbertas.length>=2)return;
+  c.virada=true;memAbertas.push(i);
+  document.getElementById('mem-'+i).classList.add('virada');
+  if(memAbertas.length===2){
+    memBloq=true;memTentativas++;
+    var a=memCards[memAbertas[0]],b=memCards[memAbertas[1]];
+    if(a.par===b.par&&memAbertas[0]!==memAbertas[1]){
+      memPares++;
+      document.getElementById('mem-'+memAbertas[0]).classList.add('acertou');
+      document.getElementById('mem-'+memAbertas[1]).classList.add('acertou');
+      memAbertas=[];memBloq=false;
+      document.getElementById('mem-info').textContent='🧠 Tentativas: '+memTentativas+' | Pares: '+memPares+'/'+memParesTotal;
+      if(memPares>=memParesTotal){document.getElementById('mem-info').textContent='🎉 Parabéns! Você encontrou todos os pares em '+memTentativas+' tentativas!';}
+    }else{
+      document.getElementById('mem-'+memAbertas[0]).classList.add('errou');
+      document.getElementById('mem-'+memAbertas[1]).classList.add('errou');
+      var self=this;
+      setTimeout(function(){
+        if(!memCards[memAbertas[0]])return;
+        memCards[memAbertas[0]].virada=false;memCards[memAbertas[1]].virada=false;
+        document.getElementById('mem-'+memAbertas[0]).classList.remove('virada','errou');
+        document.getElementById('mem-'+memAbertas[1]).classList.remove('virada','errou');
+        memAbertas=[];memBloq=false;
+        document.getElementById('mem-info').textContent='🧠 Tentativas: '+memTentativas+' | Pares: '+memPares+'/'+memParesTotal;
+      },800);
+    }
+  }
+}
+
+// ===== LIGUE OS PONTOS =====
+var lpDesenhos={
+  estrela:{pts:[[100,30],[130,80],[190,90],[145,130],[160,190],[100,160],[40,190],[55,130],[10,90],[70,80]]},
+  coracao:{pts:[[100,40],[70,20],[30,30],[10,70],[10,110],[100,180],[190,110],[190,70],[170,30],[130,20]]},
+  pomba:{pts:[[100,40],[60,20],[20,50],[40,90],[20,130],[60,150],[80,190],[100,170],[120,190],[140,150],[180,130],[160,90],[180,50],[140,20]]},
+  moises:{pts:[[100,30],[120,50],[100,80],[120,100],[100,130],[120,150],[80,180],[60,150],[80,130],[60,100],[80,80],[60,50]]},
+  tabuas:{pts:[[70,30],[130,30],[150,180],[50,180]]},
+  sarca:{pts:[[100,180],[50,140],[70,100],[30,60],[80,60],[100,20],[120,60],[170,60],[130,100],[150,140]]}
+};
+function setLPD(d){lpDesenho=d;document.querySelectorAll('.lp-d-btn').forEach(b=>b.classList.remove('ativo'));document.querySelector('.lp-d-btn[data-lp="'+d+'"]').classList.add('ativo');}
+function setLPDiff(d){lpDiff=d;document.querySelectorAll('#lp-dif .dif-btn').forEach(b=>b.classList.remove('ativo'));document.querySelector('#lp-dif .dif-btn[data-d="'+d+'"]').classList.add('ativo');}
+function iniciarLP(){
+  var des=lpDesenhos[lpDesenho];
+  if(!des)return;
+  var pts=des.pts;
+  var nPorNivel=[8,12,16];
+  var maxPts=nPorNivel[lpDiff]||8;
+  if(pts.length>maxPts)pts=pts.slice(0,maxPts);
+  lpPontos=pts.map(function(p,i){return{x:p[0],y:p[1],num:i+1,feito:false};});
+  lpAtual=0;
+  var canvas=document.getElementById('lp-canvas');
+  lpCanvas=canvas;
+  lpCtx=canvas.getContext('2d');
+  canvas.width=300;canvas.height=240;
+  canvas.onclick=function(e){
+    var r=canvas.getBoundingClientRect();
+    var x=(e.clientX-r.left)*(canvas.width/r.width);
+    var y=(e.clientY-r.top)*(canvas.height/r.height);
+    clicarLP(x,y);
+  };
+  desenharLP();
+  atualizarLPProgresso();
+  document.getElementById('lp-info').textContent='🔢 Clique nos pontos em ordem! (Ponto '+lpAtual+'/'+lpPontos.length+')';
+}
+function clicarLP(x,y){
+  for(var i=0;i<lpPontos.length;i++){
+    var p=lpPontos[i];
+    if(p.feito)continue;
+    if(Math.abs(x-p.x)<18&&Math.abs(y-p.y)<18){
+      if(i===lpAtual){
+        p.feito=true;lpAtual++;
+        desenharLP();atualizarLPProgresso();
+        if(lpAtual>=lpPontos.length){
+          document.getElementById('lp-info').textContent='🎉 Desenho completo!';
+        }else{
+          document.getElementById('lp-info').textContent='🔢 Clique nos pontos em ordem! (Ponto '+lpAtual+'/'+lpPontos.length+')';
+        }
+      }else{
+        document.getElementById('lp-info').textContent='❌ Esse não é o ponto '+lpAtual+'! Siga a ordem!';
+        setTimeout(function(){if(lpAtual<lpPontos.length)document.getElementById('lp-info').textContent='🔢 Clique nos pontos em ordem! (Ponto '+lpAtual+'/'+lpPontos.length+')';},1200);
+      }
+      return;
+    }
+  }
+}
+function desenharLP(){
+  var ctx=lpCtx;ctx.clearRect(0,0,300,240);
+  ctx.strokeStyle='rgba(255,255,255,.03)';ctx.lineWidth=0.5;ctx.strokeRect(0,0,300,240);
+  var ultFeito=null;
+  lpPontos.forEach(function(p){
+    if(p.feito){
+      ctx.beginPath();ctx.arc(p.x,p.y,6,0,Math.PI*2);ctx.fillStyle='rgba(67,233,123,.35)';ctx.fill();ctx.strokeStyle='#43e97b';ctx.lineWidth=2;ctx.stroke();
+      ctx.fillStyle='#43e97b';ctx.font='bold 9px Nunito,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.num,p.x,p.y-1);
+      if(ultFeito){ctx.beginPath();ctx.moveTo(ultFeito.x,ultFeito.y);ctx.lineTo(p.x,p.y);ctx.strokeStyle='rgba(67,233,123,.25)';ctx.lineWidth=2;ctx.stroke();}
+      ultFeito=p;
+    }else{
+      ctx.beginPath();ctx.arc(p.x,p.y,7,0,Math.PI*2);ctx.fillStyle='rgba(124,92,191,.15)';ctx.fill();ctx.strokeStyle='rgba(255,255,255,.2)';ctx.lineWidth=1.5;ctx.stroke();
+      ctx.fillStyle='#cdb8f0';ctx.font='bold 9px Nunito,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.num,p.x,p.y-1);
+    }
+  });
+}
+function atualizarLPProgresso(){
+  var e=document.getElementById('lp-progresso');e.innerHTML='';
+  lpPontos.forEach(function(p){
+    var d=document.createElement('div');d.className='lp-pi'+(p.feito?' feito':'');d.textContent=p.feito?'✓':'';e.appendChild(d);
+  });
+}
+
+// ===== CAÇA-PALAVRAS =====
+var cpTam=[6,8,10];
+function setCPDiff(d){cpDiff=d;document.querySelectorAll('#cp-dif .dif-btn').forEach(b=>b.classList.remove('ativo'));document.querySelector('#cp-dif .dif-btn[data-d="'+d+'"]').classList.add('ativo');}
+function iniciarCP(){
+  var base=cacaTemas[temaAtual]||cacaTemas[0];
+  var size=cpTam[cpDiff]||cpTam[0];
+  var n=Math.max(4,Math.floor(size*0.7));
+  var palavras=[...base].sort(function(){return Math.random()-.5;}).slice(0,n);
+  cpEncontradas=[];cpSel=null;cpDir=null;
+  var grid=[];
+  for(var i=0;i<size;i++){grid[i]=[];for(var j=0;j<size;j++)grid[i][j]='';}
+  function podeColocar(pal,lin,col,dl,dc){
+    for(var k=0;k<pal.length;k++){
+      var nl=lin+k*dl,nc=col+k*dc;
+      if(nl<0||nl>=size||nc<0||nc>=size)return false;
+      if(grid[nl][nc]!==''&&grid[nl][nc]!==pal[k])return false;
+    }return true;
+  }
+  function colocar(pal,lin,col,dl,dc){
+    for(var k=0;k<pal.length;k++){grid[lin+k*dl][col+k*dc]=pal[k];}
+  }
+  var letras='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  palavras.forEach(function(pal){
+    if(!pal||pal.length===0)return;
+    for(var tenta=0;tenta<200;tenta++){
+      var dl=0,dc=0;
+      while(dl===0&&dc===0){dl=Math.floor(Math.random()*3)-1;dc=Math.floor(Math.random()*3)-1;}
+      var lin=Math.floor(Math.random()*size),col=Math.floor(Math.random()*size);
+      if(podeColocar(pal,lin,col,dl,dc)){colocar(pal,lin,col,dl,dc);return;}
+    }
+  });
+  for(i=0;i<size;i++)for(j=0;j<size;j++)if(grid[i][j]==='')grid[i][j]=letras[Math.floor(Math.random()*letras.length)];
+  cpGrid=grid;cpPalavras=palavras;
+  renderCP();
+  document.getElementById('cp-info').textContent='🔍 Encontre as palavras!';
+}
+function renderCP(){
+  var g=document.getElementById('cp-grid');
+  g.innerHTML='';
+  var size=cpGrid.length;
+  g.style.gridTemplateColumns='repeat('+size+',1fr)';
+  for(var i=0;i<size;i++)for(var j=0;j<size;j++){
+    var d=document.createElement('div');d.className='cp-cell';d.id='cp-'+i+'-'+j;
+    d.textContent=cpGrid[i][j];
+    d.onclick=function(i2,j2){return function(){clicarCP(i2,j2);};}(i,j);
+    g.appendChild(d);
+  }
+  var l=document.getElementById('cp-lista');l.innerHTML='';
+  cpPalavras.forEach(function(p){
+    var c=document.createElement('span');c.className='cp-palavra';c.id='cp-pal-'+p;
+    c.textContent=p;l.appendChild(c);
+  });
+}
+function clicarCP(i,j){
+  if(cpEncontradas.length>=cpPalavras.length)return;
+  var cell=document.getElementById('cp-'+i+'-'+j);
+  if(cell.classList.contains('achada'))return;
+  if(cpSel===null){
+    cpSel={i:i,j:j};
+    cell.classList.add('sel');
+    cpDir=null;
+  }else{
+    var di=i-cpSel.i,dj=j-cpSel.j;
+    var di2=di?di/Math.abs(di):0,dj2=dj?dj/Math.abs(dj):0;
+    if(di===0&&dj===0){cell.classList.remove('sel');cpSel=null;cpDir=null;renderCP();return;}
+    var palavra='';
+    var i2=cpSel.i,j2=cpSel.j;
+    while(i2>=0&&i2<cpGrid.length&&j2>=0&&j2<cpGrid[0].length){
+      if(i2===i&&j2===j){palavra+=cpGrid[i2][j2];break;}
+      palavra+=cpGrid[i2][j2];i2+=di2;j2+=dj2;
+      if(i2===i&&j2===j){palavra+=cpGrid[i2][j2];break;}
+    }
+    var enc=cpPalavras.find(function(p){return p===palavra||p===palavra.split('').reverse().join('');});
+    if(enc&&!cpEncontradas.includes(enc)){
+      cpEncontradas.push(enc);
+      i2=cpSel.i;j2=cpSel.j;
+      for(var k=0;k<enc.length;k++){
+        var c=document.getElementById('cp-'+i2+'-'+j2);
+        if(c){c.classList.remove('sel');c.classList.add('achada');}
+        i2+=di2;j2+=dj2;
+      }
+      document.getElementById('cp-pal-'+enc).classList.add('achada');
+      document.getElementById('cp-info').textContent='🔍 Encontrou "'+enc+'"! ('+cpEncontradas.length+'/'+cpPalavras.length+')';
+      cpSel=null;cpDir=null;
+      if(cpEncontradas.length>=cpPalavras.length){
+        document.getElementById('cp-info').textContent='🎉 Parabéns! Todas as palavras encontradas!';
+      }
+    }else{
+      document.getElementById('cp-'+cpSel.i+'-'+cpSel.j).classList.remove('sel');
+      cpSel=null;cpDir=null;
+      document.getElementById('cp-info').textContent='❌ Palavra não encontrada! Tente outra direção.';
+      setTimeout(function(){if(cpEncontradas.length<cpPalavras.length)document.getElementById('cp-info').textContent='🔍 Encontre as palavras!';},1000);
+    }
+  }
+}
+
+// ===== QUADRINHO =====
+var qdConteudo=[
+  [
+    {e:['💡','🌌','✨'],f:'"Haja luz!"',l:'Deus cria a luz e separa o dia da noite'},
+    {e:['🌊','☁️','🌍'],f:'"Que o céu e o mar se formem!"',l:'Deus separa as águas e forma os céus'},
+    {e:['🌱','🌿','🌻'],f:'"Que a terra produza plantas!"',l:'Deus cria as plantas, árvores e flores'},
+    {e:['🐟','🐦','🐾'],f:'"Que os mares e céus se encham de vida!"',l:'Deus cria os peixes, pássaros e animais'},
+    {e:['👫','🌟','❤️'],f:'"Façamos o ser humano à nossa imagem!"',l:'Deus cria o homem e a mulher'},
+    {e:['🌈','😊','🕊️'],f:'"Tudo o que fiz é muito bom!"',l:'Deus descansa e contempla a criação'}
+  ],
+  [
+    {e:['👶','🌊','🧺'],f:'"Mamãe, me esconde!"',l:'Joquebede coloca Moisés no cestinho no Nilo'},
+    {e:['👸','👶','🌊'],f:'"Que bebê lindo! Vou cuidar dele!"',l:'A princesa encontra Moisés no rio'},
+    {e:['🔥','🌿','🐑'],f:'"Tire as sandálias, lugar sagrado!"',l:'Deus chama Moisés na sarça ardente'},
+    {e:['👑','😠','🐸'],f:'"Deixa o meu povo ir!"',l:'Moisés diante do Faraó: as pragas'},
+    {e:['🌊','👣','🚶'],f:'"Não tenham medo! Deus está conosco!"',l:'A abertura do Mar Vermelho'},
+    {e:['⛰️','📜','🌟'],f:'"Ama a Deus e ao próximo!"',l:'Moisés recebe os Dez Mandamentos'}
+  ],
+  [
+    {e:['⭐','👼','🏠'],f:'"Não tenham medo! Nasceu o Salvador!"',l:'Anjos anunciam o nascimento de Jesus'},
+    {e:['👶','🐑','🌟'],f:'"Vamos adorar o Rei dos judeus!"',l:'Os pastores visitam Jesus na manjedoura'},
+    {e:['💧','🙏','✨'],f:'"Este é meu Filho amado!"',l:'Jesus é batizado por João Batista'},
+    {e:['👥','🐟','🍞'],f:'"Sigam-me, eu vos farei pescadores de homens!"',l:'Jesus chama os primeiros apóstolos'},
+    {e:['🌊','😰','✋'],f:'"Acalma-te! Por que tendes medo?"',l:'Jesus acalma a tempestade'},
+    {e:['💔','✝️','🌟'],f:'"Pai, perdoai-lhes!"',l:'Jesus na cruz — o maior exemplo de amor'}
+  ],
+  [
+    {e:['📚','🖊️','🇫🇷'],f:'"Vamos estudar esses fenômenos!"',l:'Kardec inicia a codificação espírita'},
+    {e:['📖','💡','👤'],f:'"Perguntemos aos Espíritos Superiores!"',l:'O Livro dos Espíritos é organizado'},
+    {e:['📕','🕊️','🌟'],f:'"O Consolador prometido chegou!"',l:'O Evangelho Segundo o Espiritismo'},
+    {e:['📗','⚖️','😇'],f:'"Céu e Inferno são estados da alma!"',l:'Kardec publica O Céu e o Inferno'},
+    {e:['📘','🌍','🔬'],f:'"A Gênese explica a criação!"',l:'A Gênese — ciência e religião unidas'},
+    {e:['🌟','👤','📖'],f:'"Fé inabalável é a que encara a razão!"',l:'Kardec consolida a Doutrina Espírita'}
+  ],
+  [
+    {e:['👤','💫','🌟'],f:'"O espírito é imortal!"',l:'Deus cria o espírito simples e ignorante'},
+    {e:['🔄','👶','📚'],f:'"Reencarnamos para aprender!"',l:'Cada vida é uma nova escola'},
+    {e:['👤','🌀','💪'],f:'"O perispírito liga o espírito ao corpo!"',l:'Corpo, perispírito e espírito'},
+    {e:['🙈','📖','🌟'],f:'"O esquecimento é uma bênção!"',l:'Não lembramos do passado para recomeçar'},
+    {e:['👨‍👩‍👧‍👦','❤️','🔄'],f:'"Nossos laços de amor atravessam vidas!"',l:'Família espiritual — reencontros'},
+    {e:['🌟','📈','🏆'],f:'"Todos podemos chegar à perfeição!"',l:'A evolução do espírito rumo a Deus'}
+  ],
+  [
+    {e:['❤️','🤝','🌟'],f:'"Amar ao próximo como a si mesmo!"',l:'A caridade é o maior mandamento'},
+    {e:['💔','🔄','❤️'],f:'"Perdoai as ofensas!"',l:'O perdão liberta o coração'},
+    {e:['😤','🙇','🌟'],f:'"Sede humildes como crianças!"',l:'Humildade vence o orgulho'},
+    {e:['😇','💎','✨'],f:'"Bem-aventurados os puros de coração!"',l:'Pureza de coração — ver a Deus'},
+    {e:['🤥','🗣️','💎'],f:'"Seja a vossa palavra sim, sim!"',l:'Sinceridade e honestidade'},
+    {e:['🛠️','🌟','🌱'],f:'"A reforma íntima é o trabalho de cada dia!"',l:'Cultivemos as virtudes no jardim da alma'}
+  ],
+  [
+    {e:['🙏','💭','🌟'],f:'"Pai nosso que estás nos céus!"',l:'Jesus ensina o Pai Nosso'},
+    {e:['😇','👤','✨'],f:'"Meu anjo da guarda está comigo!"',l:'O anjo guardião nos protege'},
+    {e:['💤','🌙','👤'],f:'"Enquanto durmo, meu espírito viaja!"',l:'O sono liberta o espírito'},
+    {e:['✋','💧','✨'],f:'"Receba os fluidos curativos!"',l:'O passe e a água fluidificada'},
+    {e:['🔮','👂','💡'],f:'"A intuição é a voz do espírito!"',l:'Mediunidade — comunicar com o plano espiritual'},
+    {e:['🙏','👀','🌟'],f:'"Orai e vigiai!"',l:'Prece e vigilância — conexão com Deus'}
+  ],
+  [
+    {e:['🌾','🌱','🪨'],f:'"A semente é a palavra de Deus!"',l:'Parábola do Semeador — a boa terra'},
+    {e:['💰','🚶','🏠'],f:'"Vou voltar para meu pai!"',l:'Filho Pródigo — o pai amoroso perdoa'},
+    {e:['🩹','❤️','🤝'],f:'"Quem é meu próximo? Quem precisa!"',l:'Bom Samaritano — caridade em ação'},
+    {e:['💰','💎','🏆'],f:'"Multiplicai vossos talentos!"',l:'Parábola dos Talentos — usar os dons'},
+    {e:['🐑','👨‍🌾','🌟'],f:'"Deixai as 99 e buscai a perdida!"',l:'Ovelha Perdida — Deus busca cada um'},
+    {e:['🌾','🌿','🔥'],f:'"Deixai crescer juntos até a colheita!"',l:'Joio e Trigo — bem e mal na Terra'}
+  ],
+  [
+    {e:['👨‍⚕️','💊','❤️'],f:'"Não cobro nada, a caridade é gratuita!"',l:'Bezerra de Menezes — Médico dos Pobres'},
+    {e:['✍️','📚','🕊️'],f:'"A caridade é o caminho!"',l:'Chico Xavier psicografa livros'},
+    {e:['🙏','💡','🚶'],f:'"Senhor, que eu seja instrumento de vossa paz!"',l:'Francisco de Assis — amor à natureza'},
+    {e:['👤','🌍','📖'],f:'"Perseguia, hoje sou perseguido pelo amor!"',l:'Paulo de Tarso — Apóstolo dos Gentios'},
+    {e:['🌟','📝','📖'],f:'"O Livro dos Espíritos é a base!"',l:'Allan Kardec — o Codificador'},
+    {e:['🌟','👤','🕊️'],f:'"O exemplo é a maior lição!"',l:'Grandes figuras nos inspiram ao bem'}
+  ],
+  [
+    {e:['💰','😈','✝️'],f:'"Por quanto me dareis este homem?"',l:'Judas trai Jesus por 30 moedas'},
+    {e:['🌿','😢','✝️'],f:'"Pai, afasta de mim este cálice!"',l:'Jesus no Getsêmani — oração e dor'},
+    {e:['✝️','💔','🌟'],f:'"Pai, em tuas mãos entrego meu espírito!"',l:'Jesus no Calvário — amor até o fim'},
+    {e:['⚰️','🌟','👤'],f:'"A morte não existe! O espírito vive!"',l:'Desencarnação — passagem ao plano espiritual'},
+    {e:['🌍','🔄','🌟'],f:'"A Terra está mudando!"',l:'Transição planetária — para mundo de regeneração'},
+    {e:['🔥','💡','🌟'],f:'"Não vim trazer paz, mas a verdade!"',l:'Mocidade — escolher o bem e a verdade'}
+  ],
+  [
+    {e:['⛰️','🌩️','📜'],f:'"Subi ao monte, Moisés!"',l:'Deus chama Moisés ao Monte Sinai'},
+    {e:['📜','✍️','🌟'],f:'"Escreverei minha lei em pedra!"',l:'Deus escreve os Dez Mandamentos nas tábuas'},
+    {e:['🙌','📜','🌟'],f:'"Eis as leis de Deus para o povo!"',l:'Moisés desce com as tábuas da lei'},
+    {e:['👤','🙏','🌟'],f:'"Amar a Deus sobre todas as coisas!"',l:'Os primeiros 4 mandamentos: amor a Deus'},
+    {e:['👨‍👩‍👧‍👦','❤️','🤝'],f:'"Amar ao próximo como a si mesmo!"',l:'Os 6 mandamentos finais: amor ao próximo'},
+    {e:['📜','✨','🕊️'],f:'"A lei de Deus está escrita no coração!"',l:'Os mandamentos são eternos e universais'}
+  ]
+];
+var qdTitulos=[
+  '📖 A Criação do Mundo',
+  '📖 A História de Moisés',
+  '📖 A Vida de Jesus',
+  '📖 A Codificação Espírita',
+  '📖 A Reencarnação',
+  '📖 As Virtudes',
+  '📖 A Prece',
+  '📖 As Parábolas de Jesus',
+  '📖 Figuras Espíritas',
+  '📖 Mocidade Espírita',
+  '📖 Os Dez Mandamentos'
+];
+var qdAtual=0,qdAutoTimer=null;
+function renderQuadrinho(){
+  var dados=qdConteudo[temaAtual]||qdConteudo[0];
+  document.getElementById('qd-titulo').textContent=qdTitulos[temaAtual]||qdTitulos[0];
+  var painel=document.getElementById('qd-painel');painel.innerHTML='';
+  dados.forEach(function(d,i){
+    var cena=document.createElement('div');cena.className='qd-cena'+(i===0?' ativa':'');cena.id='qd-'+i;
+    var img=document.createElement('div');img.className='qd-img';
+    d.e.forEach(function(e){
+      var s=document.createElement('span');s.className='qd-p';s.textContent=e;img.appendChild(s);
+    });
+    var txt=document.createElement('div');txt.className='qd-texto';
+    var fala=document.createElement('span');fala.className='qd-fala';fala.textContent=d.f;
+    var leg=document.createElement('span');leg.className='qd-legenda';leg.textContent=d.l;
+    txt.appendChild(fala);txt.appendChild(leg);
+    cena.appendChild(img);cena.appendChild(txt);
+    painel.appendChild(cena);
+  });
+  qdAtual=0;
+  document.getElementById('qd-cont').textContent='1 / '+dados.length;
+  if(qdAutoTimer){clearInterval(qdAutoTimer);qdAutoTimer=null;document.getElementById('qd-auto').textContent='▶ Automático';}
+}
+function qdMostrar(i){
+  document.querySelectorAll('.qd-cena').forEach(function(c){c.classList.remove('ativa');});
+  document.getElementById('qd-'+i).classList.add('ativa');
+  document.getElementById('qd-cont').textContent=(i+1)+' / '+document.querySelectorAll('.qd-cena').length;
+  qdAtual=i;
+}
+function qdProximo(){
+  var total=document.querySelectorAll('.qd-cena').length;
+  if(qdAtual<total-1)qdMostrar(qdAtual+1);
+}
+function qdAnterior(){
+  if(qdAtual>0)qdMostrar(qdAtual-1);
+}
+function qdAuto(){
+  if(qdAutoTimer){
+    clearInterval(qdAutoTimer);qdAutoTimer=null;
+    document.getElementById('qd-auto').textContent='▶ Automático';
+    return;
+  }
+  document.getElementById('qd-auto').textContent='⏸ Pausar';
+  var total=document.querySelectorAll('.qd-cena').length;
+  qdAutoTimer=setInterval(function(){
+    if(qdAtual<total-1){qdMostrar(qdAtual+1);}else{clearInterval(qdAutoTimer);qdAutoTimer=null;document.getElementById('qd-auto').textContent='▶ Automático';}
+  },4000);
+}
+// ===== TTS - LEITOR DE TEXTO =====
+var ttsUtter=null,ttsSecao='',ttsAtivo=false,ttsPausado=false,ttsVel=1,ttsPos=0,ttsTxt='',ttsVoz=null;
+function ttsInitVoz(){
+  var v=window.speechSynthesis.getVoices();
+  var pref=['Microsoft Francisca','Microsoft Maria','Microsoft Helena','Google português','Microsoft Daniela','Microsoft Elsa'];
+  for(var i=0;i<pref.length;i++){
+    for(var j=0;j<v.length;j++){
+      if(v[j].name.indexOf(pref[i])>=0&&v[j].lang.indexOf('pt')>=0){ttsVoz=v[j];return;}
+    }
+  }
+  for(var j=0;j<v.length;j++){if(v[j].lang.indexOf('pt')>=0){ttsVoz=v[j];return;}}
+}
+window.speechSynthesis.onvoiceschanged=ttsInitVoz;
+setTimeout(ttsInitVoz,500);
+function ttsFalar(secao,btn,pos){
+  var el=document.getElementById('tela-'+secao);
+  if(!el)return;
+  if(!pos){ttsTxt=el.textContent||el.innerText;ttsTxt=ttsTxt.replace(/[🔊🎯🌟⭐📜📚👩‍🏫🎪🕊️💭🔢✅❌🪧🎭💡⏱👥▶⏸⏹❓📖]/g,'').trim();ttsTxt=ttsTxt.replace(/\s+/g,' ').trim();if(ttsTxt.length<10)return;}
+  var txt=pos?ttsTxt.substring(pos):ttsTxt;
+  if(txt.length<2)return;
+  ttsUtter=new SpeechSynthesisUtterance(txt);
+  ttsUtter.lang='pt-BR';
+  ttsUtter.rate=ttsVel;
+  if(ttsVoz)ttsUtter.voice=ttsVoz;
+  ttsUtter.onstart=function(){ttsAtivo=true;ttsPausado=false;ttsSecao=secao;ttsPos=pos||0;ttsBarShow(true,secao);if(btn){btn.textContent='⏸ Pausar';btn.classList.add('ativo');}};
+  ttsUtter.onpause=function(){ttsPausado=true;ttsBarShow(true,secao);if(btn)btn.textContent='▶ Retomar';};
+  ttsUtter.onresume=function(){ttsPausado=false;if(btn)btn.textContent='⏸ Pausar';};
+  ttsUtter.onboundary=function(e){if(e.name==='word')ttsPos=(pos||0)+e.charIndex;};
+  ttsUtter.onend=function(){ttsAtivo=false;ttsPausado=false;ttsSecao='';ttsPos=0;ttsBarShow(false);document.querySelectorAll('.tts-btn-ouvir').forEach(function(b){b.textContent='🔊 Ouvir';b.classList.remove('ativo');});};
+  ttsUtter.onerror=function(){ttsAtivo=false;ttsPausado=false;ttsSecao='';ttsPos=0;ttsBarShow(false);document.querySelectorAll('.tts-btn-ouvir').forEach(function(b){b.textContent='🔊 Ouvir';b.classList.remove('ativo');});};
+  window.speechSynthesis.speak(ttsUtter);
+}
+function ttsLer(secao,btn){
+  if(ttsAtivo&&!ttsPausado){ttsPausar();return;}
+  if(ttsPausado&&secao===ttsSecao){ttsRetomar();return;}
+  window.speechSynthesis.cancel();
+  ttsAtivo=false;ttsPausado=false;ttsPos=0;
+  ttsFalar(secao,btn,0);
+}
+function ttsPausar(){
+  if(window.speechSynthesis.speaking&&!ttsPausado){
+    window.speechSynthesis.pause();ttsPausado=true;
+    document.querySelectorAll('.tts-btn-ouvir').forEach(function(b){if(b.classList.contains('ativo'))b.textContent='▶ Retomar';});
+  }
+}
+function ttsRetomar(){
+  if(ttsPausado){
+    window.speechSynthesis.resume();ttsPausado=false;
+    document.querySelectorAll('.tts-btn-ouvir').forEach(function(b){if(b.classList.contains('ativo'))b.textContent='⏸ Pausar';});
+  }
+}
+function ttsStop(){
+  window.speechSynthesis.cancel();ttsAtivo=false;ttsPausado=false;ttsSecao='';ttsPos=0;
+  ttsBarShow(false);
+  document.querySelectorAll('.tts-btn-ouvir').forEach(function(b){b.textContent='🔊 Ouvir';b.classList.remove('ativo');});
+}
+function ttsSetVel(v){
+  ttsVel=v;
+  document.querySelectorAll('.tts-speed').forEach(function(b){b.classList.remove('ativo');});
+  document.querySelector('.tts-speed[data-v="'+v+'"]')&&document.querySelector('.tts-speed[data-v="'+v+'"]').classList.add('ativo');
+  if(ttsAtivo||ttsPausado){
+    var pausado=ttsPausado,pos=ttsPos,secao=ttsSecao;
+    window.speechSynthesis.cancel();ttsAtivo=false;ttsPausado=false;
+    if(secao&&pos>0){
+      var btn=document.querySelector('.tts-btn-ouvir.ativo');
+      ttsPos=pos;
+      ttsFalar(secao,btn,pos);
+      if(pausado){var id=setInterval(function(){if(window.speechSynthesis.speaking){window.speechSynthesis.pause();ttsPausado=true;clearInterval(id);}},50);setTimeout(function(){clearInterval(id);},3000);}
+    }
+  }
+}
+// === JOGO DA VELHA ===
+var velhaBoard=[null,null,null,null,null,null,null,null,null];
+var velhaTurn='X',velhaGameOver=false,velhaScoreX=0,velhaScoreO=0;
+var velhaVits=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+function velhaRender(){
+  var g=document.getElementById('velha-grid');if(!g)return;
+  g.innerHTML='';
+  for(var i=0;i<9;i++){
+    var c=document.createElement('div');
+    c.style.cssText='aspect-ratio:1;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;cursor:pointer;background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.06);transition:all .2s';
+    c.onmouseover=function(){this.style.background='rgba(255,255,255,.08)';};
+    c.onmouseout=function(){this.style.background='rgba(255,255,255,.04)';};
+    (function(idx){
+      c.onclick=function(){velhaJogar(idx);};
+    })(i);
+    if(velhaBoard[i])c.textContent=velhaBoard[i];
+    if(velhaBoard[i]==='X')c.style.color='#43e97b';
+    else if(velhaBoard[i]==='O')c.style.color='#f5576c';
+    if(velhaBoard[i]||velhaGameOver)c.style.pointerEvents='none';
+    g.appendChild(c);
+  }
+  var msg=document.getElementById('velha-msg');
+  if(msg){
+    if(velhaGameOver)msg.textContent='🏁 Jogo encerrado! Clique em Novo Jogo';
+    else{
+      var vt=velhaTemas[temaAtual]||velhaTemas[0];
+      msg.textContent='Vez de '+(velhaTurn==='X'?vt.x:vt.o);
+    }
+  }
+}
+function velhaJogar(idx){
+  if(velhaBoard[idx]||velhaGameOver)return;
+  velhaBoard[idx]=velhaTurn;
+  velhaRender();
+  var v=velhaCheck();
+  if(v){
+    velhaGameOver=true;
+    if(v==='X'){velhaScoreX++;document.getElementById('velha-x').textContent=velhaScoreX;}
+    else if(v==='O'){velhaScoreO++;document.getElementById('velha-o').textContent=velhaScoreO;}
+    var msg=document.getElementById('velha-msg');
+    if(msg){var vt=velhaTemas[temaAtual]||velhaTemas[0];msg.textContent=v==='X'?vt.xt+' '+vt.x+' venceu! 🎉':vt.ot+' '+vt.o+' venceu! 🎉';}
+  }else if(velhaBoard.every(function(c){return c;})){
+    velhaGameOver=true;
+    var msg=document.getElementById('velha-msg');
+    if(msg)msg.textContent='🤝 Empate! Ninguém venceu.';
+  }else{
+    velhaTurn=velhaTurn==='X'?'O':'X';
+    velhaRender();
+  }
+}
+function velhaCheck(){
+  for(var i=0;i<velhaVits.length;i++){
+    var a=velhaVits[i][0],b=velhaVits[i][1],c=velhaVits[i][2];
+    if(velhaBoard[a]&&velhaBoard[a]===velhaBoard[b]&&velhaBoard[b]===velhaBoard[c])
+      return velhaBoard[a];
+  }
+  return null;
+}
+function velhaTheme(){
+  var vt=velhaTemas[temaAtual]||velhaTemas[0];
+  document.getElementById('velha-nome-x').textContent=vt.x;
+  document.getElementById('velha-nome-o').textContent=vt.o;
+  document.getElementById('velha-label-x').innerHTML=vt.xt+' '+vt.x.split(' ')[0]+': <span id="velha-x">'+velhaScoreX+'</span>';
+  document.getElementById('velha-label-o').innerHTML=vt.ot+' '+vt.o.split(' ')[0]+': <span id="velha-o">'+velhaScoreO+'</span>';
+  document.getElementById('velha-sub').innerHTML=vt.x+' (X)  vs  '+vt.o+' (O)';
+}
+function velhaReset(){
+  velhaBoard=[null,null,null,null,null,null,null,null,null];
+  velhaTurn='X';velhaGameOver=false;
+  velhaTheme();
+  velhaRender();
+}
+function velhaZerar(){
+  velhaScoreX=0;velhaScoreO=0;
+  velhaReset();
+}
+
+// === FORCA ESPÍRITA ===
+var forcaPalavras=[
+  {p:'MOISES',d:'Profeta que libertou o povo hebreu'},
+  {p:'FARAO',d:'Rei do Egito na época de Moisés'},
+  {p:'EGITO',d:'País onde os hebreus eram escravos'},
+  {p:'CESTO',d:'Onde a mãe de Moisés o colocou no Nilo'},
+  {p:'NILO',d:'Rio onde Moisés foi encontrado'},
+  {p:'SARCA',d:'Arbusto que ardia sem se consumir'},
+  {p:'HOREBE',d:'Monte onde Moisés viu a sarça ardente'},
+  {p:'ARAO',d:'Irmão de Moisés que falava por ele'},
+  {p:'JOSE',d:'Filho de Jacó que governou o Egito'},
+  {p:'ISRAEL',d:'Nome dado a Jacó e ao povo escolhido'},
+  {p:'JOSUE',d:'Sucessor de Moisés na liderança'},
+  {p:'TABUAS',d:'Onde os Dez Mandamentos foram escritos'},
+  {p:'MANA',d:'Alimento que caiu do céu no deserto'},
+  {p:'ALIANCA',d:'Acordo entre Deus e o povo no Sinai'},
+  {p:'DESERTO',d:'Onde o povo andou 40 anos'},
+  {p:'MEDIUNIDADE',d:'Faculdade de comunicar com os espíritos'},
+  {p:'ESPIRITO',d:'Ser imortal criado por Deus'},
+  {p:'ORACAO',d:'Diálogo com Deus'},
+  {p:'CARIDADE',d:'Amor ao próximo'},
+  {p:'EVANGELHO',d:'Boa Nova de Jesus'},
+  {p:'PERDAO',d:'Ato de desculpar o próximo'},
+  {p:'AMOR',d:'Sentimento maior ensinado por Jesus'},
+  {p:'FE',d:'Confiança em Deus'},
+  {p:'ESPERANCA',d:'Virtude que nos faz acreditar no futuro'},
+  {p:'HUMILDADE',d:'Virtude de quem não se considera superior'},
+  {p:'PASSAGEM',d:'Atravessar o Mar Vermelho'},
+  {p:'PRAGAS',d:'Dez castigos sobre o Egito'},
+  {p:'LEVI',d:'Tribo de Moisés e Arão'},
+  {p:'JAVÉ',d:'Nome de Deus na Bíblia'},
+  {p:'MIDIA',d:'Terra para onde Moisés fugiu'},
+  {p:'SEFORA',d:'Esposa de Moisés'},
+  {p:'JETRO',d:'Sogro de Moisés e sacerdote'},
+  {p:'DEZ',d:'Número de Mandamentos'}
+];
+var forcaEscolhida=null,forcaAdivinhadas={},forcaErros=0,forcaMaxErros=6;
+var forcaAcertos=0,forcaPerdidas=0,forcaJogoAtivo=false;
+var forcaEstagios=[
+  '💀','😰','😟','😨','😱','💀','💀'
+];
+function forcaNova(){
+  var lista=forcaTemas[temaAtual]||forcaTemas[0];
+  forcaEscolhida=lista[Math.floor(Math.random()*lista.length)];
+  forcaAdivinhadas={};forcaErros=0;forcaJogoAtivo=true;
+  document.getElementById('forca-msg').textContent='';
+  forcaRender();
+}
+function forcaRender(){
+  if(!forcaEscolhida)return;
+  var w=document.getElementById('forca-word');
+  var d=document.getElementById('forca-draw');
+  var e=document.getElementById('forca-err');
+  var h=document.getElementById('forca-hint');
+  var l=document.getElementById('forca-letras');
+  var m=document.getElementById('forca-msg');
+  if(w){
+    var txt='';
+    for(var i=0;i<forcaEscolhida.p.length;i++){
+      var ch=forcaEscolhida.p[i];
+      txt+=forcaAdivinhadas[ch]||forcaAdivinhadas[ch.toLowerCase()]||!forcaJogoAtivo?ch:'_';
+      txt+=' ';
+    }
+    w.textContent=txt.trim();
+  }
+  if(d)d.textContent=forcaEstagios[Math.min(forcaErros,6)];
+  if(e)e.textContent='Erros: '+forcaErros+'/'+forcaMaxErros;
+  if(h)h.textContent='💡 Dica: '+forcaEscolhida.d;
+  if(l){
+    l.innerHTML='';
+    var letras='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for(var i=0;i<letras.length;i++){
+      var btn=document.createElement('button');
+      var lt=letras[i];
+      btn.textContent=lt;
+      btn.style.cssText='font-family:Nunito,sans-serif;font-weight:700;font-size:.75rem;padding:4px 10px;border:none;border-radius:20px;cursor:pointer;background:rgba(255,255,255,.06);color:#cdb8f0;min-width:30px;transition:all .15s';
+      if(forcaAdivinhadas[lt]||forcaAdivinhadas[lt.toLowerCase()]){
+        btn.style.cursor='default';
+        if(forcaEscolhida.p.indexOf(lt)!==-1||forcaEscolhida.p.indexOf(lt.toLowerCase())!==-1){
+          btn.style.background='rgba(67,233,123,.15)';btn.style.color='#43e97b';
+        }else{
+          btn.style.background='rgba(255,255,255,.02)';btn.style.color='#4a3a6a';
+        }
+      }else if(!forcaJogoAtivo){
+        btn.style.background='rgba(255,255,255,.02)';btn.style.color='#4a3a6a';btn.style.cursor='default';
+      }else{
+        (function(letra){
+          btn.onclick=function(){forcaChutar(letra);};
+          btn.onmouseover=function(){this.style.background='rgba(255,255,255,.12)';};
+          btn.onmouseout=function(){this.style.background='rgba(255,255,255,.06)';};
+        })(lt);
+      }
+      l.appendChild(btn);
+    }
+  }
+  if(!forcaJogoAtivo&&m){
+    if(forcaErros>=forcaMaxErros){
+      m.textContent='💀 Você perdeu! A palavra era: '+forcaEscolhida.p;
+      forcaPerdidas++;
+      document.getElementById('forca-erros').textContent=forcaPerdidas;
+    }else if(forcaEscolhida.p.split('').every(function(c){return forcaAdivinhadas[c]||forcaAdivinhadas[c.toLowerCase()];})){
+      m.textContent='🎉 Parabéns! Você acertou: '+forcaEscolhida.p;
+      forcaAcertos++;
+      document.getElementById('forca-acertos').textContent=forcaAcertos;
+    }
+  }
+}
+function forcaChutar(letra){
+  if(!forcaJogoAtivo||forcaErros>=forcaMaxErros)return;
+  if(forcaAdivinhadas[letra]||forcaAdivinhadas[letra.toLowerCase()])return;
+  forcaAdivinhadas[letra.toUpperCase()]=true;
+  var achou=forcaEscolhida.p.indexOf(letra)!==-1||forcaEscolhida.p.indexOf(letra.toLowerCase())!==-1;
+  if(!achou)forcaErros++;
+  var completo=forcaEscolhida.p.split('').every(function(c){return forcaAdivinhadas[c]||forcaAdivinhadas[c.toLowerCase()];});
+  if(forcaErros>=forcaMaxErros||completo)forcaJogoAtivo=false;
+  forcaRender();
+}
+function forcaRevelar(){
+  if(!forcaJogoAtivo)return;
+  forcaJogoAtivo=false;
+  forcaRender();
+}
+
+function ttsBarShow(show,secao){
+  var bar=document.getElementById('tts-bar');
+  if(!bar)return;
+  if(show){
+    bar.classList.add('show');
+    var nomes={historia:'História',revisao:'Revisão',aula:'Plano de Aula',brincadeiras:'Brincadeiras'};
+    document.getElementById('tts-info').textContent='🔊 Lendo: '+ (nomes[secao]||secao);
+  }else{
+    bar.classList.remove('show');
+    document.getElementById('tts-info').textContent='';
+  }
+}
+</script>
+
+<!-- JOGO DA VELHA -->
+<div class="tela" id="tela-velha">
+  <div class="hist-card" style="text-align:center">
+    <h2>⭕ Jogo da Velha Temático</h2>
+    <p style="color:#b8a8d8;font-size:.8rem" id="velha-sub"><span id="velha-nome-x">🔵</span> (X)  vs  <span id="velha-nome-o">🔴</span> (O)</p>
+    <div style="display:flex;justify-content:center;gap:24px;margin:6px 0;font-weight:700;font-size:.9rem">
+      <span style="color:#43e97b" id="velha-label-x">🔵: <span id="velha-x">0</span></span>
+      <span style="color:#f5576c" id="velha-label-o">🔴: <span id="velha-o">0</span></span>
+    </div>
+    <div id="velha-msg" style="color:#ffd700;font-weight:700;font-size:.85rem;min-height:24px;margin:6px 0">Clique em Novo Jogo</div>
+    <div style="display:grid;grid-template-columns:repeat(3,80px);gap:4px;justify-content:center;margin:8px auto" id="velha-grid"></div>
+    <div class="botoes-centro">
+      <button class="btn btn-sm btn-p" onclick="velhaReset()">🔄 Novo Jogo</button>
+      <button class="btn btn-sm btn-o" onclick="velhaZerar()">🔁 Zerar Placar</button>
+    </div>
+  </div>
+</div>
+
+<!-- FORCA ESPÍRITA -->
+<div class="tela" id="tela-forca">
+  <div class="hist-card" style="text-align:center">
+    <h2>💀 Forca Espírita</h2>
+    <p style="color:#b8a8d8;font-size:.8rem">Descubra a palavra espiritual!</p>
+    <div id="forca-draw" style="font-size:2.8rem;margin:4px 0;min-height:60px;line-height:1.2">💀</div>
+    <div id="forca-word" style="font-size:1.5rem;font-weight:800;letter-spacing:6px;color:#f5e6d3;margin:8px 0;font-family:'Fredoka One',cursive"></div>
+    <div id="forca-hint" style="color:#cdb8f0;font-size:.8rem;margin:4px 0;font-style:italic;min-height:20px"></div>
+    <div id="forca-err" style="color:#f5576c;font-size:.75rem;margin:4px 0;font-weight:700">Erros: 0/6</div>
+    <div id="forca-letras" style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center;max-width:360px;margin:8px auto"></div>
+    <div id="forca-msg" style="color:#ffd700;font-weight:700;font-size:.85rem;min-height:22px;margin:4px 0"></div>
+    <div class="botoes-centro">
+      <button class="btn btn-sm btn-w" onclick="forcaNova()">🔄 Nova Palavra</button>
+      <button class="btn btn-sm btn-o" onclick="forcaRevelar()">💡 Revelar</button>
+    </div>
+    <div style="margin-top:6px;font-size:.75rem;color:#7a6a9a">✅ Acertadas: <span id="forca-acertos">0</span> | ❌ Perdidas: <span id="forca-erros">0</span></div>
+  </div>
+</div>
+
+<div class="tts-bar" id="tts-bar">
+  <span class="tts-info" id="tts-info"></span>
+  <button class="tts-btn tts-stop" onclick="ttsStop()">⏹ Parar</button>
+  <button class="tts-speed" data-v="0.8" onclick="ttsSetVel(0.8)">0.8×</button>
+  <button class="tts-speed ativo" data-v="1" onclick="ttsSetVel(1)">1×</button>
+  <button class="tts-speed" data-v="1.3" onclick="ttsSetVel(1.3)">1.3×</button>
+  <button class="tts-speed" data-v="1.8" onclick="ttsSetVel(1.8)">1.8×</button>
+</div>
+<div class="modal-overlay" id="modal-quiz">
+  <div class="modal-box">
+    <h3 id="modal-title">❓ Pergunta</h3>
+    <div class="mq" id="modal-q"></div>
+    <div class="mo" id="modal-opts"></div>
+    <div class="modal-fb" id="modal-fb"></div>
+    <button class="modal-btn-f" id="modal-btn-f">➡️ Continuar</button>
+  </div>
+</div>
+</div>
+</body>
+</html>
