@@ -317,6 +317,8 @@ function initQuebra(){
     '<div id="quebra-msg" style="text-align:center;font-size:.8rem;color:#ffd700;font-weight:700;min-height:24px;margin:4px 0"></div>';
   quebraTimer=setInterval(function(){quebraSegundos++;document.getElementById('quebra-tempo').textContent=quebraSegundos+'s';},1000);
   renderQuebra();
+  var msg=document.getElementById('quebra-msg');
+  if(msg)msg.innerHTML='🎯 Clique em um quadrado para selecionar, depois clique em outro para trocar de lugar. Ordene os números de 1 a '+n+'!';
 }
 
 function quebraSetDiff(d){
@@ -356,21 +358,23 @@ function renderQuebra(){
   var cellSize=Math.floor(260/quebraTamanho);
   for(var i=0;i<quebraGrade.length;i++){
     (function(idx){
+      var sel=quebraSel===idx;
       var d=document.createElement('div');
-      d.className='cp-cell'+(quebraSel===idx?' sel':'');
       d.style.width=cellSize+'px';d.style.height=cellSize+'px';
-      d.style.fontSize='0px';
       d.style.background=quebraGrade[idx].cor;
       d.style.borderRadius='4px';
-      d.style.border=quebraSel===idx?'3px solid #ffd700':'2px solid rgba(255,255,255,.1)';
+      d.style.border=sel?'3px solid #ffd700':'2px solid rgba(255,255,255,.1)';
+      d.style.boxShadow=sel?'0 0 12px rgba(255,215,0,.5)':'none';
       d.style.display='flex';
       d.style.alignItems='center';
       d.style.justifyContent='center';
-      d.style.color='rgba(0,0,0,.5)';
+      d.style.color=sel?'#fff':'rgba(0,0,0,.5)';
       d.style.fontWeight='800';
-      d.style.fontSize='.7rem';
+      d.style.fontSize='1rem';
+      d.style.textShadow=sel?'0 0 6px rgba(255,215,0,.6)':'none';
       d.textContent=quebraGrade[idx].id+1;
       d.style.cursor='pointer';
+      d.style.transition='all .15s';
       d.onclick=function(){quebraClick(idx);};
       g.appendChild(d);
     })(i);
@@ -382,14 +386,17 @@ function renderQuebra(){
 
 function quebraClick(idx){
   if(!quebraJogando)return;
+  var msg=document.getElementById('quebra-msg');
   if(quebraSel===-1){
     quebraSel=idx;
     renderQuebra();
+    if(msg)msg.innerHTML='✅ Quadrado '+(idx+1)+' selecionado! Agora clique em outro para trocar de lugar.';
     return;
   }
   if(quebraSel===idx){
     quebraSel=-1;
     renderQuebra();
+    if(msg)msg.innerHTML='🔓 Seleção cancelada. Clique em um quadrado para selecionar.';
     return;
   }
   var temp=quebraGrade[quebraSel].pos;
@@ -398,6 +405,7 @@ function quebraClick(idx){
   quebraSel=-1;
   quebraMovimentos++;
   renderQuebra();
+  if(msg)msg.innerHTML='🔄 Troca feita! Continue ordenando os números.';
   quebraCheckVitoria();
 }
 
