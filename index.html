@@ -501,7 +501,7 @@ var tabNJ=2,tabJogadores=[],tabTurno=0,tabPosicoes=[],tabJogando=false,tabRodada
 var prDiff=0,prTime1='Time Azul',prTime2='Time Vermelho',prPts=[0,0],prTurno=0,prPergAtual=null,prPergIdx=0,prPergs=[],prJogando=false,prRespondido=false,prPassou=false;
 var memDiff=0,memCards=[],memAbertas=[],memPares=0,memTentativas=0,memBloq=false,memParesTotal=0,memTimer=null;
 var lpDiff=0,lpDesenho='estrela',lpPontos=[],lpAtual=0,lpCanvas=null,lpCtx=null,lpDados=null;
-var cpDiff=0,cpGrid=[],cpPalavras=[],cpEncontradas=[],cpSel=null,cpDir=null;
+var cpDiff=0,cpGrid=[],cpPalavras=[],cpEncontradas=[],cpSel=null,cpDir=null,cpLast=null,cpPalavraAtual='';
 
 // ===== CONTEÚDO DOS TEMAS =====
 var temaContent={};
@@ -1497,7 +1497,7 @@ function iniciarCP(){
   var n=Math.max(4,Math.floor(size*0.7));
   if(wordsFit.length<n)n=wordsFit.length;
   var palavras=[...wordsFit].sort(function(){return Math.random()-.5;}).slice(0,n);
-  cpEncontradas=[];cpSel=null;cpDir=null;
+  cpEncontradas=[];cpSel=null;cpDir=null;cpLast=null;cpPalavraAtual='';
   var grid=[];
   for(var i=0;i<size;i++){grid[i]=[];for(var j=0;j<size;j++)grid[i][j]='';}
   function podeColocar(pal,lin,col,dl,dc){
@@ -1542,45 +1542,49 @@ function renderCP(){
     c.textContent=p;l.appendChild(c);
   });
 }
+function limparSelCP(){
+  document.querySelectorAll('#cp-grid .cp-cell.sel').forEach(function(e){e.classList.remove('sel');});
+  cpSel=null;cpLast=null;cpDir=null;cpPalavraAtual='';
+}
 function clicarCP(i,j){
   if(cpEncontradas.length>=cpPalavras.length)return;
   var cell=document.getElementById('cp-'+i+'-'+j);
-  if(cell.classList.contains('achada'))return;
+  if(!cell||cell.classList.contains('achada'))return;
+  if(cell.classList.contains('sel'))return;
   if(cpSel===null){
-    cpSel={i:i,j:j};
-    cell.classList.add('sel');
-    cpDir=null;
-  }else{
-    var di=i-cpSel.i,dj=j-cpSel.j;
-    var di2=di?di/Math.abs(di):0,dj2=dj?dj/Math.abs(dj):0;
-    if(di===0&&dj===0){cell.classList.remove('sel');cpSel=null;cpDir=null;renderCP();return;}
-    var palavra='';
-    var i2=cpSel.i,j2=cpSel.j;
-    while(i2>=0&&i2<cpGrid.length&&j2>=0&&j2<cpGrid[0].length){
-      if(i2===i&&j2===j){palavra+=cpGrid[i2][j2];break;}
-      palavra+=cpGrid[i2][j2];i2+=di2;j2+=dj2;
-      if(i2===i&&j2===j){palavra+=cpGrid[i2][j2];break;}
-    }
-    var enc=cpPalavras.find(function(p){return p===palavra||p===palavra.split('').reverse().join('');});
-    if(enc&&!cpEncontradas.includes(enc)){
-      cpEncontradas.push(enc);
-      i2=cpSel.i;j2=cpSel.j;
-      for(var k=0;k<enc.length;k++){
-        var c=document.getElementById('cp-'+i2+'-'+j2);
-        if(c){c.classList.remove('sel');c.classList.add('achada');}
-        i2+=di2;j2+=dj2;
-      }
-      document.getElementById('cp-pal-'+enc).classList.add('achada');
-      document.getElementById('cp-info').textContent='🔍 Encontrou "'+enc+'"! ('+cpEncontradas.length+'/'+cpPalavras.length+')';
-      cpSel=null;cpDir=null;
-      if(cpEncontradas.length>=cpPalavras.length){
-        document.getElementById('cp-info').textContent='🎉 Parabéns! Todas as palavras encontradas!';
-      }
-    }else{
-      document.getElementById('cp-'+cpSel.i+'-'+cpSel.j).classList.remove('sel');
-      cpSel=null;cpDir=null;
-      document.getElementById('cp-info').textContent='❌ Palavra não encontrada! Tente outra direção.';
-      setTimeout(function(){if(cpEncontradas.length<cpPalavras.length)document.getElementById('cp-info').textContent='🔍 Encontre as palavras!';},1000);
+    cpSel={i:i,j:j};cpLast={i:i,j:j};cpDir=null;cpPalavraAtual=cpGrid[i][j];
+    cell.classList.add('sel');return;
+  }
+  if(i===cpSel.i&&j===cpSel.j){limparSelCP();return;}
+  var di=i-cpLast.i,dj=j-cpLast.j;
+  if(Math.abs(di)>1||Math.abs(dj)>1){
+    limparSelCP();
+    cpSel={i:i,j:j};cpLast={i:i,j:j};cpPalavraAtual=cpGrid[i][j];
+    cell.classList.add('sel');return;
+  }
+  if(di===0&&dj===0)return;
+  if(di!==0&&dj!==0&&Math.abs(di)!==Math.abs(dj)){
+    limparSelCP();
+    cpSel={i:i,j:j};cpLast={i:i,j:j};cpPalavraAtual=cpGrid[i][j];
+    cell.classList.add('sel');return;
+  }
+  if(cpDir===null){cpDir={i:di,j:dj};}
+  else if(di!==cpDir.i||dj!==cpDir.j){
+    limparSelCP();
+    cpSel={i:i,j:j};cpLast={i:i,j:j};cpPalavraAtual=cpGrid[i][j];
+    cell.classList.add('sel');return;
+  }
+  cpPalavraAtual+=cpGrid[i][j];cpLast={i:i,j:j};cell.classList.add('sel');
+  var enc=cpPalavras.find(function(p){return p===cpPalavraAtual||p===cpPalavraAtual.split('').reverse().join('');});
+  if(enc&&cpEncontradas.indexOf(enc)<0){
+    cpEncontradas.push(enc);
+    document.querySelectorAll('#cp-grid .cp-cell.sel').forEach(function(e){e.classList.remove('sel');e.classList.add('achada');});
+    var el=document.getElementById('cp-pal-'+enc);
+    if(el)el.classList.add('achada');
+    document.getElementById('cp-info').textContent='🔍 Encontrou "'+enc+'"! ('+cpEncontradas.length+'/'+cpPalavras.length+')';
+    cpSel=null;cpLast=null;cpDir=null;cpPalavraAtual='';
+    if(cpEncontradas.length>=cpPalavras.length){
+      document.getElementById('cp-info').textContent='🎉 Parabéns! Todas as palavras encontradas!';
     }
   }
 }
