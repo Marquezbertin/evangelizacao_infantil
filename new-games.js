@@ -330,12 +330,12 @@ function quebraEmbaralhar(){
   var n=quebraGrade.length;
   for(var i=n-1;i>0;i--){
     var j=Math.floor(Math.random()*(i+1));
-    var temp=quebraGrade[i].pos;quebraGrade[i].pos=quebraGrade[j].pos;quebraGrade[j].pos=temp;
+    var temp=quebraGrade[i];quebraGrade[i]=quebraGrade[j];quebraGrade[j]=temp;
   }
   var inv=quebraContarInversoes();
   if(inv%2!==0&&n>1){
     if(n>2){
-      var t=quebraGrade[0].pos;quebraGrade[0].pos=quebraGrade[1].pos;quebraGrade[1].pos=t;
+      var t=quebraGrade[0];quebraGrade[0]=quebraGrade[1];quebraGrade[1]=t;
     }
   }
 }
@@ -344,7 +344,7 @@ function quebraContarInversoes(){
   var inv=0;
   for(var i=0;i<quebraGrade.length;i++){
     for(var j=i+1;j<quebraGrade.length;j++){
-      if(quebraGrade[i].pos>quebraGrade[j].pos)inv++;
+      if(quebraGrade[i].id>quebraGrade[j].id)inv++;
     }
   }
   return inv;
@@ -399,9 +399,9 @@ function quebraClick(idx){
     if(msg)msg.innerHTML='🔓 Seleção cancelada. Clique em um quadrado para selecionar.';
     return;
   }
-  var temp=quebraGrade[quebraSel].pos;
-  quebraGrade[quebraSel].pos=quebraGrade[idx].pos;
-  quebraGrade[idx].pos=temp;
+  var temp=quebraGrade[quebraSel];
+  quebraGrade[quebraSel]=quebraGrade[idx];
+  quebraGrade[idx]=temp;
   quebraSel=-1;
   quebraMovimentos++;
   renderQuebra();
@@ -412,7 +412,7 @@ function quebraClick(idx){
 function quebraCheckVitoria(){
   var certo=true;
   for(var i=0;i<quebraGrade.length;i++){
-    if(quebraGrade[i].pos!==i){certo=false;break;}
+    if(quebraGrade[i].id!==i){certo=false;break;}
   }
   if(certo&&quebraJogando){
     quebraJogando=false;
