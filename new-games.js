@@ -311,7 +311,8 @@ function initQuebra(){
     '<span>🔄 <span id="quebra-mov">0</span> mov</span>'+
     '<span>⏱️ <span id="quebra-tempo">0s</span></span>'+
     '</div>'+
-    '<button class="btn btn-p btn-sm" onclick="quebraNovoJogo()">🔄 Novo Jogo</button>'+
+    '<button class="btn btn-p btn-sm" onclick="quebraNovoJogo()">🔄 Novo Jogo</button> '+
+    '<button class="btn btn-w btn-sm" onclick="quebraEmbaralharPecas()">🔀 Embaralhar</button>'+
     '</div>'+
     '<div style="text-align:center"><div class="cp-grid" id="quebra-grid" style="display:inline-grid;gap:2px;margin:4px auto;user-select:none;background:rgba(255,255,255,.02);padding:4px;border-radius:10px;border:1px solid rgba(255,255,255,.04)"></div></div>'+
     '<div id="quebra-msg" style="text-align:center;font-size:.8rem;color:#ffd700;font-weight:700;min-height:24px;margin:4px 0"></div>';
@@ -328,16 +329,21 @@ function quebraSetDiff(d){
 
 function quebraEmbaralhar(){
   var n=quebraGrade.length;
-  for(var i=n-1;i>0;i--){
-    var j=Math.floor(Math.random()*(i+1));
-    var temp=quebraGrade[i];quebraGrade[i]=quebraGrade[j];quebraGrade[j]=temp;
-  }
-  var inv=quebraContarInversoes();
-  if(inv%2!==0&&n>1){
-    if(n>2){
-      var t=quebraGrade[0];quebraGrade[0]=quebraGrade[1];quebraGrade[1]=t;
+  for(var p=0;p<3;p++){
+    for(var i=n-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1));
+      var temp=quebraGrade[i];quebraGrade[i]=quebraGrade[j];quebraGrade[j]=temp;
     }
   }
+}
+
+function quebraEmbaralharPecas(){
+  quebraSel=-1;
+  quebraMovimentos=0;
+  quebraEmbaralhar();
+  renderQuebra();
+  var msg=document.getElementById('quebra-msg');
+  if(msg)msg.innerHTML='🔀 Peças embaralhadas! Ordene os números de 1 a '+quebraGrade.length+'.';
 }
 
 function quebraContarInversoes(){
