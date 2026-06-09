@@ -818,7 +818,7 @@ irP=function(t){
   if(t==='velha')velhaReset();
   if(t==='forca')forcaNova();
   if(t==='memoria'){memDiff=0;document.querySelector('#mem-dif .dif-btn[data-d="0"]').classList.add('ativo');iniciarMem();}
-  if(t==='cacapalavras'){cpDiff=0;document.querySelector('#cp-dif .dif-btn[data-d="0"]').classList.add('ativo');iniciarCP();}
+  if(t==='cacapalavras'){document.querySelectorAll('#cp-dif .dif-btn').forEach(function(b){b.classList.toggle('ativo',parseInt(b.dataset.d)===cpDiff);});iniciarCP();}
   if(t==='quadrinho')renderQuadrinho();
   if(t==='quiz')atualizarQuizTheme();
 };
@@ -1489,7 +1489,7 @@ function atualizarLPProgresso(){
 
 // ===== CAÇA-PALAVRAS =====
 var cpTam=[6,8,10];
-function setCPDiff(d){cpDiff=d;document.querySelectorAll('#cp-dif .dif-btn').forEach(b=>b.classList.remove('ativo'));document.querySelector('#cp-dif .dif-btn[data-d="'+d+'"]').classList.add('ativo');}
+function setCPDiff(d){cpDiff=d;document.querySelectorAll('#cp-dif .dif-btn').forEach(function(b){b.classList.toggle('ativo',parseInt(b.dataset.d)===d);});iniciarCP();}
 function iniciarCP(){
   var base=cacaTemas[temaAtual]||cacaTemas[0];
   var size=cpTam[cpDiff]||cpTam[0];
