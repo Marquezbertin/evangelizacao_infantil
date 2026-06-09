@@ -255,6 +255,11 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
     <button class="menu-btn" data-t="cinema" onclick="irP('cinema')">🎬 Cinema</button>
     <button class="menu-btn" data-t="velha" onclick="irP('velha')">⭕ Velha</button>
     <button class="menu-btn" data-t="forca" onclick="irP('forca')">💀 Forca</button>
+    <button class="menu-btn" data-t="colorir" onclick="irP('colorir')">🎨 Pintar</button>
+    <button class="menu-btn" data-t="quebra" onclick="irP('quebra')">🧩 Puzzle</button>
+    <button class="menu-btn" data-t="memimg" onclick="irP('memimg')">🖼️ MemImg</button>
+    <button class="menu-btn" data-t="labirinto" onclick="irP('labirinto')">🌀 Labir</button>
+    <button class="menu-btn" data-t="palavras" onclick="irP('palavras')">🔀 Palav</button>
   </div></div>
 
   <!-- INÍCIO -->
@@ -468,7 +473,22 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
   <!-- REVISÃO -->
   <div class="tela" id="tela-revisao">
     <div class="hist-card" id="rev-conteudo"></div>
-  </div><script>
+  </div>
+
+  <!-- COLORIR -->
+  <div class="tela" id="tela-colorir"></div>
+
+  <!-- QUEBRA-CABEÇA -->
+  <div class="tela" id="tela-quebra"></div>
+
+  <!-- MEMÓRIA IMAGENS -->
+  <div class="tela" id="tela-memimg"></div>
+
+  <!-- LABIRINTO -->
+  <div class="tela" id="tela-labirinto"></div>
+
+  <!-- PALAVRAS EMBARALHADAS -->
+  <div class="tela" id="tela-palavras"></div><script>
 // ===== TEMA =====
 var temaAtual=0;
 var temaNome=['🌟 Deus e a Criação','📜 Moisés e as Leis de Deus','✨ Jesus e o Evangelho','📖 A Doutrina Espírita','🔄 Reencarnação e o Espírito','💎 Virtudes e Valores Morais','🙏 Prece e Mediunidade','🌿 Parábolas de Jesus','👤 Figuras Espíritas','🔥 Mocidade e Temas Avançados','📜 Os Dez Mandamentos'];
@@ -2152,5 +2172,6 @@ function ttsBarShow(show,secao){
 </div>
 </div>
 <script src="new-themes.js"></script>
+<script src="new-games.js"></script>
 </body>
 </html>
