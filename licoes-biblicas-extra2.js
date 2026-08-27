@@ -53,7 +53,7 @@ temaContent[29]={
 };
 temaContent[29].rec=[
   {n:'Lázaro Ressuscitado para Crianças',u:'https://www.youtube.com/results?search_query=lazaro+ressuscitado+criancas'},
-  {n:'A Ressurreição de Lázaro (desenho)',u:'https://www.youtube.com/results?search_query+lazaro+desenho+animado'},
+  {n:'A Ressurreição de Lázaro (desenho)',u:'https://www.youtube.com/results?search_query=lazaro+desenho+animado'},
   {n:'O Poder da Fé (Espírita)',u:'https://www.youtube.com/results?search_query=poder+da+fe+espiritismo+criancas'}
 ];
 velhaTemas.push({x:'Jesus 🌟',o:'Lázaro 🧖',xt:'🌟',ot:'🧖'});
@@ -92,8 +92,8 @@ temaContent[30]={
 };
 temaContent[30].rec=[
   {n:'Jesus e as Crianças (desenho)',u:'https://www.youtube.com/results?search_query=jesus+e+as+criancas+desenho'},
-  {n:'Deixai Vir a Mim os Pequeninos',u:'https://www.youtube.com/results?search_query+deixai+vir+a+mim+os+pequeninos'},
-  {n:'Valor da Infância (Espírita)',u:'https://www.youtube.com/results?search_query+infancia+espiritismo+criancas'}
+  {n:'Deixai Vir a Mim os Pequeninos',u:'https://www.youtube.com/results?search_query=deixai+vir+a+mim+os+pequeninos'},
+  {n:'Valor da Infância (Espírita)',u:'https://www.youtube.com/results?search_query=infancia+espiritismo+criancas'}
 ];
 velhaTemas.push({x:'Jesus 🙏',o:'Criança 👶',xt:'🙏',ot:'👶'});
 forcaTemas.push([{p:'JESUS',d:'Abraçou as criancas'},{p:'CRIANCA',d:'Recebeu a bencao'},{p:'BENCAO',d:'Jesus a deu'},{p:'DISCIPULOS',d:'Queriam impedir'},{p:'REINO',d:'Dos que sao como criancas'},{p:'HUMILDE',d:'Como uma crianca'},{p:'PAIS',d:'Trouxeram os filhos'},{p:'COLO',d:'Jesus as pegou'},{p:'PURO',d:'Coração de crianca'},{p:'AMOR',d:'De Jesus pelas criancas'},{p:'MAOS',d:'Sobre a cabeca'},{p:'CONFIANCA',d:'Das criancas em Deus'}]);
@@ -131,8 +131,8 @@ temaContent[31]={
 };
 temaContent[31].rec=[
   {n:'Multiplicação dos Pães para Crianças',u:'https://www.youtube.com/results?search_query=multiplicacao+dos+paes+criancas'},
-  {n:'Jesus e os 5 Pães (música)',u:'https://www.youtube.com/results?search_query+5+paes+2+peixes+musica'},
-  {n:'Caridade e Partilha (Espírita)',u:'https://www.youtube.com/results?search_query+caridade+espiritismo+criancas'}
+  {n:'Jesus e os 5 Pães (música)',u:'https://www.youtube.com/results?search_query=5+paes+2+peixes+musica'},
+  {n:'Caridade e Partilha (Espírita)',u:'https://www.youtube.com/results?search_query=caridade+espiritismo+criancas'}
 ];
 velhaTemas.push({x:'Jesus 🍞',o:'Multidão 👥',xt:'🍞',ot:'👥'});
 forcaTemas.push([{p:'PAES',d:'Cinco ao todo'},{p:'PEIXES',d:'Dois peixes'},{p:'JESUS',d:'Abençoou e partiu'},{p:'MULTIDAO',d:'Foi alimentada'},{p:'MENINO',d:'Trouxe os paes'},{p:'BENCAO',d:'Jesus ergueu aos ceus'},{p:'PARTILHA',d:'Dar aos outros'},{p:'CESTOS',d:'Doze de sobra'},{p:'CARIDADE',d:'Lei do amor'},{p:'GRATIDAO',d:'Pelo pao de cada dia'},{p:'FARTURA',d:'Todos comeram'},{p:'AMOR',d:'Que multiplica'}]);

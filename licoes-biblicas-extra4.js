@@ -13,9 +13,9 @@ temaContent[36]={
   rev:`<h2>📚 Revisão — O Filho Pródigo <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Lucas 15:11-32 · bibliadocaminho.com</p><h3>💰 A partida</h3><p>O filho mais novo pediu a herança e gastou tudo longe (Lucas 15:12-13).</p><h3>😞 O retorno</h3><p>Na miséria, arrependeu-se e voltou ao pai (Lucas 15:17-20).</p><h3>🤗 O perdão</h3><p>O pai o recebeu com festa: "reviveu!" (Lucas 15:22-24).</p><h3>💭 Reflexão Espírita</h3><p>O arrependimento sincero atrai o perdão de Deus. Ele sempre nos espera. 🤗</p>`
 };
 temaContent[36].rec=[
-  {n:'Filho Pródigo para Crianças',u:'https://www.youtube.com/results?search_query+filho+prodigo+criancas'},
-  {n:'O Filho Pródigo (desenho)',u:'https://www.youtube.com/results?search_query+filho+prodigo+desenho'},
-  {n:'Perdão e Arrependimento (Espírita)',u:'https://www.youtube.com/results?search_query+perdao+espiritismo+criancas'}
+  {n:'Filho Pródigo para Crianças',u:'https://www.youtube.com/results?search_query=filho+prodigo+criancas'},
+  {n:'O Filho Pródigo (desenho)',u:'https://www.youtube.com/results?search_query=filho+prodigo+desenho'},
+  {n:'Perdão e Arrependimento (Espírita)',u:'https://www.youtube.com/results?search_query=perdao+espiritismo+criancas'}
 ];
 velhaTemas.push({x:'Pai 🤗',o:'Filho 💔',xt:'🤗',ot:'💔'});
 forcaTemas.push([{p:'FILHO',d:'O mais novo, que errou'},{p:'PAI',d:'Perdoou com amor'},{p:'HERANCA',d:'Que o filho pediu'},{p:'LONGE',d:'País onde foi'},{p:'ARREPEND',d:'Voltou arrependido'},{p:'PERDAO',d:'Do pai amoroso'},{p:'BANQUETE',d:'Festa de volta'},{p:'ANEL',d:'Simbolo de honra'},{p:'IRMAO',d:'O mais velho reclamou'},{p:'VOLTA',d:'Ao lar do pai'},{p:'AMOR',d:'Maior que o erro'},{p:'DEUS',d:'Nos espera sempre'}]);
@@ -52,9 +52,9 @@ temaContent[37]={
   rev:`<h2>📚 Revisão — Pentecostes <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Atos 2:1-13 · bibliadocaminho.com</p><h3>🌬️ O som do céu</h3><p>Veio um som como de vento forte e encheu a casa (Atos 2:2).</p><h3>🔥 As línguas de fogo</h3><p>Pousaram sobre os discípulos, que falaram em várias línguas (Atos 2:3-4).</p><h3>🤝 A união</h3><p>Pedro pregou e muitos creram, formando a Igreja (Atos 2:41).</p><h3>💭 Reflexão Espírita</h3><p>Pentecostes é a vinda do Consolador (Espírito de Verdade) que nos une e consola. 🕊️</p>`
 };
 temaContent[37].rec=[
-  {n:'Pentecostes para Crianças',u:'https://www.youtube.com/results?search_query+pentecostes+criancas'},
-  {n:'O Espírito Santo (desenho)',u:'https://www.youtube.com/results?search_query+espirito+santo+desenho'},
-  {n:'Consolador Prometido (Espírita)',u:'https://www.youtube.com/results?search_query+consolador+prometido+espiritismo'}
+  {n:'Pentecostes para Crianças',u:'https://www.youtube.com/results?search_query=pentecostes+criancas'},
+  {n:'O Espírito Santo (desenho)',u:'https://www.youtube.com/results?search_query=espirito+santo+desenho'},
+  {n:'Consolador Prometido (Espírita)',u:'https://www.youtube.com/results?search_query=consolador+prometido+espiritismo'}
 ];
 velhaTemas.push({x:'Espírito 🕊️',o:'Discípulos 👥',xt:'🕊️',ot:'👥'});
 forcaTemas.push([{p:'PENTECOSTES',d:'Festa do Espirito'},{p:'ESPIRITO',d:'Santo desceu'},{p:'VENTO',d:'Som do ceu'},{p:'FOGO',d:'Linguas de fogo'},{p:'DISCIPULOS',d:'Foram cheios'},{p:'LINGUAS',d:'Falaram varias'},{p:'CONSOLADOR',d:'O Prometido'},{p:'UNIAO',d:'Dos irmaos'},{p:'PEDRO',d:'Pregou ao povo'},{p:'IGREJA',d:'Nasceu ali'},{p:'PAZ',d:'Que o Espirito da'},{p:'DEUS',d:'Enviou o dom'}]);
@@ -91,9 +91,9 @@ temaContent[38]={
   rev:`<h2>📚 Revisão — A Transfiguração <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Mateus 17:1-8 · bibliadocaminho.com</p><h3>⛰️ O monte</h3><p>Jesus levou três discípulos a um monte alto e orou (Mateus 17:1-2).</p><h3>✨ O brilho</h3><p>Seu rosto brilhou como o sol; Moisés e Elias apareceram (Mateus 17:2-3).</p><h3>🌤️ A voz</h3><p>Da nuvem: "Este é o meu Filho amado" (Mateus 17:5).</p><h3>💭 Reflexão Espírita</h3><p>O espírito unido a Deus irradia luz. No bem, também nos tornamos luz. ✨</p>`
 };
 temaContent[38].rec=[
-  {n:'Transfiguração de Jesus (crianças)',u:'https://www.youtube.com/results?search_query+transfiguracao+de+jesus+criancas'},
-  {n:'A Transfiguração (desenho)',u:'https://www.youtube.com/results?search_query+transfiguracao+desenho'},
-  {n:'O Espírito Irradia Luz (Espírita)',u:'https://www.youtube.com/results?search_query+espirito+luz+espiritismo+criancas'}
+  {n:'Transfiguração de Jesus (crianças)',u:'https://www.youtube.com/results?search_query=transfiguracao+de+jesus+criancas'},
+  {n:'A Transfiguração (desenho)',u:'https://www.youtube.com/results?search_query=transfiguracao+desenho'},
+  {n:'O Espírito Irradia Luz (Espírita)',u:'https://www.youtube.com/results?search_query=espirito+luz+espiritismo+criancas'}
 ];
 velhaTemas.push({x:'Jesus ✨',o:'Monte ⛰️',xt:'✨',ot:'⛰️'});
 forcaTemas.push([{p:'TRANSFIG',d:'Jesus brilhou'},{p:'JESUS',d:'Foi transfigurado'},{p:'MONTE',d:'Alto, a parte'},{p:'ORACAO',d:'Jesus orava'},{p:'BRILHO',d:'Rosto como o sol'},{p:'MOISES',d:'Apareceu com Elias'},{p:'ELIAS',d:'Profeta presente'},{p:'NUVEM',d:'Luminosa os cobriu'},{p:'VOZ',d:'Do Pai celeste'},{p:'PEDRO',d:'Um das testemunhas'},{p:'LUZ',d:'Do espirito puro'},{p:'DEUS',d:'Pai que falou'}]);
@@ -130,9 +130,9 @@ temaContent[39]={
   rev:`<h2>📚 Revisão — Jesus e Bartimeu <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Marcos 10:46-52 · bibliadocaminho.com</p><h3>🧑‍🦯 O cego</h3><p>Bartimeu clamava por misericórdia à beira do caminho (Marcos 10:47).</p><h3>🌟 O encontro</h3><p>Jesus parou e perguntou o que ele queria (Marcos 10:51).</p><h3>👁️ A cura</h3><p>"Mestre, que eu veja!" — e logo viu pela fé (Marcos 10:52).</p><h3>💭 Reflexão Espírita</h3><p>A fé persistente cura as trevas da alma. Devemos ver com os olhos do coração. 👁️</p>`
 };
 temaContent[39].rec=[
-  {n:'Bartimeu o Cego (crianças)',u:'https://www.youtube.com/results?search_query+bartimeu+o+cego+criancas'},
-  {n:'Jesus Cura o Cego (desenho)',u:'https://www.youtube.com/results?search_query+jesus+cura+o+cego+desenho'},
-  {n:'Fé que Cura (Espírita)',u:'https://www.youtube.com/results?search_query+fe+que+cura+espiritismo+criancas'}
+  {n:'Bartimeu o Cego (crianças)',u:'https://www.youtube.com/results?search_query=bartimeu+o+cego+criancas'},
+  {n:'Jesus Cura o Cego (desenho)',u:'https://www.youtube.com/results?search_query=jesus+cura+o+cego+desenho'},
+  {n:'Fé que Cura (Espírita)',u:'https://www.youtube.com/results?search_query=fe+que+cura+espiritismo+criancas'}
 ];
 velhaTemas.push({x:'Jesus 🌟',o:'Bartimeu 👁️',xt:'🌟',ot:'👁️'});
 forcaTemas.push([{p:'BARTIMEU',d:'O cego curado'},{p:'CEGO',d:'Nao enxergava'},{p:'JESUS',d:'Teve misericordia'},{p:'FE',d:'Que o curou'},{p:'GRITO',d:'Clamor por ajuda'},{p:'MISERICORDIA',d:'Que ele pediu'},{p:'MULTIDAO',d:'Quis cala-lo'},{p:'VER',d:'O que ele quis'},{p:'CURA',d:'Aconteceu logo'},{p:'CAMINHO',d:'Seguia a Jesus'},{p:'LUZ',d:'Que recebeu'},{p:'DEUS',d:'Ouviu o pedido'}]);

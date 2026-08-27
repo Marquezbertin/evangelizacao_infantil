@@ -13,9 +13,9 @@ temaContent[32]={
   rev:`<h2>📚 Revisão — Jesus Acalma a Tempestade <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Mateus 8:23-27 · bibliadocaminho.com</p><h3>⛵ O barco</h3><p>Jesus dormia no barco quando a tempestade veio (Mateus 8:24).</p><h3>💨 O medo</h3><p>Os discípulos O acordaram gritando "perecemos!" (Mateus 8:25).</p><h3>🌟 A bonança</h3><p>Jesus repreendeu o vento e fez-se grande bonança (Mateus 8:26).</p><h3>💭 Reflexão Espírita</h3><p>A fé acalma as paixões e traz paz interior. Com Deus, vencemos qualquer tempestade. 🕊️</p>`
 };
 temaContent[32].rec=[
-  {n:'Jesus Acalma a Tempestade (crianças)',u:'https://www.youtube.com/results?search_query+jesus+acalma+a+tempestade+criancas'},
-  {n:'Acalma a Tempestade (desenho)',u:'https://www.youtube.com/results?search_query+acalma+a+tempestade+desenho'},
-  {n:'Paz Interior (Espírita)',u:'https://www.youtube.com/results?search_query+paz+interior+espiritismo+criancas'}
+  {n:'Jesus Acalma a Tempestade (crianças)',u:'https://www.youtube.com/results?search_query=jesus+acalma+a+tempestade+criancas'},
+  {n:'Acalma a Tempestade (desenho)',u:'https://www.youtube.com/results?search_query=acalma+a+tempestade+desenho'},
+  {n:'Paz Interior (Espírita)',u:'https://www.youtube.com/results?search_query=paz+interior+espiritismo+criancas'}
 ];
 velhaTemas.push({x:'Jesus 🌟',o:'Tempestade 🌊',xt:'🌟',ot:'🌊'});
 forcaTemas.push([{p:'TEMPESTADE',d:'Vento e ondas no mar'},{p:'JESUS',d:'Acalmou o mar'},{p:'BARCO',d:'Onde estavam'},{p:'DISCIPULOS',d:'Tinham medo'},{p:'FE',d:'Pouca dos discipulos'},{p:'BONANCA',d:'Paz apos a ordem'},{p:'VENTO',d:'Cessou ao comando'},{p:'MAR',d:'Obedeceu a Jesus'},{p:'PAZ',d:'Que Jesus deu'},{p:'MEDO',d:'Dos discipulos'},{p:'SENHOR',d:'Titulo de Jesus'},{p:'CALMA',d:'Aprender a ter'}]);
@@ -52,9 +52,9 @@ temaContent[33]={
   rev:`<h2>📚 Revisão — A Pesca Maravilhosa <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Lucas 5:1-11 · bibliadocaminho.com</p><h3>🚣 O barco de Pedro</h3><p>Jesus ensinou de dentro do barco de Simão (Lucas 5:3).</p><h3>🐟 A obediência</h3><p>Pedro lançou a rede por obedecer a Jesus, após pescar em vão (Lucas 5:5-6).</p><h3>⚓ O chamado</h3><p>Jesus disse: "Serás pescador de homens" (Lucas 5:10).</p><h3>💭 Reflexão Espírita</h3><p>"Pescar homens" é atrair pessoas para o bem pelo exemplo e pela palavra. 💡</p>`
 };
 temaContent[33].rec=[
-  {n:'Pesca Maravilhosa para Crianças',u:'https://www.youtube.com/results?search_query+pesca+maravilhosa+criancas'},
-  {n:'A Pesca Milagrosa (desenho)',u:'https://www.youtube.com/results?search_query+pesca+miraculosa+desenho'},
-  {n:'Pescador de Homens (Espírita)',u:'https://www.youtube.com/results?search_query+pescador+de+homens+criancas'}
+  {n:'Pesca Maravilhosa para Crianças',u:'https://www.youtube.com/results?search_query=pesca+maravilhosa+criancas'},
+  {n:'A Pesca Milagrosa (desenho)',u:'https://www.youtube.com/results?search_query=pesca+miraculosa+desenho'},
+  {n:'Pescador de Homens (Espírita)',u:'https://www.youtube.com/results?search_query=pescador+de+homens+criancas'}
 ];
 velhaTemas.push({x:'Pedro ⚓',o:'Peixes 🐟',xt:'⚓',ot:'🐟'});
 forcaTemas.push([{p:'PEDRO',d:'Pescador que obedeceu'},{p:'JESUS',d:'Mandou lancar a rede'},{p:'REDE',d:'Encheu de peixes'},{p:'BARCO',d:'De Simao'},{p:'PEIXES',d:'Grande quantidade'},{p:'OBEDIENCIA',d:'De Pedro a Jesus'},{p:'PESCADOR',d:'De homens agora'},{p:'LARGO',d:'Lancar ao largo'},{p:'MILAGRE',d:'A pesca prodigiosa'},{p:'AMOR',d:'Pelo proximo'},{p:'PALAVRA',d:'De Jesus'},{p:'SERVIR',d:'A Deus e aos outros'}]);
@@ -91,9 +91,9 @@ temaContent[34]={
   rev:`<h2>📚 Revisão — João Batista <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Mateus 3:1-17 · bibliadocaminho.com</p><h3>🌵 A pregação</h3><p>João pregava no deserto: "Arrependei-vos" (Mateus 3:2).</p><h3>💧 O batismo</h3><p>Ele batizava no Jordão para perdão dos pecados (Mateus 3:6).</p><h3>🕊️ A confirmação</h3><p>Ao batizar Jesus, o Espírito desceu como pomba (Mateus 3:16-17).</p><h3>💭 Reflexão Espírita</h3><p>O verdadeiro batismo é a mudança do coração pelo arrependimento e esforço. 💧</p>`
 };
 temaContent[34].rec=[
-  {n:'João Batista para Crianças',u:'https://www.youtube.com/results?search_query+joao+batista+criancas'},
-  {n:'João Batista (desenho)',u:'https://www.youtube.com/results?search_query+joao+batista+desenho+animado'},
-  {n:'Arrependimento (Espírita)',u:'https://www.youtube.com/results?search_query+arrependimento+espiritismo+criancas'}
+  {n:'João Batista para Crianças',u:'https://www.youtube.com/results?search_query=joao+batista+criancas'},
+  {n:'João Batista (desenho)',u:'https://www.youtube.com/results?search_query=joao+batista+desenho+animado'},
+  {n:'Arrependimento (Espírita)',u:'https://www.youtube.com/results?search_query=arrependimento+espiritismo+criancas'}
 ];
 velhaTemas.push({x:'João 🐪',o:'Jesus 🌟',xt:'🐪',ot:'🌟'});
 forcaTemas.push([{p:'JOAO',d:'O Batista, voz no deserto'},{p:'DESERTO',d:'Onde pregava'},{p:'BATISMO',d:'Lavava os pecados'},{p:'JORDAO',d:'Rio do batismo'},{p:'ARREPEND',d:'Tema de sua pregação'},{p:'CAMINHO',d:'Preparai o do Senhor'},{p:'POMBA',d:'Espirito sobre Jesus'},{p:'FILHO',d:'Jesus, amado de Deus'},{p:'HUMILDE',d:'Joao era'},{p:'CORAGEM',d:'Teve ao pregar'},{p:'AGUA',d:'Batizava com'},{p:'FOGO',d:'Jesus batiza com espirito'}]);
@@ -130,9 +130,9 @@ temaContent[35]={
   rev:`<h2>📚 Revisão — Parábola dos Talentos <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Mateus 25:14-30 · bibliadocaminho.com</p><h3>💼 A entrega</h3><p>O senhor deu talentos conforme a capacidade de cada servo (Mateus 25:15).</p><h3>📈 O trabalho</h3><p>Dois servos multiplicaram; um escondeu o seu (Mateus 25:16-18).</p><h3>⚖️ O julgamento</h3><p>O fiel foi recompensado; o preguiçoso perdeu seu talento (Mateus 25:21-28).</p><h3>💭 Reflexão Espírita</h3><p>Os dons vêm de Deus para servir. Desenvolvê-los é amor em ação; escondê-los é perda. 🎁</p>`
 };
 temaContent[35].rec=[
-  {n:'Parábola dos Talentos (crianças)',u:'https://www.youtube.com/results?search_query+parabola+dos+talentos+criancas'},
-  {n:'Os Talentos (desenho)',u:'https://www.youtube.com/results?search_query+parabola+dos+talentos+desenho'},
-  {n:'Nossos Dons (Espírita)',u:'https://www.youtube.com/results?search_query+aptidoes+dons+espiritismo+criancas'}
+  {n:'Parábola dos Talentos (crianças)',u:'https://www.youtube.com/results?search_query=parabola+dos+talentos+criancas'},
+  {n:'Os Talentos (desenho)',u:'https://www.youtube.com/results?search_query=parabola+dos+talentos+desenho'},
+  {n:'Nossos Dons (Espírita)',u:'https://www.youtube.com/results?search_query=aptidoes+dons+espiritismo+criancas'}
 ];
 velhaTemas.push({x:'Senhor 💼',o:'Servo 🤝',xt:'💼',ot:'🤝'});
 forcaTemas.push([{p:'TALENTO',d:'Dom dado por Deus'},{p:'SENHOR',d:'Quem confiou os bens'},{p:'SERVO',d:'Recebeu e trabalhou'},{p:'TRABALHO',d:'Multiplicou os dons'},{p:'PREGUICA',d:'Do servo infiel'},{p:'CINCO',d:'Talentos do primeiro'},{p:'DOIS',d:'Talentos do segundo'},{p:'UM',d:'Talento do terceiro'},{p:'FE',d:'Do servo bom'},{p:'DOM',d:'Aptidao de cada um'},{p:'RECOMPENSA',d:'Para o fiel'},{p:'DEUS',d:'Da os talentos'}]);
