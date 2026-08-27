@@ -254,6 +254,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
 .ws-header .ws-title{font-family:'Fredoka One',cursive;color:#b8860b;font-size:1.2rem;text-shadow:0 2px 0 #ffd166}
 .ws-header .ws-eb{font-size:2.1rem;letter-spacing:4px;margin:5px auto 2px;line-height:1.1;display:inline-block;padding:8px 16px;border-radius:18px;background:linear-gradient(135deg,rgba(124,92,191,.18),rgba(255,209,102,.22));box-shadow:0 4px 14px rgba(124,92,191,.18);max-width:94%}
 .capa-svg{width:100%;max-width:340px;height:auto;display:block;margin:0 auto 10px;border-radius:20px}
+.ws-nav{display:flex;gap:8px;justify-content:center;margin:8px 0 4px}
 .ws-tabs{display:flex;gap:4px;overflow-x:auto;padding:3px;background:rgba(124,92,191,.08);border-radius:30px;margin-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .ws-tabs::-webkit-scrollbar{display:none}
 .ws-tab{flex-shrink:0;font-family:'Nunito',sans-serif;font-weight:800;font-size:.7rem;padding:7px 13px;border:none;border-radius:24px;background:transparent;color:#6b5b8c;cursor:pointer;transition:all .2s;white-space:nowrap}
@@ -416,6 +417,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
       <button class="ws-tab" data-s="recursos" onclick="wsTab('recursos')">📺 Vídeos</button>
     </div>
     <div id="ws-content"></div>
+    <div class="ws-nav"><button class="btn btn-o btn-sm" onclick="temaVizinho(-1)">⬅️ Anterior</button><button class="btn btn-w btn-sm" onclick="temaVizinho(1)">Próximo ➡️</button></div>
     <p class="ws-games-t">🎮 Jogos e atividades deste tema:</p>
     <div class="ws-games">
       <button class="ws-game" aria-label="Jogo da Velha deste tema" onclick="irP('velha')">⭕ Jogo da Velha</button>
@@ -675,6 +677,8 @@ var catTemas=[
    {nome:'🎨 Evangelização & Vida', temas:[14,26,74,75,76,77,78,79]},
    {nome:'📜 Bíblia Espírita Infantil', temas:[80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104]}
 ];
+var ordemTemas=(function(){var a=[];catTemas.forEach(function(c){c.temas.forEach(function(t){a.push(t);});});return a;})();
+function temaVizinho(d){var p=ordemTemas.indexOf(temaAtual);if(p<0)p=0;var n=p+d;if(n<0)n=0;if(n>=ordemTemas.length)n=ordemTemas.length-1;setTema(ordemTemas[n]);}
 var catFaixa=null;
 function faixaTema(i){
   var a=(temaContent[i]&&temaContent[i].aula)||'';
