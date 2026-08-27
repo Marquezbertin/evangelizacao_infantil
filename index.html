@@ -381,7 +381,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
 
   <!-- SALA DE AULA (workspace por tema) -->
   <div class="tela" id="tela-sala">
-    <div class="ws-back"><button class="btn btn-o btn-sm" onclick="irP('inicio')">⬅️ Catálogo</button></div>
+    <div class="ws-back"><button class="btn btn-o btn-sm" onclick="irP('inicio')">⬅️ Catálogo</button><button class="btn btn-w btn-sm" onclick="imprimirPlanoAula()" style="margin-left:auto">🖨️ Imprimir Plano</button></div>
     <div class="ws-header"><span class="ws-title" id="ws-title">Tema</span></div>
     <div class="ws-tabs" id="ws-tabs">
       <button class="ws-tab ativo" data-s="historia" onclick="wsTab('historia')">📜 História</button>
@@ -1024,6 +1024,18 @@ function renderAula(){
   if(!el)return;
   var c=temaContent[temaAtual];
   el.innerHTML=c&&c.aula?c.aula:'<p style="color:#6b5b8c;text-align:center;font-size:.9rem">👩‍🏫 Conteúdo em desenvolvimento para este tema.</p>';
+}
+function imprimirPlanoAula(){
+  var c=temaContent[temaAtual];
+  var nome=temaNome[temaAtual]||'Tema';
+  var aula=c&&c.aula?c.aula:'<p>Sem plano de aula para este tema.</p>';
+  var w=window.open('','_blank');
+  if(!w){alert('Permita pop-ups no navegador para imprimir o plano de aula.');return;}
+  w.document.open();
+  w.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Plano de Aula — '+nome+'</title>');
+  w.document.write('<style>body{font-family:Nunito,Arial,sans-serif;color:#222;padding:22px;line-height:1.5;max-width:800px;margin:auto}h1{color:#1a9e54;border-bottom:2px solid #1a9e54;padding-bottom:6px}button{display:none}img{max-width:100%}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}a{color:#1a9e54}</style>');
+  w.document.write('</head><body><h1>'+nome+'</h1>'+aula+'<scr'+'ipt>window.onload=function(){setTimeout(function(){window.print();},350);};<\/scr'+'ipt></body></html>');
+  w.document.close();
 }
 function renderBrinc(){
   var el=document.getElementById('brinc-conteudo');
