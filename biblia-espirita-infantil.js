@@ -153,54 +153,54 @@ velhaTemas.push([]); forcaTemas.push([]); memoriaTemas.push([]); cacaTemas.push(
   {q:'Qual lei de Jesus se opõe à inveja de Caim?',o:['"Fora da caridade não há salvação"','"Vence o mais forte"','"Cada um por si"','"Quem tem mais, fica"'],r:0,e:'ESE — caridade.'}
 ]);
 
-// ---------- TEMA 83: NOÉ E O DILÚVIO (Gênesis 6–9) ----------
-temaNome.push('🌧️ Noé e o Dilúvio');
+// ---------- TEMA 83: ABRAÃO E A PROMESSA (Gênesis 12,15,21-22) ----------
+temaNome.push('⭐ Abraão e a Promessa');
 temaContent[83]={
-  hist:`<h2>🌧️ Noé e o Dilúvio <button class="tts-btn-ouvir" onclick="ttsLer('historia',this)">🔊 Ouvir</button></h2>
-  <p class="ref">Gênesis 6:5–9:17 · Bíblia do Caminho · O Livro dos Espíritos (q. 19-21, 578-583) · ESE</p>
-  <div class="eb">🚢🌧️🌈🕊️</div>
-  <p>A terra se encheu de maldade, e Deus decidiu purificar o mundo com um dilúvio. Mas Noé era homem justo que andava com Deus (Gênesis 6:5-9). Deus mandou construir uma arca de madeira para abrigar Noé, sua família e um par de cada animal (Gênesis 6:14-22).</p>
-  <p>Choveu quarenta dias e quarenta noites; as águas cobriram a terra (Gênesis 7:11-12). Depois, Noé soltou uma pomba que voltou com um ramo de oliveira (Gênesis 8:6-12). Ao sair da arca, Noé ergueu um altar (Gênesis 8:20). Deus firmou uma aliança e pôs o arco-íris no céu como sinal (Gênesis 9:8-17).</p>
-  <div class="vers">"Porei o meu arco na nuvem... sinal de aliança." (Gênesis 9:13)</div>
-  <div class="reflexao">💭 <strong>Reflexão Espírita:</strong> Allan Kardec ensina que o dilúvio foi local, onde então habitava a humanidade, e não universal (LE q. 19-21). Mais que castigo, foi purificação e recomeço. Deus sempre oferece ao ser humano um novo começo — e a misericórdia aparece na pomba e no arco-íris.</div>`,
-  aula:`<h2>👩‍🏫 Plano de Aula: Noé e o Dilúvio <button class="tts-btn-ouvir" onclick="ttsLer('aula',this)">🔊 Ouvir</button></h2>
-  <p style="color:#6b5b8c;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 5 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> Obediência e esperança</p>
-  <h3>🎯 Objetivos</h3><p>Compreender a obediência de Noé; ver o dilúvio como purificação; acolher a esperança do arco-íris.</p>
-  <h3>📖 1. Acolhida (5 min)</h3><p>Oração. Perguntar: "O que fazemos quando chove muito?"</p>
-  <h3>🌟 2. Introdução (5 min)</h3><p>Mostrar 🌈. Perguntar: "O que o arco-íris nos lembra?"</p>
-  <h3>📜 3. História Interativa (15 min)</h3><p>Contar com emojis: 🌧️ maldade → 🚢 arca → 🕊️ pomba → 🌈 aliança.</p>
-  <h3>💬 4. Diálogo (8 min)</h3><p>• Deus purifica e recomeça • Obediência salva • A esperança volta como pomba.</p>
-  <h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Montar arca com caixas | Canção do arco-íris.</p>
-  <h3>✏️ 6. Fixação (5 min)</h3><p>Frase: "Deus sempre dá um novo começo."</p>
-  <h3>🙏 7. Encerramento (2 min)</h3><p>Prece de esperança.</p>
-  <div class="dica">💡 Leve um arco-íris desenhado pelas crianças.</div>`,
-  brinc:`<h2>🎪 Brincadeiras: Noé e o Dilúvio <button class="tts-btn-ouvir" onclick="ttsLer('brincadeiras',this)">🔊 Ouvir</button></h2>
-  <h3>1️⃣ Arca de Noé (💡 5-10 anos, 20 min)</h3>
-  <p><strong>🎯 Aprende:</strong> Cuidar dos animais e da criação.</p>
-  <p><strong>📦 Material:</strong> Caixas, pelúcias de animais.</p>
-  <p><strong>🎮 Como:</strong> Entrar na "arca" em pares; contar como cuidar.</p>
-  <h3>2️⃣ Caça ao Arco-íris (💡 5-12 anos, 15 min)</h3>
-  <p><strong>🎯 Aprende:</strong> O sinal da aliança de Deus.</p>
-  <p><strong>📦 Material:</strong> Tiras de papel colorido.</p>
-  <p><strong>🎮 Como:</strong> Montar um arco-íris coletivo.</p>`,
-  rev:`<h2>📚 Revisão — Noé e o Dilúvio <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2>
-  <p style="color:#6b5b8c;font-size:.8rem">Fontes: Gênesis 6–9 · Bíblia do Caminho · LE q. 19-21, 578-583</p>
-  <h3>🚢 A Arca</h3><p>Noé, justo, construiu a arca conforme Deus mandou (Gn 6:14-22).</p>
-  <h3>🌧️ O Dilúvio</h3><p>Quarenta dias de chuva; as águas cobriram a terra (Gn 7).</p>
-  <h3>🌈 A Aliança</h3><p>Deus pôs o arco-íris como sinal (Gn 9:8-17).</p>
-  <h3>💭 Reflexão Espírita</h3><p>O dilúvio foi local, não universal (LE q. 19-21). É purificação e recomeço — Deus sempre oferece nova chance.</p>`,
+  hist:`<h2>⭐ Abraão e a Promessa <button class="tts-btn-ouvir" onclick="ttsLer('historia',this)">🔊 Ouvir</button></h2>
+  <p class="ref">Gênesis 12:1-7; 15:1-6; 21:1-7; 22:1-18 · Bíblia do Caminho · O Livro dos Espíritos (q. 684-686, fé) · ESE cap. 1</p>
+  <div class="eb">⭐🏕️👴👶🐏</div>
+  <p>Deus chamou Abrão: "Sai da tua terra... e far-te-ei uma grande nação" (Gênesis 12:1-2). Abrão obedeceu, partiu e Deus lhe prometeu a terra e uma descendência numerosa como as estrelas (Gênesis 15:5-6). Aos 100 anos, nasceu seu filho Isaque, cumprindo a promessa (Gênesis 21:1-7).</p>
+  <p>Deus pôs Abraão à prova, pedindo Isaque em holocausto. Abraão preparou o sacrifício, mas o Anjo o deteve: "Não estendas a mão... porque agora sei que temes a Deus" (Gênesis 22:1-12). No mato ficou preso um carneiro, e Deus reafirmou a bênção (Gênesis 22:13-18).</p>
+  <div class="vers">"Olha para o céu e conta as estrelas, se as poderes contar... assim será a tua descendência." (Gênesis 15:5)</div>
+  <div class="reflexao">💭 <strong>Reflexão Espírita:</strong> Abraão é modelo de fé e confiança em Deus (LE q. 684-686). A prova de Abraão ensina que Deus prova o coração, mas não deseja o mal: Ele quer nossa entrega e confiança, não o sofrimento dos inocentes. A fé verdadeira age com amor.</div>`,
+  aula:`<h2>👩‍🏫 Plano de Aula: Abraão e a Promessa <button class="tts-btn-ouvir" onclick="ttsLer('aula',this)">🔊 Ouvir</button></h2>
+  <p style="color:#6b5b8c;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 6 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> Fé e confiança em Deus</p>
+  <h3>🎯 Objetivos</h3><p>Compreender a obediência de Abraão; valorizar a fé; entender que Deus prova sem querer o mal.</p>
+  <h3>📖 1. Acolhida (5 min)</h3><p>Oração. Perguntar: "Você já teve de confiar sem entender?"</p>
+  <h3>🌟 2. Introdução (5 min)</h3><p>Mostrar ⭐. Perguntar: "O que as estrelas nos lembram?"</p>
+  <h3>📜 3. História Interativa (15 min)</h3><p>Contar com emojis: 🏕️ chamado → 👶 promessa → 🐏 prova vencida.</p>
+  <h3>💬 4. Diálogo (8 min)</h3><p>• Deus chama e guia • A fé obedece • A provação ensina, não destrói.</p>
+  <h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Contar estrelas num cartaz | Jogo "confia e segue" (orientar fechando os olhos).</p>
+  <h3>✏️ 6. Fixação (5 min)</h3><p>Frase: "Confio em Deus como Abraão."</p>
+  <h3>🙏 7. Encerramento (2 min)</h3><p>Prece de confiança.</p>
+  <div class="dica">💡 Use um cartaz de estrelas para ilustrar a promessa.</div>`,
+  brinc:`<h2>🎪 Brincadeiras: Abraão e a Promessa <button class="tts-btn-ouvir" onclick="ttsLer('brincadeiras',this)">🔊 Ouvir</button></h2>
+  <h3>1️⃣ Caça às Estrelas (💡 5-10 anos, 15 min)</h3>
+  <p><strong>🎯 Aprende:</strong> A promessa de Deus é grande como as estrelas.</p>
+  <p><strong>📦 Material:</strong> Estrelas recortadas escondidas pela sala.</p>
+  <p><strong>🎮 Como:</strong> As crianças procuram e contam as estrelas; conversar sobre a confiança.</p>
+  <h3>2️⃣ Confia e Segue (💡 6-12 anos, 15 min)</h3>
+  <p><strong>🎯 Aprende:</strong> Confiar no guia como Abraão confiou em Deus.</p>
+  <p><strong>📦 Material:</strong> Venda opcional.</p>
+  <p><strong>🎮 Como:</strong> Uma criança guia a outra que está de olhos fechados; refletir sobre confiança.</p>`,
+  rev:`<h2>📚 Revisão — Abraão e a Promessa <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2>
+  <p style="color:#6b5b8c;font-size:.8rem">Fontes: Gênesis 12,15,21-22 · Bíblia do Caminho · LE q. 684-686</p>
+  <h3>⭐ O Chamado</h3><p>Deus mandou Abrão sair; prometeu nação e terra (Gn 12:1-7).</p>
+  <h3>👶 A Promessa</h3><p>Isaque nasceu aos 100 anos (Gn 21:1-7).</p>
+  <h3>🐏 A Prova</h3><p>Abraão obedeceu; Deus proveu o carneiro (Gn 22:1-18).</p>
+  <h3>💭 Reflexão Espírita</h3><p>Abraão é exemplo de fé (LE q. 684-686). Deus prova o coração, mas não quer o mal dos inocentes.</p>`,
   rec:[
     {t:'📖 Bíblia do Caminho — Gênesis (acervo)',u:'https://www.bibliadocaminho.com/ocaminho/TRP/TDIndexLivros.htm',d:'Leitura do texto bíblico citado.'},
-    {t:'🔎 Buscar no YouTube: Noé e a arca para crianças',u:'https://www.youtube.com/results?search_query=noé+e+a+arca+crianças+desenho',d:'Vídeos infantis.'}
+    {t:'🔎 Buscar no YouTube: Abraão e a promessa para crianças',u:'https://www.youtube.com/results?search_query=abraão+e+a+promessa+crianças+desenho',d:'Vídeos infantis.'}
   ]
 };
-velhaTemas.push([]); forcaTemas.push([]); memoriaTemas.push([]); cacaTemas.push([]); lpTemas.push([]); qdConteudo.push([]); qdTitulos.push('🌧️ Noé e o Dilúvio'); quizPerguntasTema.push([
-  {q:'Por que Deus enviou o dilúvio?',o:['Pelo capricho','Porque a terra se encheu de maldade','Por causa do sol','Por esporte'],r:1,e:'Gênesis 6:5-9.'},
-  {q:'Com o que Noé construiu a arca?',o:['Ouro','Madeira','Pedra','Vidro'],r:1,e:'Gênesis 6:14.'},
-  {q:'Que animal Noé soltou e voltou com ramo de oliveira?',o:['A coruja','A pomba','O leão','O corvo'],r:1,e:'Gênesis 8:6-12.'},
-  {q:'O que Deus pôs no céu como sinal de aliança?',o:['A lua','O arco-íris','O sol','Uma estrela'],r:1,e:'Gênesis 9:13.'},
-  {q:'Segundo Allan Kardec, o dilúvio foi:',o:['Universal','Local, onde habitava a humanidade','Imaginário','Só no deserto'],r:1,e:'LE q. 19-21.'},
-  {q:'O que o dilúvio representa no Espiritismo?',o:['Castigo sem sentido','Purificação e recomeço','Fim do mundo','Um jogo'],r:1,e:'LE q. 578-583.'}
+velhaTemas.push([]); forcaTemas.push([]); memoriaTemas.push([]); cacaTemas.push([]); lpTemas.push([]); qdConteudo.push([]); qdTitulos.push('⭐ Abraão e a Promessa'); quizPerguntasTema.push([
+  {q:'O que Deus pediu a Abrão?',o:['Que ficasse','Que saísse da sua terra','Que dormisse','Que fugisse'],r:1,e:'Gênesis 12:1.'},
+  {q:'Com o que Deus comparou a descendência de Abraão?',o:['Areia','Estrelas do céu','Pedras','Peixes'],r:1,e:'Gênesis 15:5.'},
+  {q:'Quantos anos tinha Abraão quando nasceu Isaque?',o:['100','20','50','80'],r:0,e:'Gênesis 21:5.'},
+  {q:'O que apareceu preso no mato no lugar de Isaque?',o:['Um boi','Um carneiro','Uma ovelha','Um cabrito'],r:1,e:'Gênesis 22:13.'},
+  {q:'O que Abraão representa no Espiritismo?',o:['Riqueza','Modelo de fé e confiança','Guerreiro','Rei'],r:1,e:'LE q. 684-686.'},
+  {q:'Deus queria o mal de Isaque?',o:['Sim','Não; Ele provou o coração de Abraão','Talvez','Não se sabe'],r:1,e:'Gênesis 22:12.'}
 ]);
 
 // ---------- TEMA 84: A TORRE DE BABEL (Gênesis 11) ----------
