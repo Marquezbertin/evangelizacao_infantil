@@ -1838,6 +1838,7 @@ function revisaoNovos(i) {
     if (temaContent[idx]) return;
     temaNome[idx] = t.nome;
     temaContent[idx] = {
+      eb: t.eb,
       hist: historinhaNovos(i),
       aula: aulaNovos(i),
       brinc: brincadeirasNovos(i),
