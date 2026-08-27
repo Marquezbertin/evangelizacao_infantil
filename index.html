@@ -237,6 +237,11 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
       <button class="tema-btn" data-tema="12" onclick="setTema(12)">⚖️ Causa/Efeito</button>
       <button class="tema-btn" data-tema="13" onclick="setTema(13)">❤️ Caridade</button>
       <button class="tema-btn" data-tema="14" onclick="setTema(14)">🏠 EVL</button>
+      <button class="tema-btn" data-tema="15" onclick="setTema(15)">🙏 Pai Nosso</button>
+      <button class="tema-btn" data-tema="16" onclick="setTema(16)">😇 Bem-avent.</button>
+      <button class="tema-btn" data-tema="17" onclick="setTema(17)">🐟 Histórias</button>
+      <button class="tema-btn" data-tema="18" onclick="setTema(18)">🕊️ Anjos</button>
+      <button class="tema-btn" data-tema="19" onclick="setTema(19)">📖 Salmos</button>
     </div>
   </div>
   <div class="menu-wrap"><div class="menu-topo" id="menu-topo">
@@ -248,12 +253,13 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
     <button class="menu-btn" data-t="cacapalavras" onclick="irP('cacapalavras')">🔍 Caça</button>
     <button class="menu-btn" data-t="quadrinho" onclick="irP('quadrinho')">📖 Quad</button>
     <button class="menu-btn" data-t="quiz" onclick="irP('quiz')">❓ Quiz</button>
-    <button class="menu-btn" data-t="historia" onclick="irP('historia')">📜 Hist</button>
-    <button class="menu-btn" data-t="aula" onclick="irP('aula')">👩‍🏫 Aula</button>
+     <button class="menu-btn" data-t="historia" onclick="irP('historia')">📜 Hist</button>
+     <button class="menu-btn" data-t="licoes" onclick="irP('licoes')">📖 Lições</button>
+     <button class="menu-btn" data-t="aula" onclick="irP('aula')">👩‍🏫 Aula</button>
     <button class="menu-btn" data-t="brincadeiras" onclick="irP('brincadeiras')">🎪 Brinc</button>
     <button class="menu-btn" data-t="recursos" onclick="irP('recursos')">📚 Rec</button>
     <button class="menu-btn" data-t="cinema" onclick="irP('cinema')">🎬 Cinema</button>
-    <button class="menu-btn" data-t="velha" onclick="irP('velha')">⭕ Velha</button>
+     <button class="menu-btn" data-t="velha" onclick="irP('velha')">⭕ Velha</button>
     <button class="menu-btn" data-t="forca" onclick="irP('forca')">💀 Forca</button>
     <button class="menu-btn" data-t="colorir" onclick="irP('colorir')">🎨 Pintar</button>
     <button class="menu-btn" data-t="quebra" onclick="irP('quebra')">🧩 Puzzle</button>
@@ -426,7 +432,12 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
         <button class="dif-btn" data-t="12" onclick="setQuizTema(12)">⚖️ Causa/Efeito</button>
         <button class="dif-btn" data-t="13" onclick="setQuizTema(13)">❤️ Caridade</button>
         <button class="dif-btn" data-t="14" onclick="setQuizTema(14)">🏠 EVL</button>
-        <button class="dif-btn" data-t="15" onclick="setQuizTema(15)">🔀 Misto</button>
+        <button class="dif-btn" data-t="15" onclick="setQuizTema(15)">🙏 Pai Nosso</button>
+        <button class="dif-btn" data-t="16" onclick="setQuizTema(16)">😇 Bem-avent.</button>
+        <button class="dif-btn" data-t="17" onclick="setQuizTema(17)">🐟 Histórias</button>
+        <button class="dif-btn" data-t="18" onclick="setQuizTema(18)">🕊️ Anjos</button>
+        <button class="dif-btn" data-t="19" onclick="setQuizTema(19)">📖 Salmos</button>
+        <button class="dif-btn" data-t="20" onclick="setQuizTema(20)">🔀 Misto</button>
       </div>
       <p style="color:#cdb8f0;font-weight:700;font-size:.8rem;margin-top:2px">💪 Dificuldade:</p>
       <div class="dificuldade" id="quiz-dif">
@@ -488,7 +499,8 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
   <div class="tela" id="tela-labirinto"></div>
 
   <!-- PALAVRAS EMBARALHADAS -->
-  <div class="tela" id="tela-palavras"></div><script>
+  <div class="tela" id="tela-palavras"></div>
+  <div class="tela" id="tela-licoes"></div><script>
 // ===== TEMA =====
 var temaAtual=0;
 var temaNome=['🌟 Deus e a Criação','📜 Moisés e as Leis de Deus','✨ Jesus e o Evangelho','📖 A Doutrina Espírita','🔄 Reencarnação e o Espírito','💎 Virtudes e Valores Morais','🙏 Prece e Mediunidade','🌿 Parábolas de Jesus','👤 Figuras Espíritas','🔥 Mocidade e Temas Avançados','📜 Os Dez Mandamentos'];
@@ -891,6 +903,7 @@ var irPOriginal=irP;
 irP=function(t){
   irPOriginal(t);
   if(t==='historia')renderHistoria();
+  if(t==='licoes')renderLicoes();
   if(t==='aula')renderAula();
   if(t==='brincadeiras')renderBrinc();
   if(t==='revisao')renderRevisao();
@@ -2173,5 +2186,7 @@ function ttsBarShow(show,secao){
 </div>
 <script src="new-themes.js"></script>
 <script src="new-games.js"></script>
+<script src="licoes.js"></script>
+<script src="licoes-biblicas.js"></script>
 </body>
 </html>
