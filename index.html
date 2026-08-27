@@ -672,6 +672,20 @@ var catTemas=[
    {nome:'🎨 Evangelização & Vida', temas:[14,26,74,75,76,77,78,79]},
    {nome:'📜 Bíblia Espírita Infantil', temas:[80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104]}
 ];
+var catFaixa=null;
+function faixaTema(i){
+  var a=(temaContent[i]&&temaContent[i].aula)||'';
+  var m=/Faixa et\u00e1ria:[^0-9]*(\d+)\s*a\s*(\d+)/i.exec(a);
+  if(m)return {min:+m[1],max:+m[2]};
+  return {min:5,max:14};
+}
+function faixaOk(idx){
+  if(!catFaixa)return true;
+  var f=faixaTema(idx);
+  var p=catFaixa.split('-');
+  return f.min<=+p[1] && f.max>=+p[0];
+}
+function setCatFaixa(v){ catFaixa=v||null; renderCatalog(); }
 function abrirSala(){
   var wt=document.getElementById('ws-title');
   if(!wt)return;
@@ -700,7 +714,12 @@ function renderCatalog(){
   var c=document.getElementById('catalogo');
   if(!c)return;
   var h='<div style="text-align:center;margin:4px 0 2px"><div class="ilustracao">📚✨🐮</div><h1 class="logo" style="font-size:1.5rem">Catálogo de Temas<small>Escolha um tema e abra a Sala de Aula</small></h1><p class="subtitle">Cada tema tem sua História, Plano de Aula, Brincadeiras, Revisão e vídeos — tudo organizado para a sua aula!</p></div>';
-  h+='<div style="text-align:center;margin:6px 0 2px"><input id="cat-busca" type="text" placeholder="🔍 Buscar um tema..." oninput="filtrarCatalogo(this.value)" style="font-family:Nunito,sans-serif;font-size:.85rem;padding:8px 16px;border-radius:30px;border:2px solid rgba(124,92,191,.3);background:rgba(124,92,191,.14);color:#3a2a5a;width:min(320px,92%);text-align:center;outline:none"><div id="cat-sem" style="display:none;color:#6b5b8c;font-weight:700;font-size:.8rem;margin-top:6px">Nenhum tema encontrado 🔎</div></div>';
+   h+='<div style="text-align:center;margin:6px 0 2px"><input id="cat-busca" type="text" placeholder="🔍 Buscar um tema..." oninput="filtrarCatalogo(this.value)" style="font-family:Nunito,sans-serif;font-size:.85rem;padding:8px 16px;border-radius:30px;border:2px solid rgba(124,92,191,.3);background:rgba(124,92,191,.14);color:#3a2a5a;width:min(320px,92%);text-align:center;outline:none"><div id="cat-sem" style="display:none;color:#6b5b8c;font-weight:700;font-size:.8rem;margin-top:6px">Nenhum tema encontrado 🔎</div></div>';
+  h+='<div class="cat-filtro" style="text-align:center;margin:4px 0 8px">';
+  [['Todos',''],['👶 4-6','4-6'],['🧒 7-9','7-9'],['👦 10-12','10-12'],['🧑 13-14','13-14']].forEach(function(b){
+    h+='<button class="btn btn-sm '+(catFaixa===b[1]?'btn-w':'btn-o')+'" style="margin:2px 3px" onclick="setCatFaixa(\''+b[1]+'\')">'+b[0]+'</button>';
+  });
+  h+='</div>';
   for(var i=0;i<catTemas.length;i++){
     var cat=catTemas[i];
     h+='<div class="tema-cat"><div class="cat-title">'+cat.nome+'</div><div class="tema-grid">';
@@ -710,7 +729,8 @@ function renderCatalog(){
       var parts=temaNome[idx].split(' ');
       var emo=parts.shift();
       var nome=parts.join(' ');
-      h+='<div class="tema-card'+(temaVisto(idx)?' visto':'')+'" data-nome="'+nome+'" onclick="setTema('+idx+')"><div class="tc-badges">'+(temaVisto(idx)?'<span class="tc-badge" title="Tema visitado">✓</span>':'')+(temaQuiz(idx)?'<span class="tc-badge quiz" title="Quiz concluído">🎯</span>':'')+'</div><div class="tc-emoji">'+emo+'</div><div class="tc-nome">'+nome+'</div><button class="tc-btn" onclick="event.stopPropagation();setTema('+idx+')">🚪 Abrir Sala</button></div>';
+      var fok=faixaOk(idx);
+      h+='<div class="tema-card'+(temaVisto(idx)?' visto':'')+(fok?'':' escondido')+'" data-nome="'+nome+'" data-idx="'+idx+'" onclick="setTema('+idx+')"><div class="tc-badges">'+(temaVisto(idx)?'<span class="tc-badge" title="Tema visitado">✓</span>':'')+(temaQuiz(idx)?'<span class="tc-badge quiz" title="Quiz concluído">🎯</span>':'')+'</div><div class="tc-emoji">'+emo+'</div><div class="tc-nome">'+nome+'</div><button class="tc-btn" onclick="event.stopPropagation();setTema('+idx+')">🚪 Abrir Sala</button></div>';
     }
     h+='</div></div>';
   }
@@ -726,8 +746,9 @@ function filtrarCatalogo(q){
   var qn=(q||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   var algum=false;
   document.querySelectorAll('#catalogo .tema-card').forEach(function(el){
+    var idx=+el.getAttribute('data-idx');
     var n=(el.getAttribute('data-nome')||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    var vis=qn===''||n.indexOf(qn)>=0;
+    var vis=(qn===''||n.indexOf(qn)>=0) && faixaOk(idx);
     el.classList.toggle('escondido',!vis);
     if(vis)algum=true;
   });
