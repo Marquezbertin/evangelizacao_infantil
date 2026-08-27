@@ -1037,6 +1037,8 @@ function atualizarQuizTheme(){
 var irPOriginal=irP;
 irP=function(t){
   irPOriginal(t);
+  var mt=document.getElementById('menu-topo');
+  if(mt)mt.style.display=(t==='sala')?'none':'';
   if(t==='historia')renderHistoria();
   if(t==='licoes')renderLicoes();
   if(t==='aula')renderAula();
