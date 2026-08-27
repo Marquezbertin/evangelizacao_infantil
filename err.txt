@@ -1,0 +1,2 @@
+pos 34087
+context: [o!","l":"Rute acompanha Noemi"},{"e":["🌾","🍞","👧"],"f":"Colho espigas!","l":"Rute recolhe no campo"},{"e":["🤝","🌾","😊],"f":"Vem comer!","l":"Boaz convida Rute"},{"e":["🍞","🎁","🌟],"]
