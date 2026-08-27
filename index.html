@@ -306,6 +306,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
   </div>
   <div class="menu-wrap"><div class="menu-topo" id="menu-topo">
     <button class="menu-btn ativo" data-t="inicio" onclick="irP('inicio')">🏠 Ini</button>
+    <button class="menu-btn" data-t="sobre" onclick="irP('sobre')">ℹ️ Sobre</button>
     <button class="menu-btn" data-t="sala" onclick="irP('sala')">📚 Sala</button>
     <button class="menu-btn" data-t="tabuleiro" onclick="irP('tabuleiro')">🎲 Tab</button>
     <button class="menu-btn" data-t="passa" onclick="irP('passa')">🎯 Passa</button>
@@ -380,6 +381,27 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
   </div>
 
   <!-- SALA DE AULA (workspace por tema) -->
+  <div class="tela" id="tela-sobre">
+    <div class="ws-back"><button class="btn btn-o btn-sm" onclick="irP('inicio')">⬅️ Catálogo</button></div>
+    <div class="hist-card">
+      <h2>ℹ️ Sobre este site</h2>
+      <p class="ref">Evangelização Espírita Infantil · princípio espírita-cristão</p>
+      <div class="eb">🕊️ 📖 ✨</div>
+      <p>Este é um espaço de <strong>evangelização infantil</strong> que une a <strong>Bíblia</strong> e a <strong>Doutrina Espírita</strong> (Codificação de Allan Kardec). Crianças de 5 a 14 anos, evangelizadores, pais e professores encontram aqui histórias, planos de aula, brincadeiras e jogos para aprender brincando.</p>
+      <h3>📜 Nosso princípio de conteúdo</h3>
+      <p>Todo texto bíblico traz <strong>citações reais</strong> (livro, capítulo e versículo) da <em>Bíblia do Caminho</em> — "O Caminho", Escritura do Espiritismo Cristão (bibliadocaminho.com). A ligação espírita é documentada com referências a <em>O Evangelho Segundo o Espiritismo</em>, <em>O Livro dos Espíritos</em> e a Allan Kardec. <strong>Nada é inventado</strong>: onde há interpretação, ela é indicada como "Reflexão Espírita".</p>
+      <h3>🧭 Como usar</h3>
+      <ul>
+        <li><strong>📚 Catálogo:</strong> escolha um tema por categoria; use a busca e veja seu progresso (✓ visitado, 🎯 quiz feito) e o botão <em>Continuar</em>.</li>
+        <li><strong>📖 Sala de Aula:</strong> cada tema reúne História, Plano de Aula, Brincadeiras, Revisão e Vídeos num só lugar. Use <em>🖨️ Imprimir Plano</em> para levar a aula impressa.</li>
+        <li><strong>🎮 Jogos:</strong> Forca, Memória, Caça-palavras, Quiz e outros para fixar o aprendizado.</li>
+        <li><strong>📚 Biblioteca de Histórias:</strong> acesso (em iframe e links creditados) ao acervo do Manual do Evangelizador, sem rehosting de direitos.</li>
+      </ul>
+      <h3>🙏 Para quem é</h3>
+      <p>Crianças em evangelização, professoras e pais que desejam plantar sementes de amor, caridade e conhecimento, respeitando a liberdade de consciência e o princípio espírita de progresso e reencarnação.</p>
+      <div class="dica">💡 Dica: comece pelo <em>Catálogo</em> e explore a categoria <strong>📜 Bíblia Espírita Infantil</strong> para as histórias bíblicas completas.</div>
+    </div>
+  </div>
   <div class="tela" id="tela-sala">
     <div class="ws-back"><button class="btn btn-o btn-sm" onclick="irP('inicio')">⬅️ Catálogo</button><button class="btn btn-w btn-sm" onclick="imprimirPlanoAula()" style="margin-left:auto">🖨️ Imprimir Plano</button></div>
     <div class="ws-header"><span class="ws-title" id="ws-title">Tema</span></div>
@@ -727,7 +749,7 @@ function bezFala(){
 }
 // ===== NAVEGAÇÃO =====
 let telaAtual='inicio';
-const nomeTelas=['inicio','tabuleiro','passa','memoria','ligapontos','cacapalavras','quadrinho','quiz','historia','aula','brincadeiras','revisao'];
+const nomeTelas=['inicio','sobre','tabuleiro','passa','memoria','ligapontos','cacapalavras','quadrinho','quiz','historia','aula','brincadeiras','revisao'];
 function irP(t){
   document.querySelectorAll('.tela').forEach(e=>e.classList.remove('active'));
   document.querySelectorAll('.menu-btn').forEach(e=>e.classList.remove('ativo'));
