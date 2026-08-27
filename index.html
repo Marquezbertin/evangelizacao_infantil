@@ -214,11 +214,62 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
   .tab-casa{min-height:24px}.tab-casa .ci{font-size:.55rem}
   .cp-cell{width:20px;height:20px;font-size:.55rem}.dado-face{width:32px;height:32px;font-size:1.3rem}
 }
+
+/* ===== NOVO LAYOUT: LOGO, AVATAR, CATÁLOGO E SALA DE AULA ===== */
+.header-site{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.header-logo{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:6px 14px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.header-logo svg{width:46px;height:46px;flex-shrink:0;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+.header-logo .hl-txt{line-height:1.05;text-align:left}
+.header-logo .hl-txt b{font-family:'Fredoka One',cursive;color:#ffd700;font-size:1rem;display:block;letter-spacing:.4px;text-shadow:0 2px 0 #4a2c8a}
+.header-logo .hl-txt span{font-size:.62rem;color:#cdb8f0;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.bez-wrap{position:fixed;right:8px;bottom:62px;z-index:150;display:flex;flex-direction:column;align-items:flex-end;gap:6px;pointer-events:none}
+.bez-wrap>*{pointer-events:auto}
+.bez-avatar{cursor:pointer;width:66px;height:66px;transition:transform .25s;filter:drop-shadow(0 4px 10px rgba(0,0,0,.45))}
+.bez-avatar:hover{transform:scale(1.08) rotate(-4deg)}
+.bez-bubble{display:none;max-width:220px;background:linear-gradient(135deg,#ffffff,#f3e9ff);color:#3a2a5a;border-radius:16px;padding:8px 12px;font-size:.75rem;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.45);position:relative;line-height:1.35}
+.bez-bubble.show{display:block;animation:popB .3s ease}
+.bez-bubble:after{content:'';position:absolute;right:16px;bottom:-8px;border:8px solid transparent;border-top-color:#f3e9ff}
+@keyframes popB{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.cat-title{font-family:'Fredoka One',cursive;color:#ffd700;font-size:1.02rem;margin:12px 4px 5px;text-shadow:0 2px 0 #4a2c8a;display:flex;align-items:center;gap:6px}
+.tema-cat{margin-bottom:4px}
+.tema-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(142px,1fr));gap:8px}
+.tema-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:11px 8px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.tema-card:hover{transform:translateY(-3px);background:rgba(124,92,191,.18);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.tema-card .tc-emoji{font-size:2rem;line-height:1}
+.tema-card .tc-nome{font-weight:800;color:#f5e6d3;font-size:.78rem;margin-top:4px;line-height:1.12}
+.tema-card .tc-btn{margin-top:7px;font-size:.62rem;font-weight:800;padding:4px 11px;border-radius:30px;background:linear-gradient(135deg,#43e97b,#38f9d7);color:#003d2e;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:3px}
+.tema-card .tc-btn:hover{filter:brightness(1.08)}
+.ws-back{display:flex;justify-content:center;margin:2px 0 6px}
+.ws-header{text-align:center;margin-bottom:4px}
+.ws-header .ws-title{font-family:'Fredoka One',cursive;color:#ffd700;font-size:1.2rem;text-shadow:0 2px 0 #4a2c8a}
+.ws-tabs{display:flex;gap:4px;overflow-x:auto;padding:3px;background:rgba(255,255,255,.03);border-radius:30px;margin-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.ws-tabs::-webkit-scrollbar{display:none}
+.ws-tab{flex-shrink:0;font-family:'Nunito',sans-serif;font-weight:800;font-size:.7rem;padding:7px 13px;border:none;border-radius:24px;background:transparent;color:#b8a8d8;cursor:pointer;transition:all .2s;white-space:nowrap}
+.ws-tab:hover{background:rgba(255,255,255,.06)}
+.ws-tab.ativo{background:rgba(255,215,0,.15);color:#ffd700;box-shadow:0 0 10px rgba(255,215,0,.12)}
+.ws-games{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0 2px}
+.ws-game{font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:8px 14px;border:2px solid rgba(255,255,255,.1);border-radius:30px;background:rgba(255,255,255,.04);color:#f5e6d3;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:4px}
+.ws-game:hover{background:rgba(124,92,191,.25);border-color:#7c5cbf;transform:translateY(-2px)}
+.ws-games-t{text-align:center;color:#cdb8f0;font-weight:800;font-size:.78rem;margin:10px 0 0}
+@media(max-width:600px){.header-logo .hl-txt b{font-size:.85rem}.bez-avatar{width:56px;height:56px}}
 </style>
 </head>
 <body>
 <div class="stars" id="stars"></div>
-<div class="container">
+  <div class="container">
+  <div class="header-site">
+    <div class="header-logo" title="Casa Espírita Bezerra de Menezes">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Casa Bezerra de Menezes">
+        <rect x="47" y="5" width="6" height="22" rx="2" fill="#ffd700"/>
+        <rect x="40" y="12" width="20" height="6" rx="2" fill="#ffd700"/>
+        <path d="M50 28 L86 52 V92 H14 V52 Z" fill="none" stroke="#cdb8f0" stroke-width="5" stroke-linejoin="round"/>
+        <rect x="42" y="64" width="16" height="28" rx="3" fill="#7c5cbf"/>
+        <path d="M52 62 q-9 -11 -17 -6 q7 4 7 11 q-9 -2 -13 3 q11 2 23 -8z" fill="#ffffff"/>
+        <circle cx="62" cy="60" r="2.2" fill="#3a2a5a"/>
+      </svg>
+      <div class="hl-txt"><b>Casa Bezerra de Menezes</b><span>Evangelização Infantil</span></div>
+    </div>
+  </div>
   <!-- TEMA SELECTOR -->
   <div style="overflow-x:auto;margin-bottom:3px;-webkit-overflow-scrolling:touch">
     <div style="display:flex;gap:2px;min-width:max-content;padding:2px;background:rgba(255,255,255,.03);border-radius:36px" id="tema-botoes">
@@ -246,6 +297,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
   </div>
   <div class="menu-wrap"><div class="menu-topo" id="menu-topo">
     <button class="menu-btn ativo" data-t="inicio" onclick="irP('inicio')">🏠 Ini</button>
+    <button class="menu-btn" data-t="sala" onclick="irP('sala')">📚 Sala</button>
     <button class="menu-btn" data-t="tabuleiro" onclick="irP('tabuleiro')">🎲 Tab</button>
     <button class="menu-btn" data-t="passa" onclick="irP('passa')">🎯 Passa</button>
     <button class="menu-btn" data-t="memoria" onclick="irP('memoria')">🧠 Mem</button>
@@ -268,26 +320,32 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
     <button class="menu-btn" data-t="palavras" onclick="irP('palavras')">🔀 Palav</button>
   </div></div>
 
-  <!-- INÍCIO -->
-  <div class="tela active" id="tela-inicio">
-    <div class="ilustracao">🌟📖🕊️</div>
-    <div class="logo">Evangelização Infantil<small>Casa Bezerra de Menezes - São Pedro</small></div>
-    <p class="subtitle">Aprendemos brincando!</p>
-    <div class="card-grid">
-      <div class="card-jogo" onclick="irP('tabuleiro')"><div class="ci">🎲</div><div class="ct">Tabuleiro</div><div class="cd">Multiplayer até 4</div></div>
-      <div class="card-jogo" onclick="irP('passa')"><div class="ci">🎯</div><div class="ct">Passa ou Repassa</div><div class="cd">Equipes! Níveis fácil/médio/difícil</div></div>
-      <div class="card-jogo" onclick="irP('memoria')"><div class="ci">🧠</div><div class="ct">Jogo da Memória</div><div class="cd">Encontre os pares</div></div>
-      <div class="card-jogo" onclick="irP('ligapontos')"><div class="ci">🔢</div><div class="ct">Ligue os Pontos</div><div class="cd">Descubra o desenho!</div></div>
-      <div class="card-jogo" onclick="irP('cacapalavras')"><div class="ci">🔍</div><div class="ct">Caça-Palavras</div><div class="cd">Encontre palavras</div></div>
-      <div class="card-jogo" onclick="irP('quadrinho')"><div class="ci">📖</div><div class="ct">Quadrinho</div><div class="cd">História animada</div></div>
-      <div class="card-jogo" onclick="irP('quiz')"><div class="ci">❓</div><div class="ct">Quiz</div><div class="cd">Perguntas divertidas</div></div>
-      <div class="card-jogo" onclick="irP('historia')"><div class="ci">📜</div><div class="ct">História</div><div class="cd">Moisés no cestinho</div></div>
-      <div class="card-jogo" onclick="irP('aula')"><div class="ci">👩‍🏫</div><div class="ct">Aula Completa</div><div class="cd">Plano para professores</div></div>
-      <div class="card-jogo" onclick="irP('brincadeiras')"><div class="ci">🎪</div><div class="ct">Brincadeiras</div><div class="cd">Para fazer na sala</div></div>
-      <div class="card-jogo" onclick="irP('revisao')"><div class="ci">📚</div><div class="ct">Revisão</div><div class="cd">Estude os temas</div></div>
-      <div class="card-jogo" onclick="irP('velha')"><div class="ci">⭕</div><div class="ct">Jogo da Velha</div><div class="cd">Moisés vs Faraó</div></div>
-      <div class="card-jogo" onclick="irP('forca')"><div class="ci">💀</div><div class="ct">Forca Espírita</div><div class="cd">Descubra a palavra</div></div>
+  <!-- SALA DE AULA (workspace por tema) -->
+  <div class="tela" id="tela-sala">
+    <div class="ws-back"><button class="btn btn-o btn-sm" onclick="irP('inicio')">⬅️ Catálogo</button></div>
+    <div class="ws-header"><span class="ws-title" id="ws-title">Tema</span></div>
+    <div class="ws-tabs" id="ws-tabs">
+      <button class="ws-tab ativo" data-s="historia" onclick="wsTab('historia')">📜 História</button>
+      <button class="ws-tab" data-s="aula" onclick="wsTab('aula')">👩‍🏫 Plano de Aula</button>
+      <button class="ws-tab" data-s="brincadeiras" onclick="wsTab('brincadeiras')">🎪 Brincadeiras</button>
+      <button class="ws-tab" data-s="revisao" onclick="wsTab('revisao')">📚 Revisão</button>
+      <button class="ws-tab" data-s="recursos" onclick="wsTab('recursos')">📺 Vídeos</button>
     </div>
+    <div id="ws-content"></div>
+    <p class="ws-games-t">🎮 Jogos e atividades deste tema:</p>
+    <div class="ws-games">
+      <button class="ws-game" onclick="irP('velha')">⭕ Jogo da Velha</button>
+      <button class="ws-game" onclick="irP('forca')">💀 Forca</button>
+      <button class="ws-game" onclick="irP('memoria')">🧠 Memória</button>
+      <button class="ws-game" onclick="irP('cacapalavras')">🔍 Caça-Palavras</button>
+      <button class="ws-game" onclick="irP('quadrinho')">📖 Quadrinho</button>
+      <button class="ws-game" onclick="irP('quiz')">❓ Quiz</button>
+    </div>
+  </div>
+
+  <!-- INÍCIO (catálogo de temas organizado) -->
+  <div class="tela active" id="tela-inicio">
+    <div id="catalogo"></div>
   </div>
 
   <!-- TABULEIRO -->
@@ -507,10 +565,67 @@ var temaNome=['🌟 Deus e a Criação','📜 Moisés e as Leis de Deus','✨ Je
 function setTema(t){
   temaAtual=t;
   document.querySelectorAll('#tema-botoes .tema-btn').forEach(function(b){b.classList.remove('ativo');});
-  document.querySelector('#tema-botoes .tema-btn[data-tema="'+t+'"]').classList.add('ativo');
-  // Navigate to history & update
-  if(telaAtual!=='historia'){irP('historia');return;}
-  renderHistoria();
+  var btn=document.querySelector('#tema-botoes .tema-btn[data-tema="'+t+'"]');
+  if(btn)btn.classList.add('ativo');
+  abrirSala();
+}
+// ===== CATÁLOGO E SALA DE AULA (organização por tema) =====
+var wsTabAtual='historia';
+var catTemas=[
+  {nome:'📖 Histórias Bíblicas e de Jesus', temas:[0,1,2,7,15,16,17,18,19,20,21,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39]},
+  {nome:'💡 Doutrina Espírita e Valores', temas:[3,4,5,6,8,9,10,11,12,13,14,26]}
+];
+function abrirSala(){
+  var wt=document.getElementById('ws-title');
+  if(!wt)return;
+  wt.textContent=temaNome[temaAtual]||'Tema';
+  wsTabAtual='historia';
+  irP('sala');
+  wsTab('historia');
+}
+function wsTab(s){
+  wsTabAtual=s;
+  document.querySelectorAll('#ws-tabs .ws-tab').forEach(function(b){b.classList.remove('ativo');});
+  var tb=document.querySelector('#ws-tabs .ws-tab[data-s="'+s+'"]');
+  if(tb)tb.classList.add('ativo');
+  var mapa={historia:'hist-conteudo',aula:'aula-conteudo',brincadeiras:'brinc-conteudo',revisao:'rev-conteudo',recursos:'rec-conteudo'};
+  if(s==='historia')renderHistoria();
+  else if(s==='aula')renderAula();
+  else if(s==='brincadeiras')renderBrinc();
+  else if(s==='revisao')renderRevisao();
+  else if(s==='recursos')renderRecursos();
+  var src=document.getElementById(mapa[s]);
+  var dest=document.getElementById('ws-content');
+  dest.innerHTML=src?src.innerHTML:'<p style="color:#cdb8f0;text-align:center;font-size:.9rem">Em breve para este tema.</p>';
+  dest.scrollTop=0;
+}
+function renderCatalog(){
+  var c=document.getElementById('catalogo');
+  if(!c)return;
+  var h='<div style="text-align:center;margin:4px 0 2px"><div class="ilustracao">📚✨🐮</div><h1 class="logo" style="font-size:1.5rem">Catálogo de Temas<small>Escolha um tema e abra a Sala de Aula</small></h1><p class="subtitle">Cada tema tem sua História, Plano de Aula, Brincadeiras, Revisão e vídeos — tudo organizado para a sua aula!</p></div>';
+  for(var i=0;i<catTemas.length;i++){
+    var cat=catTemas[i];
+    h+='<div class="tema-cat"><div class="cat-title">'+cat.nome+'</div><div class="tema-grid">';
+    for(var j=0;j<cat.temas.length;j++){
+      var idx=cat.temas[j];
+      if(!temaNome[idx])continue;
+      var parts=temaNome[idx].split(' ');
+      var emo=parts.shift();
+      var nome=parts.join(' ');
+      h+='<div class="tema-card" onclick="setTema('+idx+')"><div class="tc-emoji">'+emo+'</div><div class="tc-nome">'+nome+'</div><button class="tc-btn" onclick="event.stopPropagation();setTema('+idx+')">🚪 Abrir Sala</button></div>';
+    }
+    h+='</div></div>';
+  }
+  c.innerHTML=h;
+}
+var bezFalas=['Oi! Eu sou a Bezzerrinha! Vamos aprender brincando? 🐮✨','Escolha um tema no catálogo e abra a Sala de Aula! Lá tem história, aula e brincadeiras.','Não esqueça: cada tema tem seus próprios jogos e vídeos, tudo no lugar certo! 🎮📺','Jesus disse: "Deixai vir a mim as criancinhas!" 👶💕','Bom evangelizador planta sementes de amor. Você é um! 🌱❤️','Na Sala de Aula você encontra tudo de um tema num só lugar. Prático, né? 📚'];
+function bezFala(){
+  var b=document.getElementById('bez-bubble');
+  if(!b)return;
+  b.textContent=bezFalas[Math.floor(Math.random()*bezFalas.length)];
+  b.classList.add('show');
+  clearTimeout(window.__bezT);
+  window.__bezT=setTimeout(function(){b.classList.remove('show');},6500);
 }
 // ===== NAVEGAÇÃO =====
 let telaAtual='inicio';
@@ -519,7 +634,8 @@ function irP(t){
   document.querySelectorAll('.tela').forEach(e=>e.classList.remove('active'));
   document.querySelectorAll('.menu-btn').forEach(e=>e.classList.remove('ativo'));
   document.getElementById('tela-'+t).classList.add('active');
-  document.querySelector('.menu-btn[data-t="'+t+'"]').classList.add('ativo');
+  var mb=document.querySelector('.menu-btn[data-t="'+t+'"]');
+  if(mb)mb.classList.add('ativo');
   telaAtual=t;
   var btn=document.querySelector('.menu-btn[data-t="'+t+'"]');
   if(btn) btn.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
@@ -915,6 +1031,7 @@ irP=function(t){
   if(t==='cacapalavras'){document.querySelectorAll('#cp-dif .dif-btn').forEach(function(b){b.classList.toggle('ativo',parseInt(b.dataset.d)===cpDiff);});iniciarCP();}
   if(t==='quadrinho')renderQuadrinho();
   if(t==='quiz')atualizarQuizTheme();
+  if(t==='sala')wsTab(wsTabAtual);
 };
 
 // ===== QUIZ =====
@@ -2166,7 +2283,31 @@ function ttsBarShow(show,secao){
   <div class="hist-card" id="cinema-conteudo"></div>
 </div>
 
-<div class="tts-bar" id="tts-bar">
+  <div class="bez-wrap">
+    <div class="bez-bubble" id="bez-bubble">Oi! Eu sou a Bezzerrinha! Escolha um tema no catálogo e vamos aprender brincando! 🐮✨</div>
+    <svg class="bez-avatar" id="bez-avatar" onclick="bezFala()" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="button" aria-label="Bezzerrinha, ajuda">
+      <ellipse cx="28" cy="30" rx="12" ry="18" fill="#caa472" transform="rotate(-20 28 30)"/>
+      <ellipse cx="72" cy="30" rx="12" ry="18" fill="#caa472" transform="rotate(20 72 30)"/>
+      <ellipse cx="28" cy="32" rx="6" ry="10" fill="#f7d9c4" transform="rotate(-20 28 32)"/>
+      <ellipse cx="72" cy="32" rx="6" ry="10" fill="#f7d9c4" transform="rotate(20 72 32)"/>
+      <path d="M34 18 q-5 -11 4 -13 q3 7 -1 11z" fill="#ffffff" stroke="#e0d5c0" stroke-width="1.5"/>
+      <path d="M66 18 q5 -11 -4 -13 q-3 7 1 11z" fill="#ffffff" stroke="#e0d5c0" stroke-width="1.5"/>
+      <circle cx="50" cy="56" r="33" fill="#f3e0c4"/>
+      <ellipse cx="38" cy="49" rx="9" ry="7" fill="#caa472" opacity=".55"/>
+      <ellipse cx="66" cy="67" rx="8" ry="6" fill="#caa472" opacity=".5"/>
+      <circle cx="40" cy="53" r="6" fill="#3a2a5a"/>
+      <circle cx="60" cy="53" r="6" fill="#3a2a5a"/>
+      <circle cx="42" cy="51" r="2" fill="#fff"/>
+      <circle cx="62" cy="51" r="2" fill="#fff"/>
+      <ellipse cx="50" cy="69" rx="14" ry="9" fill="#f7c6c0"/>
+      <ellipse cx="44" cy="69" rx="2.6" ry="3.2" fill="#b56b6b"/>
+      <ellipse cx="56" cy="69" rx="2.6" ry="3.2" fill="#b56b6b"/>
+      <path d="M40 75 q10 8 20 0" stroke="#b56b6b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="30" cy="65" r="5" fill="#f7a8b8" opacity=".5"/>
+      <circle cx="70" cy="65" r="5" fill="#f7a8b8" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="tts-bar" id="tts-bar">
   <span class="tts-info" id="tts-info"></span>
   <button class="tts-btn tts-stop" onclick="ttsStop()">⏹ Parar</button>
   <button class="tts-speed" data-v="0.8" onclick="ttsSetVel(0.8)">0.8×</button>
@@ -2192,5 +2333,6 @@ function ttsBarShow(show,secao){
 <script src="licoes-biblicas-extra2.js"></script>
 <script src="licoes-biblicas-extra3.js"></script>
 <script src="licoes-biblicas-extra4.js"></script>
+<script>renderCatalog();</script>
 </body>
 </html>
