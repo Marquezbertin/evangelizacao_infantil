@@ -239,6 +239,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
 .tema-card .tc-nome{font-weight:800;color:#f5e6d3;font-size:.78rem;margin-top:4px;line-height:1.12}
 .tema-card .tc-btn{margin-top:7px;font-size:.62rem;font-weight:800;padding:4px 11px;border-radius:30px;background:linear-gradient(135deg,#43e97b,#38f9d7);color:#003d2e;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:3px}
 .tema-card .tc-btn:hover{filter:brightness(1.08)}
+.tema-card.escondido{display:none}
 .ws-back{display:flex;justify-content:center;margin:2px 0 6px}
 .ws-header{text-align:center;margin-bottom:4px}
 .ws-header .ws-title{font-family:'Fredoka One',cursive;color:#ffd700;font-size:1.2rem;text-shadow:0 2px 0 #4a2c8a}
@@ -573,7 +574,8 @@ function setTema(t){
 var wsTabAtual='historia';
 var catTemas=[
   {nome:'📖 Histórias Bíblicas e de Jesus', temas:[0,1,2,7,15,16,17,18,19,20,21,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39]},
-  {nome:'💡 Doutrina Espírita e Valores', temas:[3,4,5,6,8,9,10,11,12,13,14,26]}
+  {nome:'💡 Doutrina Espírita e Valores', temas:[3,4,5,6,8,9,10,11,12,13]},
+  {nome:'🎨 Evangelização & Vida', temas:[14,26]}
 ];
 function abrirSala(){
   var wt=document.getElementById('ws-title');
@@ -603,6 +605,7 @@ function renderCatalog(){
   var c=document.getElementById('catalogo');
   if(!c)return;
   var h='<div style="text-align:center;margin:4px 0 2px"><div class="ilustracao">📚✨🐮</div><h1 class="logo" style="font-size:1.5rem">Catálogo de Temas<small>Escolha um tema e abra a Sala de Aula</small></h1><p class="subtitle">Cada tema tem sua História, Plano de Aula, Brincadeiras, Revisão e vídeos — tudo organizado para a sua aula!</p></div>';
+  h+='<div style="text-align:center;margin:6px 0 2px"><input id="cat-busca" type="text" placeholder="🔍 Buscar um tema..." oninput="filtrarCatalogo(this.value)" style="font-family:Nunito,sans-serif;font-size:.85rem;padding:8px 16px;border-radius:30px;border:2px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#f5e6d3;width:min(320px,92%);text-align:center;outline:none"><div id="cat-sem" style="display:none;color:#cdb8f0;font-weight:700;font-size:.8rem;margin-top:6px">Nenhum tema encontrado 🔎</div></div>';
   for(var i=0;i<catTemas.length;i++){
     var cat=catTemas[i];
     h+='<div class="tema-cat"><div class="cat-title">'+cat.nome+'</div><div class="tema-grid">';
@@ -612,11 +615,27 @@ function renderCatalog(){
       var parts=temaNome[idx].split(' ');
       var emo=parts.shift();
       var nome=parts.join(' ');
-      h+='<div class="tema-card" onclick="setTema('+idx+')"><div class="tc-emoji">'+emo+'</div><div class="tc-nome">'+nome+'</div><button class="tc-btn" onclick="event.stopPropagation();setTema('+idx+')">🚪 Abrir Sala</button></div>';
+      h+='<div class="tema-card" data-nome="'+nome+'" onclick="setTema('+idx+')"><div class="tc-emoji">'+emo+'</div><div class="tc-nome">'+nome+'</div><button class="tc-btn" onclick="event.stopPropagation();setTema('+idx+')">🚪 Abrir Sala</button></div>';
     }
     h+='</div></div>';
   }
   c.innerHTML=h;
+}
+function filtrarCatalogo(q){
+  var qn=(q||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  var algum=false;
+  document.querySelectorAll('#catalogo .tema-card').forEach(function(el){
+    var n=(el.getAttribute('data-nome')||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    var vis=qn===''||n.indexOf(qn)>=0;
+    el.classList.toggle('escondido',!vis);
+    if(vis)algum=true;
+  });
+  document.querySelectorAll('#catalogo .tema-cat').forEach(function(cat){
+    var vis=cat.querySelector('.tema-card:not(.escondido)');
+    cat.style.display=vis?'':'none';
+  });
+  var sem=document.getElementById('cat-sem');
+  if(sem)sem.style.display=algum?'none':'block';
 }
 var bezFalas=['Oi! Eu sou a Bezzerrinha! Vamos aprender brincando? 🐮✨','Escolha um tema no catálogo e abra a Sala de Aula! Lá tem história, aula e brincadeiras.','Não esqueça: cada tema tem seus próprios jogos e vídeos, tudo no lugar certo! 🎮📺','Jesus disse: "Deixai vir a mim as criancinhas!" 👶💕','Bom evangelizador planta sementes de amor. Você é um! 🌱❤️','Na Sala de Aula você encontra tudo de um tema num só lugar. Prático, né? 📚'];
 function bezFala(){
@@ -2333,6 +2352,6 @@ function ttsBarShow(show,secao){
 <script src="licoes-biblicas-extra2.js"></script>
 <script src="licoes-biblicas-extra3.js"></script>
 <script src="licoes-biblicas-extra4.js"></script>
-<script>renderCatalog();</script>
+<script>renderCatalog();setTimeout(bezFala,1000);</script>
 </body>
 </html>
