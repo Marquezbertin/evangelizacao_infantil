@@ -240,6 +240,14 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
 .tema-card .tc-btn{margin-top:7px;font-size:.62rem;font-weight:800;padding:4px 11px;border-radius:30px;background:linear-gradient(135deg,#1a9e54,#38f9d7);color:#003d2e;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:3px}
 .tema-card .tc-btn:hover{filter:brightness(1.08)}
 .tema-card.escondido{display:none}
+.tema-card.visto{outline:2px solid rgba(26,158,84,.45)}
+.tema-card .tc-badges{position:absolute;top:6px;right:6px;display:flex;gap:3px;z-index:2}
+.tema-card .tc-badge{background:#1a9e54;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.62rem;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.tema-card .tc-badge.quiz{background:#7c5cbf}
+.evan-cont{display:inline-flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center}
+.evan-cont button{font-size:.72rem;padding:5px 12px;border-radius:30px;border:none;cursor:pointer;font-weight:800}
+.evan-cont .continuar{background:linear-gradient(135deg,#1a9e54,#38f9d7);color:#003d2e}
+.evan-cont .limpar{background:rgba(214,51,108,.14);color:#d6336c}
 .ws-back{display:flex;justify-content:center;margin:2px 0 6px}
 .ws-header{text-align:center;margin-bottom:4px}
 .ws-header .ws-title{font-family:'Fredoka One',cursive;color:#b8860b;font-size:1.2rem;text-shadow:0 2px 0 #ffd166}
@@ -612,9 +620,22 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
   <div class="tela" id="tela-licoes"></div><script>
 // ===== TEMA =====
 var temaAtual=0;
+
+// ===== PROGRESSO DO ALUNO (localStorage) =====
+function evanProgresso(){
+  try{var p=JSON.parse(localStorage.getItem('evan_progresso'));if(p&&typeof p==='object')return p;}catch(e){}
+  return {vistos:{},quizzes:{},ultimo:null};
+}
+function evanSalvar(p){try{localStorage.setItem('evan_progresso',JSON.stringify(p));}catch(e){}}
+function marcarVisto(idx){var p=evanProgresso();p.vistos[idx]=1;p.ultimo=idx;evanSalvar(p);}
+function marcarQuiz(idx){if(idx==null||idx<0)return;var p=evanProgresso();p.quizzes[idx]=1;evanSalvar(p);}
+function temaVisto(idx){return !!evanProgresso().vistos[idx];}
+function temaQuiz(idx){return !!evanProgresso().quizzes[idx];}
+function evanResetar(){if(confirm('Apagar seu progresso (temas visitados e quizzes)?')){try{localStorage.removeItem('evan_progresso');}catch(e){}renderCatalog();}}
 var temaNome=['🌟 Deus e a Criação','📜 Moisés e as Leis de Deus','✨ Jesus e o Evangelho','📖 A Doutrina Espírita','🔄 Reencarnação e o Espírito','💎 Virtudes e Valores Morais','🙏 Prece e Mediunidade','🌿 Parábolas de Jesus','👤 Figuras Espíritas','🔥 Mocidade e Temas Avançados','📜 Os Dez Mandamentos'];
 function setTema(t){
   temaAtual=t;
+  marcarVisto(t);
   document.querySelectorAll('#tema-botoes .tema-btn').forEach(function(b){b.classList.remove('ativo');});
   var btn=document.querySelector('#tema-botoes .tema-btn[data-tema="'+t+'"]');
   if(btn)btn.classList.add('ativo');
@@ -667,10 +688,16 @@ function renderCatalog(){
       var parts=temaNome[idx].split(' ');
       var emo=parts.shift();
       var nome=parts.join(' ');
-      h+='<div class="tema-card" data-nome="'+nome+'" onclick="setTema('+idx+')"><div class="tc-emoji">'+emo+'</div><div class="tc-nome">'+nome+'</div><button class="tc-btn" onclick="event.stopPropagation();setTema('+idx+')">🚪 Abrir Sala</button></div>';
+      h+='<div class="tema-card'+(temaVisto(idx)?' visto':'')+'" data-nome="'+nome+'" onclick="setTema('+idx+')"><div class="tc-badges">'+(temaVisto(idx)?'<span class="tc-badge" title="Tema visitado">✓</span>':'')+(temaQuiz(idx)?'<span class="tc-badge quiz" title="Quiz concluído">🎯</span>':'')+'</div><div class="tc-emoji">'+emo+'</div><div class="tc-nome">'+nome+'</div><button class="tc-btn" onclick="event.stopPropagation();setTema('+idx+')">🚪 Abrir Sala</button></div>';
     }
     h+='</div></div>';
   }
+  var pr=evanProgresso();var totTemas=temaNome.length;var vistos=0;for(var k in pr.vistos){if(pr.vistos[k]&&temaNome[k])vistos++;}var quizzes=0;for(var k2 in pr.quizzes){if(pr.quizzes[k2])quizzes++;}
+  var cont='<div class="evan-cont" style="margin:8px 0 2px">';
+  if(pr.ultimo!=null&&temaNome[pr.ultimo]){var un=temaNome[pr.ultimo];cont+='<button class="continuar" onclick="setTema('+pr.ultimo+')">▶ Continuar: '+(un.length>24?un.substring(0,24)+'…':un)+'</button>';}
+  if(vistos>0||quizzes>0)cont+='<button class="limpar" onclick="evanResetar()">🔄 Recomeçar progresso</button>';
+  cont+='</div>';
+  h+=cont+'<p style="color:#6b5b8c;font-size:.74rem;margin:2px 0 6px;text-align:center">🌟 '+vistos+' de '+totTemas+' temas visitados · 🎯 '+quizzes+' quizzes feitos</p>';
   c.innerHTML=h;
 }
 function filtrarCatalogo(q){
@@ -1354,6 +1381,7 @@ function finalizarQuiz(){
   document.getElementById('quiz-fim-emoji').textContent=pct>=80?'🏆':pct>=50?'👏':'💪';
   document.getElementById('quiz-fim-titulo').textContent=pct>=80?'Parabéns, gênio!':pct>=50?'Muito bem!':'Continue tentando!';
   document.getElementById('quiz-fim-msg').textContent='Você acertou '+quizPontos+' de '+quizPergs.length+' perguntas ('+pct+'%)';
+  if(quizTema>=0&&quizTema<quizPerguntasTema.length)marcarQuiz(quizTema);
 }
 function reiniciarQuiz(){
   document.getElementById('quiz-setup').style.display='block';
