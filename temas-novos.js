@@ -1791,7 +1791,7 @@ const NOVOS_EXTRA = [
 
 function historinhaNovos(i) {
   const t = NOVOS_EXTRA[i];
-  return '<div class="historinha">'
+  return '<div class="historinha"><button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button>'
     + t.hist.map((h, k) => '<p>' + (k + 1) + '. ' + h + '</p>').join('')
     + '<p class="vers">✨ ' + t.vers + '</p>'
     + '<p class="refl"><b>💡 Reflexão Espírita:</b> ' + t.refl + '</p></div>';
@@ -1803,7 +1803,7 @@ function aulaNovos(i) {
   for (let k = 1; k <= 7; k++) {
     if (a['t' + k] && a['s' + k]) passos.push({ t: a['t' + k], s: a['s' + k] });
   }
-  return '<section class="aula"><h3>📚 Plano de Aula — ' + t.titulo + '</h3>'
+  return '<section class="aula"><h3>📚 Plano de Aula — ' + t.titulo + ' <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h3>'
     + '<p><b>Faixa etária:</b> ' + (a.faixa || '—') + ' &nbsp; <b>Duração:</b> ' + (a.duracao || '—') + '</p>'
     + '<p><b>Tema:</b> ' + (a.tema || '—') + '</p>'
     + '<p><b>Objetivo:</b> ' + (a.obj || '—') + '</p>'
@@ -1814,7 +1814,7 @@ function aulaNovos(i) {
 }
 function brincadeirasNovos(i) {
   const t = NOVOS_EXTRA[i];
-  return '<section class="brinc"><h3>🎲 Brincadeiras</h3><div class="brinc-grid">'
+  return '<section class="brinc"><h3>🎲 Brincadeiras <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h3><div class="brinc-grid">'
     + t.brinc.map(b => '<div class="brinc-card"><h4>' + b.nome + '</h4>'
       + '<p>👶 ' + b.idade + ' &nbsp; ⏱️ ' + b.tempo + '</p>'
       + '<p><b>Aprende:</b> ' + b.aprende + '</p>'
@@ -1824,7 +1824,7 @@ function brincadeirasNovos(i) {
 }
 function revisaoNovos(i) {
   const t = NOVOS_EXTRA[i];
-  return '<section class="rev"><h3>📝 Revisão</h3><table class="rev-tab">'
+  return '<section class="rev"><h3>📝 Revisão <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h3><table class="rev-tab">'
     + t.rev.map(r => '<tr><th>' + r.h + '</th><td>' + r.t + '</td></tr>').join('')
     + '</table></section>';
 }

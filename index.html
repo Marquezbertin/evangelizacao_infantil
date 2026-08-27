@@ -2111,6 +2111,7 @@ function qdAuto(){
 }
 // ===== TTS - LEITOR DE TEXTO =====
 var ttsUtter=null,ttsSecao='',ttsAtivo=false,ttsPausado=false,ttsVel=1,ttsPos=0,ttsTxt='',ttsVoz=null;
+var ttsSup=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
 function ttsInitVoz(){
   var v=window.speechSynthesis.getVoices();
   var pref=['Microsoft Francisca','Microsoft Maria','Microsoft Helena','Google português','Microsoft Daniela','Microsoft Elsa'];
@@ -2121,7 +2122,7 @@ function ttsInitVoz(){
   }
   for(var j=0;j<v.length;j++){if(v[j].lang.indexOf('pt')>=0){ttsVoz=v[j];return;}}
 }
-window.speechSynthesis.onvoiceschanged=ttsInitVoz;
+if(window.speechSynthesis)window.speechSynthesis.onvoiceschanged=ttsInitVoz;
 setTimeout(ttsInitVoz,500);
 function ttsFalar(secao,btn,pos){
   var el=document.getElementById('tela-'+secao);
@@ -2142,6 +2143,7 @@ function ttsFalar(secao,btn,pos){
   window.speechSynthesis.speak(ttsUtter);
 }
 function ttsLer(secao,btn){
+  if(!ttsSup){alert('Seu navegador não possui leitura em voz alta. Recomendamos Chrome, Edge ou Firefox para ouvir a história.');return;}
   if(ttsAtivo&&!ttsPausado){ttsPausar();return;}
   if(ttsPausado&&secao===ttsSecao){ttsRetomar();return;}
   window.speechSynthesis.cancel();
