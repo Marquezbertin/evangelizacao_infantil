@@ -133,9 +133,10 @@ temaContent[23]={
   rev:`<h2>📚 Revisão — O Semeador <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Mateus 13:1-23 · bibliadocaminho.com</p><h3>🌾 A semente</h3><p>A semente é a Palavra de Deus; o semeador é quem a anuncia (Mateus 13:37).</p><h3>🪨 Os solos</h3><p>Caminho (esquece), pedra (desanima), espinhos (preocupações) e boa terra (ouve e frutifica).</p><h3>🍎 O fruto</h3><p>A boa terra produz cem, sessenta ou trinta por um (Mateus 13:8).</p><h3>💭 Reflexão Espírita</h3><p>A reforma íntima remove pedras e espinhos do coração. Cada ensinamento é uma semente que devemos regar com amor. 🌿</p>`
 };
 temaContent[23].rec=[
-  {n:'Parábola do Semeador',u:'https://www.youtube.com/results?search_query=parabola+do+semeador+criancas'},
-  {n:'A Palavra de Deus (música)',u:'https://www.youtube.com/results?search_query=a+palavra+de+deus+musica+infantil'},
-  {n:'Reforma Íntima',u:'https://www.youtube.com/results?search_query=reforma+intima+evangelizacao+infantil'}
+  {t:'Parábola do Semeador',u:'https://www.youtube.com/results?search_query=parabola+do+semeador+criancas'},
+  {t:'A Palavra de Deus (música)',u:'https://www.youtube.com/results?search_query=a+palavra+de+deus+musica+infantil'},
+  {t:'Reforma Íntima',u:'https://www.youtube.com/results?search_query=reforma+intima+evangelizacao+infantil'},
+  {t:'📄 Anexo — A Parábola do Grão de Mostarda (PDF)',u:'pdfs/grao-de-mostarda.pdf',d:'História e atividade da parábola do grão de mostarda, da escola de evangelização.'},
 ];
 velhaTemas.push({x:'Semeador 🌱',o:'Espinhos 🌿',xt:'🌱',ot:'🌿'});
 forcaTemas.push([{p:'SEMEADOR',d:'Quem planta a semente'},{p:'SEMENTE',d:'A palavra de Deus'},{p:'SOLO',d:'O coração receptivo'},{p:'PEDRA',d:'Coração duro'},{p:'ESPINHO',d:'Preocupações do mundo'},{p:'FRUTO',d:'Resultado do bem'},{p:'TERRA',d:'Onde a semente cresce'},{p:'PALAVRA',d:'Ensinamento de Jesus'},{p:'AVES',d:'Comeram a semente'},{p:'REFORMA',d:'Limpeza do coração'},{p:'AMOR',d:'Rega a boa terra'},{p:'JESUS',d:'Contou a parábola'}]);
@@ -172,9 +173,10 @@ temaContent[24]={
   rev:`<h2>📚 Revisão — O Bom Samaritano <button class="tts-btn-ouvir" onclick="ttsLer('revisao',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Lucas 10:25-37 · bibliadocaminho.com</p><h3>💔 O homem ferido</h3><p>Um viajante foi assaltado e deixado à beira do caminho (Lucas 10:30).</p><h3>🙈 Quem passou</h3><p>Sacerdote e levita passaram sem ajudar; o samaritano parou e socorreu (Lucas 10:31-34).</p><h3>❤️ A lição</h3><p>Jesus disse: "Vai, e faze tu também o mesmo" (Lucas 10:37).</p><h3>💭 Reflexão Espírita</h3><p>A caridade é a maior prece em ação. Fora da caridade não há salvação (Kardec). Servir ao próximo é servir a Deus. 🤝</p>`
 };
 temaContent[24].rec=[
-  {n:'O Bom Samaritano',u:'https://www.youtube.com/results?search_query=bom+samaritano+criancas'},
-  {n:'Caridade (história)',u:'https://www.youtube.com/results?search_query=caridade+criancas+evangelizacao'},
-  {n:'Amar ao Próximo',u:'https://www.youtube.com/results?search_query=amar+ao+proximo+criancas'}
+  {t:'O Bom Samaritano',u:'https://www.youtube.com/results?search_query=bom+samaritano+criancas'},
+  {t:'Caridade (história)',u:'https://www.youtube.com/results?search_query=caridade+criancas+evangelizacao'},
+  {t:'Amar ao Próximo',u:'https://www.youtube.com/results?search_query=amar+ao+proximo+criancas'},
+  {t:'📄 Anexo — O Bom Samaritano (PDF)',u:'pdfs/bom-samaritano.pdf',d:'História e atividade do Bom Samaritano, da escola de evangelização.'},
 ];
 velhaTemas.push({x:'Samaritano ❤️',o:'Indiferença 💔',xt:'❤️',ot:'💔'});
 forcaTemas.push([{p:'SAMARITANO',d:'Ajudou o ferido'},{p:'CARIDADE',d:'Amor em acao'},{p:'PROXIMO',d:'Quem socorremos'},{p:'FERIDO',d:'Homem assaltado'},{p:'MISERICORDIA',d:'Compaixao ativa'},{p:'HOSPEDARIA',d:'Onde foi levado'},{p:'JESUS',d:'Contou a historia'},{p:'VIAJANTE',d:'Descia de Jerusalem'},{p:'AJUDA',d:'O que o samaritano deu'},{p:'AMOR',d:'Base da caridade'},{p:'SERVICO',d:'Maior prece em acao'},{p:'KARDEC',d:'Disse: fora da caridade nao ha salvacao'}]);
