@@ -7,6 +7,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
+:focus-visible{outline:3px solid #7c5cbf;outline-offset:2px;border-radius:8px}
 body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0%,#fff4e8 48%,#fde9f5 100%);min-height:100vh;display:flex;justify-content:center;padding:10px 6px;color:#3a2a5a}
 .stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .star{position:absolute;background:#ffd166;border-radius:50%;animation:twinkle var(--dur) ease-in-out infinite alternate;opacity:.55}
@@ -415,12 +416,12 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
     <div id="ws-content"></div>
     <p class="ws-games-t">🎮 Jogos e atividades deste tema:</p>
     <div class="ws-games">
-      <button class="ws-game" onclick="irP('velha')">⭕ Jogo da Velha</button>
-      <button class="ws-game" onclick="irP('forca')">💀 Forca</button>
-      <button class="ws-game" onclick="irP('memoria')">🧠 Memória</button>
-      <button class="ws-game" onclick="irP('cacapalavras')">🔍 Caça-Palavras</button>
-      <button class="ws-game" onclick="irP('quadrinho')">📖 Quadrinho</button>
-      <button class="ws-game" onclick="irP('quiz')">❓ Quiz</button>
+      <button class="ws-game" aria-label="Jogo da Velha deste tema" onclick="irP('velha')">⭕ Jogo da Velha</button>
+      <button class="ws-game" aria-label="Forca deste tema" onclick="irP('forca')">💀 Forca</button>
+      <button class="ws-game" aria-label="Jogo da Memória deste tema" onclick="irP('memoria')">🧠 Memória</button>
+      <button class="ws-game" aria-label="Caça-Palavras deste tema" onclick="irP('cacapalavras')">🔍 Caça-Palavras</button>
+      <button class="ws-game" aria-label="Quadrinho deste tema" onclick="irP('quadrinho')">📖 Quadrinho</button>
+      <button class="ws-game" aria-label="Quiz deste tema" onclick="if(window.__temaQuizTopic&&window.__temaQuizTopic[temaAtual]!=null)setQuizTema(window.__temaQuizTopic[temaAtual]);irP('quiz')">❓ Quiz</button>
     </div>
   </div>
 
@@ -1381,17 +1382,17 @@ var pergMandamentos=[
   {q:"Quantos mandamentos falam de Deus e quantos do próximo?",o:["5 e 5","4 e 6","3 e 7","6 e 4"],r:1,e:"Os primeiros 4 falam de Deus; os 6 seguintes falam do próximo."}
 ];
 var quizPerguntasTema=[pergDeus,pergMois,pergJesus,pergDoutrina,pergReencarnacao,pergVirtudes,pergPrece,pergParabolas,pergFiguras,pergMocidade,pergMandamentos];
-function setQuizTema(t){quizTema=t;document.querySelectorAll('#quiz-tema .dif-btn').forEach(b=>b.classList.remove('ativo'));document.querySelector('#quiz-tema .dif-btn[data-t="'+t+'"]').classList.add('ativo');}
+function setQuizTema(t){quizTema=t;var el=document.querySelector('#quiz-tema .dif-btn[data-t="'+t+'"]');document.querySelectorAll('#quiz-tema .dif-btn').forEach(b=>b.classList.remove('ativo'));if(el)el.classList.add('ativo');}
 function setQuizDiff(d){quizDiff=d;document.querySelectorAll('#quiz-dif .dif-btn').forEach(b=>b.classList.remove('ativo'));document.querySelector('#quiz-dif .dif-btn[data-d="'+d+'"]').classList.add('ativo');}
 function iniciarQuiz(){
   quizPontos=0;quizIdx=0;
   var base;
-  if(quizTema>=0&&quizTema<quizPerguntasTema.length){
+  if(quizTema>=0&&quizTema<quizPerguntasTema.length&&quizPerguntasTema[quizTema]){
     base=quizPerguntasTema[quizTema];
   }else{
     // Misto — combine all themes
     base=[];
-    for(var i=0;i<quizPerguntasTema.length;i++)base=base.concat(quizPerguntasTema[i]);
+    for(var i=0;i<quizPerguntasTema.length;i++){if(quizPerguntasTema[i])base=base.concat(quizPerguntasTema[i]);}
   }
   if(!base||base.length===0)base=quizPerguntasTema[0];
   var filtradas=base.filter(function(p){return p.d===undefined||p.d===quizDiff;});
@@ -2497,6 +2498,12 @@ function ttsBarShow(show,secao){
 <script src="biblia-espirita-infantil-4.js"></script>
 <script src="biblia-espirita-infantil-5.js"></script>
 <script src="temas-novos.js"></script>
+<script>
+(function(){
+  var L={inicio:'Página inicial e Catálogo',sobre:'Sobre o site e como usar',sala:'Sala de Aula do tema aberto',tabuleiro:'Jogo de Tabuleiro',passa:'Passa ou Repassa',memoria:'Jogo da Memória',ligapontos:'Liga Pontos',cacapalavras:'Caça-Palavras',quadrinho:'Quadrinho interativo',quiz:'Quiz de perguntas',historia:'História do tema',licoes:'Lições',aula:'Plano de Aula',brincadeiras:'Brincadeiras',recursos:'Vídeos e recursos',cinema:'Cinema',velha:'Jogo da Velha',forca:'Forca',colorir:'Pintar e Colorir',quebra:'Quebra-cabeça',memimg:'Memória de Imagens',labirinto:'Labirinto',palavras:'Palavras Cruzadas',biblioteca:'Biblioteca de Histórias'};
+  document.querySelectorAll('.menu-btn').forEach(function(b){var k=b.getAttribute('data-t');if(L[k]&&!b.getAttribute('aria-label'))b.setAttribute('aria-label',L[k]);});
+})();
+</script>
 <script>renderCatalog();setTimeout(bezFala,1000);</script>
 </body>
 </html>

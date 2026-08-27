@@ -1830,6 +1830,9 @@ function revisaoNovos(i) {
 }
 (function injectNovos() {
   if (typeof temaContent === 'undefined' || typeof temaNome === 'undefined') return;
+  var temaQuizTopic = (window.__temaQuizTopic = window.__temaQuizTopic || {});
+  var picker = document.getElementById('quiz-tema');
+  var mistoBtn = picker ? picker.querySelector('.dif-btn[data-t="99"]') : null;
   NOVOS_EXTRA.forEach(function (t, i) {
     var idx = 105 + i;
     if (temaContent[idx]) return;
@@ -1848,6 +1851,17 @@ function revisaoNovos(i) {
     qdConteudo[idx] = t.qd;
     qdTitulos[idx] = t.titulo;
     lpTemas[idx] = [];
-    quizPerguntasTema[idx] = t.quiz;
+    if (typeof quizPerguntasTema !== 'undefined') {
+      var topico = quizPerguntasTema.length;
+      quizPerguntasTema.push(t.quiz);
+      temaQuizTopic[idx] = topico;
+      if (picker) {
+        var emo = t.nome.split(' ')[0];
+        var label = t.nome.split(' ').slice(1).join(' ');
+        var btn = '<button class="dif-btn" data-t="' + topico + '" onclick="setQuizTema(' + topico + ')">' + emo + ' ' + label + '</button>';
+        if (mistoBtn) mistoBtn.insertAdjacentHTML('beforebegin', btn);
+        else picker.insertAdjacentHTML('beforeend', btn);
+      }
+    }
   });
 })();
