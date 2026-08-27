@@ -7,62 +7,62 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;display:flex;justify-content:center;padding:10px 6px}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0%,#fff4e8 48%,#fde9f5 100%);min-height:100vh;display:flex;justify-content:center;padding:10px 6px;color:#3a2a5a}
 .stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--dur) ease-in-out infinite alternate}
+.star{position:absolute;background:#ffd166;border-radius:50%;animation:twinkle var(--dur) ease-in-out infinite alternate;opacity:.55}
 @keyframes twinkle{0%{opacity:.2;transform:scale(.8)}100%{opacity:1;transform:scale(1.2)}}
-.container{position:relative;z-index:1;width:100%;max-width:920px;background:rgba(255,255,255,.07);backdrop-filter:blur(16px);border-radius:28px;padding:14px 10px 18px;box-shadow:0 20px 60px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.06);min-height:460px}
+.container{position:relative;z-index:1;width:100%;max-width:920px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-radius:28px;padding:14px 10px 18px;box-shadow:0 18px 50px rgba(124,92,191,.25);border:1px solid rgba(124,92,191,.18);min-height:460px}
 .menu-wrap{overflow-x:auto;margin-bottom:10px;-webkit-overflow-scrolling:touch}
-.menu-topo{display:flex;gap:3px;min-width:max-content;padding:2px;background:rgba(255,255,255,.03);border-radius:36px}
-.tema-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;padding:4px 8px;border:none;border-radius:28px;cursor:pointer;transition:all .2s;white-space:nowrap;background:transparent;color:#b8a8d8;border:1px solid transparent}
-.tema-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.08)}
-.tema-btn.ativo{background:rgba(255,215,0,.12);color:#ffd700;border-color:rgba(255,215,0,.2);box-shadow:0 0 10px rgba(255,215,0,.1)}
-.menu-btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;border:none;border-radius:28px;cursor:pointer;transition:all .2s;white-space:nowrap;background:transparent;color:#b8a8d8}
-.menu-btn:hover{background:rgba(255,255,255,.08)}
-.menu-btn.ativo{background:rgba(124,92,191,.35);color:#f5e6d3;box-shadow:0 0 14px rgba(124,92,191,.25)}
+.menu-topo{display:flex;gap:3px;min-width:max-content;padding:2px;background:rgba(124,92,191,.08);border-radius:36px}
+.tema-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;padding:4px 8px;border:none;border-radius:28px;cursor:pointer;transition:all .2s;white-space:nowrap;background:transparent;color:#6b5b8c;border:1px solid transparent}
+.tema-btn:hover{background:rgba(124,92,191,.14);border-color:rgba(124,92,191,.18)}
+.tema-btn.ativo{background:rgba(255,215,0,.12);color:#b8860b;border-color:rgba(255,215,0,.2);box-shadow:0 0 10px rgba(255,215,0,.1)}
+.menu-btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;border:none;border-radius:28px;cursor:pointer;transition:all .2s;white-space:nowrap;background:transparent;color:#6b5b8c}
+.menu-btn:hover{background:rgba(124,92,191,.18)}
+.menu-btn.ativo{background:rgba(124,92,191,.35);color:#3a2a5a;box-shadow:0 0 14px rgba(124,92,191,.25)}
 .tela{display:none}
 .tela.active{display:block}
-.logo{font-family:'Fredoka One',cursive;font-size:1.7rem;color:#f5e6d3;text-shadow:0 3px 0 #7c5cbf,0 5px 0 #4a2c8a;text-align:center;line-height:1.1}
-.logo small{display:block;font-size:.75rem;color:#cdb8f0;font-weight:700;letter-spacing:2px}
+.logo{font-family:'Fredoka One',cursive;font-size:1.7rem;color:#7b3fa0;text-shadow:0 3px 0 #ffd166,0 5px 0 #ffb3d1;text-align:center;line-height:1.1}
+.logo small{display:block;font-size:.75rem;color:#6b5b8c;font-weight:700;letter-spacing:2px}
 .ilustracao{text-align:center;font-size:2.5rem;line-height:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
-.subtitle{font-size:.9rem;color:#d4c4f0;text-align:center;font-weight:600;margin-bottom:6px}
+.subtitle{font-size:.9rem;color:#6b5b8c;text-align:center;font-weight:600;margin-bottom:6px}
 .btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;padding:8px 18px;border:none;border-radius:60px;cursor:pointer;transition:all .25s ease;display:inline-flex;align-items:center;gap:5px;box-shadow:0 4px 15px rgba(0,0,0,.3);letter-spacing:.3px;text-transform:uppercase}
 .btn:hover{transform:translateY(-2px) scale(1.02)}
 .btn:active{transform:translateY(0) scale(.97)}
 .btn-p{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
-.btn-s{background:linear-gradient(135deg,#43e97b,#38f9d7);color:#003d2e}
+.btn-s{background:linear-gradient(135deg,#1a9e54,#38f9d7);color:#003d2e}
 .btn-w{background:linear-gradient(135deg,#f7971e,#ffd200);color:#3d1f00}
-.btn-d{background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff}
-.btn-o{background:rgba(255,255,255,.07);color:#d4c4f0;border:2px solid rgba(255,255,255,.1)}
+.btn-d{background:linear-gradient(135deg,#f093fb,#d6336c);color:#fff}
+.btn-o{background:rgba(124,92,191,.16);color:#6b5b8c;border:2px solid rgba(124,92,191,.22)}
 .btn-sm{font-size:.7rem;padding:5px 12px}
 .botoes-centro{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:6px 0}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:6px 0}
-.card-jogo{background:rgba(255,255,255,.04);border-radius:18px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .25s;border:2px solid rgba(255,255,255,.05)}
-.card-jogo:hover{background:rgba(255,255,255,.09);transform:translateY(-3px)}
+.card-jogo{background:rgba(124,92,191,.10);border-radius:18px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .25s;border:2px solid rgba(124,92,191,.12)}
+.card-jogo:hover{background:rgba(124,92,191,.20);transform:translateY(-3px)}
 .card-jogo .ci{font-size:2rem;margin-bottom:2px}
-.card-jogo .ct{font-weight:800;color:#f5e6d3;font-size:.8rem}
-.card-jogo .cd{font-size:.65rem;color:#b8a8d8;margin-top:1px}
+.card-jogo .ct{font-weight:800;color:#3a2a5a;font-size:.8rem}
+.card-jogo .cd{font-size:.65rem;color:#6b5b8c;margin-top:1px}
 .dificuldade{display:flex;gap:5px;justify-content:center;margin:4px 0 8px}
 .dif-scroll{display:flex;gap:5px;overflow-x:auto;padding:2px 0 6px;justify-content:flex-start;margin:4px 0 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .dif-scroll::-webkit-scrollbar{display:none}
 .dif-scroll .dif-btn{flex-shrink:0}
-.dif-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 14px;border:2px solid rgba(255,255,255,.08);border-radius:30px;background:transparent;color:#b8a8d8;cursor:pointer;transition:all .2s}
-.dif-btn:hover{border-color:rgba(255,255,255,.2)}
-.dif-btn.ativo{background:rgba(124,92,191,.25);border-color:#7c5cbf;color:#f5e6d3}
+.dif-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 14px;border:2px solid rgba(124,92,191,.18);border-radius:30px;background:transparent;color:#6b5b8c;cursor:pointer;transition:all .2s}
+.dif-btn:hover{border-color:rgba(124,92,191,.25)}
+.dif-btn.ativo{background:rgba(124,92,191,.25);border-color:#7c5cbf;color:#3a2a5a}
 .tab-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:6px}
-.tab-info{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:.75rem;color:#cdb8f0;font-weight:700}
-.tab-info .dv{font-size:1.1rem;color:#ffd700;background:rgba(255,255,255,.04);padding:2px 8px;border-radius:8px;border:2px solid rgba(255,215,0,.12)}
+.tab-info{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:.75rem;color:#6b5b8c;font-weight:700}
+.tab-info .dv{font-size:1.1rem;color:#b8860b;background:rgba(124,92,191,.10);padding:2px 8px;border-radius:8px;border:2px solid rgba(255,215,0,.12)}
 .jog-info{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px}
 .jchip{font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:16px;display:flex;align-items:center;gap:3px;border:2px solid transparent;opacity:.5}
-.jchip.ativo{opacity:1;box-shadow:0 0 10px rgba(255,215,0,.25);border-color:#ffd700}
+.jchip.ativo{opacity:1;box-shadow:0 0 10px rgba(255,215,0,.25);border-color:#b8860b}
 .dado-area{display:flex;align-items:center;gap:6px}
-.dado-face{font-size:1.8rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border-radius:8px;border:2px solid rgba(255,255,255,.08);user-select:none}
+.dado-face{font-size:1.8rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(124,92,191,.12);border-radius:8px;border:2px solid rgba(124,92,191,.18);user-select:none}
 .dado-face.rolando{animation:dadoGirar .5s ease}
 @keyframes dadoGirar{0%{transform:rotateZ(0deg) scale(1)}25%{transform:rotateZ(90deg) scale(1.15)}50%{transform:rotateZ(180deg) scale(1)}75%{transform:rotateZ(270deg) scale(1.15)}100%{transform:rotateZ(360deg) scale(1)}}
 .btn-dado{font-family:'Nunito',sans-serif;font-weight:800;font-size:.75rem;padding:6px 14px;border:none;border-radius:36px;cursor:pointer;transition:all .2s;background:linear-gradient(135deg,#f7971e,#ffd200);color:#3d1f00;box-shadow:0 4px 15px rgba(255,215,0,.3);text-transform:uppercase}
 .btn-dado:hover{transform:translateY(-2px)}.btn-dado:disabled{opacity:.4;cursor:not-allowed}
-.tab-grade{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;background:rgba(255,255,255,.02);border-radius:12px;padding:5px;border:1px solid rgba(255,255,255,.03);margin-bottom:4px}
-.tab-casa{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:rgba(255,255,255,.35);background:rgba(255,255,255,.02);border:2px solid rgba(255,255,255,.04);position:relative;min-height:36px;text-align:center;padding:1px}
+.tab-grade{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;background:rgba(124,92,191,.06);border-radius:12px;padding:5px;border:1px solid rgba(124,92,191,.08);margin-bottom:4px}
+.tab-casa{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:rgba(58,42,90,.5);background:rgba(124,92,191,.06);border:2px solid rgba(124,92,191,.10);position:relative;min-height:36px;text-align:center;padding:1px}
 .tab-casa .ci{font-size:.85rem}.tab-casa .cn{font-size:.48rem;opacity:.4}
 .tab-casa.tipo-inicio{border-color:rgba(67,233,123,.25);background:rgba(67,233,123,.06)}
 .tab-casa.tipo-fim{border-color:rgba(255,215,0,.35);background:rgba(255,215,0,.1)}
@@ -72,110 +72,110 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
 .tab-casa.tipo-coracao{border-color:rgba(255,100,150,.2);background:rgba(255,100,150,.05)}
 .tab-casa .pinos{display:flex;gap:1px;flex-wrap:wrap;justify-content:center;position:absolute;bottom:1px}
 .tab-casa .pino{font-size:.6rem;line-height:1}
-.tab-msg{background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;color:#d8d0e8;font-weight:600;font-size:.8rem;text-align:center;min-height:34px;border:1px solid rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
-.setup-jog{text-align:center;padding:6px 0}.setup-jog h3{color:#f5e6d3;font-size:.95rem;margin-bottom:4px}
+.tab-msg{background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;color:#3a2a5a;font-weight:600;font-size:.8rem;text-align:center;min-height:34px;border:1px solid rgba(124,92,191,.08);display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
+.setup-jog{text-align:center;padding:6px 0}.setup-jog h3{color:#3a2a5a;font-size:.95rem;margin-bottom:4px}
 .setup-opts{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:6px}
-.setup-opt{font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;padding:6px 16px;border:2px solid rgba(255,255,255,.08);border-radius:30px;background:transparent;color:#b8a8d8;cursor:pointer}
-.setup-opt.ativo{border-color:#7c5cbf;background:rgba(124,92,191,.18);color:#f5e6d3}
-.vitoria-ban{background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,200,50,.06));border:2px solid #ffd700;border-radius:16px;padding:12px;text-align:center;margin:6px 0;animation:pulseV 1.5s ease-in-out infinite}
+.setup-opt{font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;padding:6px 16px;border:2px solid rgba(124,92,191,.18);border-radius:30px;background:transparent;color:#6b5b8c;cursor:pointer}
+.setup-opt.ativo{border-color:#7c5cbf;background:rgba(124,92,191,.18);color:#3a2a5a}
+.vitoria-ban{background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,200,50,.06));border:2px solid #b8860b;border-radius:16px;padding:12px;text-align:center;margin:6px 0;animation:pulseV 1.5s ease-in-out infinite}
 @keyframes pulseV{0%,100%{box-shadow:0 0 10px rgba(255,215,0,.15)}50%{box-shadow:0 0 25px rgba(255,215,0,.3)}}
-.vitoria-ban .vi{font-size:2rem}.vitoria-ban .vt{font-family:'Fredoka One',cursive;font-size:1.1rem;color:#ffd700}
+.vitoria-ban .vi{font-size:2rem}.vitoria-ban .vt{font-family:'Fredoka One',cursive;font-size:1.1rem;color:#b8860b}
 
 .pr-container{text-align:center}
 .pr-teams{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:6px 0}
-.pr-team{flex:1;min-width:120px;background:rgba(255,255,255,.04);border-radius:16px;padding:10px;border:2px solid rgba(255,255,255,.06)}
-.pr-team.vez{box-shadow:0 0 20px rgba(255,215,0,.2);border-color:#ffd700}
-.pr-team .pt-name{font-weight:800;font-size:.85rem;color:#f5e6d3}
-.pr-team .pt-score{font-size:1.8rem;font-weight:800;color:#ffd700}
+.pr-team{flex:1;min-width:120px;background:rgba(124,92,191,.10);border-radius:16px;padding:10px;border:2px solid rgba(124,92,191,.14)}
+.pr-team.vez{box-shadow:0 0 20px rgba(255,215,0,.2);border-color:#b8860b}
+.pr-team .pt-name{font-weight:800;font-size:.85rem;color:#3a2a5a}
+.pr-team .pt-score{font-size:1.8rem;font-weight:800;color:#b8860b}
 .pr-diff{display:flex;gap:6px;justify-content:center;margin:4px 0}
-.pr-diff-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 14px;border:2px solid rgba(255,255,255,.08);border-radius:30px;background:transparent;color:#b8a8d8;cursor:pointer}
-.pr-diff-btn.ativo{border-color:#7c5cbf;background:rgba(124,92,191,.2);color:#f5e6d3}
-.pr-question{background:rgba(255,255,255,.04);border-radius:16px;padding:14px;margin:8px 0;border:1px solid rgba(255,255,255,.06)}
-.pr-q-text{font-size:1rem;color:#f5f0ff;font-weight:700;margin-bottom:10px}
+.pr-diff-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 14px;border:2px solid rgba(124,92,191,.18);border-radius:30px;background:transparent;color:#6b5b8c;cursor:pointer}
+.pr-diff-btn.ativo{border-color:#7c5cbf;background:rgba(124,92,191,.2);color:#3a2a5a}
+.pr-question{background:rgba(124,92,191,.10);border-radius:16px;padding:14px;margin:8px 0;border:1px solid rgba(124,92,191,.14)}
+.pr-q-text{font-size:1rem;color:#3a2a5a;font-weight:700;margin-bottom:10px}
 .pr-opts{display:flex;flex-direction:column;gap:5px}
-.pr-opt{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;padding:9px 14px;border:2px solid rgba(255,255,255,.07);border-radius:12px;background:rgba(255,255,255,.03);color:#e8ddf5;cursor:pointer;text-align:left}
-.pr-opt:hover{background:rgba(255,255,255,.08)}
+.pr-opt{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;padding:9px 14px;border:2px solid rgba(124,92,191,.16);border-radius:12px;background:rgba(124,92,191,.08);color:#3a2a5a;cursor:pointer;text-align:left}
+.pr-opt:hover{background:rgba(124,92,191,.18)}
 .pr-opt:disabled{pointer-events:none}
-.pr-opt.certo{background:rgba(67,233,123,.18);border-color:#43e97b;color:#b0f5c8}
-.pr-opt.errado{background:rgba(245,87,108,.18);border-color:#f5576c;color:#f5b0b8}
-.pr-opt.revelar{background:rgba(67,233,123,.12);border-color:#43e97b;color:#b0f5c8}
+.pr-opt.certo{background:rgba(67,233,123,.18);border-color:#1a9e54;color:#0a5c3a}
+.pr-opt.errado{background:rgba(245,87,108,.18);border-color:#d6336c;color:#a01030}
+.pr-opt.revelar{background:rgba(67,233,123,.12);border-color:#1a9e54;color:#0a5c3a}
 .pr-actions{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px 0}
-.pr-msg{font-size:.85rem;color:#d4c4f0;font-weight:700;margin:4px 0;min-height:28px}
-.pr-status{font-size:.75rem;color:#b8a8d8;margin:2px 0;text-align:center}
+.pr-msg{font-size:.85rem;color:#6b5b8c;font-weight:700;margin:4px 0;min-height:28px}
+.pr-status{font-size:.75rem;color:#6b5b8c;margin:2px 0;text-align:center}
 .pr-setup{text-align:center;padding:8px 0}
-.pr-setup input{font-family:'Nunito',sans-serif;font-size:.85rem;padding:8px 14px;border-radius:30px;border:2px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#f5e6d3;text-align:center;width:140px;margin:4px}
-.pr-setup input::placeholder{color:#7a6a9a}
+.pr-setup input{font-family:'Nunito',sans-serif;font-size:.85rem;padding:8px 14px;border-radius:30px;border:2px solid rgba(124,92,191,.22);background:rgba(124,92,191,.12);color:#3a2a5a;text-align:center;width:140px;margin:4px}
+.pr-setup input::placeholder{color:#6b5b8c}
 
 .mem-grid{display:grid;gap:6px;justify-content:center;margin:8px auto;max-width:450px}
 .mem-card{aspect-ratio:1;border-radius:12px;cursor:pointer;transition:all .3s;position:relative;transform-style:preserve-3d;min-height:50px}
-.mem-card .mc-f,.mem-card .mc-b{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;font-size:1.8rem;border:2px solid rgba(255,255,255,.08)}
+.mem-card .mc-f,.mem-card .mc-b{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;font-size:1.8rem;border:2px solid rgba(124,92,191,.18)}
 .mem-card .mc-f{background:linear-gradient(135deg,rgba(124,92,191,.3),rgba(74,42,138,.3));transform:rotateY(0deg)}
-.mem-card .mc-b{background:rgba(255,255,255,.06);transform:rotateY(180deg);font-size:1.2rem;font-weight:700;color:#f5e6d3}
+.mem-card .mc-b{background:rgba(124,92,191,.14);transform:rotateY(180deg);font-size:1.2rem;font-weight:700;color:#3a2a5a}
 .mem-card.virada .mc-f{transform:rotateY(180deg)}
 .mem-card.virada .mc-b{transform:rotateY(0deg)}
-.mem-card.acertou{border-color:#43e97b;box-shadow:0 0 15px rgba(67,233,123,.3)}
-.mem-card.acertou .mc-b{border-color:#43e97b}
+.mem-card.acertou{border-color:#1a9e54;box-shadow:0 0 15px rgba(67,233,123,.3)}
+.mem-card.acertou .mc-b{border-color:#1a9e54}
 .mem-card.errou{animation:shake .3s ease}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.mem-info{font-size:.8rem;color:#cdb8f0;font-weight:600;text-align:center;margin:4px 0}
+.mem-info{font-size:.8rem;color:#6b5b8c;font-weight:600;text-align:center;margin:4px 0}
 
-.hist-card{background:rgba(255,255,255,.04);border-radius:18px;padding:16px;border:1px solid rgba(255,255,255,.06);margin-bottom:8px;max-width:650px;margin-left:auto;margin-right:auto}
-.hist-card h2{font-family:'Fredoka One',cursive;font-size:1.2rem;color:#ffd700;margin-bottom:6px}
-.hist-card .ref{font-size:.75rem;color:#7a6a9a;margin-bottom:6px}
-.hist-card p{color:#d8d0e8;font-size:.88rem;line-height:1.6;margin-bottom:6px}
-.hist-card .vers{background:rgba(124,92,191,.1);border-left:4px solid #7c5cbf;padding:8px 14px;border-radius:0 10px 10px 0;margin:8px 0;font-style:italic;color:#cdb8f0;font-size:.82rem}
-.hist-card .reflexao{background:rgba(255,215,0,.06);border-left:4px solid #ffd700;padding:8px 14px;border-radius:0 10px 10px 0;margin:8px 0;font-weight:700;color:#f5e6d3;font-size:.85rem}
+.hist-card{background:rgba(124,92,191,.10);border-radius:18px;padding:16px;border:1px solid rgba(124,92,191,.14);margin-bottom:8px;max-width:650px;margin-left:auto;margin-right:auto}
+.hist-card h2{font-family:'Fredoka One',cursive;font-size:1.2rem;color:#b8860b;margin-bottom:6px}
+.hist-card .ref{font-size:.75rem;color:#6b5b8c;margin-bottom:6px}
+.hist-card p{color:#3a2a5a;font-size:.88rem;line-height:1.6;margin-bottom:6px}
+.hist-card .vers{background:rgba(124,92,191,.1);border-left:4px solid #7c5cbf;padding:8px 14px;border-radius:0 10px 10px 0;margin:8px 0;font-style:italic;color:#6b5b8c;font-size:.82rem}
+.hist-card .reflexao{background:rgba(255,215,0,.06);border-left:4px solid #b8860b;padding:8px 14px;border-radius:0 10px 10px 0;margin:8px 0;font-weight:700;color:#3a2a5a;font-size:.85rem}
 .hist-card .eb{text-align:center;font-size:2.5rem;margin:4px 0}
 
-.aula-card{background:rgba(255,255,255,.04);border-radius:16px;padding:14px 16px;border:1px solid rgba(255,255,255,.06);margin-bottom:8px;max-width:700px;margin-left:auto;margin-right:auto}
-.aula-card h2{font-family:'Fredoka One',cursive;font-size:1.1rem;color:#ffd700;margin-bottom:6px}
-.aula-card h3{font-size:.9rem;color:#d4c4f0;font-weight:800;margin:8px 0 4px}
-.aula-card p,.aula-card li{color:#d8d0e8;font-size:.82rem;line-height:1.5}
+.aula-card{background:rgba(124,92,191,.10);border-radius:16px;padding:14px 16px;border:1px solid rgba(124,92,191,.14);margin-bottom:8px;max-width:700px;margin-left:auto;margin-right:auto}
+.aula-card h2{font-family:'Fredoka One',cursive;font-size:1.1rem;color:#b8860b;margin-bottom:6px}
+.aula-card h3{font-size:.9rem;color:#6b5b8c;font-weight:800;margin:8px 0 4px}
+.aula-card p,.aula-card li{color:#3a2a5a;font-size:.82rem;line-height:1.5}
 .aula-card ul{padding-left:18px}
-.aula-card .dica{background:rgba(124,92,191,.1);border-left:4px solid #7c5cbf;padding:8px 12px;border-radius:0 10px 10px 0;margin:6px 0;font-size:.8rem;color:#cdb8f0}
+.aula-card .dica{background:rgba(124,92,191,.1);border-left:4px solid #7c5cbf;padding:8px 12px;border-radius:0 10px 10px 0;margin:6px 0;font-size:.8rem;color:#6b5b8c}
 
-.brinc-card{background:rgba(255,255,255,.04);border-radius:16px;padding:14px 16px;border:1px solid rgba(255,255,255,.06);margin-bottom:8px;max-width:700px;margin-left:auto;margin-right:auto}
-.brinc-card h2{font-family:'Fredoka One',cursive;font-size:1.05rem;color:#ffd700;margin-bottom:4px}
-.brinc-card h3{font-size:.85rem;color:#d4c4f0;font-weight:800;margin:6px 0 3px}
-.brinc-card p,.brinc-card li{color:#d8d0e8;font-size:.82rem;line-height:1.5}
-.brinc-card ul{padding-left:18px}.brinc-card .tag{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 10px;border-radius:30px;margin:2px;background:rgba(124,92,191,.2);color:#cdb8f0}
+.brinc-card{background:rgba(124,92,191,.10);border-radius:16px;padding:14px 16px;border:1px solid rgba(124,92,191,.14);margin-bottom:8px;max-width:700px;margin-left:auto;margin-right:auto}
+.brinc-card h2{font-family:'Fredoka One',cursive;font-size:1.05rem;color:#b8860b;margin-bottom:4px}
+.brinc-card h3{font-size:.85rem;color:#6b5b8c;font-weight:800;margin:6px 0 3px}
+.brinc-card p,.brinc-card li{color:#3a2a5a;font-size:.82rem;line-height:1.5}
+.brinc-card ul{padding-left:18px}.brinc-card .tag{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 10px;border-radius:30px;margin:2px;background:rgba(124,92,191,.2);color:#6b5b8c}
 
-.tts-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(15,12,41,.95);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.06);padding:6px 10px;display:none;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.tts-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:2px solid rgba(124,92,191,.3);padding:6px 10px;display:none;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(124,92,191,.2)}
 .tts-bar.show{display:flex}
-.tts-bar .tts-info{font-size:.72rem;color:#cdb8f0;font-weight:600;flex:1;min-width:80px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tts-bar .tts-info{font-size:.72rem;color:#6b5b8c;font-weight:600;flex:1;min-width:80px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tts-bar .tts-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 12px;border:none;border-radius:30px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:3px}
 .tts-bar .tts-btn:hover{transform:translateY(-1px)}
-.tts-bar .tts-play{background:linear-gradient(135deg,#43e97b,#38f9d7);color:#003d2e}
-.tts-bar .tts-stop{background:rgba(245,87,108,.15);color:#f5576c;border:1px solid rgba(245,87,108,.2)}
-.tts-bar .tts-speed{font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;padding:3px 10px;border-radius:20px;border:2px solid rgba(255,255,255,.06);background:transparent;color:#b8a8d8;cursor:pointer}
-.tts-bar .tts-speed.ativo{border-color:#7c5cbf;background:rgba(124,92,191,.15);color:#f5e6d3}
-.tts-btn-ouvir{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;padding:2px 8px;border:none;border-radius:20px;cursor:pointer;background:rgba(67,233,123,.08);color:#43e97b;border:1px solid rgba(67,233,123,.12);transition:all .2s;vertical-align:middle;margin-left:6px}
+.tts-bar .tts-play{background:linear-gradient(135deg,#1a9e54,#38f9d7);color:#003d2e}
+.tts-bar .tts-stop{background:rgba(245,87,108,.15);color:#d6336c;border:1px solid rgba(245,87,108,.2)}
+.tts-bar .tts-speed{font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;padding:3px 10px;border-radius:20px;border:2px solid rgba(124,92,191,.14);background:transparent;color:#6b5b8c;cursor:pointer}
+.tts-bar .tts-speed.ativo{border-color:#7c5cbf;background:rgba(124,92,191,.15);color:#3a2a5a}
+.tts-btn-ouvir{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;padding:2px 8px;border:none;border-radius:20px;cursor:pointer;background:rgba(67,233,123,.08);color:#1a9e54;border:1px solid rgba(67,233,123,.12);transition:all .2s;vertical-align:middle;margin-left:6px}
 .tts-btn-ouvir:hover{background:rgba(67,233,123,.15)}
-.tts-btn-ouvir.ativo{background:rgba(245,87,108,.1);color:#f5576c;border-color:rgba(245,87,108,.15)}
+.tts-btn-ouvir.ativo{background:rgba(245,87,108,.1);color:#d6336c;border-color:rgba(245,87,108,.15)}
 .tts-highlight{animation:ttsFlash .3s ease}
 @keyframes ttsFlash{0%,100%{opacity:1}50%{opacity:.6}}
 
-.lp-canvas-wrap{position:relative;width:100%;max-width:380px;margin:4px auto;background:rgba(255,255,255,.02);border-radius:14px;border:2px solid rgba(255,255,255,.05);overflow:hidden}
+.lp-canvas-wrap{position:relative;width:100%;max-width:380px;margin:4px auto;background:rgba(124,92,191,.06);border-radius:14px;border:2px solid rgba(124,92,191,.12);overflow:hidden}
 .lp-canvas-wrap canvas{display:block;width:100%;height:auto;touch-action:none}
-.lp-info{text-align:center;font-size:.8rem;color:#d4c4f0;font-weight:700;margin:4px 0}
+.lp-info{text-align:center;font-size:.8rem;color:#6b5b8c;font-weight:700;margin:4px 0}
 .lp-progresso{display:flex;gap:3px;justify-content:center;flex-wrap:wrap;margin:3px 0}
-.lp-pi{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.08);font-size:.45rem;display:flex;align-items:center;justify-content:center;color:transparent}
-.lp-pi.feito{background:#43e97b;border-color:#43e97b;color:#fff}
+.lp-pi{width:12px;height:12px;border-radius:50%;background:rgba(124,92,191,.14);border:2px solid rgba(124,92,191,.18);font-size:.45rem;display:flex;align-items:center;justify-content:center;color:transparent}
+.lp-pi.feito{background:#1a9e54;border-color:#1a9e54;color:#fff}
 .lp-desenhos{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;margin:4px 0}
-.lp-d-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 12px;border:2px solid rgba(255,255,255,.08);border-radius:30px;background:transparent;color:#b8a8d8;cursor:pointer}
-.lp-d-btn.ativo{background:rgba(124,92,191,.18);border-color:#7c5cbf;color:#f5e6d3}
+.lp-d-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.7rem;padding:4px 12px;border:2px solid rgba(124,92,191,.18);border-radius:30px;background:transparent;color:#6b5b8c;cursor:pointer}
+.lp-d-btn.ativo{background:rgba(124,92,191,.18);border-color:#7c5cbf;color:#3a2a5a}
 
-.cp-grid{display:inline-grid;gap:2px;margin:4px auto;user-select:none;background:rgba(255,255,255,.02);padding:4px;border-radius:10px;border:1px solid rgba(255,255,255,.04)}
-.cp-cell{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#e0d0f0;background:rgba(255,255,255,.03);border-radius:5px;cursor:pointer;transition:all .1s;border:2px solid transparent;touch-action:none}
-.cp-cell:hover{background:rgba(255,255,255,.08)}
+.cp-grid{display:inline-grid;gap:2px;margin:4px auto;user-select:none;background:rgba(124,92,191,.06);padding:4px;border-radius:10px;border:1px solid rgba(124,92,191,.10)}
+.cp-cell{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#3a2a5a;background:rgba(124,92,191,.08);border-radius:5px;cursor:pointer;transition:all .1s;border:2px solid transparent;touch-action:none}
+.cp-cell:hover{background:rgba(124,92,191,.18)}
 .cp-cell.sel{background:rgba(124,92,191,.25);border-color:rgba(124,92,191,.35)}
-.cp-cell.achada{background:rgba(67,233,123,.18);border-color:rgba(67,233,123,.25);color:#b0f5c8}
+.cp-cell.achada{background:rgba(67,233,123,.18);border-color:rgba(67,233,123,.25);color:#0a5c3a}
 .cp-lista{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:4px 0}
-.cp-palavra{font-size:.75rem;font-weight:700;color:#b8a8d8;padding:3px 10px;background:rgba(255,255,255,.03);border-radius:30px;border:2px solid transparent}
-.cp-palavra.achada{color:#43e97b;border-color:rgba(67,233,123,.25);background:rgba(67,233,123,.06);text-decoration:line-through}
-.cp-info{font-size:.75rem;color:#cdb8f0;font-weight:600;margin:3px 0;text-align:center}
+.cp-palavra{font-size:.75rem;font-weight:700;color:#6b5b8c;padding:3px 10px;background:rgba(124,92,191,.08);border-radius:30px;border:2px solid transparent}
+.cp-palavra.achada{color:#1a9e54;border-color:rgba(67,233,123,.25);background:rgba(67,233,123,.06);text-decoration:line-through}
+.cp-info{font-size:.75rem;color:#6b5b8c;font-weight:600;margin:3px 0;text-align:center}
 
-.qd-painel{background:rgba(255,255,255,.04);border-radius:18px;padding:12px;border:2px solid rgba(255,255,255,.06);margin-bottom:8px;min-height:150px;max-width:600px;margin-left:auto;margin-right:auto}
+.qd-painel{background:rgba(124,92,191,.10);border-radius:18px;padding:12px;border:2px solid rgba(124,92,191,.14);margin-bottom:8px;min-height:150px;max-width:600px;margin-left:auto;margin-right:auto}
 .qd-cena{display:none;animation:fadeCena .6s ease}
 .qd-cena.ativa{display:block}
 @keyframes fadeCena{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -183,24 +183,24 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
 .qd-img .qd-p{display:inline-block;animation:floatP 2s ease-in-out infinite}
 .qd-img .qd-p:nth-child(2){animation-delay:.3s}.qd-img .qd-p:nth-child(3){animation-delay:.6s}
 @keyframes floatP{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.qd-texto{font-size:.95rem;color:#f0e8f8;font-weight:700;text-align:center;margin:6px 0 2px;line-height:1.3}
-.qd-texto .qd-fala{display:inline-block;background:rgba(255,255,255,.05);padding:3px 12px;border-radius:30px;border:2px solid rgba(255,255,255,.06)}
-.qd-texto .qd-legenda{color:#d0c0e8;font-size:.8rem;font-weight:600;display:block;margin-top:3px}
+.qd-texto{font-size:.95rem;color:#3a2a5a;font-weight:700;text-align:center;margin:6px 0 2px;line-height:1.3}
+.qd-texto .qd-fala{display:inline-block;background:rgba(124,92,191,.12);padding:3px 12px;border-radius:30px;border:2px solid rgba(124,92,191,.14)}
+.qd-texto .qd-legenda{color:#6b5b8c;font-size:.8rem;font-weight:600;display:block;margin-top:3px}
 .qd-ctr{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;align-items:center}
 
 .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:14px}
 .modal-overlay.show{display:flex}
-.modal-box{background:linear-gradient(135deg,#1a1a3e,#2d2b55);border-radius:22px;padding:18px;max-width:460px;width:100%;border:1px solid rgba(255,255,255,.08);box-shadow:0 20px 60px rgba(0,0,0,.6);max-height:90vh;overflow-y:auto}
-.modal-box h3{font-family:'Fredoka One',cursive;color:#ffd700;font-size:1rem;margin-bottom:4px;text-align:center}
-.modal-box .mq{color:#f5f0ff;font-size:.95rem;font-weight:700;margin-bottom:10px;text-align:center}
+.modal-box{background:linear-gradient(135deg,#ffffff,#f6eeff);border-radius:22px;padding:18px;max-width:460px;width:100%;border:1px solid rgba(124,92,191,.25);box-shadow:0 20px 60px rgba(124,92,191,.35);max-height:90vh;overflow-y:auto}
+.modal-box h3{font-family:'Fredoka One',cursive;color:#b8860b;font-size:1rem;margin-bottom:4px;text-align:center}
+.modal-box .mq{color:#3a2a5a;font-size:.95rem;font-weight:700;margin-bottom:10px;text-align:center}
 .modal-box .mo{display:flex;flex-direction:column;gap:5px}
-.modal-box .mo-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;padding:9px 12px;border:2px solid rgba(255,255,255,.06);border-radius:11px;background:rgba(255,255,255,.03);color:#e8ddf5;cursor:pointer;text-align:left}
-.modal-box .mo-btn:hover{background:rgba(255,255,255,.08)}
+.modal-box .mo-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;padding:9px 12px;border:2px solid rgba(124,92,191,.14);border-radius:11px;background:rgba(124,92,191,.08);color:#3a2a5a;cursor:pointer;text-align:left}
+.modal-box .mo-btn:hover{background:rgba(124,92,191,.18)}
 .modal-box .mo-btn:disabled{pointer-events:none}
-.modal-box .mo-btn.mc{background:rgba(67,233,123,.16);border-color:#43e97b;color:#b0f5c8}
-.modal-box .mo-btn.me{background:rgba(245,87,108,.16);border-color:#f5576c;color:#f5b0b8}
+.modal-box .mo-btn.mc{background:rgba(67,233,123,.16);border-color:#1a9e54;color:#0a5c3a}
+.modal-box .mo-btn.me{background:rgba(245,87,108,.16);border-color:#d6336c;color:#a01030}
 .modal-fb{padding:8px 10px;border-radius:10px;font-weight:700;font-size:.8rem;text-align:center;display:none;margin-top:6px}
-.modal-fb.show{display:block}.modal-fb.mf-c{background:rgba(67,233,123,.1);color:#b0f5c8}.modal-fb.mf-e{background:rgba(245,87,108,.1);color:#f5b0b8}
+.modal-fb.show{display:block}.modal-fb.mf-c{background:rgba(67,233,123,.1);color:#0a5c3a}.modal-fb.mf-e{background:rgba(245,87,108,.1);color:#a01030}
 .modal-btn-f{display:none;margin:8px auto 0;padding:7px 20px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:36px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer}
 .modal-btn-f.show{display:block}
 
@@ -217,11 +217,11 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
 
 /* ===== NOVO LAYOUT: LOGO, AVATAR, CATÁLOGO E SALA DE AULA ===== */
 .header-site{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-.header-logo{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:6px 14px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.header-logo{display:flex;align-items:center;gap:9px;background:rgba(124,92,191,.12);border:1px solid rgba(124,92,191,.20);border-radius:18px;padding:6px 14px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
 .header-logo svg{width:46px;height:46px;flex-shrink:0;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
 .header-logo .hl-txt{line-height:1.05;text-align:left}
-.header-logo .hl-txt b{font-family:'Fredoka One',cursive;color:#ffd700;font-size:1rem;display:block;letter-spacing:.4px;text-shadow:0 2px 0 #4a2c8a}
-.header-logo .hl-txt span{font-size:.62rem;color:#cdb8f0;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.header-logo .hl-txt b{font-family:'Fredoka One',cursive;color:#b8860b;font-size:1rem;display:block;letter-spacing:.4px;text-shadow:0 2px 0 #4a2c8a}
+.header-logo .hl-txt span{font-size:.62rem;color:#6b5b8c;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
 .bez-wrap{position:fixed;right:8px;bottom:62px;z-index:150;display:flex;flex-direction:column;align-items:flex-end;gap:6px;pointer-events:none}
 .bez-wrap>*{pointer-events:auto}
 .bez-avatar{cursor:pointer;width:66px;height:66px;transition:transform .25s;filter:drop-shadow(0 4px 10px rgba(0,0,0,.45))}
@@ -230,28 +230,28 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
 .bez-bubble.show{display:block;animation:popB .3s ease}
 .bez-bubble:after{content:'';position:absolute;right:16px;bottom:-8px;border:8px solid transparent;border-top-color:#f3e9ff}
 @keyframes popB{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.cat-title{font-family:'Fredoka One',cursive;color:#ffd700;font-size:1.02rem;margin:12px 4px 5px;text-shadow:0 2px 0 #4a2c8a;display:flex;align-items:center;gap:6px}
+.cat-title{font-family:'Fredoka One',cursive;color:#b8860b;font-size:1.02rem;margin:12px 4px 5px;text-shadow:0 2px 0 #ffd166;display:flex;align-items:center;gap:6px}
 .tema-cat{margin-bottom:4px}
 .tema-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(142px,1fr));gap:8px}
-.tema-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:11px 8px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.tema-card{background:rgba(124,92,191,.12);border:1px solid rgba(124,92,191,.18);border-radius:18px;padding:11px 8px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
 .tema-card:hover{transform:translateY(-3px);background:rgba(124,92,191,.18);box-shadow:0 8px 22px rgba(0,0,0,.35)}
 .tema-card .tc-emoji{font-size:2rem;line-height:1}
-.tema-card .tc-nome{font-weight:800;color:#f5e6d3;font-size:.78rem;margin-top:4px;line-height:1.12}
-.tema-card .tc-btn{margin-top:7px;font-size:.62rem;font-weight:800;padding:4px 11px;border-radius:30px;background:linear-gradient(135deg,#43e97b,#38f9d7);color:#003d2e;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:3px}
+.tema-card .tc-nome{font-weight:800;color:#3a2a5a;font-size:.78rem;margin-top:4px;line-height:1.12}
+.tema-card .tc-btn{margin-top:7px;font-size:.62rem;font-weight:800;padding:4px 11px;border-radius:30px;background:linear-gradient(135deg,#1a9e54,#38f9d7);color:#003d2e;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:3px}
 .tema-card .tc-btn:hover{filter:brightness(1.08)}
 .tema-card.escondido{display:none}
 .ws-back{display:flex;justify-content:center;margin:2px 0 6px}
 .ws-header{text-align:center;margin-bottom:4px}
-.ws-header .ws-title{font-family:'Fredoka One',cursive;color:#ffd700;font-size:1.2rem;text-shadow:0 2px 0 #4a2c8a}
-.ws-tabs{display:flex;gap:4px;overflow-x:auto;padding:3px;background:rgba(255,255,255,.03);border-radius:30px;margin-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.ws-header .ws-title{font-family:'Fredoka One',cursive;color:#b8860b;font-size:1.2rem;text-shadow:0 2px 0 #ffd166}
+.ws-tabs{display:flex;gap:4px;overflow-x:auto;padding:3px;background:rgba(124,92,191,.08);border-radius:30px;margin-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .ws-tabs::-webkit-scrollbar{display:none}
-.ws-tab{flex-shrink:0;font-family:'Nunito',sans-serif;font-weight:800;font-size:.7rem;padding:7px 13px;border:none;border-radius:24px;background:transparent;color:#b8a8d8;cursor:pointer;transition:all .2s;white-space:nowrap}
-.ws-tab:hover{background:rgba(255,255,255,.06)}
-.ws-tab.ativo{background:rgba(255,215,0,.15);color:#ffd700;box-shadow:0 0 10px rgba(255,215,0,.12)}
+.ws-tab{flex-shrink:0;font-family:'Nunito',sans-serif;font-weight:800;font-size:.7rem;padding:7px 13px;border:none;border-radius:24px;background:transparent;color:#6b5b8c;cursor:pointer;transition:all .2s;white-space:nowrap}
+.ws-tab:hover{background:rgba(124,92,191,.14)}
+.ws-tab.ativo{background:rgba(255,215,0,.15);color:#b8860b;box-shadow:0 0 10px rgba(255,215,0,.12)}
 .ws-games{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0 2px}
-.ws-game{font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:8px 14px;border:2px solid rgba(255,255,255,.1);border-radius:30px;background:rgba(255,255,255,.04);color:#f5e6d3;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:4px}
+.ws-game{font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:8px 14px;border:2px solid rgba(124,92,191,.22);border-radius:30px;background:rgba(124,92,191,.10);color:#3a2a5a;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:4px}
 .ws-game:hover{background:rgba(124,92,191,.25);border-color:#7c5cbf;transform:translateY(-2px)}
-.ws-games-t{text-align:center;color:#cdb8f0;font-weight:800;font-size:.78rem;margin:10px 0 0}
+.ws-games-t{text-align:center;color:#6b5b8c;font-weight:800;font-size:.78rem;margin:10px 0 0}
 @media(max-width:600px){.header-logo .hl-txt b{font-size:.85rem}.bez-avatar{width:56px;height:56px}}
 </style>
 </head>
@@ -261,10 +261,10 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
   <div class="header-site">
     <div class="header-logo" title="Casa Espírita Bezerra de Menezes">
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Casa Bezerra de Menezes">
-        <rect x="47" y="5" width="6" height="22" rx="2" fill="#ffd700"/>
-        <rect x="40" y="12" width="20" height="6" rx="2" fill="#ffd700"/>
-        <path d="M50 28 L86 52 V92 H14 V52 Z" fill="none" stroke="#cdb8f0" stroke-width="5" stroke-linejoin="round"/>
-        <rect x="42" y="64" width="16" height="28" rx="3" fill="#7c5cbf"/>
+        <rect x="47" y="5" width="6" height="22" rx="2" fill="#ff9e00"/>
+        <rect x="40" y="12" width="20" height="6" rx="2" fill="#ff9e00"/>
+        <path d="M50 28 L86 52 V92 H14 V52 Z" fill="none" stroke="#7b3fa0" stroke-width="5" stroke-linejoin="round"/>
+        <rect x="42" y="64" width="16" height="28" rx="3" fill="#9b5de5"/>
         <path d="M52 62 q-9 -11 -17 -6 q7 4 7 11 q-9 -2 -13 3 q11 2 23 -8z" fill="#ffffff"/>
         <circle cx="62" cy="60" r="2.2" fill="#3a2a5a"/>
       </svg>
@@ -273,7 +273,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
   </div>
   <!-- TEMA SELECTOR -->
   <div style="overflow-x:auto;margin-bottom:3px;-webkit-overflow-scrolling:touch">
-    <div style="display:flex;gap:2px;min-width:max-content;padding:2px;background:rgba(255,255,255,.03);border-radius:36px" id="tema-botoes">
+    <div style="display:flex;gap:2px;min-width:max-content;padding:2px;background:rgba(124,92,191,.08);border-radius:36px" id="tema-botoes">
       <button class="tema-btn ativo" data-tema="0" onclick="setTema(0)">🌟 Deus</button>
       <button class="tema-btn" data-tema="1" onclick="setTema(1)">📜 Moisés</button>
       <button class="tema-btn" data-tema="2" onclick="setTema(2)">✨ Jesus</button>
@@ -373,12 +373,12 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
   </div>  <!-- PASSA OU REPASSA -->
   <div class="tela" id="tela-passa">
     <div id="pr-setup" class="pr-setup">
-      <h3 style="color:#f5e6d3;font-size:.95rem;margin-bottom:4px">🎯 Passa ou Repassa</h3>
-      <p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px">Nome dos times:</p>
+      <h3 style="color:#3a2a5a;font-size:.95rem;margin-bottom:4px">🎯 Passa ou Repassa</h3>
+      <p style="color:#6b5b8c;font-size:.75rem;margin-bottom:6px">Nome dos times:</p>
       <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:6px">
         <input id="pr-n1" value="Time Azul" placeholder="Time 1"><input id="pr-n2" value="Time Vermelho" placeholder="Time 2">
       </div>
-      <p style="color:#b8a8d8;font-size:.7rem;margin-bottom:4px">Dificuldade:</p>
+      <p style="color:#6b5b8c;font-size:.7rem;margin-bottom:4px">Dificuldade:</p>
       <div class="pr-diff" id="pr-diff-setup">
         <button class="pr-diff-btn ativo" data-d="0" onclick="setPRDiff(0)">🌟 Fácil</button>
         <button class="pr-diff-btn" data-d="1" onclick="setPRDiff(1)">🌟🌟 Médio</button>
@@ -408,7 +408,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
   <!-- MEMÓRIA -->
   <div class="tela" id="tela-memoria">
     <div style="text-align:center;margin:4px 0">
-      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem">🧠 Nível:</p>
+      <p style="color:#6b5b8c;font-weight:700;font-size:.8rem">🧠 Nível:</p>
       <div class="dificuldade" id="mem-dif">
         <button class="dif-btn ativo" data-d="0" onclick="setMemDiff(0)">🌟 6 pares</button>
         <button class="dif-btn" data-d="1" onclick="setMemDiff(1)">🌟🌟 8 pares</button>
@@ -423,7 +423,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
   <!-- LIGUE OS PONTOS -->
   <div class="tela" id="tela-ligapontos">
     <div style="text-align:center;margin:4px 0">
-      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem">🎨 Desenho:</p>
+      <p style="color:#6b5b8c;font-weight:700;font-size:.8rem">🎨 Desenho:</p>
       <div class="lp-desenhos" id="lp-desenhos">
         <button class="lp-d-btn ativo" data-lp="estrela" onclick="setLPD('estrela')">⭐ Estrela</button>
         <button class="lp-d-btn" data-lp="coracao" onclick="setLPD('coracao')">❤️ Coração</button>
@@ -432,7 +432,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
         <button class="lp-d-btn" data-lp="tabuas" onclick="setLPD('tabuas')">📜 Tábuas</button>
         <button class="lp-d-btn" data-lp="sarca" onclick="setLPD('sarca')">🔥 Sarça</button>
       </div>
-      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem;margin-top:2px">🔢 Nível:</p>
+      <p style="color:#6b5b8c;font-weight:700;font-size:.8rem;margin-top:2px">🔢 Nível:</p>
       <div class="dificuldade" id="lp-dif">
         <button class="dif-btn ativo" data-d="0" onclick="setLPDiff(0)">🌟 8 pontos</button>
         <button class="dif-btn" data-d="1" onclick="setLPDiff(1)">🌟🌟 12 pontos</button>
@@ -448,7 +448,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
   <!-- CAÇA-PALAVRAS -->
   <div class="tela" id="tela-cacapalavras">
     <div style="text-align:center;margin:4px 0">
-      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem">🔍 Nível:</p>
+      <p style="color:#6b5b8c;font-weight:700;font-size:.8rem">🔍 Nível:</p>
       <div class="dificuldade" id="cp-dif">
         <button class="dif-btn ativo" data-d="0" onclick="setCPDiff(0)">🌟 6×6</button>
         <button class="dif-btn" data-d="1" onclick="setCPDiff(1)">🌟🌟 8×8</button>
@@ -463,18 +463,18 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
 
   <!-- QUADRINHO -->
   <div class="tela" id="tela-quadrinho">
-    <h3 style="font-family:'Fredoka One',cursive;color:#ffd700;text-align:center;font-size:1rem" id="qd-titulo">📖 Quadrinho Temático</h3>
+    <h3 style="font-family:'Fredoka One',cursive;color:#b8860b;text-align:center;font-size:1rem" id="qd-titulo">📖 Quadrinho Temático</h3>
     <div class="qd-painel" id="qd-painel"></div>
     <div class="qd-ctr">
       <button class="btn btn-sm btn-o" onclick="qdAnterior()">◀ Anterior</button>
-      <span id="qd-cont" style="color:#cdb8f0;font-weight:700;font-size:.75rem">1 / 6</span>
+      <span id="qd-cont" style="color:#6b5b8c;font-weight:700;font-size:.75rem">1 / 6</span>
       <button class="btn btn-sm btn-p" onclick="qdProximo()">Próximo ▶</button>
       <button class="btn btn-sm btn-w" id="qd-auto" onclick="qdAuto()">▶ Automático</button>
     </div>
   </div>  <!-- QUIZ -->
   <div class="tela" id="tela-quiz">
     <div id="quiz-setup" style="text-align:center;padding:4px 0">
-      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem">📚 Escolha o tema:</p>
+      <p style="color:#6b5b8c;font-weight:700;font-size:.8rem">📚 Escolha o tema:</p>
       <div class="dif-scroll" id="quiz-tema">
         <button class="dif-btn ativo" data-t="0" onclick="setQuizTema(0)">🌟 Deus</button>
         <button class="dif-btn" data-t="1" onclick="setQuizTema(1)">📜 Moisés</button>
@@ -498,7 +498,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
         <button class="dif-btn" data-t="19" onclick="setQuizTema(19)">📖 Salmos</button>
         <button class="dif-btn" data-t="99" onclick="setQuizTema(99)">🔀 Misto</button>
       </div>
-      <p style="color:#cdb8f0;font-weight:700;font-size:.8rem;margin-top:2px">💪 Dificuldade:</p>
+      <p style="color:#6b5b8c;font-weight:700;font-size:.8rem;margin-top:2px">💪 Dificuldade:</p>
       <div class="dificuldade" id="quiz-dif">
         <button class="dif-btn ativo" data-d="0" onclick="setQuizDiff(0)">🌟 Fácil</button>
         <button class="dif-btn" data-d="1" onclick="setQuizDiff(1)">🌟🌟 Médio</button>
@@ -508,10 +508,10 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
     </div>
     <div id="quiz-jogo" style="display:none">
       <div class="tab-header">
-        <div class="tab-info"><span>❓ <span style="color:#ffd700" id="quiz-cont">1/10</span></span><span>🎯 <span class="dv" id="quiz-pontos">0</span></span></div>
+        <div class="tab-info"><span>❓ <span style="color:#b8860b" id="quiz-cont">1/10</span></span><span>🎯 <span class="dv" id="quiz-pontos">0</span></span></div>
       </div>
-      <div id="quiz-pergunta" style="background:rgba(255,255,255,.04);border-radius:16px;padding:14px;margin:6px 0;border:1px solid rgba(255,255,255,.06)">
-        <div id="quiz-q" style="color:#f5f0ff;font-weight:700;font-size:.95rem;margin-bottom:10px;text-align:center"></div>
+      <div id="quiz-pergunta" style="background:rgba(124,92,191,.10);border-radius:16px;padding:14px;margin:6px 0;border:1px solid rgba(124,92,191,.14)">
+        <div id="quiz-q" style="color:#3a2a5a;font-weight:700;font-size:.95rem;margin-bottom:10px;text-align:center"></div>
         <div id="quiz-opts" style="display:flex;flex-direction:column;gap:5px"></div>
         <div id="quiz-fb" style="display:none;padding:8px 10px;border-radius:8px;font-weight:700;font-size:.8rem;margin-top:6px;text-align:center"></div>
       </div>
@@ -519,8 +519,8 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#0f0c29,#
     </div>
     <div id="quiz-fim" style="display:none;text-align:center;padding:14px">
       <div style="font-size:2.5rem" id="quiz-fim-emoji">🏆</div>
-      <div style="font-family:'Fredoka One',cursive;color:#ffd700;font-size:1.4rem" id="quiz-fim-titulo">Parabéns!</div>
-      <div id="quiz-fim-msg" style="color:#d4c4f0;font-weight:700;margin:6px 0"></div>
+      <div style="font-family:'Fredoka One',cursive;color:#b8860b;font-size:1.4rem" id="quiz-fim-titulo">Parabéns!</div>
+      <div id="quiz-fim-msg" style="color:#6b5b8c;font-weight:700;margin:6px 0"></div>
       <div class="botoes-centro"><button class="btn btn-sm btn-p" onclick="reiniciarQuiz()">🔄 Jogar de Novo</button></div>
     </div>
   </div>
@@ -598,14 +598,14 @@ function wsTab(s){
   else if(s==='recursos')renderRecursos();
   var src=document.getElementById(mapa[s]);
   var dest=document.getElementById('ws-content');
-  dest.innerHTML=src?src.innerHTML:'<p style="color:#cdb8f0;text-align:center;font-size:.9rem">Em breve para este tema.</p>';
+  dest.innerHTML=src?src.innerHTML:'<p style="color:#6b5b8c;text-align:center;font-size:.9rem">Em breve para este tema.</p>';
   dest.scrollTop=0;
 }
 function renderCatalog(){
   var c=document.getElementById('catalogo');
   if(!c)return;
   var h='<div style="text-align:center;margin:4px 0 2px"><div class="ilustracao">📚✨🐮</div><h1 class="logo" style="font-size:1.5rem">Catálogo de Temas<small>Escolha um tema e abra a Sala de Aula</small></h1><p class="subtitle">Cada tema tem sua História, Plano de Aula, Brincadeiras, Revisão e vídeos — tudo organizado para a sua aula!</p></div>';
-  h+='<div style="text-align:center;margin:6px 0 2px"><input id="cat-busca" type="text" placeholder="🔍 Buscar um tema..." oninput="filtrarCatalogo(this.value)" style="font-family:Nunito,sans-serif;font-size:.85rem;padding:8px 16px;border-radius:30px;border:2px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#f5e6d3;width:min(320px,92%);text-align:center;outline:none"><div id="cat-sem" style="display:none;color:#cdb8f0;font-weight:700;font-size:.8rem;margin-top:6px">Nenhum tema encontrado 🔎</div></div>';
+  h+='<div style="text-align:center;margin:6px 0 2px"><input id="cat-busca" type="text" placeholder="🔍 Buscar um tema..." oninput="filtrarCatalogo(this.value)" style="font-family:Nunito,sans-serif;font-size:.85rem;padding:8px 16px;border-radius:30px;border:2px solid rgba(124,92,191,.3);background:rgba(124,92,191,.14);color:#3a2a5a;width:min(320px,92%);text-align:center;outline:none"><div id="cat-sem" style="display:none;color:#6b5b8c;font-weight:700;font-size:.8rem;margin-top:6px">Nenhum tema encontrado 🔎</div></div>';
   for(var i=0;i<catTemas.length;i++){
     var cat=catTemas[i];
     h+='<div class="tema-cat"><div class="cat-title">'+cat.nome+'</div><div class="tema-grid">';
@@ -683,31 +683,31 @@ var cpDiff=0,cpGrid=[],cpPalavras=[],cpEncontradas=[],cpSel=null,cpDir=null,cpLa
 var temaContent={};
 temaContent[0]={
   hist:'<h2>🌟 Deus e a Criação <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em O Livro dos Espíritos (Q.1-56), Gênesis, passatempoespirita.com.br</p><div class="eb">🌟🌍🌱🐟🦅👫</div><p>No princípio, Deus criou os céus e a terra. A terra era sem forma e vazia; e o Espírito de Deus pairava sobre as águas. Disse Deus: "Haja luz!" E houve luz. Deus viu que a luz era boa e separou a luz das trevas. (Gênesis 1:1-4)</p><p>Deus é a inteligência suprema, causa primária de todas as coisas. Ele é eterno, imutável, imaterial, único, onipotente, soberanamente justo e bom. Deus não tem forma física — é puro espírito, e está em toda parte. (O Livro dos Espíritos, Q.1-13)</p><div class="vers">"Deus é a inteligência suprema, causa primária de todas as coisas." (O Livro dos Espíritos, Q.1)</div><p>Deus criou o Universo com leis perfeitas e harmoniosas. Tudo na natureza revela a sabedoria divina: o Sol que aquece, a chuva que rega, as flores que desabrocham, os pássaros que cantam. Cada criatura, por menor que seja, é uma obra-prima do Criador.</p><p>O Fluido Universal é a matéria elementar primitiva, o princípio de todas as coisas materiais. Dele se formam os mundos, os seres orgânicos e inorgânicos. O fluido vital dá vida aos seres organizados, e sem ele os corpos morrem. (O Livro dos Espíritos, Q.22-27, 60-70)</p><p>Deus criou os três reinos: o mineral (as rochas e os minerais), o vegetal (as plantas e as árvores) e o animal (os seres vivos com movimento e sensibilidade). Cada reino tem sua beleza e importância na criação divina.</p><div class="vers">"Os céus proclamam a glória de Deus, e o firmamento anuncia as obras de Suas mãos." (Salmos 19:1)</div><div class="reflexao">💭 <strong>Reflexão Espírita:</strong> Deus nos criou para a felicidade e para o progresso. Através das reencarnações, evoluímos espiritualmente. O Universo é a obra prima de Deus, e nós somos parte dela. Cuidar da natureza é cuidar da criação divina. Cada descoberta científica revela um pouco mais da sabedoria infinita do Criador. 🌟</div>',
-  aula:'<h2>👩‍🏫 Plano de Aula: Deus e a Criação <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 5 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> Deus como Criador e Pai amoroso</p><h3>🎯 Objetivos</h3><p>• Compreender quem é Deus e como Ele se manifesta na criação • Identificar a presença de Deus na natureza • Desenvolver gratidão e amor a Deus</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração inicial. Cantar "Deus está aqui". Mostrar imagens da natureza e perguntar: "Quem fez tudo isso?"</p><h3>🌟 2. Introdução (5 min)</h3><p>Perguntar: "Se você fosse criar um país, o que faria primeiro?" Explicar que Deus criou tudo com sabedoria e amor.</p><h3>📜 3. História Interativa (15 min)</h3><p>Contar a história da Criação usando emojis visuais: 🌟 luz → 🌊 águas → 🌱 plantas → ☀️ Sol/Lua → 🐟 peixes → 🐦 pássaros → 🐾 animais → 👫 homem/mulher.</p><h3>💬 4. Diálogo e Reflexão (8 min)</h3><p>• Deus não tem forma física, é puro espírito • Deus está em toda parte • Podemos falar com Deus através da oração • Deus nos ama incondicionalmente</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Jogo da Memória com pares da criação | Quiz sobre Deus | Desenho: "Como você imagina a criação?"</p><h3>✏️ 6. Fixação (5 min)</h3><p>Ensinar: "Deus é amor. Quem permanece no amor, permanece em Deus." (1 João 4:16). Cada criança fala algo bonito que Deus criou.</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração agradecendo a Deus pela natureza e pela vida.</p><div class="dica">💡 Dica: Leve plantas, pedras e imagens da natureza para a sala de aula.</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Deus e a Criação <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 5 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> Deus como Criador e Pai amoroso</p><h3>🎯 Objetivos</h3><p>• Compreender quem é Deus e como Ele se manifesta na criação • Identificar a presença de Deus na natureza • Desenvolver gratidão e amor a Deus</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração inicial. Cantar "Deus está aqui". Mostrar imagens da natureza e perguntar: "Quem fez tudo isso?"</p><h3>🌟 2. Introdução (5 min)</h3><p>Perguntar: "Se você fosse criar um país, o que faria primeiro?" Explicar que Deus criou tudo com sabedoria e amor.</p><h3>📜 3. História Interativa (15 min)</h3><p>Contar a história da Criação usando emojis visuais: 🌟 luz → 🌊 águas → 🌱 plantas → ☀️ Sol/Lua → 🐟 peixes → 🐦 pássaros → 🐾 animais → 👫 homem/mulher.</p><h3>💬 4. Diálogo e Reflexão (8 min)</h3><p>• Deus não tem forma física, é puro espírito • Deus está em toda parte • Podemos falar com Deus através da oração • Deus nos ama incondicionalmente</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Jogo da Memória com pares da criação | Quiz sobre Deus | Desenho: "Como você imagina a criação?"</p><h3>✏️ 6. Fixação (5 min)</h3><p>Ensinar: "Deus é amor. Quem permanece no amor, permanece em Deus." (1 João 4:16). Cada criança fala algo bonito que Deus criou.</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração agradecendo a Deus pela natureza e pela vida.</p><div class="dica">💡 Dica: Leve plantas, pedras e imagens da natureza para a sala de aula.</div>',
   brinc:'<h2>🎪 Brincadeiras: Deus e a Criação <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣️⃣ Mapa Gigante da Criação (💡 5-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Conhece como Deus criou cada elemento do Universo e valoriza a natureza como obra divina.</p><p><strong>📦 Material:</strong> Cartolinas grandes, lápis de cor, colagem de recortes (nuvens, árvores, animais, água, sol, lua, estrelas).</p><p><strong>🎮 Como brincar:</strong> Dividir em grupos. Cada grupo recebe uma cartolina e deve desenhar ou colar a Criação em ordem: luz → céu → águas → plantas → astros → peixes → pássaros → animais → ser humano. Cada grupo apresenta seu mapa.</p><h3>2️⃣️⃣ Teatro de Sombras da Criação (💡 6-12 anos, 25 min)</h3><p><strong>🎯 Aprende:</strong> Compreende que Deus criou cada ser vivo com sabedoria e percebe a sequência da criação bíblica.</p><p><strong>📦 Material:</strong> Lençol branco, lanterna, figuras recortadas em papel cartão (sol, baleia, pássaro, árvore, homem, mulher), palitos.</p><p><strong>🎮 Como brincar:</strong> Colar figuras em palitos. Estender o lençol com lanterna atrás. Cada dupla recebe uma figura e encena a criação enquanto os outros adivinham o dia. O evangelizador narra: “E Deus disse...” Ao final, refletir que cada criatura tem seu valor.</p><h3>3️⃣️⃣ Sons da Natureza — Audição Guiada (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Desenvolve a percepção sensorial da natureza como manifestação de Deus.</p><p><strong>📦 Material:</strong> Caixa de som, playlist com sons (chuva, vento, pássaros, ondas, animais, coração), vendas.</p><p><strong>🎮 Como brincar:</strong> Crianças vendadas deitam-se no chão. Tocar um som por vez. Cada uma levanta a mão quando reconhece. Perguntar: “Quem criou isso?” Terminar com coração batendo: “Deus também criou você e ouve seu coração.”</p><h3>4️⃣️⃣ Jardim de Argila — Modelando a Criação (💡 5-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Compreende que Deus deu vida aos seres e o ser humano foi criado para cuidar da criação.</p><p><strong>📦 Material:</strong> Argila ou massinha (várias cores), palitos, papel kraft.</p><p><strong>🎮 Como brincar:</strong> Cada criança escolhe um elemento da criação para modelar (flor, peixe, pássaro, pessoa). Enquanto modelam, o evangelizador conta curiosidades sobre a sabedoria divina. Ao final, todas as criações formam um grande “jardim da criação”.</p><h3>5️⃣️⃣ Jogo dos Pares da Criação (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Memoriza os elementos da criação bíblica e associa cada um ao dia em que foi criado.</p><p><strong>📦 Material:</strong> 16 cartas (8 pares) com desenhos (luz, céu/mar, plantas, astros, peixes, pássaros, animais, ser humano).</p><p><strong>🎮 Como brincar:</strong> Cartas viradas para baixo. Cada criança vira duas. Quando encontra o par, diz: “Deus criou [elemento] no [dia]”. Vence quem tiver mais pares.</p><h3>6️⃣️⃣ Estrela da Gratidão (💡 5-12 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Desenvolve a gratidão a Deus pela natureza e pela vida.</p><p><strong>📦 Material:</strong> Cartolina amarela em formato de estrela, canetinhas, adesivos, cola.</p><p><strong>🎮 Como brincar:</strong> Cada criança escreve/desenha na estrela algo pelo qual agradece a Deus na natureza. Decoram. Em círculo, mostram e falam sua gratidão. Colar em mural “Obrigado, Deus!”.</p><h3>7️⃣️⃣ Ciclo da Água Divina (💡 6-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Compreende que Deus criou leis perfeitas na natureza e que a água é presente divino.</p><p><strong>📦 Material:</strong> Saco plástico com zíper, água, corante azul, fita adesiva, desenho do ciclo da água.</p><p><strong>🎮 Como brincar:</strong> Cada criança recebe um saco com água e corante azul. Colar na janela. Observar evaporação, condensação e precipitação (mini ciclo). Colorir o desenho enquanto esperam. Explicar que Deus criou as leis da natureza com sabedoria.</p><h3>8️⃣️⃣ Pega-Pega dos Animais (💡 5-8 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Conhece diferentes animais e entende que cada um tem seu habitat na criação divina.</p><p><strong>📦 Material:</strong> Cartões com animais (peixe, pássaro, cobra, macaco, leão), fita crepe.</p><p><strong>🎮 Como brincar:</strong> Marcar três áreas: Água, Céu, Terra. Distribuir cartões. Crianças correm. Ao grito “Deus criou os animais!”, cada uma corre para o habitat do seu animal. Quem erra conta uma curiosidade.</p>',
-  rev:'<h2>📚 Revisão — Deus e a Criação <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: O Livro dos Espíritos, Gênesis, passatempoespirita.com.br</p><h3>🌟 Quem é Deus?</h3><p>Deus é a inteligência suprema, causa primária de todas as coisas (Q.1). É eterno, imutável, imaterial, único, onipotente, soberanamente justo e bom. Não tem forma física — é puro espírito. Está em toda parte, vê tudo, sabe tudo. Comunica-se conosco através da intuição e da oração.</p><h3>🌍 A Criação</h3><p>Deus criou o Universo com leis perfeitas. Tudo na natureza segue leis divinas: a gravidade, o ciclo da água, a fotossíntese. A ciência estuda as leis de Deus. Não há milagres — apenas leis naturais que ainda não compreendemos.</p><h3>💧 Fluido Universal</h3><p>Matéria elementar primitiva que preenche o Universo. Dá origem a tudo que existe no plano material. O fluido vital é uma modificação do fluido universal que anima os seres vivos.</p><h3>🪨 Três Reinos</h3><p>Mineral (rochas, sem vida), Vegetal (plantas, com vida mas sem consciência própria) e Animal (seres com vida, movimento e instinto). O ser humano possui alma, consciência e livre-arbítrio.</p><h3>💭 Reflexão</h3><p>Deus nos criou para sermos felizes. A felicidade verdadeira está em fazer o bem e amar ao próximo. Cada criatura de Deus tem seu valor e sua missão. Somos todos irmãos, filhos do mesmo Pai celestial. 🕊️</p>'
+  rev:'<h2>📚 Revisão — Deus e a Criação <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.8rem">Fontes: O Livro dos Espíritos, Gênesis, passatempoespirita.com.br</p><h3>🌟 Quem é Deus?</h3><p>Deus é a inteligência suprema, causa primária de todas as coisas (Q.1). É eterno, imutável, imaterial, único, onipotente, soberanamente justo e bom. Não tem forma física — é puro espírito. Está em toda parte, vê tudo, sabe tudo. Comunica-se conosco através da intuição e da oração.</p><h3>🌍 A Criação</h3><p>Deus criou o Universo com leis perfeitas. Tudo na natureza segue leis divinas: a gravidade, o ciclo da água, a fotossíntese. A ciência estuda as leis de Deus. Não há milagres — apenas leis naturais que ainda não compreendemos.</p><h3>💧 Fluido Universal</h3><p>Matéria elementar primitiva que preenche o Universo. Dá origem a tudo que existe no plano material. O fluido vital é uma modificação do fluido universal que anima os seres vivos.</p><h3>🪨 Três Reinos</h3><p>Mineral (rochas, sem vida), Vegetal (plantas, com vida mas sem consciência própria) e Animal (seres com vida, movimento e instinto). O ser humano possui alma, consciência e livre-arbítrio.</p><h3>💭 Reflexão</h3><p>Deus nos criou para sermos felizes. A felicidade verdadeira está em fazer o bem e amar ao próximo. Cada criatura de Deus tem seu valor e sua missão. Somos todos irmãos, filhos do mesmo Pai celestial. 🕊️</p>'
 };
 temaContent[1]={
   hist:'<h2>📜 Moisés e as Leis de Deus <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em Êxodo, O Livro dos Espíritos, passatempoespirita.com.br</p><div class="eb">👶🧺🔥🌿👑🐸🌊⛰️📜</div><p>Moisés nasceu no Egito, quando o povo hebreu era escravo do Faraó. Para salvá-lo da ordem de morte aos bebês hebreus, sua mãe Joquebede o colocou num cestinho no rio Nilo. A princesa do Egito encontrou o cesto e criou Moisés como seu próprio filho.</p><p>Já adulto, Moisés viu um egípcio maltratando um hebreu e o defendeu. Teve de fugir para Midiã, onde se tornou pastor e casou com Sefora. No Monte Horebe, Deus se manifestou a ele através de uma sarça ardente — um arbusto que queimava sem se consumir. "Tire as sandálias, porque este lugar é sagrado!"</p><div class="vers">"Eu sou o Deus de teu pai, o Deus de Abraão, o Deus de Isaque e o Deus de Jacó." (Êxodo 3:6)</div><p>Deus enviou Moisés e seu irmão Arão para libertar o povo hebreu. O Faraó resistiu, e dez pragas atingiram o Egito: água em sangue, rãs, piolhos, moscas, peste dos animais, úlceras, saraiva, gafanhotos, trevas e a morte dos primogênitos. Após a última praga, o Faraó deixou o povo partir.</p><p>Moisés abriu o Mar Vermelho com o poder de Deus, e o povo atravessou a pé enxuto. O exército do Faraó foi tragado pelas águas. No Monte Sinai, Moisés recebeu os Dez Mandamentos, escritos pelo dedo de Deus em tábuas de pedra.</p><div class="vers">"Amarás o Senhor teu Deus de todo o teu coração... e amarás o teu próximo como a ti mesmo." (Deuteronômio 6:5; Levítico 19:18)</div><p>Durante 40 anos, o povo andou pelo deserto rumo à Terra Prometida. Deus os alimentou com maná (pão do céu) e água da rocha. Moisés não entrou na Terra Prometida, mas viu-a do Monte Nebo antes de desencarnar. Josué foi seu sucessor.</p><div class="reflexao">💭 <strong>Reflexão Espírita:</strong> Moisés é uma das figuras mais importantes da humanidade. Ele recebeu as Leis Divinas (as Tábuas da Lei), que são a base do Antigo Testamento. Para os espíritas, Moisés representa a Primeira Revelação — a Lei de Deus dada aos homens. Jesus veio aperfeiçoar essa Lei com o Amor, e o Espiritismo veio consolidar a Verdade. 📜✨</div>',
-  aula:'<h2>👩‍🏫 Plano de Aula: Moisés e as Leis de Deus <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 5 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> A vida de Moisés e os Dez Mandamentos</p><h3>🎯 Objetivos</h3><p>• Conhecer a história de Moisés desde o nascimento até a Terra Prometida • Compreender os Dez Mandamentos como leis de Deus • Perceber Moisés como um grande líder espiritual</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Cantar "Moisés libertou o povo". Mostrar imagens de Moisés.</p><h3>🌟 2. Introdução (5 min)</h3><p>Perguntar: "Você já teve que fazer algo difícil porque era certo?" Moisés teve uma missão difícil: libertar um povo inteiro!</p><h3>📜 3. História Interativa (15 min)</h3><p>Usar emojis para contar a história: 👶 cestinho → 🔥 sarça → 👑 Faraó → 🐸 pragas → 🌊 mar → ⛰️ Sinai → 📜 mandamentos. As crianças repetem a sequência.</p><h3>💬 4. Diálogo (8 min)</h3><p>• Moisés teve fé e coragem • Deus sempre protegeu Moisés • Os 10 Mandamentos são regras para vivermos bem • O principal: amar a Deus e ao próximo</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Jogo da Velha Moisés vs Faraó | Quiz sobre Moisés | Caça-palavras com os 10 Mandamentos</p><h3>✏️ 6. Fixação (5 min)</h3><p>Cada criança diz um mandamento que vai praticar esta semana.</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração agradecendo a Deus pelas leis que nos guiam.</p><div class="dica">💡 Dica: Leve réplicas das tábuas da lei ou imagens para ilustrar.</div>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Moisés e as Leis de Deus <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 5 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> A vida de Moisés e os Dez Mandamentos</p><h3>🎯 Objetivos</h3><p>• Conhecer a história de Moisés desde o nascimento até a Terra Prometida • Compreender os Dez Mandamentos como leis de Deus • Perceber Moisés como um grande líder espiritual</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Cantar "Moisés libertou o povo". Mostrar imagens de Moisés.</p><h3>🌟 2. Introdução (5 min)</h3><p>Perguntar: "Você já teve que fazer algo difícil porque era certo?" Moisés teve uma missão difícil: libertar um povo inteiro!</p><h3>📜 3. História Interativa (15 min)</h3><p>Usar emojis para contar a história: 👶 cestinho → 🔥 sarça → 👑 Faraó → 🐸 pragas → 🌊 mar → ⛰️ Sinai → 📜 mandamentos. As crianças repetem a sequência.</p><h3>💬 4. Diálogo (8 min)</h3><p>• Moisés teve fé e coragem • Deus sempre protegeu Moisés • Os 10 Mandamentos são regras para vivermos bem • O principal: amar a Deus e ao próximo</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Jogo da Velha Moisés vs Faraó | Quiz sobre Moisés | Caça-palavras com os 10 Mandamentos</p><h3>✏️ 6. Fixação (5 min)</h3><p>Cada criança diz um mandamento que vai praticar esta semana.</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração agradecendo a Deus pelas leis que nos guiam.</p><div class="dica">💡 Dica: Leve réplicas das tábuas da lei ou imagens para ilustrar.</div>',
   brinc:'<h2>🎪 Brincadeiras: Moisés <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Travessia do Mar Vermelho (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Vivencia a confiança em Deus e entende que Ele abre caminhos quando temos fé.</p><p><strong>📦 Material:</strong> Dois lençéis grandes ou tecidos azuis, música animada de fundo.</p><p><strong>🎮 Como brincar:</strong> Duas pessoas seguram os lençéis representando o Mar Vermelho. Crianças formam fila. Ao sinal "Moisés estendeu a mão!", os lençéis são levantados e elas atravessam por baixo. Quando "Faraó está chegando!", os lençéis abaixam. As que passaram estão a salvo. Refletir: "Deus abriu o mar para Moisés e abre caminhos para nós."</p><h3>2️⃣ Sarça Ardente — Caixa de Sensações (💡 6-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Compreende o chamado de Deus a Moisés e que Deus nos chama de maneiras especiais.</p><p><strong>📦 Material:</strong> Caixa de papelão decorada como sarça (galhos e papel crepom vermelho/laranja), objetos dentro: sandália, cajado, pedra com mandamentos, coração de papel.</p><p><strong>🎮 Como brincar:</strong> A caixa-sarça fica no centro. Cada criança coloca a mão na caixa sem olhar e tateia os objetos. Depois descreve o que sentiu. Revelar os objetos e explicar: sandália (lugar sagrado), cajado (pastor), pedra (leis de Deus), coração (amor de Deus). Refletir: "Deus chamou Moisés pela sarça ardente. Como Deus nos chama hoje?"</p><h3>3️⃣ Dança das Pragas (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Memoriza as pragas do Egito e entende que Deus queria libertar Seu povo.</p><p><strong>📦 Material:</strong> Cartões com as 10 pragas escritas, caixa para sorteio.</p><p><strong>🎮 Como brincar:</strong> Sortear um cartão de praga. Crianças representam corporalmente: pular como rãs, coçar como piolhos, voar como moscas, tremer de frio na saraiva, tatear na escuridão. Ao sinal "Basta!" (como Moisés disse ao Faraó), todos param. Refletir: "Deus protegeu os hebreus e mostrou Seu poder para libertá-los."</p><h3>4️⃣ Subindo o Monte Sinai (💡 6-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Entende que Moisés subiu ao monte para receber as leis de Deus e que precisamos nos preparar para ouvir Deus.</p><p><strong>📦 Material:</strong> Colchonetes ou tapetes, cartões numerados de 1 a 10, fita crepe, música suave.</p><p><strong>🎮 Como brincar:</strong> Criar trilha no chão com colchonetes (a subida do Sinai). Em cada degrau, desafio: pular num pé só (fé), ficar 5 segundos em silêncio (oração), abraçar colega (amor). No topo, caixa com os 10 Mandamentos. Cada criança sobe, cumpre desafio e "recebe" um mandamento lendo em voz alta.</p><h3>5️⃣ Construindo as Tábuas da Lei (💡 5-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Memoriza os Dez Mandamentos e compreende que são leis de amor para nossa felicidade.</p><p><strong>📦 Material:</strong> Massinha de modelar ou argila, palitos de dente, canetinhas.</p><p><strong>🎮 Como brincar:</strong> Cada criança modela duas tábuas com massinha. Com palito, escreve ou desenha um mandamento em cada tábua (simplificado). Todas as tábuas são colocadas numa "Arca da Aliança" (caixa decorada). Explicar: "Os mandamentos são leis de amor para nos proteger e fazer felizes."</p><h3>6️⃣ Caça ao Maná (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Compreende a providência divina e que Deus sempre cuida de nós.</p><p><strong>📦 Material:</strong> Papeis amarelos e brancos (maná), cartões com mensagens de gratidão, cesta, música calma.</p><p><strong>🎮 Como brincar:</strong> Espalhar papeis "maná" pelo chão. Crianças dançam em volta. Quando a música para, cada uma pega um maná. Alguns têm mensagens: "Deus te ama", "Confia em Deus", "Agradeça pelo alimento". Quem pegou lê em voz alta. Refletir: "Deus enviou maná no deserto. Todos os dias Deus cuida de nós."</p><h3>7️⃣ Cesta de Moisés — Acolhimento e Proteção (💡 5-8 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Desenvolve empatia e compreende o amor de mãe e a proteção divina.</p><p><strong>📦 Material:</strong> Caixinhas ou cestos pequenos, papel crepom, cola, papéis coloridos.</p><p><strong>🎮 Como brincar:</strong> Cada criança decora sua caixinha como o "cesto de Moisés". Dentro coloca um papel com algo que quer proteger com amor (família, amigo, bichinho). Em círculo, mostram seus cestos. Refletir: "A mãe de Moisés o protegeu porque o amava. Deus também nos protege. Podemos proteger quem amamos com carinho."</p><h3>8️⃣ Mímica do Deserto (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Revisa os principais eventos da jornada de Moisés de forma lúdica.</p><p><strong>📦 Material:</strong> Cartões com cenas: Moisés no cesto, sarça ardente, cajado virando cobra, pragas, abertura do mar, recebendo tábuas, maná, água da rocha.</p><p><strong>🎮 Como brincar:</strong> Uma criança sorteia um cartão e representa a cena sem falar. As outras adivinham. Quem acerta é o próximo. Variante: em grupo, todos representam juntos a cena sorteada. Ao final de cada rodada, o evangelizador conta rapidamente o que aconteceu naquela cena.</p>',
-  rev:'<h2>📚 Revisão — Moisés e as Leis de Deus <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Êxodo, O Livro dos Espíritos, passatempoespirita.com.br</p><h3>👶 Nascimento e Juventude</h3><p>Moisés nasceu no Egito. Sua mãe Joquebede o colocou num cestinho no Nilo. A princesa do Egito o encontrou e criou. Moisés cresceu na corte, mas sabia que era hebreu.</p><h3>🔥 A Sarça Ardente</h3><p>Fugindo para Midiã, Moisés tornou-se pastor. No Monte Horebe, Deus o chamou numa sarça que ardia sem se consumir. "Tire as sandálias, lugar sagrado!"</p><h3>👑 As Dez Pragas</h3><p>Moisés e Arão pediram a libertação do povo. Faraó recusou. Dez pragas: água em sangue, rãs, piolhos, moscas, pestes, úlceras, saraiva, gafanhotos, trevas e morte dos primogênitos.</p><h3>🌊 A Travessia do Mar Vermelho</h3><p>O povo atravessou o mar a pé enxuto. O exército egípcio foi tragado pelas águas.</p><h3>⛰️ Os Dez Mandamentos</h3><p>No Monte Sinai, Deus deu a Moisés as tábuas da lei: 1) Amar a Deus, 2) Não fazer ídolos, 3) Não usar o nome de Deus em vão, 4) Guardar o sábado, 5) Honrar pai e mãe, 6) Não matar, 7) Não adulterar, 8) Não roubar, 9) Não mentir, 10) Não cobiçar.</p><h3>🏜️ O Deserto e a Terra Prometida</h3><p>40 anos no deserto. Deus deu maná e água. Moisés viu a Terra Prometida do Monte Nebo e desencarnou. Josué o sucedeu.</p><h3>💭 Reflexão Espírita</h3><p>Moisés é o legislador, o líder que trouxe a Primeira Revelação: a Lei de Deus. Jesus aperfeiçoou a Lei com o Amor. O Espiritismo consolida a Verdade. As três revelações são Moisés (Lei), Jesus (Amor) e Espiritismo (Verdade). 📜🕊️</p>'
+  rev:'<h2>📚 Revisão — Moisés e as Leis de Deus <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.8rem">Fontes: Êxodo, O Livro dos Espíritos, passatempoespirita.com.br</p><h3>👶 Nascimento e Juventude</h3><p>Moisés nasceu no Egito. Sua mãe Joquebede o colocou num cestinho no Nilo. A princesa do Egito o encontrou e criou. Moisés cresceu na corte, mas sabia que era hebreu.</p><h3>🔥 A Sarça Ardente</h3><p>Fugindo para Midiã, Moisés tornou-se pastor. No Monte Horebe, Deus o chamou numa sarça que ardia sem se consumir. "Tire as sandálias, lugar sagrado!"</p><h3>👑 As Dez Pragas</h3><p>Moisés e Arão pediram a libertação do povo. Faraó recusou. Dez pragas: água em sangue, rãs, piolhos, moscas, pestes, úlceras, saraiva, gafanhotos, trevas e morte dos primogênitos.</p><h3>🌊 A Travessia do Mar Vermelho</h3><p>O povo atravessou o mar a pé enxuto. O exército egípcio foi tragado pelas águas.</p><h3>⛰️ Os Dez Mandamentos</h3><p>No Monte Sinai, Deus deu a Moisés as tábuas da lei: 1) Amar a Deus, 2) Não fazer ídolos, 3) Não usar o nome de Deus em vão, 4) Guardar o sábado, 5) Honrar pai e mãe, 6) Não matar, 7) Não adulterar, 8) Não roubar, 9) Não mentir, 10) Não cobiçar.</p><h3>🏜️ O Deserto e a Terra Prometida</h3><p>40 anos no deserto. Deus deu maná e água. Moisés viu a Terra Prometida do Monte Nebo e desencarnou. Josué o sucedeu.</p><h3>💭 Reflexão Espírita</h3><p>Moisés é o legislador, o líder que trouxe a Primeira Revelação: a Lei de Deus. Jesus aperfeiçoou a Lei com o Amor. O Espiritismo consolida a Verdade. As três revelações são Moisés (Lei), Jesus (Amor) e Espiritismo (Verdade). 📜🕊️</p>'
 };
 temaContent[2]={
   hist:'<h2>✨ Jesus e o Evangelho <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado nos Evangelhos, O Evangelho Segundo o Espiritismo, passatempoespirita.com.br</p><div class="eb">👼⭐👑🌍</div><p>Jesus nasceu em Belém, na Judéia, por volta do ano 4 a.C. Sua mãe era Maria e seu pai adotivo José. Anjos anunciaram seu nascimento aos pastores, e uma estrela guiou os magos do Oriente até Ele. (Mateus 1-2; Lucas 1-2)</p><p>Jesus cresceu em Nazaré, na Palestina, e desde cedo demonstrava sabedoria. Aos 12 anos, foi encontrado no Templo conversando com os doutores da lei. Aos 30 anos, iniciou sua vida pública após ser batizado por João Batista no Rio Jordão.</p><div class="vers">"Eis o Cordeiro de Deus, que tira o pecado do mundo." (João 1:29)</div><p>Jesus escolheu 12 apóstolos: Pedro, André, Tiago Maior, João, Filipe, Bartolomeu, Tomé, Mateus, Tiago Menor, Judas Tadeu, Simão Zelote e Judas Iscariotes. Eles o acompanharam por três anos em sua missão.</p><p>Jesus ensinou através de parábolas, que são histórias com ensinamentos profundos. Realizou curas, acalmou tempestades, multiplicou pães e peixes — não por magia, mas pelo poder da fé e do amor.</p><div class="vers">"Amai-vos uns aos outros assim como eu vos amei." (João 15:12)</div><p>O Sermão da Montanha (Mateus 5-7) é o código moral do Cristianismo. Jesus ensinou as Bem-Aventuranças e a Regra de Ouro: "Tudo o que quereis que os homens vos façam, fazei-o vós a eles."</p><p>Jesus foi preso, julgado e crucificado sob Pôncio Pilatos. Morreu na cruz, perdoando seus algozes: "Pai, perdoa-lhes, porque não sabem o que fazem." Ao terceiro dia, ressuscitou, aparecendo a Maria Madalena e aos discípulos. Após 40 dias, ascendeu aos céus.</p><div class="reflexao">💭 <strong>Reflexão Espírita:</strong> Jesus é o modelo de perfeição moral que Deus nos enviou. Ele não veio abolir a Lei de Moisés, mas aperfeiçoá-la. Seu ensinamento essencial é o amor: amor a Deus, amor ao próximo, amor a si mesmo. "Ninguém vem ao Pai senão por mim" significa que seus ensinamentos são o caminho para Deus. ✨</div>',
-  aula:'<h2>👩‍🏫 Plano de Aula: Jesus e o Evangelho <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 6 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> A vida e os ensinamentos de Jesus</p><h3>🎯 Objetivos</h3><p>• Conhecer a vida de Jesus e seus ensinamentos • Compreender Jesus como nosso guia e modelo • Praticar o amor ao próximo</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Cantar "Jesus, o Mestre dos Mestres". Mostrar uma imagem de Jesus com crianças.</p><h3>🌟 2. Introdução (5 min)</h3><p>Perguntar: "Quem é a pessoa mais bondosa que você conhece?" Falar que Jesus é o modelo de bondade.</p><h3>📜 3. História Interativa (15 min)</h3><p>Contar sobre o nascimento de Jesus, sua vida, ensinamentos e milagres. Destacar o amor como principal ensinamento.</p><h3>💬 4. Diálogo (8 min)</h3><p>• Jesus nos ensinou a amar a Deus e ao próximo • Devemos perdoar como Jesus perdoou • Jesus é nosso guia e modelo</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Quiz sobre Jesus | Jogo da Velha | Passa ou Repassa com perguntas sobre a vida de Jesus</p><h3>✏️ 6. Fixação (5 min)</h3><p>Cada criança diz: "Uma coisa que vou fazer para seguir Jesus é..."</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração do Pai Nosso.</p>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Jesus e o Evangelho <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 6 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> A vida e os ensinamentos de Jesus</p><h3>🎯 Objetivos</h3><p>• Conhecer a vida de Jesus e seus ensinamentos • Compreender Jesus como nosso guia e modelo • Praticar o amor ao próximo</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Cantar "Jesus, o Mestre dos Mestres". Mostrar uma imagem de Jesus com crianças.</p><h3>🌟 2. Introdução (5 min)</h3><p>Perguntar: "Quem é a pessoa mais bondosa que você conhece?" Falar que Jesus é o modelo de bondade.</p><h3>📜 3. História Interativa (15 min)</h3><p>Contar sobre o nascimento de Jesus, sua vida, ensinamentos e milagres. Destacar o amor como principal ensinamento.</p><h3>💬 4. Diálogo (8 min)</h3><p>• Jesus nos ensinou a amar a Deus e ao próximo • Devemos perdoar como Jesus perdoou • Jesus é nosso guia e modelo</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Quiz sobre Jesus | Jogo da Velha | Passa ou Repassa com perguntas sobre a vida de Jesus</p><h3>✏️ 6. Fixação (5 min)</h3><p>Cada criança diz: "Uma coisa que vou fazer para seguir Jesus é..."</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração do Pai Nosso.</p>',
   brinc:'<h2>🎪 Brincadeiras: Jesus e o Evangelho <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Tempestade no Mar da Galileia (💡 6-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Compreende que Jesus nos traz paz nos momentos difíceis.</p><p><strong>📦 Material:</strong> Lençol azul grande, cartões com ondas, música de tempestade, música calma.</p><p><strong>🎮 Como brincar:</strong> Crianças sentam em círculo segurando o lençol (o mar). Colocar bolinhas (disc­pulos) em cima. Com música de tempestade, agitam o lençol. Quando o evangelizador diz "Jesus acalmou o mar!", todos esticam o lençol quietos. Colocar vela LED (Jesus) no centro. Refletir: "Quando temos medo, chamamos Jesus e Ele acalma nosso coração."</p><h3>2️⃣ Pesca Missionária (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Compreende o chamado de Jesus aos disc­pulos e a importância de seguir Seu exemplo.</p><p><strong>📦 Material:</strong> Peixes de papel com clipe na boca, varas de pescar (cabo + linha + imã), cesto.</p><p><strong>🎮 Como brincar:</strong> Espalhar peixes no chão. Cada peixe tem mensagem de Jesus no verso: "Amai-vos uns aos outros", "Perdoai setenta vezes sete", "Bem-aventurados os pacificadores". Crianças pescam um peixe, leem a mensagem e explicam o significado. Refletir: "Jesus chamou pescadores para serem pescadores de almas. Nós também levamos as mensagens de Jesus."</p><h3>3️⃣ Multiplicação da Partilha (💡 6-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Compreende que quando compartilhamos o amor se multiplica.</p><p><strong>📦 Material:</strong> 5 pãezinhos ou biscoitos, 2 peixinhos de brinquedo, cestos, papéis e canetas.</p><p><strong>🎮 Como brincar:</strong> Mostrar 5 pães e 2 peixes. "Isso dá para quantas pessoas?" Formar círculo. Cada criança escreve num papel algo que pode compartilhar (sorriso, abraço, ajuda). Colocar no cesto. O evangelizador "multiplica" distribuindo cada papel para outra criança. Refletir: "Jesus multiplicou o pouco. Quando compartilhamos, o amor cresce." Comer os pãezinhos juntos.</p><h3>4️⃣ Caminhada Silenciosa com Jesus (💡 6-12 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Vivencia a presença de Jesus através do silêncio e da meditação.</p><p><strong>📦 Material:</strong> Música instrumental suave, tapetes ou almofadas.</p><p><strong>🎮 Como brincar:</strong> Crianças deitam-se confortavelmente. Com música suave, o evangelizador guia: "Fechem os olhos. Imaginem que estão num caminho bonito. Jesus está ao seu lado. Ele segura sua mão. Ele diz: Não tenha medo, estou com você. Converse com Jesus no seu coração." Após 3-5 min, abrem os olhos e compartilham como se sentiram.</p><h3>5️⃣ Teatro de Fantoches — Parábolas (💡 7-12 anos, 25 min)</h3><p><strong>🎯 Aprende:</strong> Compreende os ensinamentos das parábolas e desenvolve a expressão criativa.</p><p><strong>📦 Material:</strong> Fantoches de meia ou saquinho de papel, canetinhas, lã, retalhos de tecido, cola.</p><p><strong>🎮 Como brincar:</strong> Dividir em grupos. Cada grupo sorteia uma parábola (Bom Samaritano, Filho Pródigo, Ovelha Perdida). Decoram seus fantoches e ensaiam apresentação de 3 min. Apresentam para os outros, que adivinham qual parábola é. Refletir: "Jesus contava histórias para ensinar. Qual ensinamento essa parábola nos traz hoje?"</p><h3>6️⃣ Corrida do Amor ao Próximo (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Pratica o amor ao próximo através da cooperação e ajuda mútua.</p><p><strong>📦 Material:</strong> Objetos para transporte (bola, almofada, copo com água), cadeiras ou cones.</p><p><strong>🎮 Como brincar:</strong> Formar duplas. Cada dupla percorre trajeto com obstáculos carregando objeto juntos (de mãos dadas ou entre as testas). Se cair, param e se abraçam antes de continuar. Refletir: "Jesus disse: Amai-vos uns aos outros. Sozinhos somos frágeis, mas juntos superamos obstáculos."</p><h3>7️⃣ Cartas de Luz — Os Ensinamentos de Jesus (💡 6-12 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Memoriza os principais ensinamentos de Jesus e reflete sobre como aplicá-los.</p><p><strong>📦 Material:</strong> Cartões em formato de coração com ensinamentos de Jesus, barbante, prendedores.</p><p><strong>🎮 Como brincar:</strong> Cartões espalhados pela sala. Cada criança encontra um e lê em voz alta: "Perdoai as ofensas", "Não julgueis", "Fazei o bem sem esperar nada", "Vós sois a luz do mundo". Cada uma explica como praticar aquele ensinamento na semana. Pendurar no "varal de luz" para decorar a sala.</p>',
-  rev:'<h2>📚 Revisão — Jesus e o Evangelho <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Evangelhos, O Evangelho Segundo o Espiritismo, passatempoespirita.com.br</p><h3>✨ Quem foi Jesus?</h3><p>Jesus é o Espírito mais perfeito que Deus enviou à Terra para nos guiar. Nasceu em Belém, viveu na Palestina, ensinou o amor e a caridade. Para os espíritas, Jesus é o modelo de perfeição moral e o guia da humanidade.</p><h3>👥 Os Apóstolos</h3><p>12 homens escolhidos por Jesus para espalhar seus ensinamentos: Pedro, André, Tiago, João, Filipe, Bartolomeu, Tomé, Mateus, Tiago Menor, Judas Tadeu, Simão Zelote e Judas Iscariotes. Paulo de Tarso se tornou o grande divulgador do Cristianismo.</p><h3>📖 Principais Ensinamentos</h3><p>• Amar a Deus sobre todas as coisas • Amar ao próximo como a si mesmo • Perdoar as ofensas • Não julgar para não ser julgado • Fazer o bem sem ostentação • Orar e vigiar • Confiar na Providência Divina</p><h3>🙏 O Pai Nosso</h3><p>A oração modelo ensinada por Jesus. Contém todos os deveres do homem para com Deus e para com o próximo.</p><h3>💭 Reflexão</h3><p>Jesus é o caminho, a verdade e a vida. Seus ensinamentos são atuais e transformadores. Seguir Jesus é amar, perdoar, servir e fazer o bem. ✨</p>'
+  rev:'<h2>📚 Revisão — Jesus e o Evangelho <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.8rem">Fontes: Evangelhos, O Evangelho Segundo o Espiritismo, passatempoespirita.com.br</p><h3>✨ Quem foi Jesus?</h3><p>Jesus é o Espírito mais perfeito que Deus enviou à Terra para nos guiar. Nasceu em Belém, viveu na Palestina, ensinou o amor e a caridade. Para os espíritas, Jesus é o modelo de perfeição moral e o guia da humanidade.</p><h3>👥 Os Apóstolos</h3><p>12 homens escolhidos por Jesus para espalhar seus ensinamentos: Pedro, André, Tiago, João, Filipe, Bartolomeu, Tomé, Mateus, Tiago Menor, Judas Tadeu, Simão Zelote e Judas Iscariotes. Paulo de Tarso se tornou o grande divulgador do Cristianismo.</p><h3>📖 Principais Ensinamentos</h3><p>• Amar a Deus sobre todas as coisas • Amar ao próximo como a si mesmo • Perdoar as ofensas • Não julgar para não ser julgado • Fazer o bem sem ostentação • Orar e vigiar • Confiar na Providência Divina</p><h3>🙏 O Pai Nosso</h3><p>A oração modelo ensinada por Jesus. Contém todos os deveres do homem para com Deus e para com o próximo.</p><h3>💭 Reflexão</h3><p>Jesus é o caminho, a verdade e a vida. Seus ensinamentos são atuais e transformadores. Seguir Jesus é amar, perdoar, servir e fazer o bem. ✨</p>'
 };
 temaContent[3]={
   hist:'<h2>📖 A Doutrina Espírita <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em Obras da Codificação, passatempoespirita.com.br</p><div class="eb">📚🕊️🌟👤</div><p>O Espiritismo é a Doutrina Espírita, codificada por Allan Kardec (Hippolyte Léon Denizard Rivest) na França, no século XIX. Kardec era educador, discípulo de Pestalozzi, e foi convidado a assistir a fenômenos de mesas girantes em 1854. Percebeu que havia uma inteligência por trás dos fenômenos e se dedicou a estudá-los cientificamente.</p><p>Em 18 de abril de 1857, Kardec publicou O Livro dos Espíritos, marco inicial da Codificação Espírita. A obra contém 1019 perguntas feitas a Espíritos Superiores, respondidas com clareza e lógica.</p><div class="vers">"O Espiritismo é a ciência nova que vem revelar aos homens, por provas irrecusáveis, a existência e a natureza do mundo espiritual." (Allan Kardec)</div><p>As Três Revelações: Moisés trouxe a Lei (Antigo Testamento), Jesus trouxe o Amor (Novo Testamento), o Espiritismo trouxe a Verdade (o Consolador Prometido). O Consolador é o Espírito da Verdade, que nos faz compreender os ensinamentos de Jesus.</p><p>Allan Kardec codificou cinco obras fundamentais: O Livro dos Espíritos (1857), O Livro dos Médiuns (1861), O Evangelho Segundo o Espiritismo (1864), O Céu e o Inferno (1865) e A Gênese (1868).</p><div class="reflexao">💭 <strong>Reflexão:</strong> "Fé inabalável é só aquela que pode encarar a razão face a face." (Allan Kardec) 📖</div>',
-  aula:'<h2>👩‍🏫 Plano de Aula: Doutrina Espírita <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 10 a 14 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> Surgimento e fundamentos do Espiritismo</p><h3>🎯 Objetivos</h3><p>• Conhecer a história do Espiritismo e seu codificador • Compreender os princípios básicos da Doutrina • Valorizar o estudo e a razão</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Perguntar: "O que você sabe sobre o Espiritismo?"</p><h3>📜 2-3. História e Diálogo (20 min)</h3><p>Contar sobre Allan Kardec, seu método científico, a codificação e as cinco obras básicas. Discutir: Deus, Espírito, Reencarnação, Mediunidade, Caridade.</p><h3>🎲 4. Atividade (10 min)</h3><p>Quiz sobre o Espiritismo | Caça-palavras com temas espíritas</p><h3>🙏 5. Encerramento (5 min)</h3><p>Oração de gratidão pela Doutrina Consoladora.</p>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Doutrina Espírita <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 10 a 14 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> Surgimento e fundamentos do Espiritismo</p><h3>🎯 Objetivos</h3><p>• Conhecer a história do Espiritismo e seu codificador • Compreender os princípios básicos da Doutrina • Valorizar o estudo e a razão</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Perguntar: "O que você sabe sobre o Espiritismo?"</p><h3>📜 2-3. História e Diálogo (20 min)</h3><p>Contar sobre Allan Kardec, seu método científico, a codificação e as cinco obras básicas. Discutir: Deus, Espírito, Reencarnação, Mediunidade, Caridade.</p><h3>🎲 4. Atividade (10 min)</h3><p>Quiz sobre o Espiritismo | Caça-palavras com temas espíritas</p><h3>🙏 5. Encerramento (5 min)</h3><p>Oração de gratidão pela Doutrina Consoladora.</p>',
   brinc:'<h2>🎪 Brincadeiras: Doutrina Espírita <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Caça aos Símbolos Espíritas (💡 8-14 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Reconhece os símbolos e marcos da Doutrina Espírita e seu significado.</p><p><strong>📦 Material:</strong> Figuras: ramo de videira, livros da codificação, Kardec, palavra "Caridade", balança (justiça), âncora (esperança), fita adesiva.</p><p><strong>🎮 Como brincar:</strong> Esconder figuras pela sala. Duplas recebem lista do que encontrar. Ao encontrar cada figura, explicam o significado no Espiritismo. Ex: ramo de videira = "Eu sou a videira verdadeira" (Jesus), caridade = "Fora da caridade não há salvação". Dupla com mais acertos vence. Colar figuras em cartaz "Nossa Fé".</p><h3>2️⃣ Batalha do Conhecimento (💡 10-14 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Revisa os fundamentos da Doutrina de forma lúdica e competitiva saudável.</p><p><strong>📦 Material:</strong> Sineta ou campainha, cartões com perguntas sobre Kardec (20-25), duas bandeirinhas.</p><p><strong>🎮 Como brincar:</strong> Dividir em dois times. Representante de cada time perto da sineta. O evangelizador lê pergunta. Quem apertar primeiro responde. Se acertar, ganha ponto. Perguntas: "Em que ano foi publicado O Livro dos Espíritos?" (1857), "Qual o verdadeiro nome de Allan Kardec?" (Hippolyte Denizard Rivest). Time com mais pontos vence.</p><h3>3️⃣ Jogo das Cinco Obras (💡 10-14 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Identifica cada obra básica da Codificação e seu conteúdo principal.</p><p><strong>📦 Material:</strong> 5 cartões grandes com nomes das obras e 10 cartões menores com descrições.</p><p><strong>🎮 Como brincar:</strong> Espalhar os 5 cartões grandes no chão. Crianças recebem cartões menores e colocam sobre a obra correspondente. Ex: "Perguntas sobre Deus e espíritos" → Livro dos Espíritos. "Estudo dos fenômenos mediúnicos" → Livro dos Médiuns. Conferir juntos e corrigir.</p><h3>4️⃣ Linha do Tempo Humana (💡 8-14 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Compreende a ordem cronológica dos eventos da história espírita.</p><p><strong>📦 Material:</strong> Cartões com eventos e datas: 1804 nascimento de Kardec, 1854 mesas girantes, 1857 Livro dos Espíritos, 1861 Livro dos Médiuns, 1864 Evangelho, 1865 Céu e Inferno, 1868 Gênese, 1869 desencarnação de Kardec. Barbante e prendedores.</p><p><strong>🎮 Como brincar:</strong> Estender barbante pela sala. Distribuir cartões. Crianças se organizam em ordem cronológica, cada uma segurando seu cartão. Depois penduram no barbante. Cada uma explica o evento. Refletir: "A Doutrina foi construída com estudo e dedicação."</p><h3>5️⃣ Mímica da Codificação (💡 8-14 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Fixa o conhecimento sobre a codificação de forma lúdica e corporal.</p><p><strong>📦 Material:</strong> Cartões com cenas: Kardec estudando com médiuns, mesas girantes, espíritos escrevendo, o Consolador descendo, publicação do livro.</p><p><strong>🎮 Como brincar:</strong> Voluntário sorteia cartão e representa sem falar. Os outros adivinham. Variante em grupos: cada grupo representa cena diferente. Ao final, evangelizador conta a história real da cena, reforçando o aprendizado sobre a codificação.</p><h3>6️⃣ Gincana do Livro Espírita (💡 8-14 anos, 25 min)</h3><p><strong>🎯 Aprende:</strong> Desenvolve o hábito de consultar e valorizar os livros da codificação.</p><p><strong>📦 Material:</strong> Exemplares das obras de Kardec (ou trechos impressos), perguntas, marcadores.</p><p><strong>🎮 Como brincar:</strong> Grupos recebem livros da codificação. Evangelizador faz perguntas: "O que é Deus segundo o Livro dos Espíritos?", "O que é a prece?". Grupos encontram resposta, marcam página e leem em voz alta. Ponto para quem encontrar primeiro. Refletir: "Os livros espíritas são fontes de saber."</p><h3>7️⃣ O Cientista Kardec — Experiência das Mesas (💡 10-14 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Compreende o método científico usado por Kardec na codificação.</p><p><strong>📦 Material:</strong> Mesa pequena e leve, caneta e papel para cada criança.</p><p><strong>🎮 Como brincar:</strong> Recreação histórica: crianças sentam em volta da mesa, colocam mãos levemente sobre ela (como no século XIX). Perguntar: "O que sentem?" Cada uma anota. Depois levantam a mesa e percebem que não há "mágica". Refletir: "Kardec observou, perguntou, comparou. Usou a razão. Fé e razão caminham juntas."</p>',
-  rev:'<h2>📚 Revisão — Doutrina Espírita <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Obras Básicas de Kardec, passatempoespirita.com.br</p><h3>📚 Surgimento do Espiritismo</h3><p>O Espiritismo surgiu na França em 1857 com a publicação de O Livro dos Espíritos por Allan Kardec. É uma doutrina científica, filosófica e religiosa.</p><h3>👤 Allan Kardec</h3><p>Professor francês, discípulo de Pestalozzi. Nome real: Hippolyte Léon Denizard Rivest (1804-1869). Codificou a Doutrina com rigor científico.</p><h3>📖 As Cinco Obras Básicas</h3><p>1. Livro dos Espíritos • 2. Livro dos Médiuns • 3. Evangelho Segundo o Espiritismo • 4. O Céu e o Inferno • 5. A Gênese</p><h3>🕊️ O Consolador Prometido</h3><p>Jesus prometeu o Consolador (João 14-16). O Espiritismo é o Consolador que nos faz compreender os ensinamentos de Jesus.</p>'
+  rev:'<h2>📚 Revisão — Doutrina Espírita <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.8rem">Fontes: Obras Básicas de Kardec, passatempoespirita.com.br</p><h3>📚 Surgimento do Espiritismo</h3><p>O Espiritismo surgiu na França em 1857 com a publicação de O Livro dos Espíritos por Allan Kardec. É uma doutrina científica, filosófica e religiosa.</p><h3>👤 Allan Kardec</h3><p>Professor francês, discípulo de Pestalozzi. Nome real: Hippolyte Léon Denizard Rivest (1804-1869). Codificou a Doutrina com rigor científico.</p><h3>📖 As Cinco Obras Básicas</h3><p>1. Livro dos Espíritos • 2. Livro dos Médiuns • 3. Evangelho Segundo o Espiritismo • 4. O Céu e o Inferno • 5. A Gênese</p><h3>🕊️ O Consolador Prometido</h3><p>Jesus prometeu o Consolador (João 14-16). O Espiritismo é o Consolador que nos faz compreender os ensinamentos de Jesus.</p>'
 };
 temaContent[4]={
   hist:'<h2>🔄 Reencarnação e o Espírito <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em O Livro dos Espíritos (Q.132-400), passatempoespirita.com.br</p><div class="eb">👤🔄👶🌟</div><p>O ser humano é composto de três partes: o corpo físico (matéria), o perispírito (corpo fluídico que liga o espírito ao corpo) e o espírito (ser imortal criado por Deus). A morte é a separação do espírito do corpo físico — o corpo volta à matéria, mas o espírito continua vivo.</p><div class="vers">"O Espírito é o ser inteligente da criação; o corpo é o invólucro que o reveste temporariamente." (LE, Q.134)</div><p>A reencarnação é a volta do espírito à vida material para progredir e se aperfeiçoar. Através de múltiplas existências, o espírito aprende, evolui e se purifica. Ninguém nasce por acaso — cada reencarnação tem um propósito.</p><p>O esquecimento do passado é uma bênção de Deus. Não lembrarmos de vidas passadas nos permite recomeçar sem mágoas ou culpas. As lembranças que ficam são as intuições e aptidões que trazemos.</p><p>Existem diferentes ordens de espíritos: Imperfeitos (3ª ordem), Bons (2ª ordem) e Puros (1ª ordem). Todos temos o potencial de chegar à perfeição.</p><p>A família vai além do parentesco corporal. Os laços de amor unem os espíritos através das vidas. Reencontramos entes queridos em novas encarnações, formando verdadeiras famílias espirituais.</p><div class="reflexao">💭 <strong>Reflexão:</strong> A reencarnação é uma manifestação do amor e da justiça de Deus. Ninguém é condenado eternamente — todos temos a oportunidade de recomeçar e progredir. Cada dia é uma nova chance de ser melhor! 🔄</div>',
-  aula:'<h2>👩‍🏫 Plano de Aula: Reencarnação <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 8 a 14 anos | <strong>Duração:</strong> 50 min</p><h3>🎯 Objetivos</h3><p>• Compreender o que é o espírito e sua imortalidade • Entender a reencarnação como processo evolutivo</p><h3>📖 Acolhida e Introdução (10 min)</h3><p>Comparar a vida com a escola: cada ano letivo é uma encarnação, aprendemos coisas novas e passamos de ano.</p><h3>📜 História (15 min)</h3><p>Contar que Jesus disse que João Batista era Elias reencarnado (Mateus 11:14, 17:10-13).</p><h3>💬 Diálogo (10 min)</h3><p>• Todos somos espíritos imortais • Reencarnamos para aprender • O esquecimento é uma bênção</p><h3>🎲 Atividade (10 min)</h3><p>Jogo da Memória sobre reencarnação | Desenho: "Como você imagina sua vida espiritual?"</p><h3>🙏 Encerramento (5 min)</h3><p>Oração agradecendo a oportunidade de mais uma encarnação.</p>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Reencarnação <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 8 a 14 anos | <strong>Duração:</strong> 50 min</p><h3>🎯 Objetivos</h3><p>• Compreender o que é o espírito e sua imortalidade • Entender a reencarnação como processo evolutivo</p><h3>📖 Acolhida e Introdução (10 min)</h3><p>Comparar a vida com a escola: cada ano letivo é uma encarnação, aprendemos coisas novas e passamos de ano.</p><h3>📜 História (15 min)</h3><p>Contar que Jesus disse que João Batista era Elias reencarnado (Mateus 11:14, 17:10-13).</p><h3>💬 Diálogo (10 min)</h3><p>• Todos somos espíritos imortais • Reencarnamos para aprender • O esquecimento é uma bênção</p><h3>🎲 Atividade (10 min)</h3><p>Jogo da Memória sobre reencarnação | Desenho: "Como você imagina sua vida espiritual?"</p><h3>🙏 Encerramento (5 min)</h3><p>Oração agradecendo a oportunidade de mais uma encarnação.</p>',
   brinc:'<h2>🎪 Brincadeiras: Reencarnação <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Metamorfose da Borboleta (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Compreende que a reencarnação é como a metamorfose: o espírito evolui.</p><p><strong>📦 Material:</strong> Massinha de modelar (verde, marrom, laranja), pratinhos, gravetos.</p><p><strong>🎮 Como brincar:</strong> Cada criança modela as 4 fases: ovo, lagarta, casulo e borboleta. Colam no pratinho em ordem. Contar: "A lagarta é o espírito iniciante, o casulo é o período entre vidas, a borboleta é o espírito evoluído. Cada vida é uma chance de evoluir."</p><h3>2️⃣ Tabuleiro Humano da Evolução (💡 8-12 anos, 25 min)</h3><p><strong>🎯 Aprende:</strong> Vivencia o processo de evolução espiritual através das vidas.</p><p><strong>📦 Material:</strong> Bambolês ou círculos de papel (15-20), cartões com desafios, dado grande.</p><p><strong>🎮 Como brincar:</strong> Trilha no chão com bambolês. Cada um é uma "vida". Alguns têm cartões: "Ajudou um amigo — avance 2", "Foi egoísta — volte 1", "Perdoou — avance 1". Jogam dado e andam. Refletir: "Cada encarnação é chance de aprender. Boas ações nos fazem avançar."</p><h3>3️⃣ Quebra-Cabeça do Ser Humano (💡 6-12 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Identifica as três partes: corpo, perispírito e espírito.</p><p><strong>📦 Material:</strong> Três quebra-cabeças em camadas: corpo, perispírito (linhas coloridas), espírito (luz dourada).</p><p><strong>🎮 Como brincar:</strong> Misturar peças. Crianças montam primeiro o corpo, depois encaixam perispírito, por fim o espírito. Explicar: "Corpo é roupa temporária. Perispírito liga espírito ao corpo. Espírito é imortal. Quando o corpo morre, o espírito continua."</p><h3>4️⃣ Árvore das Vidas (💡 6-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Compreende que o espírito vive várias vidas e em cada uma aprende.</p><p><strong>📦 Material:</strong> Desenho grande de árvore sem frutos, círculos de papel colorido, canetinhas, cola.</p><p><strong>🎮 Como brincar:</strong> Colar árvore na parede. Cada criança recebe círculo e escreve qualidade que quer desenvolver nesta vida (paciência, bondade). Cola na árvore, do galho mais baixo (aprendizados simples) ao mais alto (virtudes maiores). "Cada vida nos coloca mais perto de Deus."</p><h3>5️⃣ Teatro do Reencontro (💡 8-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Compreende que os laços de amor unem os espíritos através das vidas.</p><p><strong>📦 Material:</strong> Cartões com papéis: mãe, pai, filho, amigo, avó.</p><p><strong>🎮 Como brincar:</strong> Cada criança sorteia cartão e representa mini-cena com colega mostrando reencontro de almas. Refletir: "Familiares e amigos verdadeiros são almas que conhecemos de outras vidas. O amor não acaba com a morte."</p><h3>6️⃣ Caixa dos Talentos (💡 7-12 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Percebe que talentos e aptidões podem vir de aprendizados de vidas passadas.</p><p><strong>📦 Material:</strong> Caixa decorada como baú, objetos: pincel (arte), livro (estudo), instrumento (música), ferramenta (trabalho), coração (amor).</p><p><strong>🎮 Como brincar:</strong> Caixa passa de mão em mão. Cada criança tira um objeto sem olhar e fala: "Meu talento é [arte/estudo...]. Talvez desenvolvi em outra vida." Explicar: "Espíritos trazem aptidões de vidas passadas. Use seus talentos para fazer o bem!"</p><h3>7️⃣ Jogo do Esquecimento (💡 8-12 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Compreende o propósito do esquecimento do passado nas reencarnações.</p><p><strong>📦 Material:</strong> Caixa com tampa e furo, objetos dentro: concha, pena, chave, cordão, moeda.</p><p><strong>🎮 Como brincar:</strong> Cada criança coloca mão na caixa e tateia objeto sem olhar. Perguntar: "Difícil adivinhar sem ver? Assim são as vidas passadas. Deus esquece nosso passado para recomeçarmos sem mágoas. O que importa é o que vamos fazer AGORA."</p>',
   rev:'<h2>📚 Revisão — Reencarnação <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><h3>👤 O Ser Humano</h3><p>Corpo físico (temporário). Perispírito (corpo fluídico). Espírito (ser imortal).</p><h3>🔄 Reencarnação</h3><p>A volta do espírito à vida material para evoluir. Através de múltiplas existências, aprendemos e nos purificamos.</p><h3>🔍 Esquecimento do Passado</h3><p>Não lembramos de vidas passadas para não sofrermos com mágoas. Mas trazemos aptidões e intuições.</p><h3>📊 Ordens de Espíritos</h3><p>3ª: Imperfeitos • 2ª: Bons • 1ª: Puros</p><h3>👨‍👩‍👧‍👦 Família Espiritual</h3><p>Parentesco corporal é temporário. Parentesco espiritual é eterno. Laços de amor atravessam vidas.</p>'
 };
@@ -743,9 +743,9 @@ temaContent[9]={
 };
 temaContent[10]={
   hist:'<h2>📜 Os Dez Mandamentos <button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button></h2><p class="ref">Baseado em Êxodo 20, O Livro dos Espíritos, passatempoespirita.com.br</p><div class="eb">⛰️📜🌟👆</div><p>Após libertar o povo hebreu do Egito, Moisés conduziu o povo até o Monte Sinai. Lá, Deus chamou Moisés ao topo da montanha, que estava coberta por nuvens e relâmpagos. O povo esperou ao pé do monte, tremendo de respeito e temor.</p><p>Deus entregou a Moisés duas tábuas de pedra, escritas pelo próprio dedo de Deus. Nelas estavam os Dez Mandamentos — as leis divinas que nos ensinam a amar a Deus e ao próximo. Esses mandamentos são a base da moral cristã e espírita.</p><p><strong>1º Mandamento:</strong> "Amar a Deus sobre todas as coisas." Deus é nosso Pai Criador. Devemos amá-Lo acima de tudo e colocar nossa confiança nEle.</p><p><strong>2º Mandamento:</strong> "Não fazer ídolos nem imagens para adorar." Deus é espírito puro. Não devemos adorar imagens ou objetos, mas apenas a Deus.</p><p><strong>3º Mandamento:</strong> "Não tomar o nome de Deus em vão." Devemos falar o nome de Deus com respeito e amor, nunca para xingar ou zombar.</p><p><strong>4º Mandamento:</strong> "Guardar o sábado." Na visão espírita, significa dedicar um tempo para Deus, para o estudo e para o descanso do corpo e do espírito.</p><p><strong>5º Mandamento:</strong> "Honrar pai e mãe." Devemos respeitar, amar e cuidar de nossos pais. E também honrar aqueles que nos guiam espiritualmente.</p><p><strong>6º Mandamento:</strong> "Não matar." Respeitar a vida em todas as suas formas. Não matar o corpo nem ferir a alma do próximo.</p><p><strong>7º Mandamento:</strong> "Não adulterar." Ser fiel e honesto nos compromissos e na família.</p><p><strong>8º Mandamento:</strong> "Não roubar." Respeitar o que é dos outros. Não pegar nada sem permissão.</p><p><strong>9º Mandamento:</strong> "Não mentir." Falar sempre a verdade. Não enganar, nem caluniar, nem fofocar.</p><p><strong>10º Mandamento:</strong> "Não cobiçar." Não desejar o que é dos outros. Ser grato pelo que temos.</p><div class="vers">"Amarás o Senhor teu Deus de todo o teu coração, de toda a tua alma e de todo o teu entendimento. Este é o primeiro e grande mandamento. E o segundo, semelhante a este, é: Amarás o teu próximo como a ti mesmo." (Mateus 22:37-39)</div><div class="reflexao">💭 <strong>Reflexão Espírita:</strong> Os Dez Mandamentos são leis divinas que nos guiam para o bem. Jesus resumiu todos em dois: amar a Deus e amar ao próximo. O Espiritismo nos ensina que essas leis estão escritas em nossa consciência. 📜</div>',
-  aula:'<h2>👩‍🏫 Plano de Aula: Os Dez Mandamentos <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 6 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> As leis de Deus para uma vida feliz</p><h3>🎯 Objetivos</h3><p>• Conhecer os Dez Mandamentos • Compreender que são leis de amor • Praticar os mandamentos no dia a dia</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Cantar "Moisés libertou o povo". Perguntar: "Quem tem regras em casa? Para que servem?"</p><h3>🌟 2. Introdução (5 min)</h3><p>Explicar que as regras nos protegem e nos ajudam a viver bem. Deus deu os 10 Mandamentos como regras de amor.</p><h3>📜 3. História e Diálogo (20 min)</h3><p>Contar que Moisés subiu ao Monte Sinai e recebeu as tábuas da lei. Explicar cada mandamento de forma simples: 1-4: amar a Deus; 5-10: amar ao próximo.</p><h3>💬 4. Diálogo (8 min)</h3><p>• Qual mandamento é mais fácil? Qual mais difícil? • Jesus resumiu em dois: amar a Deus e ao próximo • Como praticar hoje?</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Jogo da Velha | Quiz sobre os Mandamentos | Caça-Palavras</p><h3>✏️ 6. Fixação (5 min)</h3><p>Cada criança escolhe um mandamento para praticar esta semana e desenha um símbolo dele.</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração agradecendo a Deus pelas leis que nos guiam.</p>',
+  aula:'<h2>👩‍🏫 Plano de Aula: Os Dez Mandamentos <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.75rem;margin-bottom:6px"><strong>Faixa etária:</strong> 6 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> As leis de Deus para uma vida feliz</p><h3>🎯 Objetivos</h3><p>• Conhecer os Dez Mandamentos • Compreender que são leis de amor • Praticar os mandamentos no dia a dia</p><h3>📖 1. Acolhida (5 min)</h3><p>Oração. Cantar "Moisés libertou o povo". Perguntar: "Quem tem regras em casa? Para que servem?"</p><h3>🌟 2. Introdução (5 min)</h3><p>Explicar que as regras nos protegem e nos ajudam a viver bem. Deus deu os 10 Mandamentos como regras de amor.</p><h3>📜 3. História e Diálogo (20 min)</h3><p>Contar que Moisés subiu ao Monte Sinai e recebeu as tábuas da lei. Explicar cada mandamento de forma simples: 1-4: amar a Deus; 5-10: amar ao próximo.</p><h3>💬 4. Diálogo (8 min)</h3><p>• Qual mandamento é mais fácil? Qual mais difícil? • Jesus resumiu em dois: amar a Deus e ao próximo • Como praticar hoje?</p><h3>🎲 5. Atividade Lúdica (10 min)</h3><p>Jogo da Velha | Quiz sobre os Mandamentos | Caça-Palavras</p><h3>✏️ 6. Fixação (5 min)</h3><p>Cada criança escolhe um mandamento para praticar esta semana e desenha um símbolo dele.</p><h3>🙏 7. Encerramento (2 min)</h3><p>Oração agradecendo a Deus pelas leis que nos guiam.</p>',
   brinc:'<h2>🎪 Brincadeiras: Os Dez Mandamentos <button class="tts-btn-ouvir" onclick="ttsLer(\'brincadeiras\',this)">🔊 Ouvir</button></h2><h3>1️⃣ Corrida dos Mandamentos (💡 6-12 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Memoriza os Dez Mandamentos em ordem e associa cada número ao seu texto.</p><p><strong>📦 Material:</strong> Cartões numerados de 1 a 10 com os mandamentos escritos, fita adesiva.</p><p><strong>🎮 Como brincar:</strong> Cada criança recebe cartão com número. Espalhar pela sala. Evangelizador diz um mandamento (ex: "Não matarás"), criança com número correspondente (6) levanta o cartão e repete. Depois inverter: mostrar número e criança diz o mandamento.</p><h3>2️⃣ As Duas Tábuas (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Compreende a divisão: mandamentos de amor a Deus (1-4) e ao próximo (5-10).</p><p><strong>📦 Material:</strong> Duas tábuas de papelão grandes, cartões com os 10 mandamentos, fita adesiva.</p><p><strong>🎮 Como brincar:</strong> Colocar duas tábuas no chão: "Amor a Deus" e "Amor ao Próximo". Distribuir cartões. Crianças colocam cada mandamento na tábua correta. Refletir: "Jesus resumiu tudo em dois: amar a Deus e amar ao próximo. Os 10 Mandamentos ensinam isso."</p><h3>3️⃣ Teatro dos Mandamentos (💡 8-12 anos, 20 min)</h3><p><strong>🎯 Aprende:</strong> Compreende cada mandamento na prática através de representação.</p><p><strong>📦 Material:</strong> Cartões com os 10 mandamentos, adereços simples.</p><p><strong>🎮 Como brincar:</strong> 10 grupos (ou duplas). Cada grupo sorteia um mandamento e cria cena do cotidiano mostrando alguém CUMPRINDO e alguém QUEBRANDO o mandamento. Plateia identifica qual mandamento é e diz como praticar no dia a dia.</p><h3>4️⃣ Jogo da Memória dos Mandamentos (💡 5-10 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Associa o número ao texto de cada mandamento.</p><p><strong>📦 Material:</strong> 20 cartas (10 pares): número + texto. Ex: "5” combina com "Honrar pai e mãe".</p><p><strong>🎮 Como brincar:</strong> Cartas viradas. Crianças viram duas tentando formar par. Quando acertam, explicam o mandamento com suas palavras. Vence quem tiver mais pares.</p><h3>5️⃣ Tábuas de Argila (💡 6-12 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Vivencia a confecção das tábuas e fixa o mandamento escolhido.</p><p><strong>📦 Material:</strong> Argila ou massinha, palitos de dente, papelão para base.</p><p><strong>🎮 Como brincar:</strong> Cada criança modela duas tábuas com argila. Com palito, escreve o mandamento que mais gostou. Pode decorar com desenhos. Levar para casa como lembrança. Refletir: "Moisés recebeu as tábuas escritas pelo dedo de Deus. Os mandamentos são presentes divinos."</p><h3>6️⃣ Jogo do Sim ou Não (💡 7-12 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Aplica os mandamentos a situações concretas do dia a dia.</p><p><strong>📦 Material:</strong> Cartões com situações, dois cartazes grande: ✅ (cumpre) e ❌ (quebra).</p><p><strong>🎮 Como brincar:</strong> Evangelizador lê situação. Crianças correm para o cartaz ✅ ou ❌. Ex: "Pediu desculpas ao amigo" (✅, não mentir), "Falou mal do colega" (❌, não mentir), "Ajudou a mãe" (✅, honrar pai e mãe). Discutir cada resposta.</p><h3>7️⃣ Bingo dos Mandamentos (💡 6-12 anos, 15 min)</h3><p><strong>🎯 Aprende:</strong> Revisa todos os mandamentos de forma lúdica e divertida.</p><p><strong>📦 Material:</strong> Cartelas com 9 mandamentos (3x3), pedras para marcar, descrições em cartões.</p><p><strong>🎮 Como brincar:</strong> Cada criança recebe cartela com números de mandamentos. Evangelizador sorteia descrição (ex: "Este mandamento nos ensina a respeitar a vida"). Criança identifica o número (6 - Não matar) e marca. Quem completa linha grita "Mandamento!" e recita os que marcou.</p>',
-  rev:'<h2>📚 Revisão — Os Dez Mandamentos <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#b8a8d8;font-size:.8rem">Fontes: Êxodo 20, O Evangelho Segundo o Espiritismo, passatempoespirita.com.br</p><h3>📜 Os Dez Mandamentos</h3><p><strong>1.</strong> Amar a Deus sobre todas as coisas.<br><strong>2.</strong> Não fazer ídolos.<br><strong>3.</strong> Não usar o nome de Deus em vão.<br><strong>4.</strong> Guardar o sábado (tempo para Deus).<br><strong>5.</strong> Honrar pai e mãe.<br><strong>6.</strong> Não matar.<br><strong>7.</strong> Não adulterar.<br><strong>8.</strong> Não roubar.<br><strong>9.</strong> Não mentir.<br><strong>10.</strong> Não cobiçar.</p><h3>⛰️ Resumo de Jesus</h3><p>Jesus resumiu todos os mandamentos em dois:<br><strong>1º</strong> Amar a Deus de todo o coração.<br><strong>2º</strong> Amar ao próximo como a si mesmo.</p><h3>💭 Reflexão Espírita</h3><p>Os Dez Mandamentos são leis divinas, eternas e universais. Estão escritas na consciência de todos os seres humanos. Quem ama a Deus e ao próximo já cumpre todos os mandamentos. 📜🕊️</p>'
+  rev:'<h2>📚 Revisão — Os Dez Mandamentos <button class="tts-btn-ouvir" onclick="ttsLer(\'revisao\',this)">🔊 Ouvir</button></h2><p style="color:#6b5b8c;font-size:.8rem">Fontes: Êxodo 20, O Evangelho Segundo o Espiritismo, passatempoespirita.com.br</p><h3>📜 Os Dez Mandamentos</h3><p><strong>1.</strong> Amar a Deus sobre todas as coisas.<br><strong>2.</strong> Não fazer ídolos.<br><strong>3.</strong> Não usar o nome de Deus em vão.<br><strong>4.</strong> Guardar o sábado (tempo para Deus).<br><strong>5.</strong> Honrar pai e mãe.<br><strong>6.</strong> Não matar.<br><strong>7.</strong> Não adulterar.<br><strong>8.</strong> Não roubar.<br><strong>9.</strong> Não mentir.<br><strong>10.</strong> Não cobiçar.</p><h3>⛰️ Resumo de Jesus</h3><p>Jesus resumiu todos os mandamentos em dois:<br><strong>1º</strong> Amar a Deus de todo o coração.<br><strong>2º</strong> Amar ao próximo como a si mesmo.</p><h3>💭 Reflexão Espírita</h3><p>Os Dez Mandamentos são leis divinas, eternas e universais. Estão escritas na consciência de todos os seres humanos. Quem ama a Deus e ao próximo já cumpre todos os mandamentos. 📜🕊️</p>'
 };
 
 temaContent[0].rec=[
@@ -937,25 +937,25 @@ function renderHistoria(){
   var el=document.getElementById('hist-conteudo');
   if(!el)return;
   var c=temaContent[temaAtual];
-  el.innerHTML=c&&c.hist?c.hist:'<p style="color:#cdb8f0;text-align:center;font-size:.9rem">📜 Conteúdo em desenvolvimento para este tema.</p>';
+  el.innerHTML=c&&c.hist?c.hist:'<p style="color:#6b5b8c;text-align:center;font-size:.9rem">📜 Conteúdo em desenvolvimento para este tema.</p>';
 }
 function renderAula(){
   var el=document.getElementById('aula-conteudo');
   if(!el)return;
   var c=temaContent[temaAtual];
-  el.innerHTML=c&&c.aula?c.aula:'<p style="color:#cdb8f0;text-align:center;font-size:.9rem">👩‍🏫 Conteúdo em desenvolvimento para este tema.</p>';
+  el.innerHTML=c&&c.aula?c.aula:'<p style="color:#6b5b8c;text-align:center;font-size:.9rem">👩‍🏫 Conteúdo em desenvolvimento para este tema.</p>';
 }
 function renderBrinc(){
   var el=document.getElementById('brinc-conteudo');
   if(!el)return;
   var c=temaContent[temaAtual];
-  el.innerHTML=c&&c.brinc?c.brinc:'<p style="color:#cdb8f0;text-align:center;font-size:.9rem">🎪 Conteúdo em desenvolvimento para este tema.</p>';
+  el.innerHTML=c&&c.brinc?c.brinc:'<p style="color:#6b5b8c;text-align:center;font-size:.9rem">🎪 Conteúdo em desenvolvimento para este tema.</p>';
 }
 function renderRevisao(){
   var el=document.getElementById('rev-conteudo');
   if(!el)return;
   var c=temaContent[temaAtual];
-  el.innerHTML=c&&c.rev?c.rev:'<p style="color:#cdb8f0;text-align:center;font-size:.9rem">📚 Conteúdo em desenvolvimento para este tema.</p>';
+  el.innerHTML=c&&c.rev?c.rev:'<p style="color:#6b5b8c;text-align:center;font-size:.9rem">📚 Conteúdo em desenvolvimento para este tema.</p>';
 }
 function renderRecursos(){
   var el=document.getElementById('rec-conteudo');
@@ -963,16 +963,16 @@ function renderRecursos(){
   var c=temaContent[temaAtual];
   var rec=c&&c.rec?c.rec:[];
   if(rec.length===0){
-    el.innerHTML='<p style="color:#cdb8f0;text-align:center;font-size:.9rem">📚 Nenhum recurso disponível para este tema.</p>';
+    el.innerHTML='<p style="color:#6b5b8c;text-align:center;font-size:.9rem">📚 Nenhum recurso disponível para este tema.</p>';
     return;
   }
   var h='<h2>📚 Recursos — '+temaNome[temaAtual].replace(/^[^\s]+\s/,'')+'</h2>';
-  h+='<p style="color:#b8a8d8;font-size:.8rem;margin-bottom:8px">Links externos com vídeos, aulas e materiais sobre este tema.</p><div style="display:flex;flex-direction:column;gap:8px">';
+  h+='<p style="color:#6b5b8c;font-size:.8rem;margin-bottom:8px">Links externos com vídeos, aulas e materiais sobre este tema.</p><div style="display:flex;flex-direction:column;gap:8px">';
   for(var i=0;i<rec.length;i++){
-    h+='<a href="'+rec[i].u+'" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.04);border-radius:12px;padding:10px 14px;border:1px solid rgba(255,255,255,.06);text-decoration:none;transition:all .2s;color:#d4c4f0" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.04)\'">';
-    h+='<div style="font-weight:700;font-size:.85rem;color:#f5e6d3">🔗 '+rec[i].t+'</div>';
-    h+='<div style="font-size:.72rem;color:#7a6a9a;word-break:break-all;margin-top:2px">'+rec[i].u+'</div>';
-    if(rec[i].d)h+='<div style="font-size:.75rem;color:#b8a8d8;margin-top:4px">'+rec[i].d+'</div>';
+    h+='<a href="'+rec[i].u+'" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.10);border-radius:12px;padding:10px 14px;border:1px solid rgba(124,92,191,.14);text-decoration:none;transition:all .2s;color:#6b5b8c" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.10)\'">';
+    h+='<div style="font-weight:700;font-size:.85rem;color:#3a2a5a">🔗 '+rec[i].t+'</div>';
+    h+='<div style="font-size:.72rem;color:#6b5b8c;word-break:break-all;margin-top:2px">'+rec[i].u+'</div>';
+    if(rec[i].d)h+='<div style="font-size:.75rem;color:#6b5b8c;margin-top:4px">'+rec[i].d+'</div>';
     h+='</a>';
   }
   h+='</div>';
@@ -982,48 +982,48 @@ function renderCinema(){
   var el=document.getElementById('cinema-conteudo');
   if(!el)return;
   var h='<h2>🎬 Sessão Cinema <button class="tts-btn-ouvir" onclick="ttsLer(\'cinema\',this)">🔊 Ouvir</button></h2>';
-  h+='<p style="color:#b8a8d8;font-size:.8rem;margin-bottom:8px">Vídeos e canais com lições de moral e valores para evangelização.</p>';
+  h+='<p style="color:#6b5b8c;font-size:.8rem;margin-bottom:8px">Vídeos e canais com lições de moral e valores para evangelização.</p>';
   h+='<div style="display:flex;flex-direction:column;gap:10px">';
 
-  h+='<div style="background:rgba(255,255,255,.04);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,.06)">';
-  h+='<h3 style="color:#ffd700;font-size:.9rem;margin-bottom:6px">🧒 Para crianças (6 a 10 anos)</h3>';
-  h+='<a href="https://www.youtube.com/@SuperbookBrasil" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 Superbook Brasil</div><div style="font-size:.72rem;color:#b8a8d8">Episódios bíblicos animados — Noé, Moisés, Davi, Jesus</div></a>';
-  h+='<a href="https://www.youtube.com/@smilinguidooficial" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">🐜 Smilingüido</div><div style="font-size:.72rem;color:#b8a8d8">Formiguinhas que ensinam amor, perdão e princípios cristãos</div></a>';
-  h+='<a href="https://www.youtube.com/@TurminhadaBiblia" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 Turminha da Bíblia</div><div style="font-size:.72rem;color:#b8a8d8">Histórias bíblicas animadas — episódios curtos</div></a>';
-  h+='<a href="https://www.youtube.com/@3Palavrinhas" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 3 Palavrinhas</div><div style="font-size:.72rem;color:#b8a8d8">Músicas com valores — amor, respeito, gratidão (4-8 anos)</div></a>';
-  h+='<a href="https://www.youtube.com/@PaodiarioKids" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📖 Pão Diário Kids</div><div style="font-size:.72rem;color:#b8a8d8">Devocionais e histórias bíblicas — nova temporada toda semana</div></a>';
+  h+='<div style="background:rgba(124,92,191,.10);border-radius:14px;padding:12px;border:1px solid rgba(124,92,191,.14)">';
+  h+='<h3 style="color:#b8860b;font-size:.9rem;margin-bottom:6px">🧒 Para crianças (6 a 10 anos)</h3>';
+  h+='<a href="https://www.youtube.com/@SuperbookBrasil" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c;margin-bottom:4px" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">📺 Superbook Brasil</div><div style="font-size:.72rem;color:#6b5b8c">Episódios bíblicos animados — Noé, Moisés, Davi, Jesus</div></a>';
+  h+='<a href="https://www.youtube.com/@smilinguidooficial" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c;margin-bottom:4px" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">🐜 Smilingüido</div><div style="font-size:.72rem;color:#6b5b8c">Formiguinhas que ensinam amor, perdão e princípios cristãos</div></a>';
+  h+='<a href="https://www.youtube.com/@TurminhadaBiblia" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c;margin-bottom:4px" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">📺 Turminha da Bíblia</div><div style="font-size:.72rem;color:#6b5b8c">Histórias bíblicas animadas — episódios curtos</div></a>';
+  h+='<a href="https://www.youtube.com/@3Palavrinhas" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c;margin-bottom:4px" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">📺 3 Palavrinhas</div><div style="font-size:.72rem;color:#6b5b8c">Músicas com valores — amor, respeito, gratidão (4-8 anos)</div></a>';
+  h+='<a href="https://www.youtube.com/@PaodiarioKids" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">📖 Pão Diário Kids</div><div style="font-size:.72rem;color:#6b5b8c">Devocionais e histórias bíblicas — nova temporada toda semana</div></a>';
   h+='</div>';
 
-  h+='<div style="background:rgba(255,255,255,.04);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,.06)">';
-  h+='<h3 style="color:#ffd700;font-size:.9rem;margin-bottom:6px">🧑 Para pré-adolescentes (10 a 13 anos)</h3>';
-  h+='<a href="https://www.youtube.com/@ograndelivro" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📖 O Grande Livro</div><div style="font-size:.72rem;color:#b8a8d8">Histórias bíblicas animadas com princípios e valores do Reino</div></a>';
-  h+='<a href="https://www.youtube.com/@MansaodoCaminho" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 Mansão do Caminho</div><div style="font-size:.72rem;color:#b8a8d8">Histórias e reflexões baseadas nos ensinamentos de Jesus</div></a>';
-  h+='<a href="https://www.youtube.com/@TheChosenAdventures" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">🌟 The Chosen Adventures</div><div style="font-size:.72rem;color:#b8a8d8">Spin-off animado de The Chosen — Abby e Joshua aprendem com Jesus</div></a>';
+  h+='<div style="background:rgba(124,92,191,.10);border-radius:14px;padding:12px;border:1px solid rgba(124,92,191,.14)">';
+  h+='<h3 style="color:#b8860b;font-size:.9rem;margin-bottom:6px">🧑 Para pré-adolescentes (10 a 13 anos)</h3>';
+  h+='<a href="https://www.youtube.com/@ograndelivro" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c;margin-bottom:4px" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">📖 O Grande Livro</div><div style="font-size:.72rem;color:#6b5b8c">Histórias bíblicas animadas com princípios e valores do Reino</div></a>';
+  h+='<a href="https://www.youtube.com/@MansaodoCaminho" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">📺 Mansão do Caminho</div><div style="font-size:.72rem;color:#6b5b8c">Histórias e reflexões baseadas nos ensinamentos de Jesus</div></a>';
+  h+='<a href="https://www.youtube.com/@TheChosenAdventures" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">🌟 The Chosen Adventures</div><div style="font-size:.72rem;color:#6b5b8c">Spin-off animado de The Chosen — Abby e Joshua aprendem com Jesus</div></a>';
   h+='</div>';
 
-  h+='<div style="background:rgba(255,255,255,.04);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,.06)">';
-  h+='<h3 style="color:#ffd700;font-size:.9rem;margin-bottom:6px">👨 Para adolescentes (13 anos ou mais)</h3>';
-  h+='<a href="https://www.youtube.com/@SementinhaTV" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 Sementinha TV</div><div style="font-size:.72rem;color:#b8a8d8">Conteúdo espírita — histórias, músicas, ensinamentos</div></a>';
-  h+='<a href="https://www.youtube.com/@NTKids" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 NT Kids (Novo Tempo)</div><div style="font-size:.72rem;color:#b8a8d8">Desenhos bíblicos — Jesus acalma a tempestade, histórias da Bíblia</div></a>';
-  h+='<a href="https://www.youtube.com/results?search_query=the+chosen+clipes+portugues" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 The Chosen (Clipes)</div><div style="font-size:.72rem;color:#b8a8d8">Cenas da série sobre a vida de Jesus — discutir atitudes e lições</div></a>';
+  h+='<div style="background:rgba(124,92,191,.10);border-radius:14px;padding:12px;border:1px solid rgba(124,92,191,.14)">';
+  h+='<h3 style="color:#b8860b;font-size:.9rem;margin-bottom:6px">👨 Para adolescentes (13 anos ou mais)</h3>';
+  h+='<a href="https://www.youtube.com/@SementinhaTV" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c;margin-bottom:4px" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">📺 Sementinha TV</div><div style="font-size:.72rem;color:#6b5b8c">Conteúdo espírita — histórias, músicas, ensinamentos</div></a>';
+  h+='<a href="https://www.youtube.com/@NTKids" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c;margin-bottom:4px" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">📺 NT Kids (Novo Tempo)</div><div style="font-size:.72rem;color:#6b5b8c">Desenhos bíblicos — Jesus acalma a tempestade, histórias da Bíblia</div></a>';
+  h+='<a href="https://www.youtube.com/results?search_query=the+chosen+clipes+portugues" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">📺 The Chosen (Clipes)</div><div style="font-size:.72rem;color:#6b5b8c">Cenas da série sobre a vida de Jesus — discutir atitudes e lições</div></a>';
   h+='</div>';
 
-  h+='<div style="background:rgba(255,255,255,.04);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,.06)">';
-  h+='<h3 style="color:#ffd700;font-size:.9rem;margin-bottom:6px">🎬 Curtas-metragens (5-10 min)</h3>';
-  h+='<p style="color:#b8a8d8;font-size:.75rem;margin-bottom:6px">Temas para reflexão moral — perfeito para gerar conversas após a exibição.</p>';
+  h+='<div style="background:rgba(124,92,191,.10);border-radius:14px;padding:12px;border:1px solid rgba(124,92,191,.14)">';
+  h+='<h3 style="color:#b8860b;font-size:.9rem;margin-bottom:6px">🎬 Curtas-metragens (5-10 min)</h3>';
+  h+='<p style="color:#6b5b8c;font-size:.75rem;margin-bottom:6px">Temas para reflexão moral — perfeito para gerar conversas após a exibição.</p>';
   h+='<div style="display:flex;flex-wrap:wrap;gap:4px">';
   var temas=['Perdão','Bullying','Honestidade','Empatia','Gratidão','Inclusão','Respeito','Amizade','Coragem','Generosidade'];
   for(var i=0;i<temas.length;i++){
-    h+='<a href="https://www.youtube.com/results?search_query=curta+metragem+animado+'+temas[i].toLowerCase()+'+infantil" target="_blank" rel="noopener" style="background:rgba(255,255,255,.04);border-radius:20px;padding:4px 12px;text-decoration:none;color:#d4c4f0;font-size:.72rem;font-weight:600;border:1px solid rgba(255,255,255,.06)" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.04)\'">'+temas[i]+'</a>';
+    h+='<a href="https://www.youtube.com/results?search_query=curta+metragem+animado+'+temas[i].toLowerCase()+'+infantil" target="_blank" rel="noopener" style="background:rgba(124,92,191,.10);border-radius:20px;padding:4px 12px;text-decoration:none;color:#6b5b8c;font-size:.72rem;font-weight:600;border:1px solid rgba(124,92,191,.14)" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.10)\'">'+temas[i]+'</a>';
   }
   h+='</div></div>';
 
-  h+='<div style="background:rgba(255,255,255,.04);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,.06)">';
-  h+='<h3 style="color:#ffd700;font-size:.9rem;margin-bottom:6px">📺 Canais Complementares</h3>';
-  h+='<a href="https://www.youtube.com/@TVComunhao" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">📺 TV Comunhão</div><div style="font-size:.72rem;color:#b8a8d8">Programação espírita educativa e reflexiva</div></a>';
-  h+='<a href="https://www.youtube.com/@SuperbookBrasil" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">⭐ Superbook Brasil — Episódios Completos</div><div style="font-size:.72rem;color:#b8a8d8">Moisés, Dez Mandamentos, Davi, Milagres de Jesus, A Última Ceia</div></a>';
-  h+='<a href="https://www.youtube.com/@TheChosenAdventuresMusic" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0;margin-bottom:4px" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">🎵 The Chosen Adventures Music</div><div style="font-size:.72rem;color:#b8a8d8">Músicas da série — fé, amizade e amor de Deus em canções</div></a>';
-  h+='<a href="https://www.youtube.com/@gabigospelkids" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,.03);border-radius:10px;padding:8px 12px;text-decoration:none;color:#d4c4f0" onmouseover="this.style.background=\'rgba(255,255,255,.08)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'"><div style="font-weight:700;font-size:.82rem;color:#f5e6d3">🎶 Gabi Gospel Kids</div><div style="font-size:.72rem;color:#b8a8d8">Louvores infantis animados — valores cristãos cantados</div></a>';
+  h+='<div style="background:rgba(124,92,191,.10);border-radius:14px;padding:12px;border:1px solid rgba(124,92,191,.14)">';
+  h+='<h3 style="color:#b8860b;font-size:.9rem;margin-bottom:6px">📺 Canais Complementares</h3>';
+  h+='<a href="https://www.youtube.com/@TVComunhao" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c;margin-bottom:4px" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">📺 TV Comunhão</div><div style="font-size:.72rem;color:#6b5b8c">Programação espírita educativa e reflexiva</div></a>';
+  h+='<a href="https://www.youtube.com/@SuperbookBrasil" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c;margin-bottom:4px" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">⭐ Superbook Brasil — Episódios Completos</div><div style="font-size:.72rem;color:#6b5b8c">Moisés, Dez Mandamentos, Davi, Milagres de Jesus, A Última Ceia</div></a>';
+  h+='<a href="https://www.youtube.com/@TheChosenAdventuresMusic" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c;margin-bottom:4px" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">🎵 The Chosen Adventures Music</div><div style="font-size:.72rem;color:#6b5b8c">Músicas da série — fé, amizade e amor de Deus em canções</div></a>';
+  h+='<a href="https://www.youtube.com/@gabigospelkids" target="_blank" rel="noopener" style="display:block;background:rgba(124,92,191,.08);border-radius:10px;padding:8px 12px;text-decoration:none;color:#6b5b8c" onmouseover="this.style.background=\'rgba(124,92,191,.18)\'" onmouseout="this.style.background=\'rgba(124,92,191,.08)\'"><div style="font-weight:700;font-size:.82rem;color:#3a2a5a">🎶 Gabi Gospel Kids</div><div style="font-size:.72rem;color:#6b5b8c">Louvores infantis animados — valores cristãos cantados</div></a>';
   h+='</div>';
 
   h+='</div>';
@@ -1330,7 +1330,7 @@ function renderTab(){
   var jog=document.getElementById('jog-info');jog.innerHTML='';
   tabJogadores.forEach(function(j,i){
     var c=document.createElement('span');c.className='jchip'+(i===tabTurno?' ativo':'');
-    c.style.borderColor=i===tabTurno?'#ffd700':'transparent';c.id='jchip-'+i;
+    c.style.borderColor=i===tabTurno?'#b8860b':'transparent';c.id='jchip-'+i;
     c.textContent=j.cor+' '+j.nome+' (Casa '+(tabPosicoes[i])+')';jog.appendChild(c);
   });
   var ordem=[];
@@ -1351,7 +1351,7 @@ function renderTab(){
     c.appendChild(pinos);g.appendChild(c);
   });
 }
-function atualizarTabMsg(m,erro){var e=document.getElementById('tab-msg');e.innerHTML=m;e.style.color=erro?'#f5576c':'#d8d0e8';}
+function atualizarTabMsg(m,erro){var e=document.getElementById('tab-msg');e.innerHTML=m;e.style.color=erro?'#d6336c':'#3a2a5a';}
 function rolarDado(){
   if(!tabJogando||tabRodada)return;
   tabRodada=true;
@@ -1418,7 +1418,7 @@ function proximoTurno(){
 function mostrarVitoria(j){
   tabJogando=false;
   var ban=document.createElement('div');ban.className='vitoria-ban';
-  ban.innerHTML='<div class="vi">🏆🌟👏</div><div class="vt">'+tabJogadores[j].cor+' '+tabJogadores[j].nome+' VENCEU!</div><p style="color:#d4c4f0;font-size:.8rem">Chegou à Terra Prometida!</p>';
+  ban.innerHTML='<div class="vi">🏆🌟👏</div><div class="vt">'+tabJogadores[j].cor+' '+tabJogadores[j].nome+' VENCEU!</div><p style="color:#6b5b8c;font-size:.8rem">Chegou à Terra Prometida!</p>';
   var msg=document.getElementById('tab-msg');msg.innerHTML=ban.outerHTML;
   document.getElementById('btn-dado').disabled=true;
 }
@@ -1530,7 +1530,7 @@ function prSelecionar(i){
   document.querySelectorAll('#pr-opts .pr-opt').forEach(function(b){b.classList.remove('selecionado');});
   var btns=document.querySelectorAll('#pr-opts .pr-opt');
   btns[i].classList.add('selecionado');
-  btns[i].style.borderColor='#ffd700';
+  btns[i].style.borderColor='#b8860b';
   document.getElementById('pr-btn-resp').style.display='inline-flex';
   prSel=i;
 }
@@ -1538,7 +1538,7 @@ function prResponder(){
   if(prSel<0||prRespondido)return;
   prRespondido=true;
   var p=prPergAtual,btns=document.querySelectorAll('#pr-opts .pr-opt');
-  btns.forEach(function(b){b.disabled=true;b.style.borderColor='';b.style.borderColor='rgba(255,255,255,.06)';});
+  btns.forEach(function(b){b.disabled=true;b.style.borderColor='';b.style.borderColor='rgba(124,92,191,.14)';});
   if(prSel===p.r){btns[prSel].classList.add('certo');prPts[prTurno]+=prDiff+1;document.getElementById('pr-msg').textContent='✅ Correto! +'+(prDiff+1)+' ponto(s)!';}else{btns[prSel].classList.add('errado');btns[p.r].classList.add('revelar');document.getElementById('pr-msg').textContent='❌ Errado! A resposta certa: '+p.o[p.r];}
   atualizarPRTeams();
   document.getElementById('pr-btn-resp').style.display='none';
@@ -1554,7 +1554,7 @@ function prPassar(){
   prTurno=1-prTurno;atualizarPRTeams();
   document.getElementById('pr-btn-resp').style.display='none';
   prSel=-1;
-  document.querySelectorAll('#pr-opts .pr-opt').forEach(function(b){b.classList.remove('selecionado');b.style.borderColor='';b.style.borderColor='rgba(255,255,255,.07)';});
+  document.querySelectorAll('#pr-opts .pr-opt').forEach(function(b){b.classList.remove('selecionado');b.style.borderColor='';b.style.borderColor='rgba(124,92,191,.16)';});
   document.getElementById('pr-status').textContent='🎯 Agora é a vez do '+(prTurno===0?prTime1:prTime2)+'!';
 }
 function prProxima(){
@@ -1698,17 +1698,17 @@ function clicarLP(x,y){
 }
 function desenharLP(){
   var ctx=lpCtx;ctx.clearRect(0,0,300,240);
-  ctx.strokeStyle='rgba(255,255,255,.03)';ctx.lineWidth=0.5;ctx.strokeRect(0,0,300,240);
+  ctx.strokeStyle='rgba(124,92,191,.08)';ctx.lineWidth=0.5;ctx.strokeRect(0,0,300,240);
   var ultFeito=null;
   lpPontos.forEach(function(p){
     if(p.feito){
-      ctx.beginPath();ctx.arc(p.x,p.y,6,0,Math.PI*2);ctx.fillStyle='rgba(67,233,123,.35)';ctx.fill();ctx.strokeStyle='#43e97b';ctx.lineWidth=2;ctx.stroke();
-      ctx.fillStyle='#43e97b';ctx.font='bold 9px Nunito,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.num,p.x,p.y-1);
+      ctx.beginPath();ctx.arc(p.x,p.y,6,0,Math.PI*2);ctx.fillStyle='rgba(67,233,123,.35)';ctx.fill();ctx.strokeStyle='#1a9e54';ctx.lineWidth=2;ctx.stroke();
+      ctx.fillStyle='#1a9e54';ctx.font='bold 9px Nunito,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.num,p.x,p.y-1);
       if(ultFeito){ctx.beginPath();ctx.moveTo(ultFeito.x,ultFeito.y);ctx.lineTo(p.x,p.y);ctx.strokeStyle='rgba(67,233,123,.25)';ctx.lineWidth=2;ctx.stroke();}
       ultFeito=p;
     }else{
-      ctx.beginPath();ctx.arc(p.x,p.y,7,0,Math.PI*2);ctx.fillStyle='rgba(124,92,191,.15)';ctx.fill();ctx.strokeStyle='rgba(255,255,255,.2)';ctx.lineWidth=1.5;ctx.stroke();
-      ctx.fillStyle='#cdb8f0';ctx.font='bold 9px Nunito,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.num,p.x,p.y-1);
+      ctx.beginPath();ctx.arc(p.x,p.y,7,0,Math.PI*2);ctx.fillStyle='rgba(124,92,191,.15)';ctx.fill();ctx.strokeStyle='rgba(124,92,191,.4)';ctx.lineWidth=1.5;ctx.stroke();
+      ctx.fillStyle='#6b5b8c';ctx.font='bold 9px Nunito,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.num,p.x,p.y-1);
     }
   });
 }
@@ -2052,15 +2052,15 @@ function velhaRender(){
   g.innerHTML='';
   for(var i=0;i<9;i++){
     var c=document.createElement('div');
-    c.style.cssText='aspect-ratio:1;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;cursor:pointer;background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.06);transition:all .2s';
-    c.onmouseover=function(){this.style.background='rgba(255,255,255,.08)';};
-    c.onmouseout=function(){this.style.background='rgba(255,255,255,.04)';};
+    c.style.cssText='aspect-ratio:1;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;cursor:pointer;background:rgba(124,92,191,.10);border:2px solid rgba(124,92,191,.14);transition:all .2s';
+    c.onmouseover=function(){this.style.background='rgba(124,92,191,.18)';};
+    c.onmouseout=function(){this.style.background='rgba(124,92,191,.10)';};
     (function(idx){
       c.onclick=function(){velhaJogar(idx);};
     })(i);
     if(velhaBoard[i])c.textContent=velhaBoard[i];
-    if(velhaBoard[i]==='X')c.style.color='#43e97b';
-    else if(velhaBoard[i]==='O')c.style.color='#f5576c';
+    if(velhaBoard[i]==='X')c.style.color='#1a9e54';
+    else if(velhaBoard[i]==='O')c.style.color='#d6336c';
     if(velhaBoard[i]||velhaGameOver)c.style.pointerEvents='none';
     g.appendChild(c);
   }
@@ -2195,21 +2195,21 @@ function forcaRender(){
       var btn=document.createElement('button');
       var lt=letras[i];
       btn.textContent=lt;
-      btn.style.cssText='font-family:Nunito,sans-serif;font-weight:700;font-size:.75rem;padding:4px 10px;border:none;border-radius:20px;cursor:pointer;background:rgba(255,255,255,.06);color:#cdb8f0;min-width:30px;transition:all .15s';
+      btn.style.cssText='font-family:Nunito,sans-serif;font-weight:700;font-size:.75rem;padding:4px 10px;border:none;border-radius:20px;cursor:pointer;background:rgba(124,92,191,.14);color:#6b5b8c;min-width:30px;transition:all .15s';
       if(forcaAdivinhadas[lt]||forcaAdivinhadas[lt.toLowerCase()]){
         btn.style.cursor='default';
         if(forcaEscolhida.p.indexOf(lt)!==-1||forcaEscolhida.p.indexOf(lt.toLowerCase())!==-1){
-          btn.style.background='rgba(67,233,123,.15)';btn.style.color='#43e97b';
+          btn.style.background='rgba(67,233,123,.15)';btn.style.color='#1a9e54';
         }else{
-          btn.style.background='rgba(255,255,255,.02)';btn.style.color='#4a3a6a';
+          btn.style.background='rgba(124,92,191,.06)';btn.style.color='#4a3a6a';
         }
       }else if(!forcaJogoAtivo){
-        btn.style.background='rgba(255,255,255,.02)';btn.style.color='#4a3a6a';btn.style.cursor='default';
+        btn.style.background='rgba(124,92,191,.06)';btn.style.color='#4a3a6a';btn.style.cursor='default';
       }else{
         (function(letra){
           btn.onclick=function(){forcaChutar(letra);};
-          btn.onmouseover=function(){this.style.background='rgba(255,255,255,.12)';};
-          btn.onmouseout=function(){this.style.background='rgba(255,255,255,.06)';};
+          btn.onmouseover=function(){this.style.background='rgba(124,92,191,.2)';};
+          btn.onmouseout=function(){this.style.background='rgba(124,92,191,.14)';};
         })(lt);
       }
       l.appendChild(btn);
@@ -2261,12 +2261,12 @@ function ttsBarShow(show,secao){
 <div class="tela" id="tela-velha">
   <div class="hist-card" style="text-align:center">
     <h2>⭕ Jogo da Velha Temático</h2>
-    <p style="color:#b8a8d8;font-size:.8rem" id="velha-sub"><span id="velha-nome-x">🔵</span> (X)  vs  <span id="velha-nome-o">🔴</span> (O)</p>
+    <p style="color:#6b5b8c;font-size:.8rem" id="velha-sub"><span id="velha-nome-x">🔵</span> (X)  vs  <span id="velha-nome-o">🔴</span> (O)</p>
     <div style="display:flex;justify-content:center;gap:24px;margin:6px 0;font-weight:700;font-size:.9rem">
-      <span style="color:#43e97b" id="velha-label-x">🔵: <span id="velha-x">0</span></span>
-      <span style="color:#f5576c" id="velha-label-o">🔴: <span id="velha-o">0</span></span>
+      <span style="color:#1a9e54" id="velha-label-x">🔵: <span id="velha-x">0</span></span>
+      <span style="color:#d6336c" id="velha-label-o">🔴: <span id="velha-o">0</span></span>
     </div>
-    <div id="velha-msg" style="color:#ffd700;font-weight:700;font-size:.85rem;min-height:24px;margin:6px 0">Clique em Novo Jogo</div>
+    <div id="velha-msg" style="color:#b8860b;font-weight:700;font-size:.85rem;min-height:24px;margin:6px 0">Clique em Novo Jogo</div>
     <div style="display:grid;grid-template-columns:repeat(3,80px);gap:4px;justify-content:center;margin:8px auto" id="velha-grid"></div>
     <div class="botoes-centro">
       <button class="btn btn-sm btn-p" onclick="velhaReset()">🔄 Novo Jogo</button>
@@ -2279,18 +2279,18 @@ function ttsBarShow(show,secao){
 <div class="tela" id="tela-forca">
   <div class="hist-card" style="text-align:center">
     <h2>💀 Forca Espírita</h2>
-    <p style="color:#b8a8d8;font-size:.8rem">Descubra a palavra espiritual!</p>
+    <p style="color:#6b5b8c;font-size:.8rem">Descubra a palavra espiritual!</p>
     <div id="forca-draw" style="font-size:2.8rem;margin:4px 0;min-height:60px;line-height:1.2">💀</div>
-    <div id="forca-word" style="font-size:1.5rem;font-weight:800;letter-spacing:6px;color:#f5e6d3;margin:8px 0;font-family:'Fredoka One',cursive"></div>
-    <div id="forca-hint" style="color:#cdb8f0;font-size:.8rem;margin:4px 0;font-style:italic;min-height:20px"></div>
-    <div id="forca-err" style="color:#f5576c;font-size:.75rem;margin:4px 0;font-weight:700">Erros: 0/6</div>
+    <div id="forca-word" style="font-size:1.5rem;font-weight:800;letter-spacing:6px;color:#3a2a5a;margin:8px 0;font-family:'Fredoka One',cursive"></div>
+    <div id="forca-hint" style="color:#6b5b8c;font-size:.8rem;margin:4px 0;font-style:italic;min-height:20px"></div>
+    <div id="forca-err" style="color:#d6336c;font-size:.75rem;margin:4px 0;font-weight:700">Erros: 0/6</div>
     <div id="forca-letras" style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center;max-width:360px;margin:8px auto"></div>
-    <div id="forca-msg" style="color:#ffd700;font-weight:700;font-size:.85rem;min-height:22px;margin:4px 0"></div>
+    <div id="forca-msg" style="color:#b8860b;font-weight:700;font-size:.85rem;min-height:22px;margin:4px 0"></div>
     <div class="botoes-centro">
       <button class="btn btn-sm btn-w" onclick="forcaNova()">🔄 Nova Palavra</button>
       <button class="btn btn-sm btn-o" onclick="forcaRevelar()">💡 Revelar</button>
     </div>
-    <div style="margin-top:6px;font-size:.75rem;color:#7a6a9a">✅ Acertadas: <span id="forca-acertos">0</span> | ❌ Perdidas: <span id="forca-erros">0</span></div>
+    <div style="margin-top:6px;font-size:.75rem;color:#6b5b8c">✅ Acertadas: <span id="forca-acertos">0</span> | ❌ Perdidas: <span id="forca-erros">0</span></div>
   </div>
 </div>
 
