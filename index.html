@@ -319,7 +319,50 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
     <button class="menu-btn" data-t="memimg" onclick="irP('memimg')">🖼️ MemImg</button>
     <button class="menu-btn" data-t="labirinto" onclick="irP('labirinto')">🌀 Labir</button>
     <button class="menu-btn" data-t="palavras" onclick="irP('palavras')">🔀 Palav</button>
+    <button class="menu-btn" data-t="biblioteca" onclick="irP('biblioteca')">📚 Biblio</button>
   </div></div>
+
+  <!-- BIBLIOTECA DE HISTÓRIAS (links com crédito ao Manual do Evangelizador) -->
+  <div class="tela" id="tela-biblioteca">
+    <style>
+      .bibl-card{display:inline-block;background:rgba(124,92,191,.10);border:1px solid rgba(124,92,191,.20);border-radius:12px;padding:10px 12px;color:#3a2a5a;text-decoration:none;font-weight:700;font-size:.82rem;transition:all .2s}
+      .bibl-card:hover{background:rgba(124,92,191,.22)}
+    </style>
+    <div style="max-width:780px;margin:0 auto;padding:14px 12px 50px;color:#3a2a5a">
+      <h1 class="logo" style="font-size:1.4rem">📚 Biblioteca de Histórias</h1>
+      <p class="subtitle">Livros e podcasts indicados pelo <strong>Manual do Evangelizador</strong>, organizados por faixa etária. Clique para abrir no site de origem (nova aba).</p>
+      <p style="color:#b8860b;font-size:.8rem;margin:6px 0 14px">⚠️ Conteúdo de terceiros — todos os direitos pertencem aos autores. Este site apenas indica e linka, com crédito, sem hospedar os arquivos.</p>
+
+      <h3 style="color:#6b5b8c;margin:10px 0 4px">👶 Maternal e Primeira Infância</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px">
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/maternal-3-4-anos" target="_blank" rel="noopener">Maternal (3–4 anos)</a>
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/jardim-5-6-anos" target="_blank" rel="noopener">Jardim (5–6 anos)</a>
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/historias-de-2-a-6-anos" target="_blank" rel="noopener">Histórias de 2 a 6 anos</a>
+      </div>
+
+      <h3 style="color:#6b5b8c;margin:12px 0 4px">🧒 Infância</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px">
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/infancia-i-7-8-anos" target="_blank" rel="noopener">Infância I (7–8 anos)</a>
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/historias-de-7-a-10-anos" target="_blank" rel="noopener">Histórias de 7 a 10 anos</a>
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/infancia-ii-9-10-anos" target="_blank" rel="noopener">Infância II (9–10 anos)</a>
+      </div>
+
+      <h3 style="color:#6b5b8c;margin:12px 0 4px">🧑 Pré-adolescentes e Adolescentes</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px">
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/infancia-iii-11-12-anos" target="_blank" rel="noopener">Infância III (11–12 anos)</a>
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/historias-de-11-a-13-anos" target="_blank" rel="noopener">Histórias a partir de 11 anos</a>
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/adolescente-13-14-anos" target="_blank" rel="noopener">Adolescente (13–14 anos)</a>
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/adolescente-a-parir-de-13-anos" target="_blank" rel="noopener">Adolescente a partir de 13 anos</a>
+      </div>
+
+      <h3 style="color:#6b5b8c;margin:12px 0 4px">📖 Acervo completo</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px">
+        <a class="bibl-card" href="https://www.manualdoevangelizador.com.br/historias" target="_blank" rel="noopener">Livros e Podcasts — acervo completo</a>
+      </div>
+
+      <p style="color:#6b5b8c;font-size:.78rem;margin-top:16px">Crédito: conteúdo original do site <a href="https://www.manualdoevangelizador.com.br" target="_blank" rel="noopener" style="color:#7c5cbf">manualdoevangelizador.com.br</a>. Não hospedamos nenhum arquivo; apenas indicamos o link de origem.</p>
+    </div>
+  </div>
 
   <!-- SALA DE AULA (workspace por tema) -->
   <div class="tela" id="tela-sala">
