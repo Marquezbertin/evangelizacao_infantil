@@ -1789,9 +1789,20 @@ const NOVOS_EXTRA = [
   }
 ];
 
+function capaNovos(i) {
+  const t = NOVOS_EXTRA[i];
+  const id = 'capa' + (105 + i);
+  return '<svg class="capa-svg" viewBox="0 0 300 92" role="img" aria-label="Ilustração do tema ' + t.titulo + '" preserveAspectRatio="xMidYMid meet">'
+    + '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1">'
+    + '<stop offset="0" stop-color="#7c5cbf" stop-opacity="0.28"/>'
+    + '<stop offset="1" stop-color="#ffd166" stop-opacity="0.42"/></linearGradient></defs>'
+    + '<rect x="2" y="2" width="296" height="88" rx="20" fill="url(#' + id + ')" stroke="rgba(124,92,191,0.25)"/>'
+    + '<text x="150" y="60" font-size="42" text-anchor="middle">' + (t.eb || '✨') + '</text></svg>';
+}
 function historinhaNovos(i) {
   const t = NOVOS_EXTRA[i];
-  return '<div class="historinha"><button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button>'
+  return '<div class="historinha">' + capaNovos(i)
+    + '<button class="tts-btn-ouvir" onclick="ttsLer(\'historia\',this)">🔊 Ouvir</button>'
     + t.hist.map((h, k) => '<p>' + (k + 1) + '. ' + h + '</p>').join('')
     + '<p class="vers">✨ ' + t.vers + '</p>'
     + '<p class="refl"><b>💡 Reflexão Espírita:</b> ' + t.refl + '</p></div>';
