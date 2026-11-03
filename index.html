@@ -2515,5 +2515,87 @@ function ttsBarShow(show,secao){
 })();
 </script>
 <script>renderCatalog();setTimeout(bezFala,1000);</script>
+<!-- MODO TELÃO / CONTROLE (ex.: ?telao&topico=SEUTOPICO no projetor; ?controle&topico=SEUTOPICO no celular) -->
+<style>
+  #ctrl-bar{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;gap:4px;overflow-x:auto;padding:6px 8px;background:rgba(255,255,255,.97);border-bottom:2px solid rgba(124,92,191,.3);box-shadow:0 4px 14px rgba(124,92,191,.2);scrollbar-width:none}
+  #ctrl-bar::-webkit-scrollbar{display:none}
+  #ctrl-bar button{flex-shrink:0;font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;padding:9px 12px;border:none;border-radius:24px;background:rgba(124,92,191,.14);color:#3a2a5a;cursor:pointer}
+  #ctrl-bar button:active{background:rgba(124,92,191,.35)}
+  #ctrl-status{flex-shrink:0;align-self:center;font-size:.7rem;font-weight:700;color:#1a9e54;padding:0 6px;min-width:60px}
+  body.modo-controle{padding-top:62px}
+  body.modo-telao{padding:0}
+  body.modo-telao .container{max-width:100%;min-height:100vh;border-radius:0;box-shadow:none;border:none;padding:10px 16px}
+  body.modo-telao .header-site,body.modo-telao .menu-wrap,body.modo-telao .ws-back,body.modo-telao .ws-nav,body.modo-telao .ws-games,body.modo-telao .ws-games-t,body.modo-telao .bez-wrap,body.modo-telao .tts-bar{display:none !important}
+  body.modo-telao .tema-selector-hidden{display:none !important}
+</style>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search);
+  var modo=q.has('telao')?'telao':(q.has('controle')?'controle':null);
+  var topico=(q.get('topico')||'').replace(/[^A-Za-z0-9_-]/g,'');
+  if(!modo||!topico)return;
+  var URL_TOPICO='https://ntfy.sh/'+topico;
+  var TELAS_OK=['inicio','sala','sobre','quiz','memoria','cacapalavras','quadrinho','velha','forca','passa','tabuleiro','ligapontos','colorir','quebra','memimg','labirinto','palavras','biblioteca','cinema','licoes'];
+  var ABAS_OK=['historia','aula','brincadeiras','revisao','recursos'];
+
+  function enviar(cmd){
+    var st=document.getElementById('ctrl-status');
+    return fetch(URL_TOPICO,{method:'POST',body:JSON.stringify(cmd)}).then(function(){
+      if(st){st.textContent='Enviado';setTimeout(function(){st.textContent='';},900);}
+    }).catch(function(){if(st)st.textContent='Erro de rede';});
+  }
+
+  if(modo==='controle'){
+    document.body.classList.add('modo-controle');
+    var bar=document.createElement('div');
+    bar.id='ctrl-bar';
+    var botoes=[
+      ['🏠 Início',{c:'irP',t:'inicio'}],
+      ['📚 Sala',{c:'irP',t:'sala'}],
+      ['◀ Tema',{c:'temaVizinho',d:-1}],
+      ['Tema ▶',{c:'temaVizinho',d:1}],
+      ['📜 História',{c:'wsTab',t:'historia'}],
+      ['👩‍🏫 Aula',{c:'wsTab',t:'aula'}],
+      ['🎪 Brinc.',{c:'wsTab',t:'brincadeiras'}],
+      ['📚 Revisão',{c:'wsTab',t:'revisao'}],
+      ['📺 Vídeos',{c:'wsTab',t:'recursos'}],
+      ['❓ Quiz',{c:'irP',t:'quiz'}],
+      ['🧠 Memória',{c:'irP',t:'memoria'}],
+      ['🔍 Caça',{c:'irP',t:'cacapalavras'}],
+      ['💀 Forca',{c:'irP',t:'forca'}]
+    ];
+    botoes.forEach(function(b){
+      var el=document.createElement('button');
+      el.textContent=b[0];
+      el.onclick=function(){enviar(b[1]);};
+      bar.appendChild(el);
+    });
+    var st=document.createElement('span');st.id='ctrl-status';
+    bar.appendChild(st);
+    document.body.insertBefore(bar,document.body.firstChild);
+    return;
+  }
+
+  // modo telão
+  document.body.classList.add('modo-telao');
+  var tb=document.getElementById('tema-botoes');
+  if(tb&&tb.parentNode)tb.parentNode.classList.add('tema-selector-hidden');
+
+  function executar(cmd){
+    if(!cmd||typeof cmd!=='object')return;
+    if(cmd.c==='irP'&&TELAS_OK.indexOf(cmd.t)>=0&&document.getElementById('tela-'+cmd.t)){irP(cmd.t);}
+    else if(cmd.c==='wsTab'&&ABAS_OK.indexOf(cmd.t)>=0){wsTab(cmd.t);}
+    else if(cmd.c==='temaVizinho'&&(cmd.d===1||cmd.d===-1)){temaVizinho(cmd.d);}
+  }
+
+  var es=new EventSource(URL_TOPICO+'/sse');
+  es.onmessage=function(e){
+    var ev;try{ev=JSON.parse(e.data);}catch(x){return;}
+    if(!ev||ev.event!=='message')return;
+    var cmd;try{cmd=JSON.parse(ev.message);}catch(x){return;}
+    executar(cmd);
+  };
+})();
+</script>
 </body>
 </html>
