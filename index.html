@@ -2459,13 +2459,24 @@ function ttsBarShow(show,secao){
   <div class="hist-card" id="cinema-conteudo"></div>
 </div>
 
-<!-- ANIMAÇÃO NATIVA: A OVELHA PERDIDA -->
+<!-- ANIMAÇÃO NATIVA: A OVELHA PERDIDA E SALMO 23 -->
 <div class="tela" id="tela-animacao">
   <style>
-    .anim-palco{position:relative;width:100%;height:270px;border-radius:24px;overflow:hidden;box-shadow:0 12px 32px rgba(124,92,191,.22);border:3px solid rgba(124,92,191,.2);transition:background 1.2s ease;margin-bottom:12px;user-select:none}
+    .anim-wrap-box{max-width:740px;margin:0 auto;padding:4px 6px;transition:all .3s ease}
+    .anim-wrap-box.modo-fullscreen{position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;height:100vh!important;max-width:100%!important;z-index:999999!important;background:linear-gradient(135deg,#1c0d38 0%,#2d1452 50%,#15092a 100%)!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;padding:14px!important;box-sizing:border-box!important;overflow-y:auto!important}
+    .anim-wrap-box.modo-fullscreen .anim-palco{width:min(960px,96vw)!important;height:min(440px,56vh)!important;margin-bottom:12px!important}
+    .anim-wrap-box.modo-fullscreen .anim-texto-box{width:min(960px,96vw)!important;font-size:1.2rem!important}
+    .anim-wrap-box.modo-fullscreen .anim-texto-box p{font-size:1.2rem!important}
+    .anim-wrap-box.modo-fullscreen .anim-titulo-box{display:none}
+    
+    .anim-abas-topo{display:flex;justify-content:center;gap:8px;margin-bottom:12px}
+    .anim-aba-btn{background:rgba(124,92,191,.12);border:2px solid rgba(124,92,191,.22);border-radius:24px;padding:7px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:#6b5b8c;cursor:pointer;transition:all .25s}
+    .anim-aba-btn.ativa{background:#7c5cbf;color:#fff;border-color:#7c5cbf;box-shadow:0 4px 14px rgba(124,92,191,.3)}
+
+    .anim-palco{position:relative;width:100%;height:275px;border-radius:24px;overflow:hidden;box-shadow:0 12px 34px rgba(124,92,191,.22);border:3px solid rgba(124,92,191,.22);transition:background 1.2s ease;margin-bottom:12px;user-select:none}
     .anim-nuvem{position:absolute;top:18px;left:15px;font-size:1.6rem;opacity:.85;animation:animNuvens 10s ease-in-out infinite alternate}
     @keyframes animNuvens{0%{transform:translateX(0)}100%{transform:translateX(40px)}}
-    .anim-sol-lua{position:absolute;top:16px;right:30px;font-size:2.5rem;transition:all 1.2s ease;filter:drop-shadow(0 0 12px rgba(255,215,0,.7))}
+    .anim-sol-lua{position:absolute;top:16px;right:32px;font-size:2.5rem;transition:all 1.2s ease;filter:drop-shadow(0 0 12px rgba(255,215,0,.7))}
     .anim-estrela{position:absolute;color:#ffd166;font-size:.9rem;opacity:0;transition:opacity 1.2s ease;animation:twinkle 1.5s infinite alternate}
     .anim-pastor{position:absolute;bottom:26px;left:35px;font-size:3.5rem;transition:all 1.2s cubic-bezier(.25,1,.5,1);filter:drop-shadow(0 4px 8px rgba(0,0,0,.25));z-index:4}
     .anim-lili{position:absolute;bottom:24px;left:230px;font-size:2.6rem;transition:all 1.2s cubic-bezier(.25,1,.5,1);filter:drop-shadow(0 3px 6px rgba(0,0,0,.2));z-index:4;cursor:pointer}
@@ -2476,102 +2487,178 @@ function ttsBarShow(show,secao){
     .anim-amor{position:absolute;bottom:90px;left:135px;font-size:2rem;display:none;animation:animPulso 1s infinite alternate;z-index:6}
     @keyframes animPulso{0%{transform:scale(.9) translateY(0)}100%{transform:scale(1.2) translateY(-10px)}}
     .anim-balao{position:absolute;top:18px;left:20px;max-width:240px;background:rgba(255,255,255,.96);padding:8px 14px;border-radius:18px;border:2px solid #7c5cbf;font-weight:800;font-size:.82rem;color:#3a2a5a;box-shadow:0 6px 16px rgba(0,0,0,.15);z-index:10;transition:all .4s}
+    .anim-btn-fs-palco{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.88);border:2px solid rgba(124,92,191,.3);border-radius:20px;padding:4px 10px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:#3a2a5a;cursor:pointer;z-index:20;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,.15);transition:all .2s}
+    .anim-btn-fs-palco:hover{background:#7c5cbf;color:#fff}
+    
     .anim-passos{display:flex;justify-content:center;gap:8px;margin-bottom:10px}
     .anim-passo-btn{background:rgba(124,92,191,.12);border:2px solid rgba(124,92,191,.2);border-radius:20px;padding:5px 12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.75rem;color:#6b5b8c;cursor:pointer;transition:all .2s}
     .anim-passo-btn.ativo{background:#7c5cbf;color:#fff;border-color:#7c5cbf;box-shadow:0 0 10px rgba(124,92,191,.35)}
     .anim-texto-box{background:rgba(255,255,255,.95);border:2px solid rgba(124,92,191,.18);border-radius:20px;padding:14px 18px;text-align:center;box-shadow:0 4px 16px rgba(124,92,191,.1);margin-bottom:12px}
     .anim-botoes{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
     .anim-reflexao{background:linear-gradient(135deg,rgba(255,249,230,.95),rgba(253,233,245,.95));border:2px dashed #ffd166;border-radius:20px;padding:14px 18px;margin-top:14px;display:none}
+
+    /* CARD SALMO 23 */
+    .salmo-container{background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(245,238,255,.95));border:2px solid rgba(124,92,191,.25);border-radius:24px;padding:18px 20px;box-shadow:0 10px 30px rgba(124,92,191,.14);margin-bottom:14px}
+    .salmo-verso{background:rgba(124,92,191,.08);border-left:4px solid #7c5cbf;border-radius:0 14px 14px 0;padding:10px 14px;margin-bottom:8px;font-size:.95rem;color:#3a2a5a;font-weight:700;line-height:1.4}
+    .salmo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:14px}
+    .salmo-card-didatico{background:rgba(255,255,255,.9);border:1px solid rgba(124,92,191,.2);border-radius:16px;padding:12px;box-shadow:0 4px 12px rgba(124,92,191,.06)}
+    .salmo-card-didatico h4{font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:.92rem;margin:0 0 4px;display:flex;align-items:center;gap:6px}
+    .salmo-card-didatico p{font-size:.8rem;color:#534375;line-height:1.35;margin:0}
   </style>
 
-  <div style="max-width:720px;margin:0 auto;padding:4px 6px">
-    <div style="text-align:center;margin-bottom:10px">
-      <h2 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.6rem;margin:0 0 2px">🐑 A Parábola da Ovelha Perdida</h2>
-      <div style="font-size:.82rem;color:#6b5b8c;font-weight:700">História Ilustrada e Animada com o Bom Pastor e a ovelhinha Lili ✨</div>
+  <div class="anim-wrap-box" id="anim-wrap-box">
+    
+    <!-- TÍTULO -->
+    <div class="anim-titulo-box" style="text-align:center;margin-bottom:8px">
+      <h2 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.6rem;margin:0 0 2px">🐑 O Bom Pastor: A Ovelha Perdida &amp; Salmo 23</h2>
+      <div style="font-size:.82rem;color:#6b5b8c;font-weight:700">Aprenda sobre o amor, o cuidado e a proteção de Deus ✨</div>
     </div>
 
-    <!-- Etapas / Linha do Tempo -->
-    <div class="anim-passos">
-      <button class="anim-passo-btn ativo" id="p-btn-1" onclick="animIrCena(1)">1️⃣ O Rebanho</button>
-      <button class="anim-passo-btn" id="p-btn-2" onclick="animIrCena(2)">2️⃣ A Distração</button>
-      <button class="anim-passo-btn" id="p-btn-3" onclick="animIrCena(3)">3️⃣ A Busca</button>
-      <button class="anim-passo-btn" id="p-btn-4" onclick="animIrCena(4)">4️⃣ A Festa</button>
+    <!-- SELETOR DE ABAS DA LIÇÃO -->
+    <div class="anim-abas-topo">
+      <button class="anim-aba-btn ativa" id="aba-btn-historia" onclick="animAlternarSecao('historia')">🎬 História Animada</button>
+      <button class="anim-aba-btn" id="aba-btn-salmo" onclick="animAlternarSecao('salmo')">📖 O Salmo 23 Ilustrado</button>
     </div>
 
-    <!-- PALCO ANIMADO -->
-    <div class="anim-palco" id="anim-palco">
-      <div class="anim-sol-lua" id="anim-sol-lua">☀️</div>
-      <div class="anim-nuvem" id="anim-nuvem">☁️ &nbsp; &nbsp; ☁️</div>
-      <div class="anim-estrela" id="anim-est-1" style="top:25px;left:30%">✨</div>
-      <div class="anim-estrela" id="anim-est-2" style="top:45px;left:55%">⭐</div>
-      <div class="anim-estrela" id="anim-est-3" style="top:20px;left:75%">✨</div>
-
-      <!-- Colinas em SVG -->
-      <svg style="position:absolute;bottom:0;left:0;width:100%;height:115px" viewBox="0 0 500 150" preserveAspectRatio="none">
-        <path id="anim-col-1" d="M0,80 Q140,20 290,75 T500,45 L500,150 L0,150 Z" fill="#78c257"/>
-        <path id="anim-col-2" d="M0,105 Q170,55 340,110 T500,85 L500,150 L0,150 Z" fill="#5ea83b"/>
-      </svg>
-
-      <!-- Arbusto / Flor -->
-      <div id="anim-arbusto" style="position:absolute;bottom:22px;right:60px;font-size:2.2rem;z-index:3;cursor:pointer" onclick="animClicarArbusto()" title="Clique no arbusto para procurar!">
-        🌳🌸
+    <!-- SEÇÃO 1: HISTÓRIA ANIMADA -->
+    <div id="secao-animacao-historia">
+      <!-- Etapas / Linha do Tempo -->
+      <div class="anim-passos">
+        <button class="anim-passo-btn ativo" id="p-btn-1" onclick="animIrCena(1)">1️⃣ O Rebanho</button>
+        <button class="anim-passo-btn" id="p-btn-2" onclick="animIrCena(2)">2️⃣ A Distração</button>
+        <button class="anim-passo-btn" id="p-btn-3" onclick="animIrCena(3)">3️⃣ A Busca</button>
+        <button class="anim-passo-btn" id="p-btn-4" onclick="animIrCena(4)">4️⃣ A Festa</button>
       </div>
 
-      <!-- Personagens -->
-      <div class="anim-pastor" id="anim-pastor">🧔‍♂️</div>
-      <div class="anim-lanterna" id="anim-lanterna">🏮✨</div>
+      <!-- PALCO ANIMADO -->
+      <div class="anim-palco" id="anim-palco">
+        <button class="anim-btn-fs-palco" id="anim-btn-fs-palco" onclick="animAlternarTelaCheia()" title="Alternar Tela Cheia">⛶ Tela Cheia</button>
 
-      <div class="anim-rebanho" id="anim-rebanho">
-        <span class="anim-mastiga">🐑</span>
-        <span class="anim-mastiga" style="animation-delay:.4s">🐑</span>
+        <div class="anim-sol-lua" id="anim-sol-lua">☀️</div>
+        <div class="anim-nuvem" id="anim-nuvem">☁️ &nbsp; &nbsp; ☁️</div>
+        <div class="anim-estrela" id="anim-est-1" style="top:25px;left:30%">✨</div>
+        <div class="anim-estrela" id="anim-est-2" style="top:45px;left:55%">⭐</div>
+        <div class="anim-estrela" id="anim-est-3" style="top:20px;left:75%">✨</div>
+
+        <!-- Colinas em SVG -->
+        <svg style="position:absolute;bottom:0;left:0;width:100%;height:115px" viewBox="0 0 500 150" preserveAspectRatio="none">
+          <path id="anim-col-1" d="M0,80 Q140,20 290,75 T500,45 L500,150 L0,150 Z" fill="#78c257"/>
+          <path id="anim-col-2" d="M0,105 Q170,55 340,110 T500,85 L500,150 L0,150 Z" fill="#5ea83b"/>
+        </svg>
+
+        <!-- Arbusto / Flor -->
+        <div id="anim-arbusto" style="position:absolute;bottom:22px;right:60px;font-size:2.2rem;z-index:3;cursor:pointer" onclick="animClicarArbusto()" title="Clique no arbusto para procurar!">
+          🌳🌸
+        </div>
+
+        <!-- Personagens -->
+        <div class="anim-pastor" id="anim-pastor">🧔‍♂️</div>
+        <div class="anim-lanterna" id="anim-lanterna">🏮✨</div>
+
+        <div class="anim-rebanho" id="anim-rebanho">
+          <span class="anim-mastiga">🐑</span>
+          <span class="anim-mastiga" style="animation-delay:.4s">🐑</span>
+        </div>
+
+        <div class="anim-lili" id="anim-lili" onclick="animPularLili()" title="Clique na Lili para vê-la pular!">🐑</div>
+
+        <div class="anim-amor" id="anim-amor">💖🎉✨</div>
+
+        <div class="anim-balao" id="anim-balao">"Eu amo e cuido de cada uma das minhas ovelhas!"</div>
       </div>
 
-      <div class="anim-lili" id="anim-lili" onclick="animPularLili()" title="Clique na Lili para vê-la pular!">🐑</div>
+      <!-- TEXTO DA NARRAÇÃO -->
+      <div class="anim-texto-box">
+        <p id="anim-texto" style="font-size:1rem;color:#3a2a5a;font-weight:700;line-height:1.45;margin:0">
+          O Bom Pastor cuidava de 100 ovelhinhas com muito amor. Ele conhecia cada uma pelo nome e nenhuma ficava sem carinho!
+        </p>
+      </div>
 
-      <div class="anim-amor" id="anim-amor">💖🎉✨</div>
+      <!-- CONTROLES -->
+      <div class="anim-botoes">
+        <button class="btn btn-sm btn-o" onclick="animAnterior()">◀ Anterior</button>
+        <span id="anim-contador" style="color:#6b5b8c;font-weight:800;font-size:.82rem;padding:0 6px">Cena 1 de 4</span>
+        <button class="btn btn-sm btn-p" onclick="animProximo()">Próximo ▶</button>
+        <button class="btn btn-sm btn-w" id="anim-auto-btn" onclick="animAlternarAuto()">▶ Automático</button>
+        <button class="btn btn-sm btn-o" onclick="animOuvir()">🔊 Ouvir</button>
+        <button class="btn btn-sm btn-o" id="anim-fs-ctrl" onclick="animAlternarTelaCheia()">⛶ Tela Cheia</button>
+      </div>
 
-      <div class="anim-balao" id="anim-balao">"Eu amo e cuido de cada uma das minhas ovelhas!"</div>
+      <!-- REFLEXÃO MORAL E EVANGELIZADORA -->
+      <div class="anim-reflexao" id="anim-reflexao">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <span style="font-size:2rem">🐮✨</span>
+          <div>
+            <strong style="color:#7b3fa0;font-size:1rem;font-family:'Fredoka One',cursive">Conversa com a Bezzerrinha:</strong>
+            <div style="font-size:.82rem;color:#3a2a5a;font-weight:700">O que Jesus nos ensina com essa linda parábola?</div>
+          </div>
+        </div>
+        <p style="font-size:.88rem;color:#4a3b68;line-height:1.4;margin:0 0 10px">
+          Assim como o Bom Pastor nunca desiste da ovelhinha que errou o caminho, <strong>Deus nunca nos abandona!</strong> Quando sentimos medo, tristeza ou fazemos algo de errado, não precisamos nos esconder: basta fazer uma oração com o coração sincero. Jesus e os bons espíritos sempre vêm ao nosso encontro com muito amor e acolhimento!
+        </p>
+        <div style="text-align:center;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-w btn-sm" onclick="animPlantarSemente()">🌱 Plantar Semente do Cuidado e do Amor!</button>
+          <button class="btn btn-p btn-sm" onclick="animAlternarSecao('salmo')">📖 Ler o Salmo 23 agora ▶</button>
+        </div>
+        <div id="anim-semente-msg" style="display:none;margin-top:8px;font-weight:800;color:#2ec4b6;font-size:.85rem;text-align:center">✨ Parabéns! Você plantou uma semente de amor no coração! 🌸💖</div>
+      </div>
     </div>
 
-    <!-- TEXTO DA NARRAÇÃO -->
-    <div class="anim-texto-box">
-      <p id="anim-texto" style="font-size:1rem;color:#3a2a5a;font-weight:700;line-height:1.45;margin:0">
-        O Bom Pastor cuidava de 100 ovelhinhas com muito amor. Ele conhecia cada uma pelo nome e nenhuma ficava sem carinho!
-      </p>
-    </div>
+    <!-- SEÇÃO 2: O SALMO 23 ILUSTRADO -->
+    <div id="secao-animacao-salmo" style="display:none">
+      <div class="salmo-container">
+        <div style="text-align:center;margin-bottom:14px">
+          <span style="font-size:2.2rem">📜🕊️🐑</span>
+          <h3 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.4rem;margin:4px 0 2px">O Salmo do Bom Pastor (Salmo 23)</h3>
+          <p style="font-size:.84rem;color:#6b5b8c;font-weight:700;margin:0 0 10px">Uma oração de confiança, paz e proteção diária de Deus</p>
+          <button class="btn btn-sm btn-w" onclick="animOuvirSalmo()">🔊 Ouvir o Salmo 23</button>
+        </div>
 
-    <!-- CONTROLES -->
-    <div class="anim-botoes">
-      <button class="btn btn-sm btn-o" onclick="animAnterior()">◀ Anterior</button>
-      <span id="anim-contador" style="color:#6b5b8c;font-weight:800;font-size:.82rem;padding:0 6px">Cena 1 de 4</span>
-      <button class="btn btn-sm btn-p" onclick="animProximo()">Próximo ▶</button>
-      <button class="btn btn-sm btn-w" id="anim-auto-btn" onclick="animAlternarAuto()">▶ Automático</button>
-      <button class="btn btn-sm btn-o" onclick="animOuvir()">🔊 Ouvir</button>
-    </div>
+        <div id="salmo-texto-completo">
+          <div class="salmo-verso">🌿 <strong>1.</strong> O Senhor é o meu pastor: <em>nada me faltará!</em></div>
+          <div class="salmo-verso">🌾 <strong>2.</strong> Em verdes pastagens me faz repousar e me conduz com carinho a águas tranquilas.</div>
+          <div class="salmo-verso">💖 <strong>3.</strong> Restaura e renova a minha alma; guia-me pelos caminhos do bem e da justiça.</div>
+          <div class="salmo-verso">🔦 <strong>4.</strong> Ainda que eu ande pelo vale de sombras e medo, não temerei mal nenhum, porque <em>Tu estás comigo</em>! O Teu amor e o Teu cajado me consolam e me protegem.</div>
+          <div class="salmo-verso">🍯 <strong>5.</strong> Preparas para mim uma mesa farta e abençoada; o meu coração transborda de alegria e gratidão!</div>
+          <div class="salmo-verso">🌟 <strong>6.</strong> Certamente a Tua bondade, a Tua paz e a Tua misericórdia me acompanharão todos os dias da minha vida!</div>
+        </div>
 
-    <!-- REFLEXÃO MORAL E EVANGELIZADORA -->
-    <div class="anim-reflexao" id="anim-reflexao">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-        <span style="font-size:2rem">🐮✨</span>
-        <div>
-          <strong style="color:#7b3fa0;font-size:1rem;font-family:'Fredoka One',cursive">Conversa com a Bezzerrinha:</strong>
-          <div style="font-size:.82rem;color:#3a2a5a;font-weight:700">O que Jesus nos ensina com essa linda parábola?</div>
+        <h4 style="font-family:'Fredoka One',cursive;color:#b8860b;font-size:1.1rem;margin:18px 0 6px;text-align:center">
+          💡 O que o Salmo 23 ensina para o nosso dia a dia?
+        </h4>
+
+        <div class="salmo-grid">
+          <div class="salmo-card-didatico">
+            <h4>🌿 Pastos Verdes</h4>
+            <p>Deus nos oferece tudo o que nossa alma precisa para crescer: família, amigos, a natureza e as lições do bem.</p>
+          </div>
+          <div class="salmo-card-didatico">
+            <h4>💧 Águas Tranquilas</h4>
+            <p>Quando estamos aflitos ou ansiosos, a prece e a conexão com Jesus trazem serenidade e paz fresca ao coração.</p>
+          </div>
+          <div class="salmo-card-didatico">
+            <h4>🔦 O Vale de Sombras</h4>
+            <p>Mesmo nos dias tristes, quando sentimos medo ou solidão, nunca estamos sós: nosso Anjo Guardião caminha conosco.</p>
+          </div>
+          <div class="salmo-card-didatico">
+            <h4>💖 A Bondade Me Segue</h4>
+            <p>Quem pratica a caridade e a bondade com todos sempre colhe luz, alegria verdadeira e proteção espiritual!</p>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:16px">
+          <button class="btn btn-sm btn-o" onclick="animAlternarSecao('historia')">◀ Voltar para a História Animada</button>
         </div>
       </div>
-      <p style="font-size:.88rem;color:#4a3b68;line-height:1.4;margin:0 0 10px">
-        Assim como o Bom Pastor nunca desiste da ovelhinha que errou o caminho, <strong>Deus nunca nos abandona!</strong> Quando sentimos medo, tristeza ou fazemos algo de errado, não precisamos nos esconder: basta fazer uma oração com o coração sincero. Jesus e os bons espíritos sempre vêm ao nosso encontro com muito amor e acolhimento!
-      </p>
-      <div style="text-align:center">
-        <button class="btn btn-w btn-sm" onclick="animPlantarSemente()">🌱 Plantar Semente do Cuidado e do Amor!</button>
-        <div id="anim-semente-msg" style="display:none;margin-top:6px;font-weight:800;color:#2ec4b6;font-size:.85rem">✨ Parabéns! Você plantou uma semente de amor no coração! 🌸💖</div>
-      </div>
     </div>
+
   </div>
 </div>
 
 <script>
   var animCena = 1;
   var animTimer = null;
+  var animIsFullscreen = false;
 
   var animDados = [
     {
@@ -2583,7 +2670,7 @@ function ttsBarShow(show,secao){
       pastorX: '35px', pastorY: '26px', pastorEmo: '🧔‍♂️',
       liliX: '230px', liliY: '24px', liliEmo: '🐑',
       rebanho: 'flex', lanterna: 'none', amor: 'none',
-      balao: '“Venham, queridas! O pasto está verdinho e o dia está lindo!”',
+      balao: '“O Senhor é meu pastor, nada me faltará! Venham pastar, queridas!”',
       texto: 'O Bom Pastor cuidava de 100 ovelhinhas com muito amor. Ele conhecia cada uma pelo nome e nenhuma ficava sem carinho!'
     },
     {
@@ -2607,8 +2694,8 @@ function ttsBarShow(show,secao){
       pastorX: '45%', pastorY: '26px', pastorEmo: '🧔‍♂️',
       liliX: '80%', liliY: '24px', liliEmo: '😢🐑',
       rebanho: 'none', lanterna: 'block', amor: 'none',
-      balao: '“Lili! Onde você está? Não tenha medo, estou aqui!”',
-      texto: 'O Pastor não descansou nem ficou bravo. Ele pegou sua lanterna e foi procurar a ovelha no escuro com paciência e amor!'
+      balao: '“Lili! Onde você está? Não tema, o pastor está aqui!”',
+      texto: 'O Pastor não descansou nem ficou bravo. Como diz o Salmo: “Ainda que eu ande pelo vale escuro, não temerei!”. Ele foi procurar até encontrar.'
     },
     {
       bg: 'linear-gradient(180deg,#ffeaa7 0%,#fab1a0 60%,#55efc4 100%)',
@@ -2619,10 +2706,69 @@ function ttsBarShow(show,secao){
       pastorX: '40%', pastorY: '26px', pastorEmo: '🥰🧔‍♂️',
       liliX: '41%', liliY: '75px', liliEmo: '🐑💖',
       rebanho: 'flex', lanterna: 'none', amor: 'block',
-      balao: '“Que alegria no coração! Encontrei minha ovelhinha!”',
+      balao: '“Que alegria no coração! A bondade e a paz me acompanharão!”',
       texto: 'Ele a colocou com carinho nos ombros e fez uma grande festa! Jesus nos ensina que para Deus ninguém fica para trás.'
     }
   ];
+
+  function animAlternarSecao(s){
+    var sh=document.getElementById('secao-animacao-historia');
+    var ss=document.getElementById('secao-animacao-salmo');
+    var bh=document.getElementById('aba-btn-historia');
+    var bs=document.getElementById('aba-btn-salmo');
+    if(!sh||!ss)return;
+    if(s==='salmo'){
+      sh.style.display='none';
+      ss.style.display='block';
+      if(bh)bh.classList.remove('ativa');
+      if(bs)bs.classList.add('ativa');
+    }else{
+      ss.style.display='none';
+      sh.style.display='block';
+      if(bs)bs.classList.remove('ativa');
+      if(bh)bh.classList.add('ativa');
+    }
+  }
+
+  function animAlternarTelaCheia(){
+    var wrap=document.getElementById('anim-wrap-box');
+    var btnP=document.getElementById('anim-btn-fs-palco');
+    var btnC=document.getElementById('anim-fs-ctrl');
+    if(!wrap)return;
+    
+    animIsFullscreen=!animIsFullscreen;
+    wrap.classList.toggle('modo-fullscreen',animIsFullscreen);
+
+    var label=animIsFullscreen?'✕ Sair':'⛶ Tela Cheia';
+    if(btnP)btnP.textContent=label;
+    if(btnC)btnC.textContent=label;
+
+    if(animIsFullscreen){
+      try{
+        if(document.documentElement.requestFullscreen){
+          document.documentElement.requestFullscreen().catch(function(){});
+        }
+      }catch(e){}
+    }else{
+      try{
+        if(document.fullscreenElement&&document.exitFullscreen){
+          document.exitFullscreen().catch(function(){});
+        }
+      }catch(e){}
+    }
+  }
+
+  document.addEventListener('fullscreenchange',function(){
+    if(!document.fullscreenElement&&animIsFullscreen){
+      animAlternarTelaCheia();
+    }
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&animIsFullscreen){
+      animAlternarTelaCheia();
+    }
+  });
 
   function animIrCena(n){
     if(n<1||n>4)return;
@@ -2676,7 +2822,6 @@ function ttsBarShow(show,secao){
     var refl=document.getElementById('anim-reflexao');
     if(refl)refl.style.display=(animCena===4)?'block':'none';
 
-    // Se estiver com áudio ativo ou automático, lê a legenda
     if(animTimer)animOuvir();
   }
 
@@ -2719,11 +2864,21 @@ function ttsBarShow(show,secao){
     }
   }
 
+  function animOuvirSalmo(){
+    if('speechSynthesis' in window){
+      window.speechSynthesis.cancel();
+      var txt='Salmo 23. O Senhor é o meu pastor: nada me faltará! Em verdes pastagens me faz repousar e me conduz mansamente a águas tranquilas. Restaura a minha alma e me guia pelos caminhos do bem. Ainda que eu ande pelo vale de sombras e medo, não temerei mal nenhum, porque Tu estás comigo! O Teu cajado e o Teu amor me consolam. Preparas para mim uma mesa abençoada e meu coração transborda de alegria. Certamente a bondade e a misericórdia de Deus me acompanharão todos os dias da minha vida!';
+      var u=new SpeechSynthesisUtterance(txt);
+      u.lang='pt-BR';
+      u.rate=0.90;
+      window.speechSynthesis.speak(u);
+    }
+  }
+
   function animPularLili(){
     var l=document.getElementById('anim-lili');
     if(!l)return;
     l.style.transform='translateY(-22px) scale(1.15)';
-    // Som fofinho com Web Audio API
     animTocarBeep(520,0.18);
     setTimeout(function(){
       l.style.transform='translateY(0) scale(1)';
