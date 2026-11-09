@@ -2611,7 +2611,21 @@ function ttsBarShow(show,secao){
           <span style="font-size:2.2rem">📜🕊️🐑</span>
           <h3 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.4rem;margin:4px 0 2px">O Salmo do Bom Pastor (Salmo 23)</h3>
           <p style="font-size:.84rem;color:#6b5b8c;font-weight:700;margin:0 0 10px">Uma oração de confiança, paz e proteção diária de Deus</p>
-          <button class="btn btn-sm btn-w" onclick="animOuvirSalmo()">🔊 Ouvir o Salmo 23</button>
+          
+          <!-- PLAYER DE VOZ HUMANA ACOLHEDORA -->
+          <audio id="audio-salmo-player" src="audio/salmo23.mp3" preload="auto"></audio>
+          <div style="background:linear-gradient(135deg,rgba(124,92,191,.15),rgba(255,209,102,.25));border:2px solid rgba(124,92,191,.22);border-radius:24px;padding:10px 16px;max-width:440px;margin:0 auto 12px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 14px rgba(124,92,191,.1)">
+            <button id="btn-audio-salmo" onclick="animTocarAudioSalmo()" style="background:#7c5cbf;color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0" title="Tocar narração com voz humana carinhosa">▶</button>
+            <div style="flex:1;text-align:left">
+              <div style="font-size:.84rem;font-weight:800;color:#3a2a5a;display:flex;justify-content:space-between">
+                <span>Voz Acolhedora para Crianças 🌸</span>
+                <span id="salmo-tempo" style="font-size:.75rem;color:#6b5b8c">0:00 / 0:52</span>
+              </div>
+              <div style="background:rgba(124,92,191,.2);border-radius:10px;height:7px;width:100%;margin-top:5px;overflow:hidden;cursor:pointer" onclick="animSeekSalmo(event)">
+                <div id="salmo-progresso" style="background:#ffd166;width:0%;height:100%;transition:width .15s linear"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div id="salmo-texto-completo">
@@ -2853,24 +2867,100 @@ function ttsBarShow(show,secao){
   }
 
   function animOuvir(){
-    if('speechSynthesis' in window){
-      window.speechSynthesis.cancel();
-      var t=document.getElementById('anim-texto');
-      if(!t)return;
-      var u=new SpeechSynthesisUtterance(t.textContent);
-      u.lang='pt-BR';
-      u.rate=0.92;
-      window.speechSynthesis.speak(u);
+    var audioOvelha = document.getElementById('audio-ovelha-player');
+    if(!audioOvelha){
+      audioOvelha = new Audio('audio/ovelha_perdida.mp3');
+      audioOvelha.id = 'audio-ovelha-player';
+      document.body.appendChild(audioOvelha);
+    }
+    
+    // Para áudio do Salmo se estiver tocando
+    var aSalmo = document.getElementById('audio-salmo-player');
+    if(aSalmo && !aSalmo.paused){ aSalmo.pause(); }
+
+    if(!audioOvelha.paused){
+      audioOvelha.pause();
+      return;
+    }
+
+    audioOvelha.play().catch(function(){
+      // Fallback para TTS se falhar
+      if('speechSynthesis' in window){
+        window.speechSynthesis.cancel();
+        var t=document.getElementById('anim-texto');
+        if(!t)return;
+        var u=new SpeechSynthesisUtterance(t.textContent);
+        u.lang='pt-BR';
+        u.rate=0.90;
+        window.speechSynthesis.speak(u);
+      }
+    });
+  }
+
+  function animTocarAudioSalmo(){
+    var a=document.getElementById('audio-salmo-player');
+    var btn=document.getElementById('btn-audio-salmo');
+    if(!a)return;
+
+    // Para áudio da ovelha se estiver tocando
+    var aOvelha = document.getElementById('audio-ovelha-player');
+    if(aOvelha && !aOvelha.paused){ aOvelha.pause(); }
+
+    if(a.paused){
+      a.play().then(function(){
+        if(btn) btn.textContent='⏸';
+      }).catch(function(){
+        // Fallback para voz TTS suave
+        animOuvirSalmoTTS();
+      });
+    }else{
+      a.pause();
+      if(btn) btn.textContent='▶';
     }
   }
 
-  function animOuvirSalmo(){
+  // Configuração dos eventos de progresso do áudio do Salmo
+  (function(){
+    var a=document.getElementById('audio-salmo-player');
+    if(!a)return;
+    a.addEventListener('timeupdate',function(){
+      var prog=document.getElementById('salmo-progresso');
+      var t=document.getElementById('salmo-tempo');
+      if(a.duration){
+        var pct=(a.currentTime/a.duration)*100;
+        if(prog)prog.style.width=pct+'%';
+        var mCur=Math.floor(a.currentTime/60);
+        var sCur=Math.floor(a.currentTime%60);
+        var mTot=Math.floor(a.duration/60);
+        var sTot=Math.floor(a.duration%60);
+        if(t)t.textContent=(mCur+':'+(sCur<10?'0':'')+sCur)+' / '+(mTot+':'+(sTot<10?'0':'')+sTot);
+      }
+    });
+    a.addEventListener('ended',function(){
+      var btn=document.getElementById('btn-audio-salmo');
+      var prog=document.getElementById('salmo-progresso');
+      if(btn)btn.textContent='▶';
+      if(prog)prog.style.width='0%';
+    });
+  })();
+
+  function animSeekSalmo(e){
+    var a=document.getElementById('audio-salmo-player');
+    if(!a||!a.duration)return;
+    var rect=e.currentTarget.getBoundingClientRect();
+    var clickX=e.clientX-rect.left;
+    var pct=clickX/rect.width;
+    a.currentTime=pct*a.duration;
+  }
+
+  function animOuvirSalmoTTS(){
     if('speechSynthesis' in window){
       window.speechSynthesis.cancel();
-      var txt='Salmo 23. O Senhor é o meu pastor: nada me faltará! Em verdes pastagens me faz repousar e me conduz mansamente a águas tranquilas. Restaura a minha alma e me guia pelos caminhos do bem. Ainda que eu ande pelo vale de sombras e medo, não temerei mal nenhum, porque Tu estás comigo! O Teu cajado e o Teu amor me consolam. Preparas para mim uma mesa abençoada e meu coração transborda de alegria. Certamente a bondade e a misericórdia de Deus me acompanharão todos os dias da minha vida!';
+      var txt='Salmo 23. O Senhor é o meu pastor: nada me faltará! Em verdes pastagens me faz repousar e me conduz mansamente a águas tranquilas. Restaura a minha alma e me guia pelos caminhos do bem. Ainda que eu ande pelo vale de sombras e medo, não temerei mal nenhum, porque Tu estás comigo! O Teu amor e a Tua proteção me abraçam e me consolam. Preparas para mim uma mesa cheia de bênçãos e meu coração transborda de gratidão! Certamente a bondade e a misericórdia de Deus me acompanharão todos os dias da minha vida!';
       var u=new SpeechSynthesisUtterance(txt);
       u.lang='pt-BR';
-      u.rate=0.90;
+      u.rate=0.88;
+      u.pitch=1.1;
       window.speechSynthesis.speak(u);
     }
   }
