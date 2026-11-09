@@ -2504,14 +2504,23 @@ function ttsBarShow(show,secao){
     .salmo-card-didatico{background:rgba(255,255,255,.9);border:1px solid rgba(124,92,191,.2);border-radius:16px;padding:12px;box-shadow:0 4px 12px rgba(124,92,191,.06)}
     .salmo-card-didatico h4{font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:.92rem;margin:0 0 4px;display:flex;align-items:center;gap:6px}
     .salmo-card-didatico p{font-size:.8rem;color:#534375;line-height:1.35;margin:0}
+    .anim-hist-sel-btn{background:rgba(255,255,255,.9);border:2px solid rgba(124,92,191,.25);border-radius:24px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:#6b5b8c;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(124,92,191,.08)}
+    .anim-hist-sel-btn:hover{background:rgba(124,92,191,.15)}
+    .anim-hist-sel-btn.ativa{background:#ffd166;color:#3a2a5a;border-color:#e0b230;box-shadow:0 4px 12px rgba(255,209,102,.4)}
   </style>
 
   <div class="anim-wrap-box" id="anim-wrap-box">
     
-    <!-- TÍTULO -->
+    <!-- SELETOR DE HISTÓRIAS -->
+    <div style="display:flex;justify-content:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <button class="anim-hist-sel-btn ativa" id="sel-hist-ovelha" onclick="animCarregarTema('ovelha')">🐑 1. A Ovelha Perdida</button>
+      <button class="anim-hist-sel-btn" id="sel-hist-samaritano" onclick="animCarregarTema('samaritano')">🤝 2. O Bom Samaritano</button>
+    </div>
+
+    <!-- TÍTULO DINÂMICO -->
     <div class="anim-titulo-box" style="text-align:center;margin-bottom:8px">
-      <h2 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.6rem;margin:0 0 2px">🐑 O Bom Pastor: A Ovelha Perdida &amp; Salmo 23</h2>
-      <div style="font-size:.82rem;color:#6b5b8c;font-weight:700">Aprenda sobre o amor, o cuidado e a proteção de Deus ✨</div>
+      <h2 id="anim-tema-titulo" style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.6rem;margin:0 0 2px">🐑 O Bom Pastor: A Ovelha Perdida &amp; Salmo 23</h2>
+      <div id="anim-tema-subtitulo" style="font-size:.82rem;color:#6b5b8c;font-weight:700">Aprenda sobre o amor, o cuidado e a proteção de Deus ✨</div>
     </div>
 
     <!-- SELETOR DE ABAS DA LIÇÃO -->
@@ -2889,57 +2898,334 @@ function ttsBarShow(show,secao){
   var animCena = 1;
   var animTimer = null;
   var animIsFullscreen = false;
+  var animTemaAtual = 'ovelha';
 
-  var animDados = [
-    {
-      bg: 'linear-gradient(180deg,#87ceeb 0%,#d4f1f9 60%,#a3e635 100%)',
-      sol: '☀️',
-      solDrop: '0 0 14px rgba(255,215,0,.7)',
-      estrelas: 0,
-      col1: '#78c257', col2: '#5ea83b',
-      pastorX: '35px', pastorY: '26px', pastorEmo: '🧔‍♂️',
-      liliX: '230px', liliY: '24px', liliEmo: '🐑',
-      rebanho: 'flex', lanterna: 'none', amor: 'none',
-      balao: '“O Senhor é meu pastor, nada me faltará! Venham pastar, queridas!”',
-      texto: 'O Bom Pastor cuidava de 100 ovelhinhas com muito amor. Ele conhecia cada uma pelo nome e nenhuma ficava sem carinho!'
+  var bancoHistorias = {
+    ovelha: {
+      titulo: '🐑 O Bom Pastor: A Ovelha Perdida &amp; Salmo 23',
+      subtitulo: 'Aprenda sobre o amor, o cuidado e a proteção de Deus ✨',
+      aba2Nome: '📖 Salmo 23',
+      audioHistoria: 'audio/ovelha_perdida.mp3',
+      audioCaderno: 'audio/licao_caderno.mp3',
+      passos: ['1️⃣ O Rebanho', '2️⃣ A Distração', '3️⃣ A Busca', '4️⃣ A Festa'],
+      cenas: [
+        {
+          bg: 'linear-gradient(180deg,#87ceeb 0%,#d4f1f9 60%,#a3e635 100%)',
+          sol: '☀️', solDrop: '0 0 14px rgba(255,215,0,.7)', estrelas: 0,
+          col1: '#78c257', col2: '#5ea83b',
+          pastorX: '35px', pastorY: '26px', pastorEmo: '🧔‍♂️',
+          liliX: '230px', liliY: '24px', liliEmo: '🐑',
+          rebanho: 'flex', lanterna: 'none', amor: 'none',
+          balao: '“O Senhor é meu pastor, nada me faltará! Venham pastar, queridas!”',
+          texto: 'O Bom Pastor cuidava de 100 ovelhinhas com muito amor. Ele conhecia cada uma pelo nome e nenhuma ficava sem carinho!'
+        },
+        {
+          bg: 'linear-gradient(180deg,#fd5e53 0%,#ffc048 50%,#4a7c29 100%)',
+          sol: '🌅', solDrop: '0 0 18px rgba(255,100,50,.8)', estrelas: 0,
+          col1: '#6aa34b', col2: '#47782b',
+          pastorX: '35px', pastorY: '26px', pastorEmo: '🧔‍♂️❓',
+          liliX: '78%', liliY: '24px', liliEmo: '🥺🐑',
+          rebanho: 'flex', lanterna: 'none', amor: 'none',
+          balao: '“Cadê a Lili? 99 estão seguras... falta a pequenina!”',
+          texto: 'Ao entardecer, a ovelhinha Lili viu uma florzinha colorida, foi andando e se perdeu! Ela ficou sozinha no escuro, cheia de medo.'
+        },
+        {
+          bg: 'linear-gradient(180deg,#091428 0%,#1a335a 60%,#112918 100%)',
+          sol: '🌙⭐', solDrop: '0 0 16px rgba(255,255,200,.9)', estrelas: 1,
+          col1: '#1b3b24', col2: '#112517',
+          pastorX: '45%', pastorY: '26px', pastorEmo: '🧔‍♂️',
+          liliX: '80%', liliY: '24px', liliEmo: '😢🐑',
+          rebanho: 'none', lanterna: 'block', amor: 'none',
+          balao: '“Lili! Onde você está? Não tema, o pastor está aqui!”',
+          texto: 'O Pastor não descansou nem ficou bravo. Como diz o Salmo: “Ainda que eu ande pelo vale escuro, não temerei!”. Ele foi procurar até encontrar.'
+        },
+        {
+          bg: 'linear-gradient(180deg,#ffeaa7 0%,#fab1a0 60%,#55efc4 100%)',
+          sol: '☀️✨', solDrop: '0 0 20px rgba(255,215,0,.85)', estrelas: 0,
+          col1: '#7bc75c', col2: '#5aa33f',
+          pastorX: '40%', pastorY: '26px', pastorEmo: '🥰🧔‍♂️',
+          liliX: '41%', liliY: '75px', liliEmo: '🐑💖',
+          rebanho: 'flex', lanterna: 'none', amor: 'block',
+          balao: '“Que alegria no coração! A bondade e a paz me acompanharão!”',
+          texto: 'Ele a colocou com carinho nos ombros e fez uma grande festa! Jesus nos ensina que para Deus ninguém fica para trás.'
+        }
+      ],
+      caderno: {
+        tema: 'Tema: O Bom Pastor Cuida de Mim',
+        redacao: 'Escreva no seu caderno um texto bem curtinho (de 3 a 6 linhas) contando um momento da sua vida em que você se sentiu com medo, triste ou cometeu um pequeno engano, e depois recebeu ajuda, um abraço ou o perdão de alguém (mamãe, papai, professor ou após fazer uma prece).',
+        dica: '💡 <em>"Um dia eu me senti... Então, quem me acolheu com amor foi... E o meu coração ficou alegre e em paz porque..."</em>',
+        desenho: 'Faça um desenho lindo e colorido embaixo do seu texto: desenhe o <strong>Bom Pastor com a ovelhinha no colo</strong> ou <strong>você de mãos dadas com Jesus e seu Anjo Guardião</strong>. Desenhe flores ao redor e escreva dentro de pequenos corações o nome das pessoas que cuidam de você!',
+        perguntas: [
+          '<strong>a)</strong> Quando a ovelhinha Lili se perdeu, qual foi a atitude do Pastor? Ele ficou bravo ou foi procurá-la com paciência e amor?',
+          '<strong>b)</strong> Copie com letra bem caprichada o versículo 1 do Salmo 23: <em>"O Senhor é o meu pastor, nada me faltará!"</em>',
+          '<strong>c)</strong> Como você pode ser um "Bom Pastor" e cuidar com amor dos seus amiguinhos da escola ou dos seus irmãos?'
+        ],
+        compromisso: '<em>"Esta semana, vou praticar uma boa ação secreta para alegrar alguém em casa ou na escola!"</em>'
+      },
+      brincadeiras: [
+        {
+          num: '1️⃣',
+          titulo: 'A Voz Mansa do Bom Pastor',
+          sub: '💡 5 a 12 anos &nbsp;|&nbsp; ⏱️ 15 minutos &nbsp;|&nbsp; Dinâmica Sensorial de Confiança',
+          aprende: 'Aprende a ouvir a voz do bem, da consciência e dos bons espíritos no meio dos barulhos do mundo.',
+          como: 'Uma criança é a "ovelhinha" e fecha os olhos. As outras em volta fazem ruídos suaves (vento, passarinhos). O "Bom Pastor" sussurra com voz calma: <em>"Lili, venha pelo caminho seguro, dê dois passos para a frente..."</em>. A ovelha segue apenas a voz mansa até o abraço acolhedor!',
+          moral: '💭 <strong>Reflexão Espírita:</strong> Jesus e nossos anjos guardiões sempre nos guiam com suavidade e paz no coração.'
+        },
+        {
+          num: '2️⃣',
+          titulo: 'O Circuito Vivo do Salmo 23',
+          sub: '💡 Todas as idades &nbsp;|&nbsp; ⏱️ 20 minutos &nbsp;|&nbsp; Vivência das Emoções',
+          aprende: 'Experimenta fisicamente os sentimentos de gratidão, serenidade e coragem do Salmo 23.',
+          como: 'Monte 4 cantinhos: 🌿 1. Pastos Verdes (dizer um motivo de gratidão); 💧 2. Águas Tranquilas (respiração e silêncio de paz); 🔦 3. Vale de Sombras (passar de mãos dadas dizendo: "Tu estás comigo!"); 🍯 4. Mesa da Alegria (abraço coletivo fraterno!).',
+          moral: null
+        },
+        {
+          num: '3️⃣',
+          titulo: 'O Resgate da Ovelhinha (Caça ao Tesouro do Amor)',
+          sub: '💡 6 a 12 anos &nbsp;|&nbsp; ⏱️ 15 minutos &nbsp;|&nbsp; Cooperação Fraterna',
+          aprende: 'Ninguém fica para trás quando todos trabalham juntos pelo bem.',
+          como: 'A ovelhinha Lili está escondida. As crianças procuram 4 pistas com corações. Cada pista tem uma boa ação (abraçar, elogiar, ajudar). Ao cumprirem juntos, a pista revela o esconderijo da ovelhinha!',
+          moral: null
+        }
+      ],
+      quiz: {
+        pergunta: '1. Quando o Pastor contou suas ovelhas e viu que faltava uma, qual foi a atitude dele?',
+        opcoes: [
+          { t: 'A) Pegou sua lanterna e foi procurar a ovelhinha no escuro com amor! ✨', c: true },
+          { t: 'B) Ficou bravo e disse que não se importava mais com ela.', c: false },
+          { t: 'C) Foi dormir e deixou a ovelha sozinha na floresta.', c: false }
+        ],
+        okMsg: '🌟 <strong>Muito bem!</strong> O Bom Pastor nunca desiste de nenhuma de suas ovelhinhas, assim como Jesus cuida de nós!',
+        erroMsg: '💡 <em>Quase lá!</em> Lembre-se: o Bom Pastor não fica zangado, ele vai com amor e paciência procurar a ovelhinha até encontrar!'
+      }
     },
-    {
-      bg: 'linear-gradient(180deg,#fd5e53 0%,#ffc048 50%,#4a7c29 100%)',
-      sol: '🌅',
-      solDrop: '0 0 18px rgba(255,100,50,.8)',
-      estrelas: 0,
-      col1: '#6aa34b', col2: '#47782b',
-      pastorX: '35px', pastorY: '26px', pastorEmo: '🧔‍♂️❓',
-      liliX: '78%', liliY: '24px', liliEmo: '🥺🐑',
-      rebanho: 'flex', lanterna: 'none', amor: 'none',
-      balao: '“Cadê a Lili? 99 estão seguras... falta a pequenina!”',
-      texto: 'Ao entardecer, a ovelhinha Lili viu uma florzinha colorida, foi andando e se perdeu! Ela ficou sozinha no escuro, cheia de medo.'
-    },
-    {
-      bg: 'linear-gradient(180deg,#091428 0%,#1a335a 60%,#112918 100%)',
-      sol: '🌙⭐',
-      solDrop: '0 0 16px rgba(255,255,200,.9)',
-      estrelas: 1,
-      col1: '#1b3b24', col2: '#112517',
-      pastorX: '45%', pastorY: '26px', pastorEmo: '🧔‍♂️',
-      liliX: '80%', liliY: '24px', liliEmo: '😢🐑',
-      rebanho: 'none', lanterna: 'block', amor: 'none',
-      balao: '“Lili! Onde você está? Não tema, o pastor está aqui!”',
-      texto: 'O Pastor não descansou nem ficou bravo. Como diz o Salmo: “Ainda que eu ande pelo vale escuro, não temerei!”. Ele foi procurar até encontrar.'
-    },
-    {
-      bg: 'linear-gradient(180deg,#ffeaa7 0%,#fab1a0 60%,#55efc4 100%)',
-      sol: '☀️✨',
-      solDrop: '0 0 20px rgba(255,215,0,.85)',
-      estrelas: 0,
-      col1: '#7bc75c', col2: '#5aa33f',
-      pastorX: '40%', pastorY: '26px', pastorEmo: '🥰🧔‍♂️',
-      liliX: '41%', liliY: '75px', liliEmo: '🐑💖',
-      rebanho: 'flex', lanterna: 'none', amor: 'block',
-      balao: '“Que alegria no coração! A bondade e a paz me acompanharão!”',
-      texto: 'Ele a colocou com carinho nos ombros e fez uma grande festa! Jesus nos ensina que para Deus ninguém fica para trás.'
+    samaritano: {
+      titulo: '🤝 A Parábola do Bom Samaritano &amp; A Caridade',
+      subtitulo: 'Aprenda sobre a verdadeira caridade, fraternidade e empatia ✨',
+      aba2Nome: '📖 A Caridade',
+      audioHistoria: 'audio/bom_samaritano.mp3',
+      audioCaderno: 'audio/licao_samaritano.mp3',
+      passos: ['1️⃣ A Estrada', '2️⃣ A Queda', '3️⃣ A Compaixão', '4️⃣ O Cuidado'],
+      cenas: [
+        {
+          bg: 'linear-gradient(180deg,#87ceeb 0%,#fce0a2 60%,#d2a679 100%)',
+          sol: '☀️', solDrop: '0 0 14px rgba(255,215,0,.7)', estrelas: 0,
+          col1: '#c99e66', col2: '#a87844',
+          pastorX: '35px', pastorY: '26px', pastorEmo: '🚶‍♂️',
+          liliX: '60%', liliY: '26px', liliEmo: '☀️🌿',
+          rebanho: 'none', lanterna: 'none', amor: 'none',
+          balao: '“Que dia bonito para viajar pela estrada de Jericó!”',
+          texto: 'Um viajante caminhava alegre pela estrada de Jerusalém para Jericó, admirando as montanhas e o caminho sob o sol.'
+        },
+        {
+          bg: 'linear-gradient(180deg,#f39c12 0%,#d35400 60%,#795548 100%)',
+          sol: '☀️', solDrop: '0 0 16px rgba(255,100,50,.8)', estrelas: 0,
+          col1: '#b37d47', col2: '#8d5a2d',
+          pastorX: '35px', pastorY: '26px', pastorEmo: '🏃‍♂️💨',
+          liliX: '70%', liliY: '20px', liliEmo: '🤕💔',
+          rebanho: 'none', lanterna: 'none', amor: 'none',
+          balao: '“Estou com muita pressa, não posso parar agora!”',
+          texto: 'O viajante tropeçou nas pedras e ficou machucado no chão. Algumas pessoas apressadas passaram de longe e não pararam para ajudar.'
+        },
+        {
+          bg: 'linear-gradient(180deg,#87ceeb 0%,#fcd34d 60%,#c99e66 100%)',
+          sol: '☀️✨', solDrop: '0 0 16px rgba(255,215,0,.8)', estrelas: 0,
+          col1: '#c99e66', col2: '#a87844',
+          pastorX: '45%', pastorY: '26px', pastorEmo: '👳‍♂️🐴',
+          liliX: '70%', liliY: '20px', liliEmo: '🥺🩹',
+          rebanho: 'none', lanterna: 'none', amor: 'none',
+          balao: '“Irmão, não tenha medo! Meu coração está com você!”',
+          texto: 'Mas então passou um Samaritano com seu burrinho. Ao ver o homem ferido, seu coração se encheu de profunda compaixão e carinho!'
+        },
+        {
+          bg: 'linear-gradient(180deg,#ffeaa7 0%,#fab1a0 60%,#55efc4 100%)',
+          sol: '☀️💖', solDrop: '0 0 20px rgba(255,215,0,.9)', estrelas: 0,
+          col1: '#7bc75c', col2: '#5aa33f',
+          pastorX: '40%', pastorY: '26px', pastorEmo: '🥰👳‍♂️',
+          liliX: '56%', liliY: '24px', liliEmo: '😊🩹❤️',
+          rebanho: 'none', lanterna: 'none', amor: 'block',
+          balao: '“Amar ao próximo é a maior lei de Deus!”',
+          texto: 'Ele fez curativos, levou o amigo para uma estalagem segura e cuidou dele com todo o amor. Jesus nos ensinou: “Vá e faça você o mesmo!”'
+        }
+      ],
+      caderno: {
+        tema: 'Tema: Eu Posso Ser o Bom Samaritano',
+        redacao: 'Escreva no seu caderno um texto bem curtinho (de 3 a 6 linhas) contando um momento em que você viu um amiguinho triste, sozinho no recreio ou precisando de ajuda, e você foi até ele ajudar com um sorriso sincero e sem pedir nada em troca.',
+        dica: '💡 <em>"Na escola, eu vi que meu colega estava... Então eu me aproximei e ajudei a... Foi muito bom ver ele sorrir porque a caridade traz paz ao coração!"</em>',
+        desenho: 'Faça um desenho lindo e colorido: desenhe o <strong>Bom Samaritano fazendo curativo com carinho no amigo</strong>, ou <strong>você ajudando alguém com um abraço e corações de luz</strong>!',
+        perguntas: [
+          '<strong>a)</strong> Quem foi o verdadeiro "próximo" do homem que estava machucado na estrada de Jericó?',
+          '<strong>b)</strong> O que Jesus quis nos ensinar com o mandamento: <em>"Amarás o teu próximo como a ti mesmo"</em>?',
+          '<strong>c)</strong> Escreva 2 boas ações simples que você pode fazer esta semana para ajudar quem estiver precisando em casa ou na escola.'
+        ],
+        compromisso: '<em>"Esta semana, serei o Bom Samaritano de alguém que estiver triste ou precisando de ajuda!"</em>'
+      },
+      brincadeiras: [
+        {
+          num: '1️⃣',
+          titulo: 'A Corrida dos Curativos do Amor',
+          sub: '💡 6 a 12 anos &nbsp;|&nbsp; ⏱️ 15 minutos &nbsp;|&nbsp; Cooperação e Empatia',
+          aprende: 'Praticar o cuidado com o irmão através de palavras afetuosas que curam a tristeza.',
+          como: 'Em duplas, uma criança conta um momento em que ficou chateada (ex: "perdi meu brinquedo"). A outra criança coloca um adesivo/fita no braço do amigo dizendo uma palavra curativa: "Perdão", "Coragem", "Eu sou seu amigo!". Depois invertem.',
+          moral: '💭 <strong>Reflexão Espírita:</strong> Uma palavra de amor e um abraço são os melhores curativos para a dor do coração.'
+        },
+        {
+          num: '2️⃣',
+          titulo: 'A Roda da Estalagem Fraterna',
+          sub: '💡 Todas as idades &nbsp;|&nbsp; ⏱️ 15 minutos &nbsp;|&nbsp; Inclusão e Acolhimento',
+          aprende: 'Compreender que na casa de Jesus ninguém pode ficar de fora ou sozinho.',
+          como: 'Crianças em círculo cantam suavemente. Uma criança fica no centro fingindo cansaço. Duas crianças entram na roda, oferecem a mão, ajudam a levantar e trazem para o círculo de mãos dadas dizendo: "Aqui todos têm lugar no coração!".',
+          moral: null
+        },
+        {
+          num: '3️⃣',
+          titulo: 'O Samaritano Secreto da Bondade',
+          sub: '💡 7 a 12 anos &nbsp;|&nbsp; ⏱️ 20 minutos &nbsp;|&nbsp; Caridade Verdadeira',
+          aprende: 'Fazer o bem em segredo, sem esperar elogios, como ensina o Evangelho.',
+          como: 'Cada criança sorteia o nome de um colega e se torna seu "Samaritano Secreto", fazendo 2 pequenos gestos de carinho durante a aula (ajudar a guardar o lápis, sorrir, elogiar) sem que o amigo descubra quem foi até a hora da revelação fraterna!',
+          moral: null
+        }
+      ],
+      quiz: {
+        pergunta: '1. Quem foi o verdadeiro próximo do viajante ferido?',
+        opcoes: [
+          { t: 'A) As pessoas que passaram correndo e não pararam.', c: false },
+          { t: 'B) O Samaritano, que parou com amor e usou de caridade e misericórdia! ✨', c: true },
+          { t: 'C) Ninguém, porque ninguém se importou.', c: false }
+        ],
+        okMsg: '🌟 <strong>Parabéns!</strong> O verdadeiro próximo é aquele que tem compaixão e ajuda de coração!',
+        erroMsg: '💡 <em>Lembre-se:</em> Jesus ensinou que o verdadeiro próximo é quem parou para acolher com carinho e caridade!'
+      }
     }
-  ];
+  };
+
+  var animDados = bancoHistorias.ovelha.cenas;
+
+  function animCarregarTema(tema){
+    if(!bancoHistorias[tema])return;
+    animTemaAtual = tema;
+    var info = bancoHistorias[tema];
+    animDados = info.cenas;
+
+    // Atualiza botões seletores de história
+    document.getElementById('sel-hist-ovelha').classList.toggle('ativa', tema==='ovelha');
+    document.getElementById('sel-hist-samaritano').classList.toggle('ativa', tema==='samaritano');
+
+    // Atualiza cabeçalho
+    var tit = document.getElementById('anim-tema-titulo');
+    var sub = document.getElementById('anim-tema-subtitulo');
+    if(tit) tit.innerHTML = info.titulo;
+    if(sub) sub.innerHTML = info.subtitulo;
+
+    // Atualiza nome da aba 2
+    var bAba2 = document.getElementById('aba-btn-salmo');
+    if(bAba2) bAba2.textContent = info.aba2Nome;
+
+    // Atualiza passos
+    for(var i=1;i<=4;i++){
+      var pbtn = document.getElementById('p-btn-'+i);
+      if(pbtn && info.passos[i-1]) pbtn.textContent = info.passos[i-1];
+    }
+
+    // Atualiza fontes de áudio
+    var aOvelha = document.getElementById('audio-ovelha-player');
+    if(aOvelha) aOvelha.src = info.audioHistoria;
+    var aCad = document.getElementById('audio-caderno-player');
+    if(aCad) aCad.src = info.audioCaderno;
+
+    // Atualiza caderno
+    var cTema = document.getElementById('cad-tema-titulo');
+    var cRed = document.getElementById('cad-redacao-desc');
+    var cDica = document.getElementById('cad-redacao-dica');
+    var cDes = document.getElementById('cad-desenho-desc');
+    var cPerg = document.getElementById('cad-perguntas-container');
+    var cComp = document.getElementById('cad-compromisso-txt');
+
+    if(cTema) cTema.textContent = info.caderno.tema;
+    if(cRed) cRed.innerHTML = info.caderno.redacao;
+    if(cDica) cDica.innerHTML = info.caderno.dica;
+    if(cDes) cDes.innerHTML = info.caderno.desenho;
+    if(cPerg){
+      cPerg.innerHTML = info.caderno.perguntas.map(function(p){ return '<p style="margin:4px 0">'+p+'</p>'; }).join('');
+    }
+    if(cComp) cComp.innerHTML = info.caderno.compromisso;
+
+    // Atualiza brincadeiras
+    var bCont = document.getElementById('anim-brincadeiras-lista');
+    if(bCont){
+      bCont.innerHTML = info.brincadeiras.map(function(b){
+        return '<div style="background:#fff;border-radius:18px;padding:14px 16px;border:1px solid rgba(124,92,191,.2);box-shadow:0 4px 12px rgba(124,92,191,.08);margin-bottom:12px">'
+          + '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-size:1.5rem">'+b.num+'</span><div>'
+          + '<h4 style="font-family:\'Fredoka One\',cursive;color:#7b3fa0;font-size:1.05rem;margin:0">'+b.titulo+'</h4>'
+          + '<span style="font-size:.75rem;color:#6b5b8c;font-weight:700">'+b.sub+'</span></div></div>'
+          + '<p style="font-size:.84rem;color:#4a3b68;line-height:1.4;margin:4px 0"><strong>🎯 O que aprende:</strong> '+b.aprende+'</p>'
+          + '<p style="font-size:.84rem;color:#4a3b68;line-height:1.4;margin:4px 0"><strong>🎮 Como brincar:</strong> '+b.como+'</p>'
+          + (b.moral ? '<div style="background:rgba(255,209,102,.2);border-radius:10px;padding:6px 10px;font-size:.78rem;color:#855d00;font-weight:700;margin-top:6px">'+b.moral+'</div>' : '')
+          + '</div>';
+      }).join('');
+    }
+
+    // Atualiza quiz
+    var qP = document.getElementById('quiz-bp-pergunta');
+    var qO = document.getElementById('quiz-bp-opcoes');
+    var qF = document.getElementById('quiz-bp-feedback');
+    if(qP) qP.textContent = info.quiz.pergunta;
+    if(qF) qF.style.display = 'none';
+    if(qO){
+      qO.innerHTML = info.quiz.opcoes.map(function(op){
+        return '<button class="btn btn-sm btn-o" onclick="animQuizResposta(this, '+op.c+')" style="text-align:left;justify-content:flex-start">'+op.t+'</button>';
+      }).join('');
+    }
+
+    // Atualiza aba de inspiração/salmo
+    var a2Tit = document.getElementById('aba-2-titulo');
+    var a2Sub = document.getElementById('aba-2-subtitulo');
+    var a2Vers = document.getElementById('salmo-texto-completo');
+    var a2CardTit = document.getElementById('aba-2-card-titulo');
+    var a2Cards = document.getElementById('aba-2-cards');
+
+    if(tema==='samaritano'){
+      if(a2Tit) a2Tit.textContent = 'O Mandamento Maior: A Caridade (Lucas 10)';
+      if(a2Sub) a2Sub.textContent = '“Amarás o Senhor teu Deus de todo coração e ao teu próximo como a ti mesmo!”';
+      if(a2Vers){
+        a2Vers.innerHTML = '<div class="salmo-verso">❤️ <strong>1.</strong> Perguntaram a Jesus: <em>“Quem é o meu próximo?”</em></div>'
+          + '<div class="salmo-verso">🚶‍♂️ <strong>2.</strong> Jesus contou: Um homem descia para Jericó e caiu necessitado no caminho.</div>'
+          + '<div class="salmo-verso">🏃 <strong>3.</strong> Outros passaram com pressa e não quiseram olhar com compaixão.</div>'
+          + '<div class="salmo-verso">👳‍♂️ <strong>4.</strong> Mas o Samaritano teve piedade: desceu, limpou suas feridas e cuidou dele.</div>'
+          + '<div class="salmo-verso">🏨 <strong>5.</strong> Levou-o para uma hospedaria e pagou para que nada lhe faltasse até sarar.</div>'
+          + '<div class="salmo-verso">🌟 <strong>6.</strong> Jesus disse: <em>“Aquele que usou de misericórdia é o verdadeiro próximo. Vá e faça você o mesmo!”</em></div>';
+      }
+      if(a2CardTit) a2CardTit.textContent = '💡 O que essa lição ensina para a nossa vida?';
+      if(a2Cards){
+        a2Cards.innerHTML = '<div class="salmo-card-didatico"><h4>❤️ Amar ao Próximo</h4><p>Nosso próximo é qualquer pessoa que cruza o nosso caminho precisando de ajuda, carinho ou oração.</p></div>'
+          + '<div class="salmo-card-didatico"><h4>🤝 Caridade Verdadeira</h4><p>Não basta desejar o bem em pensamento: a caridade verdadeira estende a mão e age com bondade!</p></div>'
+          + '<div class="salmo-card-didatico"><h4>🌸 Sem Diferenças</h4><p>O Samaritano não perguntou a religião ou país do homem ferido; ajudou simplesmente porque era um irmão.</p></div>'
+          + '<div class="salmo-card-didatico"><h4>✨ Paz Interior</h4><p>Quem ajuda o outro sente no peito uma alegria doce que nenhum brinquedo do mundo pode dar!</p></div>';
+      }
+    }else{
+      if(a2Tit) a2Tit.textContent = 'O Salmo do Bom Pastor (Salmo 23)';
+      if(a2Sub) a2Sub.textContent = 'Uma oração de confiança, paz e proteção diária de Deus';
+      if(a2Vers){
+        a2Vers.innerHTML = '<div class="salmo-verso">🌿 <strong>1.</strong> O Senhor é o meu pastor: <em>nada me faltará!</em></div>'
+          + '<div class="salmo-verso">🌾 <strong>2.</strong> Em verdes pastagens me faz repousar e me conduz com carinho a águas tranquilas.</div>'
+          + '<div class="salmo-verso">💖 <strong>3.</strong> Restaura e renova a minha alma; guia-me pelos caminhos do bem e da justiça.</div>'
+          + '<div class="salmo-verso">🔦 <strong>4.</strong> Ainda que eu ande pelo vale de sombras e medo, não temerei mal nenhum, porque <em>Tu estás comigo</em>! O Teu amor e o Teu cajado me consolam e me protegem.</div>'
+          + '<div class="salmo-verso">🍯 <strong>5.</strong> Preparas para mim uma mesa farta e abençoada; o meu coração transborda de alegria e gratidão!</div>'
+          + '<div class="salmo-verso">🌟 <strong>6.</strong> Certamente a Tua bondade, a Tua paz e a Tua misericórdia me acompanharão todos os dias da minha vida!</div>';
+      }
+      if(a2CardTit) a2CardTit.textContent = '💡 O que o Salmo 23 ensina para o nosso dia a dia?';
+      if(a2Cards){
+        a2Cards.innerHTML = '<div class="salmo-card-didatico"><h4>🌿 Pastos Verdes</h4><p>Deus nos oferece tudo o que nossa alma precisa para crescer: família, amigos, a natureza e as lições do bem.</p></div>'
+          + '<div class="salmo-card-didatico"><h4>💧 Águas Tranquilas</h4><p>Quando estamos aflitos ou ansiosos, a prece e a conexão com Jesus trazem serenidade e paz fresca ao coração.</p></div>'
+          + '<div class="salmo-card-didatico"><h4>🔦 O Vale de Sombras</h4><p>Mesmo nos dias tristes, quando sentimos medo ou solidão, nunca estamos sós: nosso Anjo Guardião caminha conosco.</p></div>'
+          + '<div class="salmo-card-didatico"><h4>💖 A Bondade Me Segue</h4><p>Quem pratica a caridade e a bondade com todos sempre colhe luz, alegria verdadeira e proteção espiritual!</p></div>';
+      }
+    }
+
+    // Reinicia na cena 1
+    animIrCena(1);
+    animAlternarSecao('historia');
+  }
 
   function animAlternarSecao(s){
     var secoes=['historia','salmo','caderno','brincadeiras','jogos'];
@@ -2964,7 +3250,6 @@ function ttsBarShow(show,secao){
     var btn=document.getElementById('btn-audio-caderno');
     if(!a)return;
 
-    // Pausa outros áudios
     var aSalmo=document.getElementById('audio-salmo-player');if(aSalmo&&!aSalmo.paused)aSalmo.pause();
     var aOvelha=document.getElementById('audio-ovelha-player');if(aOvelha&&!aOvelha.paused)aOvelha.pause();
 
@@ -2978,7 +3263,6 @@ function ttsBarShow(show,secao){
     }
   }
 
-  // Progresso do áudio do caderno
   (function(){
     var a=document.getElementById('audio-caderno-player');
     if(!a)return;
@@ -3016,18 +3300,19 @@ function ttsBarShow(show,secao){
     var fb=document.getElementById('quiz-bp-feedback');
     if(!fb)return;
     fb.style.display='block';
+    var info = bancoHistorias[animTemaAtual] || bancoHistorias.ovelha;
     if(correta){
       fb.style.background='rgba(46,196,182,.18)';
       fb.style.color='#127c73';
       fb.style.border='2px solid #2ec4b6';
-      fb.innerHTML='🌟 <strong>Muito bem!</strong> O Bom Pastor nunca desiste de nenhuma de suas ovelhinhas, assim como Jesus cuida de nós!';
+      fb.innerHTML=info.quiz.okMsg;
       animTocarBeep(660,0.15);
       setTimeout(function(){animTocarBeep(880,0.3);},120);
     }else{
       fb.style.background='rgba(255,209,102,.25)';
       fb.style.color='#785200';
       fb.style.border='2px solid #ffd166';
-      fb.innerHTML='💡 <em>Quase lá!</em> Lembre-se: o Bom Pastor não fica zangado, ele vai com amor e paciência procurar a ovelhinha até encontrar!';
+      fb.innerHTML=info.quiz.erroMsg;
       animTocarBeep(440,0.18);
     }
   }
@@ -3165,23 +3450,30 @@ function ttsBarShow(show,secao){
   }
 
   function animOuvir(){
-    var audioOvelha = document.getElementById('audio-ovelha-player');
-    if(!audioOvelha){
-      audioOvelha = new Audio('audio/ovelha_perdida.mp3');
-      audioOvelha.id = 'audio-ovelha-player';
-      document.body.appendChild(audioOvelha);
+    var info = bancoHistorias[animTemaAtual] || bancoHistorias.ovelha;
+    var audioPlayer = document.getElementById('audio-ovelha-player');
+    if(!audioPlayer){
+      audioPlayer = new Audio(info.audioHistoria);
+      audioPlayer.id = 'audio-ovelha-player';
+      document.body.appendChild(audioPlayer);
+    } else {
+      if(audioPlayer.src.indexOf(info.audioHistoria) === -1){
+        audioPlayer.src = info.audioHistoria;
+      }
     }
     
-    // Para áudio do Salmo se estiver tocando
+    // Para áudio do Salmo/Caderno se estiver tocando
     var aSalmo = document.getElementById('audio-salmo-player');
     if(aSalmo && !aSalmo.paused){ aSalmo.pause(); }
+    var aCad = document.getElementById('audio-caderno-player');
+    if(aCad && !aCad.paused){ aCad.pause(); }
 
-    if(!audioOvelha.paused){
-      audioOvelha.pause();
+    if(!audioPlayer.paused){
+      audioPlayer.pause();
       return;
     }
 
-    audioOvelha.play().catch(function(){
+    audioPlayer.play().catch(function(){
       // Fallback para TTS se falhar
       if('speechSynthesis' in window){
         window.speechSynthesis.cancel();
