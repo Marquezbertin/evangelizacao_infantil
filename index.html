@@ -2516,8 +2516,11 @@ function ttsBarShow(show,secao){
 
     <!-- SELETOR DE ABAS DA LIÇÃO -->
     <div class="anim-abas-topo">
-      <button class="anim-aba-btn ativa" id="aba-btn-historia" onclick="animAlternarSecao('historia')">🎬 História Animada</button>
-      <button class="anim-aba-btn" id="aba-btn-salmo" onclick="animAlternarSecao('salmo')">📖 O Salmo 23 Ilustrado</button>
+      <button class="anim-aba-btn ativa" id="aba-btn-historia" onclick="animAlternarSecao('historia')">🎬 História</button>
+      <button class="anim-aba-btn" id="aba-btn-salmo" onclick="animAlternarSecao('salmo')">📖 Salmo 23</button>
+      <button class="anim-aba-btn" id="aba-btn-caderno" onclick="animAlternarSecao('caderno')">✏️ No Caderno</button>
+      <button class="anim-aba-btn" id="aba-btn-brincadeiras" onclick="animAlternarSecao('brincadeiras')">🎪 Brincadeiras</button>
+      <button class="anim-aba-btn" id="aba-btn-jogos" onclick="animAlternarSecao('jogos')">🎮 Mini-Jogos</button>
     </div>
 
     <!-- SEÇÃO 1: HISTÓRIA ANIMADA -->
@@ -2666,6 +2669,219 @@ function ttsBarShow(show,secao){
       </div>
     </div>
 
+    <!-- SEÇÃO 3: NO CADERNO (LIÇÃO E ESCRITA) -->
+    <div id="secao-animacao-caderno" style="display:none">
+      <div class="salmo-container" style="background:#fff">
+        
+        <!-- CARD ÁUDIO DA EVANGELIZADORA -->
+        <div style="background:linear-gradient(135deg,rgba(124,92,191,.15),rgba(255,209,102,.25));border:2px solid #7c5cbf;border-radius:24px;padding:12px 18px;margin-bottom:18px;box-shadow:0 6px 18px rgba(124,92,191,.12)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="font-size:2.2rem">👩‍🏫🎧</span>
+            <div>
+              <h4 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.15rem;margin:0 0 2px">Mensagem da Evangelizadora Espírita</h4>
+              <p style="font-size:.82rem;color:#6b5b8c;font-weight:700;margin:0">Ouça o áudio com voz materna e carinhosa para orientar sua atividade de hoje!</p>
+            </div>
+          </div>
+          
+          <audio id="audio-caderno-player" src="audio/licao_caderno.mp3" preload="auto"></audio>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:10px;background:rgba(255,255,255,.9);border-radius:18px;padding:8px 14px;border:1px solid rgba(124,92,191,.2)">
+            <button id="btn-audio-caderno" onclick="animTocarAudioCaderno()" style="background:#7c5cbf;color:#fff;border:none;border-radius:50%;width:38px;height:38px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0">▶</button>
+            <div style="flex:1">
+              <div style="font-size:.8rem;font-weight:800;color:#3a2a5a;display:flex;justify-content:space-between">
+                <span>Voz Acolhedora da Evangelizadora 💕</span>
+                <span id="caderno-tempo" style="font-size:.74rem;color:#6b5b8c">0:00 / 1:20</span>
+              </div>
+              <div style="background:rgba(124,92,191,.2);border-radius:8px;height:6px;width:100%;margin-top:4px;overflow:hidden;cursor:pointer" onclick="animSeekCaderno(event)">
+                <div id="caderno-progresso" style="background:#ffd166;width:0%;height:100%;transition:width .15s linear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOLHA DE CADERNO VIRTUAL -->
+        <div style="background:#fffcf5;border:2px solid #e0d0b8;border-left:8px solid #7c5cbf;border-radius:18px;padding:16px 20px;box-shadow:inset 0 0 20px rgba(0,0,0,.03),0 6px 18px rgba(0,0,0,.06)">
+          <div style="text-align:center;border-bottom:2px dashed #d0c0e8;padding-bottom:10px;margin-bottom:14px">
+            <span style="font-size:.78rem;font-weight:800;color:#6b5b8c">Data: _____ / _____ / _________ &nbsp; | &nbsp; Evangelização Infantil</span>
+            <h3 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.3rem;margin:4px 0 2px">Tema: O Bom Pastor Cuida de Mim</h3>
+            <span style="font-size:.82rem;color:#5a4978;font-weight:700">Meu Nome: _________________________________________________</span>
+          </div>
+
+          <!-- ATIVIDADE 1: REDAÇÃO -->
+          <div style="margin-bottom:18px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span style="background:#ffd166;color:#3a2a5a;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem">1</span>
+              <strong style="color:#3a2a5a;font-size:.95rem">Minha História do Coração (Pequeno Texto no Caderno):</strong>
+            </div>
+            <p style="font-size:.86rem;color:#534375;line-height:1.45;margin:0 0 8px">
+              Escreva no seu caderno um texto bem curtinho (de 3 a 6 linhas) contando um momento da sua vida em que você se sentiu com medo, triste ou cometeu um pequeno engano, e depois recebeu ajuda, um abraço ou o perdão de alguém (mamãe, papai, professor ou após fazer uma prece).
+            </p>
+            <div style="background:rgba(124,92,191,.08);border-radius:12px;padding:10px 14px;border:1px solid rgba(124,92,191,.15);font-size:.82rem;color:#4a3b68">
+              💡 <strong>Dica de como começar no caderno:</strong><br>
+              <em>"Um dia eu me senti... Então, quem me acolheu com amor foi... E o meu coração ficou alegre e em paz porque..."</em>
+            </div>
+          </div>
+
+          <!-- ATIVIDADE 2: DESENHO -->
+          <div style="margin-bottom:18px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span style="background:#ffd166;color:#3a2a5a;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem">2</span>
+              <strong style="color:#3a2a5a;font-size:.95rem">Desenho Ilustrado no Caderno:</strong>
+            </div>
+            <p style="font-size:.86rem;color:#534375;line-height:1.45;margin:0 0 8px">
+              Faça um desenho lindo e colorido embaixo do seu texto: desenhe o <strong>Bom Pastor com a ovelhinha no colo</strong> ou <strong>você de mãos dadas com Jesus e seu Anjo Guardião</strong>. Desenhe flores ao redor e escreva dentro de pequenos corações o nome das pessoas que cuidam de você!
+            </p>
+          </div>
+
+          <!-- ATIVIDADE 3: FIXAÇÃO -->
+          <div style="margin-bottom:14px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span style="background:#ffd166;color:#3a2a5a;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem">3</span>
+              <strong style="color:#3a2a5a;font-size:.95rem">Perguntas para Copiar e Responder:</strong>
+            </div>
+            <div style="font-size:.86rem;color:#4a3b68;line-height:1.5">
+              <p style="margin:4px 0"><strong>a)</strong> Quando a ovelhinha Lili se perdeu, qual foi a atitude do Pastor? Ele ficou bravo ou foi procurá-la com paciência e amor?</p>
+              <p style="margin:4px 0"><strong>b)</strong> Copie com letra bem caprichada o versículo 1 do Salmo 23: <em>"O Senhor é o meu pastor, nada me faltará!"</em></p>
+              <p style="margin:4px 0"><strong>c)</strong> Como você pode ser um "Bom Pastor" e cuidar com amor dos seus amiguinhos da escola ou dos seus irmãos?</p>
+            </div>
+          </div>
+
+          <!-- COMPROMISSO DO CORAÇÃO -->
+          <div style="background:linear-gradient(135deg,#e8f8f5,#fdf2f7);border:2px dashed #2ec4b6;border-radius:14px;padding:12px;text-align:center;margin-top:14px">
+            <strong style="color:#2ec4b6;font-size:.92rem;font-family:'Fredoka One',cursive">🌟 Meu Compromisso de Luz da Semana:</strong>
+            <p style="font-size:.82rem;color:#3a2a5a;margin:4px 0 0">
+              <em>"Esta semana, vou praticar uma boa ação secreta para alegrar alguém em casa ou na escola!"</em>
+            </p>
+          </div>
+
+        </div>
+
+        <div style="text-align:center;margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-sm btn-o" onclick="animAlternarSecao('historia')">🎬 Ver a História</button>
+          <button class="btn btn-sm btn-p" onclick="animAlternarSecao('brincadeiras')">🎪 Ir para Brincadeiras ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 4: BRINCADEIRAS E DINÂMICAS -->
+    <div id="secao-animacao-brincadeiras" style="display:none">
+      <div class="salmo-container">
+        <div style="text-align:center;margin-bottom:14px">
+          <span style="font-size:2.2rem">🎪🐑🎈</span>
+          <h3 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.4rem;margin:4px 0 2px">Brincadeiras e Dinâmicas em Grupo</h3>
+          <p style="font-size:.84rem;color:#6b5b8c;font-weight:700;margin:0">Atividades lúdicas para evangelização infantil e momentos em família</p>
+        </div>
+
+        <!-- BRINCADEIRA 1 -->
+        <div style="background:#fff;border-radius:18px;padding:14px 16px;border:1px solid rgba(124,92,191,.2);box-shadow:0 4px 12px rgba(124,92,191,.08);margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <span style="font-size:1.5rem">1️⃣</span>
+            <div>
+              <h4 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.05rem;margin:0">A Voz Mansa do Bom Pastor</h4>
+              <span style="font-size:.75rem;color:#6b5b8c;font-weight:700">💡 5 a 12 anos &nbsp;|&nbsp; ⏱️ 15 minutos &nbsp;|&nbsp; Dinâmica Sensorial de Confiança</span>
+            </div>
+          </div>
+          <p style="font-size:.84rem;color:#4a3b68;line-height:1.4;margin:4px 0"><strong>🎯 O que aprende:</strong> Aprende a ouvir a voz do bem, da consciência e dos bons espíritos no meio dos barulhos do mundo.</p>
+          <p style="font-size:.84rem;color:#4a3b68;line-height:1.4;margin:4px 0"><strong>📦 Material:</strong> Um lenço macio para vendar suavemente os olhos.</p>
+          <p style="font-size:.84rem;color:#4a3b68;line-height:1.4;margin:4px 0"><strong>🎮 Como brincar:</strong> Uma criança é a "ovelhinha" e fecha os olhos. As outras crianças em volta fazem ruídos suaves (vento soprando, passarinhos cantando, palminhas). O evangelizador ou um amigo escolhido é o "Bom Pastor" e, com voz bem calma e acolhedora, sussurra: <em>"Lili, venha pelo caminho seguro, dê dois passos para a frente..."</em>. A ovelha segue apenas a voz mansa até chegar ao abraço acolhedor do Pastor!</p>
+          <div style="background:rgba(255,209,102,.2);border-radius:10px;padding:6px 10px;font-size:.78rem;color:#855d00;font-weight:700;margin-top:6px">
+            💭 <strong>Reflexão Espírita:</strong> Jesus e nossos anjos guardiões sempre nos guiam com suavidade e paz no coração.
+          </div>
+        </div>
+
+        <!-- BRINCADEIRA 2 -->
+        <div style="background:#fff;border-radius:18px;padding:14px 16px;border:1px solid rgba(124,92,191,.2);box-shadow:0 4px 12px rgba(124,92,191,.08);margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <span style="font-size:1.5rem">2️⃣</span>
+            <div>
+              <h4 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.05rem;margin:0">O Circuito Vivo do Salmo 23</h4>
+              <span style="font-size:.75rem;color:#6b5b8c;font-weight:700">💡 Todas as idades &nbsp;|&nbsp; ⏱️ 20 minutos &nbsp;|&nbsp; Vivência das Emoções</span>
+            </div>
+          </div>
+          <p style="font-size:.84rem;color:#4a3b68;line-height:1.4;margin:4px 0"><strong>🎯 O que aprende:</strong> Experimenta fisicamente os sentimentos de gratidão, serenidade e coragem do Salmo 23.</p>
+          <p style="font-size:.84rem;color:#4a3b68;line-height:1.4;margin:4px 0"><strong>🎮 Como brincar:</strong> Monte 4 cantinhos na sala:</p>
+          <ul style="font-size:.82rem;color:#4a3b68;margin:4px 0 6px 18px;line-height:1.4">
+            <li>🌿 <strong>1. Pastos Verdes:</strong> Cada criança senta na almofada e fala algo pelo qual agradece a Deus.</li>
+            <li>💧 <strong>2. Águas Tranquilas:</strong> As crianças fecham os olhos, respiram fundo 3 vezes e sentem o coração bater em paz.</li>
+            <li>🔦 <strong>3. Vale de Sombras:</strong> As crianças dão as mãos e passam por baixo de uma ponte feita com os braços dos adultos, dizendo juntas: <em>"Tu estás comigo, não temo nada!"</em></li>
+            <li>🍯 <strong>4. A Mesa da Alegria:</strong> Todas se encontram em roda para um grande abraço coletivo fraterno!</li>
+          </ul>
+        </div>
+
+        <!-- BRINCADEIRA 3 -->
+        <div style="background:#fff;border-radius:18px;padding:14px 16px;border:1px solid rgba(124,92,191,.2);box-shadow:0 4px 12px rgba(124,92,191,.08);margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <span style="font-size:1.5rem">3️⃣</span>
+            <div>
+              <h4 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.05rem;margin:0">O Resgate da Ovelhinha (Caça ao Tesouro do Amor)</h4>
+              <span style="font-size:.75rem;color:#6b5b8c;font-weight:700">💡 6 a 12 anos &nbsp;|&nbsp; ⏱️ 15 minutos &nbsp;|&nbsp; Cooperação Fraterna</span>
+            </div>
+          </div>
+          <p style="font-size:.84rem;color:#4a3b68;line-height:1.4;margin:4px 0"><strong>🎯 O que aprende:</strong> Ninguém fica para trás quando todos trabalham juntos pelo bem.</p>
+          <p style="font-size:.84rem;color:#4a3b68;line-height:1.4;margin:4px 0"><strong>📦 Material:</strong> Uma ovelhinha de pelúcia ou desenho escondido, e 4 pistas em corações de papel.</p>
+          <p style="font-size:.84rem;color:#4a3b68;line-height:1.4;margin:4px 0"><strong>🎮 Como brincar:</strong> A ovelhinha Lili está perdida na sala. Para encontrar, as crianças precisam achar as pistas. Cada pista tem uma virtude (ex: "Diga uma palavra de carinho ao amigo", "Dê um sorriso", "Ajude a arrumar uma cadeira"). Ao cumprirem juntos cada boa ação, a pista revela o esconderijo da ovelhinha e todos comemoram!</p>
+        </div>
+
+        <div style="text-align:center;margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-sm btn-o" onclick="animAlternarSecao('caderno')">✏️ Ver Lição no Caderno</button>
+          <button class="btn btn-sm btn-w" onclick="animAlternarSecao('jogos')">🎮 Jogar Mini-Jogos ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 5: MINI-JOGOS INTERATIVOS -->
+    <div id="secao-animacao-jogos" style="display:none">
+      <div class="salmo-container">
+        <div style="text-align:center;margin-bottom:14px">
+          <span style="font-size:2.2rem">🎮🧠✨</span>
+          <h3 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.4rem;margin:4px 0 2px">Mini-Jogos do Bom Pastor</h3>
+          <p style="font-size:.84rem;color:#6b5b8c;font-weight:700;margin:0">Teste o que você aprendeu e cuide do seu Jardim das Virtudes!</p>
+        </div>
+
+        <!-- JOGO 1: QUIZ INTERATIVO -->
+        <div style="background:#fff;border-radius:18px;padding:14px 16px;border:1px solid rgba(124,92,191,.2);box-shadow:0 4px 12px rgba(124,92,191,.08);margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:1.4rem">❓</span>
+            <strong style="color:#7b3fa0;font-size:1rem;font-family:'Fredoka One',cursive">Quiz Rápido: O que o Bom Pastor faz?</strong>
+          </div>
+          <p id="quiz-bp-pergunta" style="font-size:.88rem;color:#3a2a5a;font-weight:700;margin:0 0 10px">
+            1. Quando o Pastor contou suas ovelhas e viu que faltava uma, qual foi a atitude dele?
+          </p>
+          <div id="quiz-bp-opcoes" style="display:flex;flex-direction:column;gap:6px">
+            <button class="btn btn-sm btn-o" onclick="animQuizResposta(this, true)" style="text-align:left;justify-content:flex-start">
+              A) Pegou sua lanterna e foi procurar a ovelhinha no escuro com amor! ✨
+            </button>
+            <button class="btn btn-sm btn-o" onclick="animQuizResposta(this, false)" style="text-align:left;justify-content:flex-start">
+              B) Ficou bravo e disse que não se importava mais com ela.
+            </button>
+            <button class="btn btn-sm btn-o" onclick="animQuizResposta(this, false)" style="text-align:left;justify-content:flex-start">
+              C) Foi dormir e deixou a ovelha sozinha na floresta.
+            </button>
+          </div>
+          <div id="quiz-bp-feedback" style="display:none;margin-top:10px;font-weight:800;font-size:.85rem;padding:8px 12px;border-radius:12px"></div>
+        </div>
+
+        <!-- JOGO 2: JARDIM DAS VIRTUDES -->
+        <div style="background:linear-gradient(135deg,#f0fff4,#f5f0ff);border:2px dashed #78c257;border-radius:18px;padding:14px 16px;text-align:center">
+          <span style="font-size:1.8rem">🌱🌸🌻💖</span>
+          <h4 style="font-family:'Fredoka One',cursive;color:#2e7d32;font-size:1.1rem;margin:4px 0 2px">Jardim das Virtudes da Ovelhinha</h4>
+          <p style="font-size:.82rem;color:#55784a;margin:0 0 10px">Clique nos botões para regar as virtudes e cultivar o amor no seu coração:</p>
+          
+          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+            <button class="btn btn-sm btn-w" onclick="animRegarVirtude('🌱 Perdão')">💧 Regar o Perdão</button>
+            <button class="btn btn-sm btn-w" onclick="animRegarVirtude('🌸 Paciência')">💧 Regar a Paciência</button>
+            <button class="btn btn-sm btn-w" onclick="animRegarVirtude('💖 Caridade')">💧 Regar a Caridade</button>
+            <button class="btn btn-sm btn-w" onclick="animRegarVirtude('🕊️ Oração')">💧 Regar a Oração</button>
+          </div>
+          
+          <div id="virtude-jardim-msg" style="display:none;margin-top:10px;font-weight:800;color:#2e7d32;font-size:.86rem"></div>
+        </div>
+
+        <div style="text-align:center;margin-top:16px">
+          <button class="btn btn-sm btn-o" onclick="animAlternarSecao('historia')">◀ Voltar para a História Animada</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -2726,22 +2942,104 @@ function ttsBarShow(show,secao){
   ];
 
   function animAlternarSecao(s){
-    var sh=document.getElementById('secao-animacao-historia');
-    var ss=document.getElementById('secao-animacao-salmo');
-    var bh=document.getElementById('aba-btn-historia');
-    var bs=document.getElementById('aba-btn-salmo');
-    if(!sh||!ss)return;
-    if(s==='salmo'){
-      sh.style.display='none';
-      ss.style.display='block';
-      if(bh)bh.classList.remove('ativa');
-      if(bs)bs.classList.add('ativa');
+    var secoes=['historia','salmo','caderno','brincadeiras','jogos'];
+    secoes.forEach(function(k){
+      var el=document.getElementById('secao-animacao-'+k);
+      var btn=document.getElementById('aba-btn-'+k);
+      if(el) el.style.display = (k===s)?'block':'none';
+      if(btn) btn.classList.toggle('ativa', k===s);
+    });
+
+    // Se mudou de aba, pausa áudios que possam estar tocando
+    ['audio-salmo-player','audio-caderno-player','audio-ovelha-player'].forEach(function(id){
+      var a=document.getElementById(id);
+      if(a&&!a.paused)a.pause();
+    });
+    var btnS=document.getElementById('btn-audio-salmo');if(btnS)btnS.textContent='▶';
+    var btnC=document.getElementById('btn-audio-caderno');if(btnC)btnC.textContent='▶';
+  }
+
+  function animTocarAudioCaderno(){
+    var a=document.getElementById('audio-caderno-player');
+    var btn=document.getElementById('btn-audio-caderno');
+    if(!a)return;
+
+    // Pausa outros áudios
+    var aSalmo=document.getElementById('audio-salmo-player');if(aSalmo&&!aSalmo.paused)aSalmo.pause();
+    var aOvelha=document.getElementById('audio-ovelha-player');if(aOvelha&&!aOvelha.paused)aOvelha.pause();
+
+    if(a.paused){
+      a.play().then(function(){
+        if(btn)btn.textContent='⏸';
+      }).catch(function(){});
     }else{
-      ss.style.display='none';
-      sh.style.display='block';
-      if(bs)bs.classList.remove('ativa');
-      if(bh)bh.classList.add('ativa');
+      a.pause();
+      if(btn)btn.textContent='▶';
     }
+  }
+
+  // Progresso do áudio do caderno
+  (function(){
+    var a=document.getElementById('audio-caderno-player');
+    if(!a)return;
+    a.addEventListener('timeupdate',function(){
+      var prog=document.getElementById('caderno-progresso');
+      var t=document.getElementById('caderno-tempo');
+      if(a.duration){
+        var pct=(a.currentTime/a.duration)*100;
+        if(prog)prog.style.width=pct+'%';
+        var mCur=Math.floor(a.currentTime/60);
+        var sCur=Math.floor(a.currentTime%60);
+        var mTot=Math.floor(a.duration/60);
+        var sTot=Math.floor(a.duration%60);
+        if(t)t.textContent=(mCur+':'+(sCur<10?'0':'')+sCur)+' / '+(mTot+':'+(sTot<10?'0':'')+sTot);
+      }
+    });
+    a.addEventListener('ended',function(){
+      var btn=document.getElementById('btn-audio-caderno');
+      var prog=document.getElementById('caderno-progresso');
+      if(btn)btn.textContent='▶';
+      if(prog)prog.style.width='0%';
+    });
+  })();
+
+  function animSeekCaderno(e){
+    var a=document.getElementById('audio-caderno-player');
+    if(!a||!a.duration)return;
+    var rect=e.currentTarget.getBoundingClientRect();
+    var clickX=e.clientX-rect.left;
+    var pct=clickX/rect.width;
+    a.currentTime=pct*a.duration;
+  }
+
+  function animQuizResposta(btn, correta){
+    var fb=document.getElementById('quiz-bp-feedback');
+    if(!fb)return;
+    fb.style.display='block';
+    if(correta){
+      fb.style.background='rgba(46,196,182,.18)';
+      fb.style.color='#127c73';
+      fb.style.border='2px solid #2ec4b6';
+      fb.innerHTML='🌟 <strong>Muito bem!</strong> O Bom Pastor nunca desiste de nenhuma de suas ovelhinhas, assim como Jesus cuida de nós!';
+      animTocarBeep(660,0.15);
+      setTimeout(function(){animTocarBeep(880,0.3);},120);
+    }else{
+      fb.style.background='rgba(255,209,102,.25)';
+      fb.style.color='#785200';
+      fb.style.border='2px solid #ffd166';
+      fb.innerHTML='💡 <em>Quase lá!</em> Lembre-se: o Bom Pastor não fica zangado, ele vai com amor e paciência procurar a ovelhinha até encontrar!';
+      animTocarBeep(440,0.18);
+    }
+  }
+
+  function animRegarVirtude(nome){
+    var msg=document.getElementById('virtude-jardim-msg');
+    if(!msg)return;
+    msg.style.display='block';
+    msg.innerHTML='💧 Você regou a virtude: <strong>'+nome+'</strong>! Seu coração ficou mais iluminado e cheiroso como um jardim do bem! 🌸✨';
+    animTocarBeep(523,0.12);
+    setTimeout(function(){animTocarBeep(659,0.15);},100);
+    setTimeout(function(){animTocarBeep(784,0.25);},200);
   }
 
   function animAlternarTelaCheia(){
