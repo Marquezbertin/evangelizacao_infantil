@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -312,6 +312,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
     <button class="menu-btn ativo" data-t="inicio" onclick="irP('inicio')">🏠 Ini</button>
     <button class="menu-btn" data-t="sobre" onclick="irP('sobre')">ℹ️ Sobre</button>
     <button class="menu-btn" data-t="sala" onclick="irP('sala')">📚 Sala</button>
+    <button class="menu-btn" data-t="animacao" onclick="irP('animacao')">🐑 Animação</button>
     <button class="menu-btn" data-t="tabuleiro" onclick="irP('tabuleiro')">🎲 Tab</button>
     <button class="menu-btn" data-t="passa" onclick="irP('passa')">🎯 Passa</button>
     <button class="menu-btn" data-t="memoria" onclick="irP('memoria')">🧠 Mem</button>
@@ -431,6 +432,13 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f3ff 0
 
   <!-- INÍCIO (catálogo de temas organizado) -->
   <div class="tela active" id="tela-inicio">
+    <div style="text-align:center;margin:4px 0 10px">
+      <div style="background:linear-gradient(135deg,rgba(124,92,191,.15),rgba(255,209,102,.22));border:2px dashed #7c5cbf;border-radius:20px;padding:10px 14px;max-width:560px;margin:0 auto;cursor:pointer;transition:transform .2s" onclick="irP('animacao')" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <span style="font-size:1.8rem">🎬🐑✨</span>
+        <div style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.15rem;margin:3px 0">Nova História Animada: A Ovelha Perdida!</div>
+        <div style="font-size:0.78rem;color:#6b5b8c;font-weight:700">Clique para assistir e interagir com o Bom Pastor e a ovelhinha Lili 🌟</div>
+      </div>
+    </div>
     <div id="catalogo"></div>
   </div>
 
@@ -768,7 +776,7 @@ function filtrarCatalogo(q){
   var sem=document.getElementById('cat-sem');
   if(sem)sem.style.display=algum?'none':'block';
 }
-var bezFalas=['Oi! Eu sou a Bezzerrinha! Vamos aprender brincando? 🐮✨','Escolha um tema no catálogo e abra a Sala de Aula! Lá tem história, aula e brincadeiras.','Não esqueça: cada tema tem seus próprios jogos e vídeos, tudo no lugar certo! 🎮📺','Jesus disse: "Deixai vir a mim as criancinhas!" 👶💕','Bom evangelizador planta sementes de amor. Você é um! 🌱❤️','Na Sala de Aula você encontra tudo de um tema num só lugar. Prático, né? 📚'];
+var bezFalas=['Oi! Eu sou a Bezzerrinha! Vamos aprender brincando? 🐮✨','Já assistiu à história animada da Ovelhinha Perdida? Clica no menu em 🐑 Animação! 💕','Escolha um tema no catálogo e abra a Sala de Aula! Lá tem história, aula e brincadeiras.','Não esqueça: cada tema tem seus próprios jogos e vídeos, tudo no lugar certo! 🎮📺','Jesus disse: "Deixai vir a mim as criancinhas!" 👶💕','Bom evangelizador planta sementes de amor. Você é um! 🌱❤️','Na Sala de Aula você encontra tudo de um tema num só lugar. Prático, né? 📚'];
 function bezFala(){
   var b=document.getElementById('bez-bubble');
   if(!b)return;
@@ -2451,6 +2459,309 @@ function ttsBarShow(show,secao){
   <div class="hist-card" id="cinema-conteudo"></div>
 </div>
 
+<!-- ANIMAÇÃO NATIVA: A OVELHA PERDIDA -->
+<div class="tela" id="tela-animacao">
+  <style>
+    .anim-palco{position:relative;width:100%;height:270px;border-radius:24px;overflow:hidden;box-shadow:0 12px 32px rgba(124,92,191,.22);border:3px solid rgba(124,92,191,.2);transition:background 1.2s ease;margin-bottom:12px;user-select:none}
+    .anim-nuvem{position:absolute;top:18px;left:15px;font-size:1.6rem;opacity:.85;animation:animNuvens 10s ease-in-out infinite alternate}
+    @keyframes animNuvens{0%{transform:translateX(0)}100%{transform:translateX(40px)}}
+    .anim-sol-lua{position:absolute;top:16px;right:30px;font-size:2.5rem;transition:all 1.2s ease;filter:drop-shadow(0 0 12px rgba(255,215,0,.7))}
+    .anim-estrela{position:absolute;color:#ffd166;font-size:.9rem;opacity:0;transition:opacity 1.2s ease;animation:twinkle 1.5s infinite alternate}
+    .anim-pastor{position:absolute;bottom:26px;left:35px;font-size:3.5rem;transition:all 1.2s cubic-bezier(.25,1,.5,1);filter:drop-shadow(0 4px 8px rgba(0,0,0,.25));z-index:4}
+    .anim-lili{position:absolute;bottom:24px;left:230px;font-size:2.6rem;transition:all 1.2s cubic-bezier(.25,1,.5,1);filter:drop-shadow(0 3px 6px rgba(0,0,0,.2));z-index:4;cursor:pointer}
+    .anim-rebanho{position:absolute;bottom:22px;left:110px;font-size:2.1rem;display:flex;gap:10px;z-index:3;transition:opacity .6s}
+    .anim-mastiga{display:inline-block;animation:animMastigar 1.8s ease-in-out infinite alternate}
+    @keyframes animMastigar{0%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-5px) scaleY(1.05)}100%{transform:translateY(0) scaleY(.96)}}
+    .anim-lanterna{position:absolute;bottom:42px;left:90px;font-size:1.8rem;display:none;filter:drop-shadow(0 0 18px #ffea00);z-index:5}
+    .anim-amor{position:absolute;bottom:90px;left:135px;font-size:2rem;display:none;animation:animPulso 1s infinite alternate;z-index:6}
+    @keyframes animPulso{0%{transform:scale(.9) translateY(0)}100%{transform:scale(1.2) translateY(-10px)}}
+    .anim-balao{position:absolute;top:18px;left:20px;max-width:240px;background:rgba(255,255,255,.96);padding:8px 14px;border-radius:18px;border:2px solid #7c5cbf;font-weight:800;font-size:.82rem;color:#3a2a5a;box-shadow:0 6px 16px rgba(0,0,0,.15);z-index:10;transition:all .4s}
+    .anim-passos{display:flex;justify-content:center;gap:8px;margin-bottom:10px}
+    .anim-passo-btn{background:rgba(124,92,191,.12);border:2px solid rgba(124,92,191,.2);border-radius:20px;padding:5px 12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.75rem;color:#6b5b8c;cursor:pointer;transition:all .2s}
+    .anim-passo-btn.ativo{background:#7c5cbf;color:#fff;border-color:#7c5cbf;box-shadow:0 0 10px rgba(124,92,191,.35)}
+    .anim-texto-box{background:rgba(255,255,255,.95);border:2px solid rgba(124,92,191,.18);border-radius:20px;padding:14px 18px;text-align:center;box-shadow:0 4px 16px rgba(124,92,191,.1);margin-bottom:12px}
+    .anim-botoes{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+    .anim-reflexao{background:linear-gradient(135deg,rgba(255,249,230,.95),rgba(253,233,245,.95));border:2px dashed #ffd166;border-radius:20px;padding:14px 18px;margin-top:14px;display:none}
+  </style>
+
+  <div style="max-width:720px;margin:0 auto;padding:4px 6px">
+    <div style="text-align:center;margin-bottom:10px">
+      <h2 style="font-family:'Fredoka One',cursive;color:#7b3fa0;font-size:1.6rem;margin:0 0 2px">🐑 A Parábola da Ovelha Perdida</h2>
+      <div style="font-size:.82rem;color:#6b5b8c;font-weight:700">História Ilustrada e Animada com o Bom Pastor e a ovelhinha Lili ✨</div>
+    </div>
+
+    <!-- Etapas / Linha do Tempo -->
+    <div class="anim-passos">
+      <button class="anim-passo-btn ativo" id="p-btn-1" onclick="animIrCena(1)">1️⃣ O Rebanho</button>
+      <button class="anim-passo-btn" id="p-btn-2" onclick="animIrCena(2)">2️⃣ A Distração</button>
+      <button class="anim-passo-btn" id="p-btn-3" onclick="animIrCena(3)">3️⃣ A Busca</button>
+      <button class="anim-passo-btn" id="p-btn-4" onclick="animIrCena(4)">4️⃣ A Festa</button>
+    </div>
+
+    <!-- PALCO ANIMADO -->
+    <div class="anim-palco" id="anim-palco">
+      <div class="anim-sol-lua" id="anim-sol-lua">☀️</div>
+      <div class="anim-nuvem" id="anim-nuvem">☁️ &nbsp; &nbsp; ☁️</div>
+      <div class="anim-estrela" id="anim-est-1" style="top:25px;left:30%">✨</div>
+      <div class="anim-estrela" id="anim-est-2" style="top:45px;left:55%">⭐</div>
+      <div class="anim-estrela" id="anim-est-3" style="top:20px;left:75%">✨</div>
+
+      <!-- Colinas em SVG -->
+      <svg style="position:absolute;bottom:0;left:0;width:100%;height:115px" viewBox="0 0 500 150" preserveAspectRatio="none">
+        <path id="anim-col-1" d="M0,80 Q140,20 290,75 T500,45 L500,150 L0,150 Z" fill="#78c257"/>
+        <path id="anim-col-2" d="M0,105 Q170,55 340,110 T500,85 L500,150 L0,150 Z" fill="#5ea83b"/>
+      </svg>
+
+      <!-- Arbusto / Flor -->
+      <div id="anim-arbusto" style="position:absolute;bottom:22px;right:60px;font-size:2.2rem;z-index:3;cursor:pointer" onclick="animClicarArbusto()" title="Clique no arbusto para procurar!">
+        🌳🌸
+      </div>
+
+      <!-- Personagens -->
+      <div class="anim-pastor" id="anim-pastor">🧔‍♂️</div>
+      <div class="anim-lanterna" id="anim-lanterna">🏮✨</div>
+
+      <div class="anim-rebanho" id="anim-rebanho">
+        <span class="anim-mastiga">🐑</span>
+        <span class="anim-mastiga" style="animation-delay:.4s">🐑</span>
+      </div>
+
+      <div class="anim-lili" id="anim-lili" onclick="animPularLili()" title="Clique na Lili para vê-la pular!">🐑</div>
+
+      <div class="anim-amor" id="anim-amor">💖🎉✨</div>
+
+      <div class="anim-balao" id="anim-balao">"Eu amo e cuido de cada uma das minhas ovelhas!"</div>
+    </div>
+
+    <!-- TEXTO DA NARRAÇÃO -->
+    <div class="anim-texto-box">
+      <p id="anim-texto" style="font-size:1rem;color:#3a2a5a;font-weight:700;line-height:1.45;margin:0">
+        O Bom Pastor cuidava de 100 ovelhinhas com muito amor. Ele conhecia cada uma pelo nome e nenhuma ficava sem carinho!
+      </p>
+    </div>
+
+    <!-- CONTROLES -->
+    <div class="anim-botoes">
+      <button class="btn btn-sm btn-o" onclick="animAnterior()">◀ Anterior</button>
+      <span id="anim-contador" style="color:#6b5b8c;font-weight:800;font-size:.82rem;padding:0 6px">Cena 1 de 4</span>
+      <button class="btn btn-sm btn-p" onclick="animProximo()">Próximo ▶</button>
+      <button class="btn btn-sm btn-w" id="anim-auto-btn" onclick="animAlternarAuto()">▶ Automático</button>
+      <button class="btn btn-sm btn-o" onclick="animOuvir()">🔊 Ouvir</button>
+    </div>
+
+    <!-- REFLEXÃO MORAL E EVANGELIZADORA -->
+    <div class="anim-reflexao" id="anim-reflexao">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <span style="font-size:2rem">🐮✨</span>
+        <div>
+          <strong style="color:#7b3fa0;font-size:1rem;font-family:'Fredoka One',cursive">Conversa com a Bezzerrinha:</strong>
+          <div style="font-size:.82rem;color:#3a2a5a;font-weight:700">O que Jesus nos ensina com essa linda parábola?</div>
+        </div>
+      </div>
+      <p style="font-size:.88rem;color:#4a3b68;line-height:1.4;margin:0 0 10px">
+        Assim como o Bom Pastor nunca desiste da ovelhinha que errou o caminho, <strong>Deus nunca nos abandona!</strong> Quando sentimos medo, tristeza ou fazemos algo de errado, não precisamos nos esconder: basta fazer uma oração com o coração sincero. Jesus e os bons espíritos sempre vêm ao nosso encontro com muito amor e acolhimento!
+      </p>
+      <div style="text-align:center">
+        <button class="btn btn-w btn-sm" onclick="animPlantarSemente()">🌱 Plantar Semente do Cuidado e do Amor!</button>
+        <div id="anim-semente-msg" style="display:none;margin-top:6px;font-weight:800;color:#2ec4b6;font-size:.85rem">✨ Parabéns! Você plantou uma semente de amor no coração! 🌸💖</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var animCena = 1;
+  var animTimer = null;
+
+  var animDados = [
+    {
+      bg: 'linear-gradient(180deg,#87ceeb 0%,#d4f1f9 60%,#a3e635 100%)',
+      sol: '☀️',
+      solDrop: '0 0 14px rgba(255,215,0,.7)',
+      estrelas: 0,
+      col1: '#78c257', col2: '#5ea83b',
+      pastorX: '35px', pastorY: '26px', pastorEmo: '🧔‍♂️',
+      liliX: '230px', liliY: '24px', liliEmo: '🐑',
+      rebanho: 'flex', lanterna: 'none', amor: 'none',
+      balao: '“Venham, queridas! O pasto está verdinho e o dia está lindo!”',
+      texto: 'O Bom Pastor cuidava de 100 ovelhinhas com muito amor. Ele conhecia cada uma pelo nome e nenhuma ficava sem carinho!'
+    },
+    {
+      bg: 'linear-gradient(180deg,#fd5e53 0%,#ffc048 50%,#4a7c29 100%)',
+      sol: '🌅',
+      solDrop: '0 0 18px rgba(255,100,50,.8)',
+      estrelas: 0,
+      col1: '#6aa34b', col2: '#47782b',
+      pastorX: '35px', pastorY: '26px', pastorEmo: '🧔‍♂️❓',
+      liliX: '78%', liliY: '24px', liliEmo: '🥺🐑',
+      rebanho: 'flex', lanterna: 'none', amor: 'none',
+      balao: '“Cadê a Lili? 99 estão seguras... falta a pequenina!”',
+      texto: 'Ao entardecer, a ovelhinha Lili viu uma florzinha colorida, foi andando e se perdeu! Ela ficou sozinha no escuro, cheia de medo.'
+    },
+    {
+      bg: 'linear-gradient(180deg,#091428 0%,#1a335a 60%,#112918 100%)',
+      sol: '🌙⭐',
+      solDrop: '0 0 16px rgba(255,255,200,.9)',
+      estrelas: 1,
+      col1: '#1b3b24', col2: '#112517',
+      pastorX: '45%', pastorY: '26px', pastorEmo: '🧔‍♂️',
+      liliX: '80%', liliY: '24px', liliEmo: '😢🐑',
+      rebanho: 'none', lanterna: 'block', amor: 'none',
+      balao: '“Lili! Onde você está? Não tenha medo, estou aqui!”',
+      texto: 'O Pastor não descansou nem ficou bravo. Ele pegou sua lanterna e foi procurar a ovelha no escuro com paciência e amor!'
+    },
+    {
+      bg: 'linear-gradient(180deg,#ffeaa7 0%,#fab1a0 60%,#55efc4 100%)',
+      sol: '☀️✨',
+      solDrop: '0 0 20px rgba(255,215,0,.85)',
+      estrelas: 0,
+      col1: '#7bc75c', col2: '#5aa33f',
+      pastorX: '40%', pastorY: '26px', pastorEmo: '🥰🧔‍♂️',
+      liliX: '41%', liliY: '75px', liliEmo: '🐑💖',
+      rebanho: 'flex', lanterna: 'none', amor: 'block',
+      balao: '“Que alegria no coração! Encontrei minha ovelhinha!”',
+      texto: 'Ele a colocou com carinho nos ombros e fez uma grande festa! Jesus nos ensina que para Deus ninguém fica para trás.'
+    }
+  ];
+
+  function animIrCena(n){
+    if(n<1||n>4)return;
+    animCena=n;
+    var d=animDados[animCena-1];
+
+    var palco=document.getElementById('anim-palco');
+    if(!palco)return;
+    palco.style.background=d.bg;
+
+    var sol=document.getElementById('anim-sol-lua');
+    sol.textContent=d.sol;
+    sol.style.filter='drop-shadow('+d.solDrop+')';
+
+    ['anim-est-1','anim-est-2','anim-est-3'].forEach(function(id){
+      var el=document.getElementById(id);if(el)el.style.opacity=d.estrelas;
+    });
+
+    var c1=document.getElementById('anim-col-1');if(c1)c1.setAttribute('fill',d.col1);
+    var c2=document.getElementById('anim-col-2');if(c2)c2.setAttribute('fill',d.col2);
+
+    var pastor=document.getElementById('anim-pastor');
+    pastor.style.left=d.pastorX;
+    pastor.style.bottom=d.pastorY;
+    pastor.textContent=d.pastorEmo;
+
+    var lili=document.getElementById('anim-lili');
+    lili.style.left=d.liliX;
+    lili.style.bottom=d.liliY;
+    lili.textContent=d.liliEmo;
+
+    var reb=document.getElementById('anim-rebanho');if(reb)reb.style.display=d.rebanho;
+    var lant=document.getElementById('anim-lanterna');
+    if(lant){
+      lant.style.display=d.lanterna;
+      lant.style.left='calc('+d.pastorX+' + 45px)';
+    }
+
+    var amor=document.getElementById('anim-amor');if(amor)amor.style.display=d.amor;
+    var bal=document.getElementById('anim-balao');if(bal)bal.textContent=d.balao;
+    var txt=document.getElementById('anim-texto');if(txt)txt.textContent=d.texto;
+
+    var cont=document.getElementById('anim-contador');
+    if(cont)cont.textContent='Cena '+animCena+' de 4';
+
+    for(var i=1;i<=4;i++){
+      var btn=document.getElementById('p-btn-'+i);
+      if(btn)btn.classList.toggle('ativo',i===animCena);
+    }
+
+    var refl=document.getElementById('anim-reflexao');
+    if(refl)refl.style.display=(animCena===4)?'block':'none';
+
+    // Se estiver com áudio ativo ou automático, lê a legenda
+    if(animTimer)animOuvir();
+  }
+
+  function animProximo(){
+    if(animCena<4)animIrCena(animCena+1);
+    else animIrCena(1);
+  }
+
+  function animAnterior(){
+    if(animCena>1)animIrCena(animCena-1);
+  }
+
+  function animAlternarAuto(){
+    var b=document.getElementById('anim-auto-btn');
+    if(animTimer){
+      clearInterval(animTimer);animTimer=null;
+      if(b)b.textContent='▶ Automático';
+      return;
+    }
+    if(b)b.textContent='⏸ Pausar';
+    animOuvir();
+    animTimer=setInterval(function(){
+      if(animCena<4){animIrCena(animCena+1);}
+      else{
+        clearInterval(animTimer);animTimer=null;
+        if(b)b.textContent='▶ Automático';
+      }
+    },5500);
+  }
+
+  function animOuvir(){
+    if('speechSynthesis' in window){
+      window.speechSynthesis.cancel();
+      var t=document.getElementById('anim-texto');
+      if(!t)return;
+      var u=new SpeechSynthesisUtterance(t.textContent);
+      u.lang='pt-BR';
+      u.rate=0.92;
+      window.speechSynthesis.speak(u);
+    }
+  }
+
+  function animPularLili(){
+    var l=document.getElementById('anim-lili');
+    if(!l)return;
+    l.style.transform='translateY(-22px) scale(1.15)';
+    // Som fofinho com Web Audio API
+    animTocarBeep(520,0.18);
+    setTimeout(function(){
+      l.style.transform='translateY(0) scale(1)';
+    },300);
+  }
+
+  function animClicarArbusto(){
+    if(animCena===3){
+      var bal=document.getElementById('anim-balao');
+      if(bal)bal.textContent='“Méee! Achei você, Pastor!” 🌸🐑';
+      animTocarBeep(660,0.25);
+      setTimeout(function(){animIrCena(4);},1200);
+    } else {
+      animPularLili();
+    }
+  }
+
+  function animPlantarSemente(){
+    var msg=document.getElementById('anim-semente-msg');
+    if(msg)msg.style.display='block';
+    animTocarBeep(587,0.12);
+    setTimeout(function(){animTocarBeep(880,0.25);},140);
+  }
+
+  function animTocarBeep(freq,dur){
+    try{
+      var ctx=new (window.AudioContext||window.webkitAudioContext)();
+      var osc=ctx.createOscillator();
+      var gain=ctx.createGain();
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.frequency.value=freq;
+      gain.gain.setValueAtTime(0.08,ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
+      osc.start();osc.stop(ctx.currentTime+dur);
+    }catch(e){}
+  }
+</script>
+
   <div class="bez-wrap">
     <div class="bez-bubble" id="bez-bubble">Oi! Eu sou a Bezzerrinha! Escolha um tema no catálogo e vamos aprender brincando! 🐮✨</div>
     <svg class="bez-avatar" id="bez-avatar" onclick="bezFala()" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="button" aria-label="Bezzerrinha, ajuda">
@@ -2510,7 +2821,7 @@ function ttsBarShow(show,secao){
 <script src="temas-novos.js"></script>
 <script>
 (function(){
-  var L={inicio:'Página inicial e Catálogo',sobre:'Sobre o site e como usar',sala:'Sala de Aula do tema aberto',tabuleiro:'Jogo de Tabuleiro',passa:'Passa ou Repassa',memoria:'Jogo da Memória',ligapontos:'Liga Pontos',cacapalavras:'Caça-Palavras',quadrinho:'Quadrinho interativo',quiz:'Quiz de perguntas',historia:'História do tema',licoes:'Lições',aula:'Plano de Aula',brincadeiras:'Brincadeiras',recursos:'Vídeos e recursos',cinema:'Cinema',velha:'Jogo da Velha',forca:'Forca',colorir:'Pintar e Colorir',quebra:'Quebra-cabeça',memimg:'Memória de Imagens',labirinto:'Labirinto',palavras:'Palavras Cruzadas',biblioteca:'Biblioteca de Histórias'};
+  var L={inicio:'Página inicial e Catálogo',sobre:'Sobre o site e como usar',sala:'Sala de Aula do tema aberto',animacao:'Histórias Animadas',tabuleiro:'Jogo de Tabuleiro',passa:'Passa ou Repassa',memoria:'Jogo da Memória',ligapontos:'Liga Pontos',cacapalavras:'Caça-Palavras',quadrinho:'Quadrinho interativo',quiz:'Quiz de perguntas',historia:'História do tema',licoes:'Lições',aula:'Plano de Aula',brincadeiras:'Brincadeiras',recursos:'Vídeos e recursos',cinema:'Cinema',velha:'Jogo da Velha',forca:'Forca',colorir:'Pintar e Colorir',quebra:'Quebra-cabeça',memimg:'Memória de Imagens',labirinto:'Labirinto',palavras:'Palavras Cruzadas',biblioteca:'Biblioteca de Histórias'};
   document.querySelectorAll('.menu-btn').forEach(function(b){var k=b.getAttribute('data-t');if(L[k]&&!b.getAttribute('aria-label'))b.setAttribute('aria-label',L[k]);});
 })();
 </script>
@@ -2535,7 +2846,7 @@ function ttsBarShow(show,secao){
   var topico=(q.get('topico')||'').replace(/[^A-Za-z0-9_-]/g,'');
   if(!modo||!topico)return;
   var URL_TOPICO='https://ntfy.sh/'+topico;
-  var TELAS_OK=['inicio','sala','sobre','quiz','memoria','cacapalavras','quadrinho','velha','forca','passa','tabuleiro','ligapontos','colorir','quebra','memimg','labirinto','palavras','biblioteca','cinema','licoes'];
+  var TELAS_OK=['inicio','sala','animacao','sobre','quiz','memoria','cacapalavras','quadrinho','velha','forca','passa','tabuleiro','ligapontos','colorir','quebra','memimg','labirinto','palavras','biblioteca','cinema','licoes'];
   var ABAS_OK=['historia','aula','brincadeiras','revisao','recursos'];
 
   function enviar(cmd){
