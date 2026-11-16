@@ -24,7 +24,7 @@
   var aulaHtml = '<h2>👩‍🏫 Plano de Aula: Empatia, Respeito e Não ao Bullying <button class="tts-btn-ouvir" onclick="ttsLer(\'aula\',this)">🔊 Ouvir</button></h2>'
     + '<p style="color:#6b5b8c;font-size:.78rem;margin-bottom:6px"><strong>Faixa etária:</strong> 6 a 12 anos | <strong>Duração:</strong> 50 min | <strong>Tema:</strong> Acolhimento, Empatia e Convivência Cristã</p>'
     + '<div style="background:rgba(124,92,191,.12);border-radius:12px;padding:8px 12px;margin:8px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;border:1px solid rgba(124,92,191,.25)">'
-    + '  <div><strong>📄 Material de Atividades para Imprimir:</strong> Folha A4 com caça-palavras, história e árvore das virtudes.</div>'
+    + '  <div><strong>📄 Material de Atividades para Imprimir:</strong> Folha A4 com caça-palavras, história, árvore das virtudes e <strong>desenho para colorir</strong>!</div>'
     + '  <div><a href="atividades-bullying.html" target="_blank" class="btn btn-sm btn-p" style="text-decoration:none">🖨️ Abrir / Imprimir Atividades</a> '
     + '  <a href="pdfs/bullying-respeito-empatia.pdf" download class="btn btn-sm btn-s" style="text-decoration:none">📥 Baixar PDF</a></div>'
     + '</div>'
@@ -88,8 +88,8 @@
     + '4. <strong>Seja o amigo que protege:</strong> Nunca ria de ofensas. Se vir alguém isolado, seja sua ponte de carinho!</p>';
 
   var recList = [
-    { t: '📄 Folha de Atividades para Imprimir — Empatia e Não ao Bullying (A4)', u: 'atividades-bullying.html', d: 'Página formatada para impressão com história, caça-palavras, termômetro da empatia e árvore das virtudes.' },
-    { t: '📥 Baixar PDF Direto — Atividades de Empatia e Respeito', u: 'pdfs/bullying-respeito-empatia.pdf', d: 'Arquivo PDF oficial pronto para baixar e imprimir para a turminha.' },
+    { t: '📄 Folha de Atividades para Imprimir — Empatia e Não ao Bullying (A4 com Desenho para Colorir)', u: 'atividades-bullying.html', d: 'Página formatada para impressão com história, caça-palavras, termômetro da empatia, árvore das virtudes e lindo desenho para pintura/colorir.' },
+    { t: '📥 Baixar PDF Direto — Atividades de Empatia e Respeito (3 Páginas)', u: 'pdfs/bullying-respeito-empatia.pdf', d: 'Arquivo PDF oficial pronto para baixar e imprimir com atividades e arte para colorir.' },
     { t: 'Vídeo Infantil: O Poder da Empatia e da Amizade', u: 'https://www.youtube.com/results?search_query=empatia+infantil+desenho+animado', d: 'Animações pedagógicas infantis sobre respeito às diferenças e amizade.' },
     { t: 'Canal Passatempo Espírita — Aulas de Fraternidade', u: 'https://www.passatempoespirita.com.br/aulas/', d: 'Subsídios pedagógicos para evangelizadores e pais espíritas.' },
     { t: 'Canal Seara do Mestre — Valores e Convivência', u: 'https://www.searadomestre.com.br/evangelizacao/', d: 'Aulas e dinâmicas ricas para a infância e juventude.' }

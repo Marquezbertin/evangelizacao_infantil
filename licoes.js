@@ -249,7 +249,7 @@ licoes.push({
   <p><strong>Idade:</strong> 6-12 anos • <strong>Material:</strong> Folha de atividades impressa ou cartolina.</p>
   <p>Faça a dinâmica da <strong>Teia da Amizade</strong> com um novelo de lã: cada um joga o novelo dizendo uma qualidade sincera do colega, tecendo uma rede protetora onde ninguém fica sozinho.</p>
   <div style="margin:8px 0;padding:8px 10px;background:rgba(124,92,191,.15);border-radius:10px;font-size:.82rem;">
-    📄 <strong>Material Especial para Imprimir:</strong> Folha A4 com caça-palavras, termômetro da empatia e árvore dos frutos bons!<br>
+    📄 <strong>Material Especial para Imprimir:</strong> Folha A4 com caça-palavras, termômetro da empatia, árvore dos frutos bons e <strong>desenho para colorir</strong>!<br>
     <a href="atividades-bullying.html" target="_blank" style="color:#b8860b;font-weight:800;text-decoration:underline;">Clique aqui para abrir e imprimir as atividades</a> ou 
     <a href="pdfs/bullying-respeito-empatia.pdf" download style="color:#b8860b;font-weight:800;text-decoration:underline;">baixe o PDF pronto</a>.
   </div>`,
