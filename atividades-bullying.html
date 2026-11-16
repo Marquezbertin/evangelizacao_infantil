@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atividades de Evangelização Infantil: Empatia, Respeito e Não ao Bullying</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: #2c2541;
+    background: #f0edf8;
+    line-height: 1.4;
+    padding: 20px 10px;
+  }
+  .no-print-bar {
+    max-width: 820px;
+    margin: 0 auto 16px auto;
+    background: #ffffff;
+    padding: 14px 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(124, 92, 191, 0.18);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 2px solid #7c5cbf;
+  }
+  .no-print-bar .info {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #553982;
+  }
+  .btn-print {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.35);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-print:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.45);
+  }
+  .btn-voltar {
+    background: #ece7f6;
+    color: #553982;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 1px solid #7c5cbf;
+    border-radius: 30px;
+    padding: 8px 18px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-voltar:hover {
+    background: #dfd7f0;
+  }
+
+  /* Folha A4 para impressão */
+  .folha-a4 {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto 24px auto;
+    background: #ffffff;
+    padding: 14mm 14mm 12mm 14mm;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    position: relative;
+    page-break-after: always;
+  }
+
+  /* Cabeçalho da Evangelização */
+  .header-aula {
+    border-bottom: 2px dashed #7c5cbf;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-aula .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-aula .icone-topo {
+    font-size: 2.2rem;
+  }
+  .header-aula .titulo-escola {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.15rem;
+    color: #553982;
+    line-height: 1.1;
+  }
+  .header-aula .sub-escola {
+    font-size: 0.72rem;
+    color: #6b5b8c;
+    font-weight: 700;
+  }
+  .campos-aluno {
+    background: #fbf9ff;
+    border: 1px solid #dcd1f3;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #553982;
+  }
+  .campo-linha {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .linha-pontilhada {
+    flex: 1;
+    border-bottom: 1px dotted #8e7bb0;
+    height: 14px;
+  }
+
+  .banner-tema {
+    background: linear-gradient(135deg, #f7f3ff, #fbf0f7);
+    border: 2px solid #7c5cbf;
+    border-radius: 14px;
+    padding: 10px 14px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .banner-tema h1 {
+    font-family: 'Fredoka One', cursive;
+    color: #553982;
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+  }
+  .banner-tema .versiculo-chave {
+    font-size: 0.82rem;
+    color: #3b2861;
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  /* Seções de Atividades */
+  .secao-card {
+    border: 1.5px solid #d4c7ee;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    background: #fff;
+  }
+  .secao-titulo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    color: #553982;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #ebdffc;
+    padding-bottom: 3px;
+  }
+  .historia-box {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #33274d;
+    background: #faf8ff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border-left: 4px solid #7c5cbf;
+    margin-bottom: 8px;
+  }
+
+  .perguntas-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pergunta-item {
+    font-size: 0.82rem;
+  }
+  .pergunta-item .enunciado {
+    font-weight: 800;
+    color: #43296c;
+    margin-bottom: 3px;
+  }
+  .opcoes-lista {
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .opcao-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: #33274d;
+  }
+  .circulo-check {
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid #7c5cbf;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  /* Árvore das Boas Palavras */
+  .arvore-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .arvore-desenho {
+    width: 220px;
+    height: 220px;
+    flex-shrink: 0;
+  }
+  .arvore-instrucoes {
+    font-size: 0.82rem;
+    flex: 1;
+    color: #33274d;
+  }
+  .frutos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .fruto-item {
+    border: 1.5px dashed #8e7bb0;
+    background: #fbf9ff;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #4b3472;
+    text-align: center;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Caça Palavras */
+  .caca-palavras-wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .caca-grade {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2px;
+    background: #553982;
+    padding: 4px;
+    border-radius: 8px;
+    width: 280px;
+  }
+  .caca-letra {
+    background: #ffffff;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.78rem;
+    color: #2c2541;
+  }
+  .caca-palavras-lista {
+    font-size: 0.8rem;
+    flex: 1;
+  }
+  .caca-palavras-lista ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .caca-palavras-lista li {
+    background: #f4efff;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: #553982;
+    font-size: 0.78rem;
+    border: 1px solid #dcd1f3;
+  }
+
+  /* Rodapé da Folha */
+  .folha-footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 14mm;
+    right: 14mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.72rem;
+    color: #7b6a9a;
+    border-top: 1px solid #e1d8f3;
+    padding-top: 4px;
+  }
+
+  /* Labirinto / Desenho */
+  .labirinto-box {
+    border: 2px solid #553982;
+    border-radius: 10px;
+    padding: 6px;
+    text-align: center;
+    background: #faf8ff;
+  }
+
+  /* Certificado / Selo Protetor da Paz */
+  .selo-paz {
+    border: 2px dashed #b8860b;
+    background: #fffdf5;
+    border-radius: 12px;
+    padding: 10px 14px;
+    text-align: center;
+  }
+  .selo-paz h3 {
+    font-family: 'Fredoka One', cursive;
+    color: #b8860b;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  @media print {
+    body {
+      background: #ffffff;
+      padding: 0;
+    }
+    .no-print-bar {
+      display: none !important;
+    }
+    .folha-a4 {
+      width: 100%;
+      min-height: 100vh;
+      margin: 0;
+      padding: 10mm 12mm 10mm 12mm;
+      box-shadow: none;
+      border-radius: 0;
+      page-break-after: always;
+    }
+    .secao-card {
+      border: 1px solid #7c5cbf;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- BARRA SUPERIOR PARA O EVANGELIZADOR / PROFESSOR (NÃO SAI NA IMPRESSÃO) -->
+<div class="no-print-bar">
+  <div class="info">
+    📖 <strong>Material de Evangelização Espírita Infantil</strong> — Tema: Empatia & Não ao Bullying
+  </div>
+  <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+    <a href="index.html" class="btn-voltar">← Voltar ao Site</a>
+    <a href="pdfs/bullying-respeito-empatia.pdf" download="atividades-bullying-empatia.pdf" class="btn-print" style="background: linear-gradient(135deg, #1a9e54, #38f9d7); color:#003d2e; text-decoration:none;">📥 Baixar PDF</a>
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir Atividades (A4)</button>
+  </div>
+</div>
+
+<!-- ==================== FOLHA 1 ==================== -->
+<div class="folha-a4">
+  <div class="header-aula">
+    <div class="logo-area">
+      <div class="icone-topo">🕊️</div>
+      <div>
+        <div class="titulo-escola">Escola de Evangelização Espírita Infantil</div>
+        <div class="sub-escola">Evangelho no Coração · Moral Cristã · Doutrina Espírita</div>
+      </div>
+    </div>
+    <div style="text-align: right; font-size: 0.75rem; color: #553982; font-weight: 800;">
+      AULA DO DIA<br>
+      <span style="font-weight: 400; color: #6b5b8c;">Amor & Fraternidade</span>
+    </div>
+  </div>
+
+  <div class="campos-aluno">
+    <div class="campo-linha">Nome: <span class="linha-pontilhada"></span></div>
+    <div class="campo-linha">Data: <span class="linha-pontilhada"></span></div>
+    <div class="campo-linha">Turma: <span class="linha-pontilhada"></span></div>
+  </div>
+
+  <div class="banner-tema">
+    <h1>🕊️ Corações Amigos: Empatia, Respeito e Não ao Bullying</h1>
+    <div class="versiculo-chave">
+      "Tudo quanto quereis que os homens vos façam, fazei-lho vós também a eles." — Jesus (Mateus 7:12)
+    </div>
+  </div>
+
+  <!-- HISTORINHA REFLEXIVA -->
+  <div class="secao-card">
+    <div class="secao-titulo">📖 1. A Ponte de Luz e as Palavras que Curam</div>
+    <div class="historia-box">
+      <p>Na escola de Lucas, chegou um coleguinha novo chamado <strong>Léo</strong>. Léo usava óculos grandões, era um pouco tímido e adorava desenhar planetas coloridos. Na hora do recreio, dois meninos começaram a rir de Léo, chamando-o de "quatro-olhos" e não o deixaram entrar na brincadeira da bola. Léo ficou sentadinho no chão, com os olhinhos cheios de lágrimas.</p>
+      <p style="margin-top:4px;">Lucas, que estuda na Evangelização Espírita, lembrou-se do que Jesus e Allan Kardec nos ensinam: <em>"Somos todos espíritos irmãos, filhos do mesmo Pai do Céu, e devemos tratar os outros com o mesmo carinho que gostaríamos de receber"</em>. Em vez de rir ou fingir que não viu, Lucas aproximou-se de Léo, elogiou seus desenhos e disse: <strong>"Seu foguete é incrível! Quer lanchar comigo e inventar uma missão espacial?"</strong></p>
+      <p style="margin-top:4px;">Quando os outros meninos viram a bondade de Lucas, sentiram vergonha da brincadeira maldosa. Lucas, com voz calma e amiga, disse: <strong>"Apelidos machucam o coração. Se fosse com a gente, não íamos gostar. Que tal brincarmos todos juntos de astronautas?"</strong> O recreio virou uma grande festa de amigos!</p>
+    </div>
+  </div>
+
+  <!-- ATIVIDADE 1: TERMÔMETRO DA EMPATIA -->
+  <div class="secao-card">
+    <div class="secao-titulo">🎯 2. Termômetro da Empatia: O que Jesus e a Caridade Fariam?</div>
+    <div class="perguntas-grid">
+      <div class="pergunta-item">
+        <div class="enunciado">A) Quando vejo um coleguinha sendo deixado de lado ou alguém colocando apelido chato nele:</div>
+        <div class="opcoes-lista">
+          <div class="opcao-box"><span class="circulo-check"></span> Dou risada com os outros para parecer legal.</div>
+          <div class="opcao-box"><span class="circulo-check"></span> Chamo o amiguinho para brincar perto de mim e aviso a professora ou o evangelizador.</div>
+          <div class="opcao-box"><span class="circulo-check"></span> Fico quieto e finjo que não vi nada.</div>
+        </div>
+      </div>
+
+      <div class="pergunta-item">
+        <div class="enunciado">B) Segundo a Doutrina Espírita, por que cada pessoa é diferente e especial?</div>
+        <div class="opcoes-lista">
+          <div class="opcao-box"><span class="circulo-check"></span> Porque Deus criou cada espírito com amor, cada um com sua história e talentos para aprender e cooperar.</div>
+          <div class="opcao-box"><span class="circulo-check"></span> Porque algumas pessoas são melhores do que as outras.</div>
+        </div>
+      </div>
+
+      <div class="pergunta-item">
+        <div class="enunciado">C) O que devemos fazer com a criança que pratica bullying (ofensas e zombarias)?</div>
+        <div class="opcoes-lista">
+          <div class="opcao-box"><span class="circulo-check"></span> Pagar na mesma moeda e fazer o mesmo com ela.</div>
+          <div class="opcao-box"><span class="circulo-check"></span> Não aceitar a ofensa, colocar limite com firmeza e respeito, pedir ajuda a um adulto e orar para que seu coração encontre a paz.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folha-footer">
+    <span>Evangelização Infantil Espírita — Acolhimento, Paz e Amor</span>
+    <span>Página 1 de 2</span>
+  </div>
+</div>
+
+<!-- ==================== FOLHA 2 ==================== -->
+<div class="folha-a4">
+  <div class="header-aula">
+    <div class="logo-area">
+      <div class="icone-topo">🌳</div>
+      <div>
+        <div class="titulo-escola">Oficina das Virtudes & Atividades Práticas</div>
+        <div class="sub-escola">Plantando sementes de gentileza no coração</div>
+      </div>
+    </div>
+    <div style="font-size: 0.75rem; color: #553982; font-weight: 700;">Folha de Atividades</div>
+  </div>
+
+  <!-- ATIVIDADE 2: ÁRVORE DAS BOAS PALAVRAS -->
+  <div class="secao-card">
+    <div class="secao-titulo">🌳 3. A Árvore das Palavras que Iluminam</div>
+    <div class="arvore-container">
+      <svg class="arvore-desenho" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Tronco -->
+        <path d="M90 190 L90 125 C85 110 75 95 65 85 C80 90 92 100 96 115 C100 95 115 85 135 80 C122 92 114 105 106 125 L106 190 Z" fill="#8d5b32" stroke="#5d391e" stroke-width="2"/>
+        <!-- Raízes -->
+        <path d="M75 190 C85 185 90 190 90 190 M106 190 C110 188 125 190 125 190" stroke="#5d391e" stroke-width="2"/>
+        <!-- Copa da Árvore -->
+        <path d="M100 20 C60 20 40 50 45 80 C25 90 25 125 55 135 C65 140 80 135 100 135 C120 135 135 140 145 135 C175 125 175 90 155 80 C160 50 140 20 100 20 Z" fill="#e8f8ec" stroke="#2e7d32" stroke-width="2.5" stroke-dasharray="4 2"/>
+        <!-- Maçãs / Frutos para escrever -->
+        <circle cx="75" cy="55" r="14" fill="#ffffff" stroke="#d32f2f" stroke-width="1.8"/>
+        <circle cx="125" cy="55" r="14" fill="#ffffff" stroke="#d32f2f" stroke-width="1.8"/>
+        <circle cx="100" cy="85" r="14" fill="#ffffff" stroke="#d32f2f" stroke-width="1.8"/>
+        <circle cx="60" cy="100" r="14" fill="#ffffff" stroke="#d32f2f" stroke-width="1.8"/>
+        <circle cx="140" cy="100" r="14" fill="#ffffff" stroke="#d32f2f" stroke-width="1.8"/>
+      </svg>
+      <div class="arvore-instrucoes">
+        <p><strong>Jesus nos ensinou:</strong> <em>"A árvore boa dá frutos bons."</em> (Mateus 7:17)</p>
+        <p style="margin: 4px 0;">Escreva dentro de cada fruto da árvore uma <strong>palavra bondosa</strong> que alegra o dia de um amigo:</p>
+        <div class="frutos-grid">
+          <div class="fruto-item">❤️ Obrigado!</div>
+          <div class="fruto-item">🤝 Você é meu amigo</div>
+          <div class="fruto-item">🕊️ Desculpe</div>
+          <div class="fruto-item">🌟 Vamos brincar?</div>
+        </div>
+        <p style="font-size:0.75rem; color:#6b5b8c; margin-top:5px;">💡 Dica: Pinte a copa da árvore com muito capricho!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATIVIDADE 3: CAÇA-PALAVRAS -->
+  <div class="secao-card">
+    <div class="secao-titulo">🔍 4. Caça-Palavras da Turma da Paz</div>
+    <div class="caca-palavras-wrapper">
+      <div class="caca-grade">
+        <!-- 12 colunas x 7 linhas -->
+        <div class="caca-letra">E</div><div class="caca-letra">M</div><div class="caca-letra">P</div><div class="caca-letra">A</div><div class="caca-letra">T</div><div class="caca-letra">I</div><div class="caca-letra">A</div><div class="caca-letra">X</div><div class="caca-letra">P</div><div class="caca-letra">A</div><div class="caca-letra">Z</div><div class="caca-letra">W</div>
+        <div class="caca-letra">R</div><div class="caca-letra">E</div><div class="caca-letra">S</div><div class="caca-letra">P</div><div class="caca-letra">E</div><div class="caca-letra">I</div><div class="caca-letra">T</div><div class="caca-letra">O</div><div class="caca-letra">K</div><div class="caca-letra">L</div><div class="caca-letra">M</div><div class="caca-letra">A</div>
+        <div class="caca-letra">A</div><div class="caca-letra">M</div><div class="caca-letra">I</div><div class="caca-letra">Z</div><div class="caca-letra">A</div><div class="caca-letra">D</div><div class="caca-letra">E</div><div class="caca-letra">Y</div><div class="caca-letra">A</div><div class="caca-letra">M</div><div class="caca-letra">O</div><div class="caca-letra">R</div>
+        <div class="caca-letra">B</div><div class="caca-letra">O</div><div class="caca-letra">N</div><div class="caca-letra">D</div><div class="caca-letra">A</div><div class="caca-letra">D</div><div class="caca-letra">E</div><div class="caca-letra">J</div><div class="caca-letra">E</div><div class="caca-letra">S</div><div class="caca-letra">U</div><div class="caca-letra">S</div>
+        <div class="caca-letra">P</div><div class="caca-letra">E</div><div class="caca-letra">R</div><div class="caca-letra">D</div><div class="caca-letra">A</div><div class="caca-letra">O</div><div class="caca-letra">Q</div><div class="caca-letra">U</div><div class="caca-letra">N</div><div class="caca-letra">I</div><div class="caca-letra">A</div><div class="caca-letra">O</div>
+        <div class="caca-letra">C</div><div class="caca-letra">A</div><div class="caca-letra">R</div><div class="caca-letra">I</div><div class="caca-letra">D</div><div class="caca-letra">A</div><div class="caca-letra">D</div><div class="caca-letra">E</div><div class="caca-letra">T</div><div class="caca-letra">U</div><div class="caca-letra">D</div><div class="caca-letra">O</div>
+        <div class="caca-letra">A</div><div class="caca-letra">C</div><div class="caca-letra">O</div><div class="caca-letra">L</div><div class="caca-letra">H</div><div class="caca-letra">E</div><div class="caca-letra">R</div><div class="caca-letra">S</div><div class="caca-letra">L</div><div class="caca-letra">U</div><div class="caca-letra">Z</div><div class="caca-letra">F</div>
+      </div>
+      <div class="caca-palavras-lista">
+        <p><strong>Encontre no quadro acima as 8 atitudes cristãs:</strong></p>
+        <ul>
+          <li>✓ EMPATIA</li>
+          <li>✓ RESPEITO</li>
+          <li>✓ AMIZADE</li>
+          <li>✓ BONDADE</li>
+          <li>✓ PERDÃO</li>
+          <li>✓ CARIDADE</li>
+          <li>✓ ACOLHER</li>
+          <li>✓ PAZ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATIVIDADE 4: COMPROMISSO DO CORAÇÃO -->
+  <div class="secao-card">
+    <div class="secao-titulo">🤝 5. Meu Compromisso de Protetor da Paz</div>
+    <div style="font-size:0.82rem; line-height: 1.4; color:#33274d;">
+      <p><em>"Eu prometo usar minhas palavras para confortar, minhas mãos para ajudar e meu coração para amar. Quando eu vir um amiguinho triste, serei sua ponte de luz e amizade!"</em></p>
+      <div style="margin-top:8px; display:flex; justify-content:space-between; align-items:center; padding: 0 10px;">
+        <div>Assinatura do Pequeno Pacificador: <span style="display:inline-block; width:180px; border-bottom:1px solid #7c5cbf;"></span></div>
+        <div style="font-size:1.6rem;">🕊️⭐❤️</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folha-footer">
+    <span>"Fora da Caridade não há salvação." — Allan Kardec</span>
+    <span>Página 2 de 2</span>
+  </div>
+</div>
+
+</body>
+</html>

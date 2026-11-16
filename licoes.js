@@ -235,6 +235,27 @@ licoes.push({
   versiculo:`"Amados, amemos uns aos outros, porque o amor é de Deus." — 1 João 4,7`
 });
 
+// ---------- 16. Empatia, Respeito e Não ao Bullying ----------
+licoes.push({
+  titulo:'Empatia e Não ao Bullying',
+  emoji:'🕊️', emoji2:'🤝',
+  faixa:'6 a 12 anos', tema:'Respeito, Empatia e Convivência Cristã',
+  ref:'Mateus 7:12 e O Evangelho Segundo o Espiritismo (Cap. 10 e 17)',
+  historia:`<p>Na escola de Lucas, um garoto novo chamado <strong>Léo</strong> começou a estudar. Ele usava óculos redondos e gostava de desenhar estrelas e planetas no recreio. Dois colegas maiores começaram a zombar dele, chamando-o de "quatro-olhos" e não o deixando brincar com a bola. Léo ficou sentado sozinho em um canto, chorando baixinho.</p>
+  <p>Lucas, lembrando-se das lições da Evangelização Espírita Infantil sobre a <strong>Regra de Ouro de Jesus</strong> e sabendo que <em>todos somos espíritos irmãos criados por Deus com imenso amor</em>, aproximou-se de Léo, elogiou seus lindos desenhos e o convidou para lanchar e brincar juntos.</p>
+  <p>Quando os outros meninos voltaram para zombar, Lucas disse com tranquilidade e firmeza: <strong>"Apelidos machucam. Se fosse conosco, não gostaríamos. O Léo desenha muito bem, que tal brincarmos todos juntos de nave espacial?"</strong> Aquela atitude serena tocou os corações: os colegas pediram desculpas e o recreio virou uma linda festa de amizade!</p>`,
+  reflexao:`<p>💭 <strong>Reflexão Espírita:</strong> Brincadeira só é boa quando todos se divertem. Se alguém chora ou se sente humilhado, é falta de caridade. Segundo a Doutrina Espírita, ninguém é melhor que ninguém; cada um tem talentos e desafios próprios. Quem pratica o bullying muitas vezes está sofrendo por dentro e precisa de limites com amor e oração. E nós devemos ser o escudo de bondade de Jesus, protegendo quem precisa e espalhando a paz!</p>`,
+  atividade:`<h3>🎯 Brincadeira & Atividades Práticas</h3>
+  <p><strong>Idade:</strong> 6-12 anos • <strong>Material:</strong> Folha de atividades impressa ou cartolina.</p>
+  <p>Faça a dinâmica da <strong>Teia da Amizade</strong> com um novelo de lã: cada um joga o novelo dizendo uma qualidade sincera do colega, tecendo uma rede protetora onde ninguém fica sozinho.</p>
+  <div style="margin:8px 0;padding:8px 10px;background:rgba(124,92,191,.15);border-radius:10px;font-size:.82rem;">
+    📄 <strong>Material Especial para Imprimir:</strong> Folha A4 com caça-palavras, termômetro da empatia e árvore dos frutos bons!<br>
+    <a href="atividades-bullying.html" target="_blank" style="color:#b8860b;font-weight:800;text-decoration:underline;">Clique aqui para abrir e imprimir as atividades</a> ou 
+    <a href="pdfs/bullying-respeito-empatia.pdf" download style="color:#b8860b;font-weight:800;text-decoration:underline;">baixe o PDF pronto</a>.
+  </div>`,
+  versiculo:`"Tudo quanto quereis que os homens vos façam, fazei-lho vós também." — Mateus 7:12`
+});
+
 // ======================= RENDERIZAÇÃO =======================
 var licaoAtual=-1;
 function renderLicoes(){
